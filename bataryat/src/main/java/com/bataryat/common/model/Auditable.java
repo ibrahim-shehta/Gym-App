@@ -17,7 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.bataryat.user.model.User;
 
 @MappedSuperclass
-@EntityListeners({AuditingEntityListener.class})
+@EntityListeners({AuditingEntityListener.class}) 
 public abstract class Auditable extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 4648826521531988784L;
