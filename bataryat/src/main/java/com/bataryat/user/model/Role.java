@@ -1,14 +1,18 @@
 package com.bataryat.user.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.bataryat.common.model.BaseEntity;
 
 @Entity
+@Table(name="roles")
 public class Role extends BaseEntity {
 
 	/**
@@ -23,7 +27,7 @@ public class Role extends BaseEntity {
 	private Set<UserRole> userRole = new HashSet<>();
 	
 	@OneToMany(mappedBy="role")
-	private Set<RolePermission> rolePermission = new HashSet<>();
+	private List<RolePermission> rolePermission = new ArrayList<>();
 
 	public String getCode() {
 		return code;
@@ -37,10 +41,10 @@ public class Role extends BaseEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Set<RolePermission> getRolePermission() {
+	public List<RolePermission> getRolePermission() {
 		return rolePermission;
 	}
-	public void setRolePermission(Set<RolePermission> rolePermission) {
+	public void setRolePermission(List<RolePermission> rolePermission) {
 		this.rolePermission = rolePermission;
 	}
 

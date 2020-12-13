@@ -1,14 +1,16 @@
 package com.bataryat.user.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.bataryat.common.model.Auditable;
 
 @Entity
+@Table(name="users")
 public class User extends Auditable {
 
 	/**
@@ -33,7 +35,7 @@ public class User extends Auditable {
 	private boolean isBlocked;
 
 	@OneToMany(mappedBy="user")
-	private Set<UserRole> userRole = new HashSet<>();
+	private List<UserRole> userRole = new ArrayList<>();
 	
 	public User() {
 
@@ -107,11 +109,11 @@ public class User extends Auditable {
 		this.isBlocked = isBlocked;
 	}
 
-	public Set<UserRole> getUserRole() {
+	public List<UserRole> getUserRole() {
 		return userRole;
 	}
 
-	public void setUserRole(Set<UserRole> userRole) {
+	public void setUserRole(List<UserRole> userRole) {
 		this.userRole = userRole;
 	}
 	
