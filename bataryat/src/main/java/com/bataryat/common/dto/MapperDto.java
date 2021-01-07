@@ -1,9 +1,13 @@
 package com.bataryat.common.dto;
 
-public interface MapperDto <Entity, Dto, Id>{
+public interface MapperDto {
 
-	public Dto mapEntityToDto(Entity entity);
+	public static Object mapEntityToDto(Object entity) {
+		return null;
+	}
 	
-	public Entity mapDtoToEntity(Dto dto);
-	
+	public static Object mapDtoToEntity(Object dto) {
+		return null;
+	}
+
 }

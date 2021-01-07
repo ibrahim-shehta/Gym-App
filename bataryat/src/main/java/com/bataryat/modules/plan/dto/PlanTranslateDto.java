@@ -4,26 +4,25 @@ import com.bataryat.common.dto.BaseDto;
 import com.bataryat.common.dto.MapperDto;
 import com.bataryat.modules.plan.model.PlanTranslate;
 
-public class PlanTranslateDto extends BaseDto implements MapperDto<PlanTranslate, PlanTranslateDto, Long>{
+public class PlanTranslateDto extends BaseDto implements MapperDto {
 
 	private String langCode;
 	private String name;
 	private String description;
 	
-	@Override
-	public PlanTranslateDto mapEntityToDto(PlanTranslate entity) {
+	public static PlanTranslateDto mapEntityToDto(PlanTranslate entity) {
 		if (entity == null) {
 			return null;
 		}
-		this.setId(entity.getId());
-		this.langCode = entity.getLangCode();
-		this.name = entity.getName();
-		this.description = entity.getDescription();
-		return this;
+		PlanTranslateDto dto = new PlanTranslateDto();
+		dto.setId(entity.getId());
+		dto.langCode = entity.getLangCode();
+		dto.name = entity.getName();
+		dto.description = entity.getDescription();
+		return dto;
 	}
 	
-	@Override
-	public PlanTranslate mapDtoToEntity(PlanTranslateDto dto) {
+	public static PlanTranslate mapDtoToEntity(PlanTranslateDto dto) {
 		if (dto == null) {
 			return null;
 		}

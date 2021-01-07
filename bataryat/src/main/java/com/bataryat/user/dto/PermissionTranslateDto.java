@@ -4,26 +4,25 @@ import com.bataryat.common.dto.BaseDto;
 import com.bataryat.common.dto.MapperDto;
 import com.bataryat.user.model.translate.PermissionTranslate;
 
-public class PermissionTranslateDto extends BaseDto implements MapperDto<PermissionTranslate, PermissionTranslateDto, Long>{
+public class PermissionTranslateDto extends BaseDto implements MapperDto {
 
 	private String langCode;
 	private String name;
 	private String description;
 	
-	@Override
-	public PermissionTranslateDto mapEntityToDto(PermissionTranslate entity) {
+	public static PermissionTranslateDto mapEntityToDto(PermissionTranslate entity) {
 		if (entity == null) {
 			return null;
 		}
-		this.setId(entity.getId());
-		this.langCode = entity.getLangCode();
-		this.name = entity.getName();
-		this.description = entity.getDescription();
-		return this;
+		PermissionTranslateDto dto = new PermissionTranslateDto();
+		dto.setId(entity.getId());
+		dto.langCode = entity.getLangCode();
+		dto.name = entity.getName();
+		dto.description = entity.getDescription();
+		return dto;
 	}
 	
-	@Override
-	public PermissionTranslate mapDtoToEntity(PermissionTranslateDto dto) {
+	public static PermissionTranslate mapDtoToEntity(PermissionTranslateDto dto) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -7,7 +7,7 @@ import com.bataryat.common.dto.BaseDto;
 import com.bataryat.common.dto.MapperDto;
 import com.bataryat.modules.plan.model.Plan;
 
-public class PlanDto extends BaseDto implements MapperDto<Plan, PlanDto, Long>{
+public class PlanDto extends BaseDto implements MapperDto{
 
 	private String code;
 	private Long value;
@@ -30,21 +30,22 @@ public class PlanDto extends BaseDto implements MapperDto<Plan, PlanDto, Long>{
 	public void setPlanTranslate(List<PlanTranslateDto> planTranslate) {
 		this.planTranslate = planTranslate;
 	}
-	@Override
-	public PlanDto mapEntityToDto(Plan entity) {
+	
+	
+	public static PlanDto mapEntityToDto(Plan entity) {
 		if (entity == null) {
 			return null;
 		}
-		this.setId(entity.getId());
-		this.setCode(entity.getCode());
-		this.setValue(entity.getValue());
+		PlanDto dto = new PlanDto();
+		dto.setId(entity.getId());
+		dto.setCode(entity.getCode());
+		dto.setValue(entity.getValue());
 		entity.getPlanTranslate().forEach(item -> {
-			this.planTranslate.add(new PlanTranslateDto().mapEntityToDto(item));
+			dto.planTranslate.add(PlanTranslateDto.mapEntityToDto(item));
 		});
-		return this;
+		return dto;
 	}
-	@Override
-	public Plan mapDtoToEntity(PlanDto dto) {
+	public static Plan mapDtoToEntity(PlanDto dto) {
 		if (dto == null) {
 			return null;
 		}
@@ -53,7 +54,7 @@ public class PlanDto extends BaseDto implements MapperDto<Plan, PlanDto, Long>{
 		entity.setCode(dto.getCode());
 		entity.setValue(dto.getValue());
 		dto.getPlanTranslate().forEach(item -> {
-			entity.addTranslate(new PlanTranslateDto().mapDtoToEntity(item));
+			entity.addTranslate(PlanTranslateDto.mapDtoToEntity(item));
 		});
 		return entity;
 	}
