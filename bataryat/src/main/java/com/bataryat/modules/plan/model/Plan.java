@@ -21,7 +21,7 @@ public class Plan extends Auditable {
 	private static final long serialVersionUID = 1L;
 
 	private String code;
-	private Long value;
+	private double price; 
 	
 	@OneToMany(mappedBy="plan", orphanRemoval=true, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<PlanTranslate> planTranslate = new ArrayList<>();
@@ -53,12 +53,12 @@ public class Plan extends Auditable {
 		this.code = code;
 	}
 
-	public Long getValue() {
-		return value;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setValue(Long value) {
-		this.value = value;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public List<PlanTranslate> getPlanTranslate() {
@@ -68,6 +68,7 @@ public class Plan extends Auditable {
 	public void setPlanTranslate(List<PlanTranslate> planTranslate) {
 		this.planTranslate = planTranslate;
 	}
+
 	
 	
 	

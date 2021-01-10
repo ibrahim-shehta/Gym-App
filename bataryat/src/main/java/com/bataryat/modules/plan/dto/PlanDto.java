@@ -4,32 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bataryat.common.dto.BaseDto;
-import com.bataryat.common.dto.MapperDto;
 import com.bataryat.modules.plan.model.Plan;
 
-public class PlanDto extends BaseDto implements MapperDto{
+public class PlanDto extends BaseDto {
 
 	private String code;
-	private Long value;
+	private double price; 
 	private List<PlanTranslateDto> planTranslate = new ArrayList<>();
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	public Long getValue() {
-		return value;
-	}
-	public void setValue(Long value) {
-		this.value = value;
-	}
-	public List<PlanTranslateDto> getPlanTranslate() {
-		return planTranslate;
-	}
-	public void setPlanTranslate(List<PlanTranslateDto> planTranslate) {
-		this.planTranslate = planTranslate;
-	}
 	
 	
 	public static PlanDto mapEntityToDto(Plan entity) {
@@ -39,7 +20,7 @@ public class PlanDto extends BaseDto implements MapperDto{
 		PlanDto dto = new PlanDto();
 		dto.setId(entity.getId());
 		dto.setCode(entity.getCode());
-		dto.setValue(entity.getValue());
+		dto.setPrice(entity.getPrice());
 		entity.getPlanTranslate().forEach(item -> {
 			dto.planTranslate.add(PlanTranslateDto.mapEntityToDto(item));
 		});
@@ -52,11 +33,34 @@ public class PlanDto extends BaseDto implements MapperDto{
 		Plan entity = new Plan();
 		entity.setId(dto.getId());
 		entity.setCode(dto.getCode());
-		entity.setValue(dto.getValue());
+		entity.setPrice(dto.getPrice());
 		dto.getPlanTranslate().forEach(item -> {
 			entity.addTranslate(PlanTranslateDto.mapDtoToEntity(item));
 		});
 		return entity;
+	}
+	
+	
+	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public List<PlanTranslateDto> getPlanTranslate() {
+		return planTranslate;
+	}
+	public void setPlanTranslate(List<PlanTranslateDto> planTranslate) {
+		this.planTranslate = planTranslate;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	
 	

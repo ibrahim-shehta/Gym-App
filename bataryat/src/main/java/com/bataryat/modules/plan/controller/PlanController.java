@@ -1,7 +1,6 @@
 package com.bataryat.modules.plan.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,7 @@ import com.bataryat.common.response.BaseResponse;
 import com.bataryat.common.response.EntityResponse;
 import com.bataryat.common.response.ListResponse;
 import com.bataryat.modules.plan.dto.PlanDto;
+import com.bataryat.modules.plan.dto.PlanListDto;
 import com.bataryat.modules.plan.model.Plan;
 import com.bataryat.modules.plan.service.PlanService;
 
@@ -56,11 +56,11 @@ public class PlanController {
 		return ResponseEntity.ok(new EntityResponse<PlanDto>(dto));
 	}
 	
-	@GetMapping("/all/local")
-	public ResponseEntity<BaseResponse<PlanDto>> findAllByLang() {
+	@GetMapping("/local/all")
+	public ResponseEntity<BaseResponse<PlanListDto>> findAllByLang() {
 		List<Plan> entity = this.planService.findAllByLang();
-		List<PlanDto> dto = entity.stream().map(plan -> PlanDto.mapEntityToDto(plan)).collect(Collectors.toList());
-		return ResponseEntity.ok(new ListResponse<PlanDto>(dto));
+		List<PlanListDto> dto = PlanListDto.mapListToDtos(entity);
+		return ResponseEntity.ok(new ListResponse<PlanListDto>(dto));
 	}
 	
 }

@@ -1,10 +1,9 @@
 package com.bataryat.modules.plan.dto;
 
 import com.bataryat.common.dto.BaseDto;
-import com.bataryat.common.dto.MapperDto;
 import com.bataryat.modules.plan.model.PlanTranslate;
 
-public class PlanTranslateDto extends BaseDto implements MapperDto {
+public class PlanTranslateDto extends BaseDto {
 
 	private String langCode;
 	private String name;

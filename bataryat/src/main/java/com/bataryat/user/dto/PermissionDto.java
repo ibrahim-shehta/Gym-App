@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bataryat.common.dto.BaseDto;
-import com.bataryat.common.dto.MapperDto;
 import com.bataryat.user.model.Permission;
 
-public class PermissionDto extends BaseDto implements MapperDto {
+public class PermissionDto extends BaseDto {
 
 	private String code;
 	private List<PermissionTranslateDto>  permissionTranslateDto = new ArrayList<>();

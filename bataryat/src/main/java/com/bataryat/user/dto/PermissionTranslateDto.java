@@ -1,10 +1,9 @@
 package com.bataryat.user.dto;
 
 import com.bataryat.common.dto.BaseDto;
-import com.bataryat.common.dto.MapperDto;
 import com.bataryat.user.model.translate.PermissionTranslate;
 
-public class PermissionTranslateDto extends BaseDto implements MapperDto {
+public class PermissionTranslateDto extends BaseDto {
 
 	private String langCode;
 	private String name;
