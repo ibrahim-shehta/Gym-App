@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,7 +23,7 @@ public class Plan extends Auditable {
 	private String code;
 	private Long value;
 	
-	@OneToMany(mappedBy="plan", orphanRemoval=true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="plan", orphanRemoval=true, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<PlanTranslate> planTranslate = new ArrayList<>();
 
 	public Plan() {
