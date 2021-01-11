@@ -3,8 +3,10 @@ package com.bataryat.common.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
@@ -23,10 +25,12 @@ public abstract class Auditable extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 4648826521531988784L;
 
  	@CreatedDate
+ 	@Column(updatable=false)
     protected Date createdAt;
  
  	@ManyToOne(fetch = FetchType.LAZY)
     @CreatedBy
+ 	@JoinColumn(updatable=false)
     protected User createdBy;
     
     @LastModifiedDate
@@ -45,11 +49,11 @@ public abstract class Auditable extends BaseEntity implements Serializable {
 	}
 
 
-	public Date getCreated() {
+	public Date getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreated(Date createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -61,11 +65,11 @@ public abstract class Auditable extends BaseEntity implements Serializable {
 		this.createdBy = createdBy;
 	}
 
-	public Date getLastModified() {
+	public Date getLastModifiedAt() {
 		return lastModifiedAt;
 	}
 
-	public void setLastModified(Date lastModifiedAt) {
+	public void setLastModifiedAt(Date lastModifiedAt) {
 		this.lastModifiedAt = lastModifiedAt;
 	}
 
