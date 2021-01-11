@@ -19,7 +19,7 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
 	}
 
 	@Override
-	public E edit(E entity) {
+	public E update(E entity) {
 		return getRepository().save(entity);
 	}
 

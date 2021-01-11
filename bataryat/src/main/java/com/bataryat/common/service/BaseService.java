@@ -6,7 +6,7 @@ public interface BaseService<E, ID> {
 
 	public E save(E entity);
 	
-	public E edit(E entity);
+	public E update(E entity);
 	
 	public E findById(ID id);
 	

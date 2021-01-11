@@ -37,7 +37,7 @@ public class PlanController {
 	@PutMapping
 	public ResponseEntity<BaseResponse<PlanDto>> edit(@RequestBody PlanDto dto) {
 		Plan entity = PlanDto.mapDtoToEntity(dto);
-		entity = this.planService.edit(entity);
+		entity = this.planService.update(entity);
 		dto = PlanDto.mapEntityToDto(entity);
 		return ResponseEntity.ok(new EntityResponse<PlanDto>(dto));
 	}
