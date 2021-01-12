@@ -1,8 +1,10 @@
 package com.bataryat.modules.plan.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bataryat.common.request.FilterDataWithPaginationAndSort;
 import com.bataryat.common.response.BaseResponse;
 import com.bataryat.common.response.EntityResponse;
 import com.bataryat.common.response.ListResponse;
+import com.bataryat.common.response.ListWithPaginationResponse;
 import com.bataryat.modules.plan.dto.PlanDto;
 import com.bataryat.modules.plan.dto.PlanListDto;
 import com.bataryat.modules.plan.model.Plan;
@@ -63,4 +67,12 @@ public class PlanController {
 		return ResponseEntity.ok(new ListResponse<PlanListDto>(dto));
 	}
 	
+	
+	@PostMapping("/local/all/filter")
+	public ResponseEntity<BaseResponse<PlanListDto>> findAllByLangAndFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+		Page<Plan> entity = this.planService.findAllByLangAndFilter(filterDataWithPaginationAndSort);
+		List<PlanListDto> dto = PlanListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
+		return ResponseEntity.ok(new ListWithPaginationResponse<PlanListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
+	}
+
 }

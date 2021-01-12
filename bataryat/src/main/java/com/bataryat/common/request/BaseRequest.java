@@ -1,5 +1,5 @@
 package com.bataryat.common.request;
 
-public abstract class BaseRequest<T> {
+public abstract class BaseRequest {
 
 }

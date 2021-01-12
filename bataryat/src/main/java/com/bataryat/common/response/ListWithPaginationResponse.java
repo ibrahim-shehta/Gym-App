@@ -3,15 +3,26 @@ package com.bataryat.common.response;
 import java.util.List;
 
 public class ListWithPaginationResponse<T> extends BaseResponse<T> {
-	private List<T> data;
 	private int currentPage;
 	private int pageSize;
-	private int totalRows;
+	private long totalRows;
+	private List<T> data;
+	
 
 	public ListWithPaginationResponse() {}
 
 	public ListWithPaginationResponse(List<T> data) {
 		this.setData(data);
+	}
+	
+	
+
+	public ListWithPaginationResponse(List<T> data, int currentPage, int pageSize, long totalRows) {
+		super();
+		this.data = data;
+		this.currentPage = currentPage;
+		this.pageSize = pageSize;
+		this.totalRows = totalRows;
 	}
 
 	public List<T> getData() {
@@ -38,11 +49,11 @@ public class ListWithPaginationResponse<T> extends BaseResponse<T> {
 		this.pageSize = pageSize;
 	}
 
-	public int getTotalRows() {
+	public long getTotalRows() {
 		return totalRows;
 	}
 
-	public void setTotalRows(int totalRows) {
+	public void setTotalRows(long totalRows) {
 		this.totalRows = totalRows;
 	}
 }
