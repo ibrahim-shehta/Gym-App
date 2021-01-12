@@ -1,53 +1,62 @@
 package com.bataryat.modules.plan.dto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.bataryat.common.dto.BaseDto;
+import com.bataryat.common.dto.AuditableDto;
 import com.bataryat.modules.plan.model.Plan;
 
-public class PlanDto extends BaseDto {
+public class PlanDto extends BasePlanDto {
 
-	private String code;
-	private double price; 
 	private List<PlanTranslateDto> planTranslate = new ArrayList<>();
+	private AuditableDto audit;
 	
-	
+	public static PlanDto mapEntityToDtoWithAudit(Plan entity) {
+		 PlanDto dto = mapEntityToDto(entity);
+		 dto.setAudit(AuditableDto.mapEntityToDto(entity));
+		 return dto;
+	}
 	public static PlanDto mapEntityToDto(Plan entity) {
 		if (entity == null) {
 			return null;
 		}
 		PlanDto dto = new PlanDto();
-		dto.setId(entity.getId());
-		dto.setCode(entity.getCode());
-		dto.setPrice(entity.getPrice());
+		BasePlanDto.mapEntityToDto(entity, dto);
 		entity.getPlanTranslate().forEach(item -> {
 			dto.planTranslate.add(PlanTranslateDto.mapEntityToDto(item));
 		});
 		return dto;
 	}
+	
 	public static Plan mapDtoToEntity(PlanDto dto) {
 		if (dto == null) {
 			return null;
 		}
 		Plan entity = new Plan();
-		entity.setId(dto.getId());
-		entity.setCode(dto.getCode());
-		entity.setPrice(dto.getPrice());
+		BasePlanDto.mapDtoToEntity(dto, entity);
 		dto.getPlanTranslate().forEach(item -> {
 			entity.addTranslate(PlanTranslateDto.mapDtoToEntity(item));
 		});
 		return entity;
 	}
 	
+	public static List<PlanDto> mapListToDtos(List<Plan> entity) {
+		if (entity == null || entity.isEmpty()) {
+			return Collections.emptyList();
+		}
+		return entity.stream().map(item -> mapEntityToDto(item)).collect(Collectors.toList());
+	}
 	
 	
-	public String getCode() {
-		return code;
+	public static List<PlanDto> mapListToDtosWithAudit(List<Plan> entity) {
+		if (entity == null || entity.isEmpty()) {
+			return Collections.emptyList();
+		}
+		return entity.stream().map(item -> mapEntityToDtoWithAudit(item)).collect(Collectors.toList());
 	}
-	public void setCode(String code) {
-		this.code = code;
-	}
+	
 
 	public List<PlanTranslateDto> getPlanTranslate() {
 		return planTranslate;
@@ -55,15 +64,13 @@ public class PlanDto extends BaseDto {
 	public void setPlanTranslate(List<PlanTranslateDto> planTranslate) {
 		this.planTranslate = planTranslate;
 	}
-	
-	public double getPrice() {
-		return price;
+
+	public AuditableDto getAudit() {
+		return audit;
 	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	
-	
-	
+
+	public void setAudit(AuditableDto audit) {
+		this.audit = audit;
+	}	
 	
 }
