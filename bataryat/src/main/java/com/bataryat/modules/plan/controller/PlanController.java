@@ -3,6 +3,8 @@ package com.bataryat.modules.plan.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +34,14 @@ public class PlanController {
 	private PlanService planService;
 	
 	@PostMapping
-	public ResponseEntity<BaseResponse<PlanDto>> save(@RequestBody PlanDto dto) {
+	public ResponseEntity<BaseResponse<PlanDto>> save(@Valid @RequestBody PlanDto dto) {
 		Plan entity = PlanDto.mapDtoToEntity(dto);
 		entity = this.planService.save(entity);
 		dto = PlanDto.mapEntityToDto(entity);
 		return ResponseEntity.ok(new EntityResponse<PlanDto>(dto));	}
 	
 	@PutMapping
-	public ResponseEntity<BaseResponse<PlanDto>> edit(@RequestBody PlanDto dto) {
+	public ResponseEntity<BaseResponse<PlanDto>> edit(@Valid @RequestBody PlanDto dto) {
 		Plan entity = PlanDto.mapDtoToEntity(dto);
 		entity = this.planService.update(entity);
 		dto = PlanDto.mapEntityToDto(entity);

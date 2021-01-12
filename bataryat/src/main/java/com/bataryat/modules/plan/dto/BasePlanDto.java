@@ -1,11 +1,16 @@
 package com.bataryat.modules.plan.dto;
 
+import javax.validation.constraints.Positive;
+
+import com.bataryat.common.constant.MessagesKeys;
 import com.bataryat.common.dto.BaseDto;
 import com.bataryat.modules.plan.model.Plan;
 
 public abstract class BasePlanDto extends BaseDto {
 
 	private String code;
+	
+	@Positive(message=MessagesKeys.VALIDATION_PLAN_PRICE)
 	private double price;
 
 	BasePlanDto() {

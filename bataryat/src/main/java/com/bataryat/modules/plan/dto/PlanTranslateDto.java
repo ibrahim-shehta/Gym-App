@@ -1,11 +1,20 @@
 package com.bataryat.modules.plan.dto;
 
+
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.bataryat.common.constant.MessagesKeys;
 import com.bataryat.common.dto.BaseDto;
 import com.bataryat.modules.plan.model.PlanTranslate;
 
 public class PlanTranslateDto extends BaseDto {
 
 	private String langCode;
+	
+	@NotBlank(message=MessagesKeys.VALIDATION_PLAN_NAME)
+	@Length(min=3, message=MessagesKeys.VALIDATION_PLAN_NAME)
 	private String name;
 	private String description;
 	

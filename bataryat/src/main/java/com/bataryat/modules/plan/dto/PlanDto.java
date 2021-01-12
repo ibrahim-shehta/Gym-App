@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import com.bataryat.common.dto.AuditableDto;
 import com.bataryat.modules.plan.model.Plan;
 
 public class PlanDto extends BasePlanDto {
 
-	private List<PlanTranslateDto> planTranslate = new ArrayList<>();
+	private List<@Valid PlanTranslateDto> planTranslate = new ArrayList<>();
 	private AuditableDto audit;
 	
 	public static PlanDto mapEntityToDtoWithAudit(Plan entity) {
