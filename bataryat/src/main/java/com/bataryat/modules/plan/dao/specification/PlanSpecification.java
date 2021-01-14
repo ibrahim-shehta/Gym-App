@@ -45,10 +45,10 @@ public abstract class PlanSpecification {
                     predicates.add(equalPredicate);
             	}
             	
-            	if (filterDataMap.containsKey(FilterKeys.CODE)) {
-            		Predicate equalPredicate = criteriaBuilder.like(root.get(Plan_.CODE), filterDataMap.get(FilterKeys.CODE) + "%");
-                    predicates.add(equalPredicate);
-            	}
+//            	if (filterDataMap.containsKey(FilterKeys.CODE)) {
+//            		Predicate equalPredicate = criteriaBuilder.like(root.get(Plan_.CODE), filterDataMap.get(FilterKeys.CODE) + "%");
+//                    predicates.add(equalPredicate);
+//            	}
                 
             	if (filterDataMap.containsKey(FilterKeys.DESCRIPTION)) {
             		Predicate equalPredicate = criteriaBuilder.like(planTranslate.get(PlanTranslate_.DESCRIPTION), filterDataMap.get(FilterKeys.DESCRIPTION) + "%");

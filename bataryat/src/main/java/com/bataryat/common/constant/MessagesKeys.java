@@ -8,6 +8,10 @@ public abstract class MessagesKeys {
 	
 	public static final String VALIDATION_PLAN_NAME = "validation.plan.name";
 	public static final String VALIDATION_PLAN_PRICE = "validation.plan.price";
+	public static final String VALIDATION_PLAN_NUMBEROFDAYS = "validation.plan.numberOfDays";
+	public static final String VALIDATION_PLAN_NUMBEROFINVITATIONS = "validation.plan.numberOfInvitations";
+	public static final String VALIDATION_PLAN_DISCOUNT = "validation.plan.discount";
+	public static final String VALIDATION_PLAN_NUMBEROFRESRVEDDAYS= "validation.plan.numberOfReservedDays";
 
 	
 }
