@@ -1,28 +1,98 @@
 package com.bataryat.user.dto;
 
-public class UserDto {
-	
-	private String name;
-	private String mobile;
-	private String email;
-	private String username;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.bataryat.user.model.User;
+import com.bataryat.user.model.UserType;
+
+public class UserDto extends BaseUserDto {
+
+	private Date birthDate;
+
+	private boolean isActive;
+
+	private boolean isDeleted;
+
+	private boolean isBlocked;
+
 	private String password;
-	private String role;
-
-	public String getRole() {
-		return role;
+	
+	private UserType userType;
+	
+	private UserDetailsDto userDetails;
+	
+	public static UserDto mapEntityToDto(User entity) {
+		if (entity == null) {
+			return null;
+		}
+		UserDto dto = new UserDto();
+		BaseUserDto.mapEntityToDto(entity, dto);
+		dto.setBirthDate(entity.getBirthDate());
+		dto.setActive(entity.isActive());
+		dto.setBlocked(entity.isBlocked());
+		dto.setDeleted(entity.isDeleted());
+		dto.setUserType(entity.getUserType());
+		dto.setUserDetails(UserDetailsDto.mapEntityToDto(entity.getUserDetails()));
+		return dto;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public static User mapDtoToEntity(UserDto dto) {
+		if (dto == null) {
+			return null;
+		}
+		User entity = new User();
+		BaseUserDto.mapDtoToEntity(dto, entity);
+		entity.setBirthDate(dto.getBirthDate());
+		entity.setActive(dto.isActive());
+		entity.setBlocked(dto.isBlocked());
+		entity.setDeleted(dto.isDeleted());
+		entity.setPassword(dto.getPassword());
+		entity.setUserType(dto.getUserType());
+		entity.setUserDetails(UserDetailsDto.mapDtoToEntity(dto.getUserDetails()));
+		return entity;
+	}
+	
+	public static List<UserDto> mapListToDtos(List<User> entity) {
+		if (entity == null) {
+			return null;
+		}
+		List<UserDto> dto = entity.stream().map(user -> mapEntityToDto(user)).collect(Collectors.toList());
+		return dto;
+	}
+	
+
+	public boolean isActive() {
+		return isActive;
 	}
 
-	public String getUsername() {
-		return username;
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	public boolean isBlocked() {
+		return isBlocked;
+	}
+
+	public void setBlocked(boolean isBlocked) {
+		this.isBlocked = isBlocked;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getPassword() {
@@ -33,29 +103,26 @@ public class UserDto {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
+	/**
+	 * @return the userType
+	 */
+	public UserType getUserType() {
+		return userType;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	/**
+	 * @param userType the userType to set
+	 */
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
-	public String getMobile() {
-		return mobile;
+	public UserDetailsDto getUserDetails() {
+		return userDetails;
 	}
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+	public void setUserDetails(UserDetailsDto userDetails) {
+		this.userDetails = userDetails;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	
 }

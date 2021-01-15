@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.bataryat.common.constant.MessagesKeys;
 import com.bataryat.common.exception.exceptions.EnityNotFoundException;
+import com.bataryat.common.exception.exceptions.EntityDuplicateAttributes;
 import com.bataryat.common.exception.model.AppError;
 import com.bataryat.common.exception.model.AppSubError;
 import com.bataryat.common.exception.model.AppValidationError;
@@ -40,6 +41,20 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleEntityNotFound(EnityNotFoundException ex) {
 		AppError apiError = new AppError(HttpStatus.NOT_FOUND);
 		apiError.setMessage(resourceBundleMessageSource.getMessage(ex.getMessage(),null, LocaleContextHolder.getLocale()));
+		return buildResponseEntity(apiError);
+	}
+	
+	
+	@ExceptionHandler(EntityDuplicateAttributes.class)
+	protected ResponseEntity<Object> handleEntityDuplicateAttributes(EntityDuplicateAttributes ex) {
+		ex.getErrors().forEach(error -> {
+			AppValidationError validationError = (AppValidationError) error;
+			validationError.setMessage(resourceBundleMessageSource.getMessage(validationError.getMessage(),null, LocaleContextHolder.getLocale()));
+		});
+		AppError apiError = new AppError(HttpStatus.BAD_REQUEST);
+		apiError.setMessage(resourceBundleMessageSource.getMessage(ex.getMessage(),null, LocaleContextHolder.getLocale()));
+		apiError.setDebugMessage(null);
+		apiError.setSubErrors(ex.getErrors());
 		return buildResponseEntity(apiError);
 	}
 	

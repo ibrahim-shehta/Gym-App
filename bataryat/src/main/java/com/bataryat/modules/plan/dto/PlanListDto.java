@@ -24,9 +24,9 @@ public class PlanListDto extends BasePlanDto {
 	public static List<PlanListDto> mapListToDtos(List<Plan> entity) {
 		if (entity == null)
 			return Collections.emptyList();
-		List<PlanListDto> planListDtoList = entity.stream().map(plan -> mapEntityToDto(plan))
+		List<PlanListDto> dto = entity.stream().map(plan -> mapEntityToDto(plan))
 				.collect(Collectors.toList());
-		return planListDtoList;
+		return dto;
 	}
 
 	public String getName() {

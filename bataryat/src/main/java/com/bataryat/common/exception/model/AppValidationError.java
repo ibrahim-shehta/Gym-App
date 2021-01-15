@@ -12,6 +12,13 @@ public class AppValidationError extends AppSubError {
 		this.message = message;
 	}
 
+	public AppValidationError(String field, String rejectedValue, String message) {
+		super();
+		this.field = field;
+		this.rejectedValue = rejectedValue;
+		this.message = message;
+	}
+
 	public AppValidationError(String object, String field, Object rejectedValue, String message) {
 		super();
 		this.object = object;
