@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.bataryat.common.constant.MessagesKeys;
 import com.bataryat.common.exception.exceptions.EnityNotFoundException;
-import com.bataryat.common.helper.ServiceHelper;
 import com.bataryat.common.request.FilterDataWithPaginationAndSort;
 import com.bataryat.common.service.impl.BaseServiceImpl;
 import com.bataryat.modules.plan.dao.PlanRepository;
@@ -46,7 +45,7 @@ public class PlanServiceImpl extends BaseServiceImpl<Plan, Long> implements Plan
 
 	@Override
 	public Page<Plan> findAllByLangAndFilter(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
-		PageRequest pageRequest = ServiceHelper.getPageRequest(filterDataWithPaginationAndSort);
+		PageRequest pageRequest = filterDataWithPaginationAndSort.getPageRequest(filterDataWithPaginationAndSort);
 		Page<Plan> list = getRepository().findAll(PlanSpecification.filterPlans(filterDataWithPaginationAndSort.getFilterMap()), pageRequest);
 		return list;
 	}

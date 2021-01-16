@@ -14,7 +14,6 @@ import com.bataryat.common.constant.MessagesKeys;
 import com.bataryat.common.exception.exceptions.EntityDuplicateAttributes;
 import com.bataryat.common.exception.model.AppSubError;
 import com.bataryat.common.exception.model.AppValidationError;
-import com.bataryat.common.helper.ServiceHelper;
 import com.bataryat.common.request.FilterDataWithPaginationAndSort;
 import com.bataryat.common.service.impl.BaseServiceImpl;
 import com.bataryat.user.model.User;
@@ -47,7 +46,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 
 	@Override
 	public Page<User> findAllByFilter(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
-		PageRequest pageRequest = ServiceHelper.getPageRequest(filterDataWithPaginationAndSort);
+		PageRequest pageRequest = filterDataWithPaginationAndSort.getPageRequest(filterDataWithPaginationAndSort);
 		Page<User> list = userRepository.findAll(UserSpecification.filterUsers(filterDataWithPaginationAndSort.getFilterMap()), pageRequest);
 		return list;
 	}
