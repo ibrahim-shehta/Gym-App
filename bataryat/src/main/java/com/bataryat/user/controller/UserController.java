@@ -3,6 +3,7 @@ package com.bataryat.user.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bataryat.common.helper.ControllerHelper;
 import com.bataryat.common.request.FilterDataWithPaginationAndSort;
 import com.bataryat.common.response.BaseResponse;
 import com.bataryat.common.response.EntityResponse;
@@ -40,20 +42,24 @@ public class UserController {
 		this.passwordEncoder = passwordEncoder;
 	}
 	
-	@PostMapping
-	public  ResponseEntity<BaseResponse<UserDto>> save(@Valid @RequestBody UserDto dto) {
+	@PostMapping(value= {"/employee", "/player", "/trainer"})
+	public  ResponseEntity<BaseResponse<UserDto>> save(@Valid @RequestBody UserDto dto, HttpServletRequest req) {
+		dto.setUserType(ControllerHelper.getUserType(req));
 		User entity = UserDto.mapDtoToEntity(dto);
 		entity.setPassword(passwordEncoder.encode(entity.getPassword()));
 		entity = userService.save(entity);
-		dto = UserDto.mapEntityToDto(entity);
+		dto.setId(entity.getId());
+		if (dto.getUserDetails() != null) {
+			dto.getUserDetails().setId(entity.getUserDetails().getId());
+		}
 		return ResponseEntity.ok(new EntityResponse<UserDto>(dto));
 	}
 	
-	@PutMapping
-	public  ResponseEntity<BaseResponse<UserDto>> update(@Valid @RequestBody UserDto dto) {
+	@PutMapping(value= {"/employee", "/player", "/trainer"})
+	public  ResponseEntity<BaseResponse<UserDto>> update(@Valid @RequestBody UserDto dto, HttpServletRequest req) {
+		dto.setUserType(ControllerHelper.getUserType(req));
 		User entity = UserDto.mapDtoToEntity(dto);
 		entity = userService.update(entity);
-		dto = UserDto.mapEntityToDto(entity);
 		return ResponseEntity.ok(new EntityResponse<UserDto>(dto));
 	}
 	
