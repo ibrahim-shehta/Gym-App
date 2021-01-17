@@ -9,8 +9,8 @@
 		<version>2.4.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.battries</groupId>
-	<artifactId>bataryat</artifactId>
+	<groupId>com.gym</groupId>
+	<artifactId>gym-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gym-back-end</name>
 	<description>gym-back-end</description>
