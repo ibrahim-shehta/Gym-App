@@ -7,7 +7,7 @@ import com.bataryat.common.constant.MessagesKeys;
 import com.bataryat.common.dto.BaseDto;
 import com.bataryat.modules.plan.model.Plan;
 
-public abstract class BasePlanDto extends BaseDto {
+public class BasePlanDto extends BaseDto {
 
 	@Positive(message = MessagesKeys.VALIDATION_PLAN_PRICE)
 	private double price;
