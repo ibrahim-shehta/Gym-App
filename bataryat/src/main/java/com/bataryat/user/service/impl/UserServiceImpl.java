@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.bataryat.common.constant.MessagesKeys;
@@ -46,7 +46,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 
 	@Override
 	public Page<User> findAllByFilter(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
-		PageRequest pageRequest = filterDataWithPaginationAndSort.getPageRequest(filterDataWithPaginationAndSort);
+		Pageable pageRequest = filterDataWithPaginationAndSort.getPageRequest();
 		Page<User> list = userRepository.findAll(UserSpecification.filterUsers(filterDataWithPaginationAndSort.getFilterMap()), pageRequest);
 		return list;
 	}

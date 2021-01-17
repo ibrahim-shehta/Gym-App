@@ -1,6 +1,7 @@
 package com.bataryat.common.request;
 
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 
 import com.bataryat.common.constant.AppConstant;
@@ -12,12 +13,12 @@ public class FilterDataWithPaginationAndSort extends FilterData {
 	private String sortColumn;
 	private String sortDirection;
 	
-	public PageRequest getPageRequest(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+	public Pageable getPageRequest() {
 		PageRequest pageRequest = PageRequest.of(
-				filterDataWithPaginationAndSort.getPage() != null ? filterDataWithPaginationAndSort.getPage() : AppConstant.DEFAULT_PAGE,
-				filterDataWithPaginationAndSort.getSize() != null ? filterDataWithPaginationAndSort.getSize() : AppConstant.DEFAULT_PAGE_SIZE,
-				filterDataWithPaginationAndSort.getSortDirection()  != null ? Direction.fromString(filterDataWithPaginationAndSort.getSortDirection()) : AppConstant.DEFAULT_SORT_DIR,
-				filterDataWithPaginationAndSort.getSortColumn() != null ? filterDataWithPaginationAndSort.getSortColumn() : AppConstant.DEFAULT_SORT_COLUMN
+				this.page != null ? this.page : AppConstant.DEFAULT_PAGE,
+				this.size != null ? this.size : AppConstant.DEFAULT_PAGE_SIZE,
+				this.sortDirection != null ? Direction.fromString(this.sortDirection) : AppConstant.DEFAULT_SORT_DIR,
+				this.sortColumn != null ? this.sortColumn : AppConstant.DEFAULT_SORT_COLUMN
 				);
 		return pageRequest;
 	}
