@@ -1,6 +1,7 @@
 package com.bataryat.modules.subscription.dto;
 
 import com.bataryat.modules.plan.dto.BasePlanDto;
+import com.bataryat.modules.plan.dto.PlanListDto;
 import com.bataryat.modules.plan.model.Plan;
 import com.bataryat.modules.subscription.model.Subscription;
 
@@ -23,6 +24,7 @@ public class SubscriptionDto extends BaseSubscriptionDto {
 			dto.setNumberOfInvitations(entity.getNumberOfInvitations());
 			dto.setDiscount(entity.getDiscount());
 			dto.setSpecial(entity.isSpecial());
+			dto.setPlan(PlanListDto.mapEntityToDto(entity.getPlan()));
 			return dto;
 		}
 

@@ -1,17 +1,26 @@
 package com.bataryat.modules.subscription.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bataryat.common.request.FilterDataWithPaginationAndSort;
 import com.bataryat.common.response.BaseResponse;
 import com.bataryat.common.response.EntityResponse;
+import com.bataryat.common.response.ListWithPaginationResponse;
 import com.bataryat.modules.subscription.dto.SubscriptionDto;
+import com.bataryat.modules.subscription.dto.SubscriptionListDto;
 import com.bataryat.modules.subscription.model.Subscription;
 import com.bataryat.modules.subscription.service.SubscriptionService;
 
@@ -27,10 +36,25 @@ public class SubscriptionController {
 	}
 
 	@PostMapping
-	public ResponseEntity<BaseResponse<SubscriptionDto>> save(@RequestBody SubscriptionDto dto) {
+	public ResponseEntity<BaseResponse<SubscriptionDto>> save(@Valid @RequestBody SubscriptionDto dto) {
 		Subscription entity = SubscriptionDto.mapDtoToEntity(dto);
 		entity = this.subscriptionService.save(entity);
 		dto.setId(entity.getId());
 		return ResponseEntity.ok(new EntityResponse<SubscriptionDto>(dto));
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<BaseResponse<SubscriptionDto>> findById(@PathVariable Long id) {
+		Subscription entity = subscriptionService.findById(id);
+		SubscriptionDto dto = SubscriptionDto.mapEntityToDto(entity);
+		return ResponseEntity.ok(new EntityResponse<SubscriptionDto>(dto));	
+		
+	}
+	
+	@PostMapping("/filter")
+	public ResponseEntity<BaseResponse<SubscriptionListDto>> findAllByLangAndFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+		Page<Subscription> entity = this.subscriptionService.filterSubscriptions(filterDataWithPaginationAndSort);
+		List<SubscriptionListDto> dto = SubscriptionListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
+		return ResponseEntity.ok(new ListWithPaginationResponse<SubscriptionListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
 	}
 }

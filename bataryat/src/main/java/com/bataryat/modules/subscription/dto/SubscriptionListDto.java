@@ -4,16 +4,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.bataryat.modules.plan.dto.BasePlanDto;
 import com.bataryat.modules.subscription.model.Subscription;
 
 public class SubscriptionListDto extends BaseSubscriptionDto {
+	private String planName;
 
 	public static SubscriptionListDto mapEntityToDto(Subscription entity) {
 		if (entity == null)
 			return null;
 		SubscriptionListDto dto = new SubscriptionListDto();
-		BasePlanDto.mapEntityToDto(entity, dto);
+		BaseSubscriptionDto.mapEntityToDto(entity, dto);
+		dto.setPlanName(entity.getPlan().getPlanTranslate().get(0).getName());
 		return dto;
 	}
 
@@ -22,6 +23,14 @@ public class SubscriptionListDto extends BaseSubscriptionDto {
 			return Collections.emptyList();
 		List<SubscriptionListDto> dto = entity.stream().map(plan -> mapEntityToDto(plan)).collect(Collectors.toList());
 		return dto;
+	}
+
+	public String getPlanName() {
+		return planName;
+	}
+
+	public void setPlanName(String planName) {
+		this.planName = planName;
 	}
 
 
