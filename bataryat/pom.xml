@@ -12,8 +12,8 @@
 	<groupId>com.battries</groupId>
 	<artifactId>bataryat</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bataryat</name>
-	<description>battries project using </description>
+	<name>gym-back-end</name>
+	<description>gym-back-end</description>
 
 	<properties>
 		<java.version>1.8</java.version>
