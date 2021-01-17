@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { StorageKeys } from './common/constants/StorageKeys';
-import { NotificationService } from './common/service/notification.service';
+import { StorageKeys } from './core/constants/StorageKeys';
+import { NotificationService } from './core/service/notification.service';
 
 @Component({
   selector: 'app-root',
