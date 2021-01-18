@@ -6,8 +6,9 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { ScreensComponent } from './screens.component';
 
 const routes: Routes = [
-  { path: RoutingUrls.LOGIN.toString(), loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  {path: RoutingUrls.LOGIN.toString(),
+  { path: RoutingUrls.AUTH, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  {
+    path: RoutingUrls.SCREENS,
     component: ScreensComponent,
     children: [
       {path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuardService]}
