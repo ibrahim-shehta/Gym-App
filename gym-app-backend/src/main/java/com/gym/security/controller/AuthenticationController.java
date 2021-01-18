@@ -7,19 +7,24 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gym.common.response.BaseResponse;
+import com.gym.common.response.EntityResponse;
 import com.gym.security.model.AuthenticationRequest;
 import com.gym.security.model.AuthenticationResponse;
 import com.gym.security.service.CustomUserDetailsService;
 import com.gym.security.utils.JwtUtil;
 import com.gym.user.dto.UserDto;
-
+import com.gym.user.dto.UserListDto;
+import com.gym.user.model.User;
 
 @RestController
+@RequestMapping("/api/v1")
 public class AuthenticationController {
 
 	@Autowired
@@ -32,7 +37,7 @@ public class AuthenticationController {
 	private JwtUtil jwtUtil;
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
+	public ResponseEntity<BaseResponse<AuthenticationResponse>> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
 			throws Exception {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -46,7 +51,8 @@ public class AuthenticationController {
 		
 		UserDetails userdetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 		String token = jwtUtil.generateToken(userdetails);
-		return ResponseEntity.ok(new AuthenticationResponse(token));
+		User user = userDetailsService.findUserByUsername(authenticationRequest.getUsername());
+		return ResponseEntity.ok(new EntityResponse<>(new AuthenticationResponse(token, UserListDto.mapEntityToDto(user))));
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
