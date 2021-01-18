@@ -8,43 +8,22 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { ScreensModule } from './screens/screens.module';
-import { AuthService } from './core/service/auth.service';
-import { AuthGuardService } from './core/service/auth-guard.service';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
+    BrowserModule, // required to ruan angular app in browser
+    BrowserAnimationsModule, // important to use toaster
+    HttpClientModule, // important to use translate
 
-    AppRoutingModule,
-    ScreensModule
+    CoreModule,
+    ScreensModule,
+    AppRoutingModule,// root routing
+
   ],
-  providers: [
-    AuthService,
-    AuthGuardService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
-
-// required for AOT compilation
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
