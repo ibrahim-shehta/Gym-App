@@ -22,8 +22,21 @@ import { CoreModule } from './core/core.module';
     ScreensModule,
     AppRoutingModule,// root routing
 
+    TranslateModule.forRoot({ // translate module
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    ToastrModule.forRoot(),// toaster module
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}

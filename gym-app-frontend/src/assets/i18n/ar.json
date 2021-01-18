@@ -1,5 +1,18 @@
 {
   "COMMON": {
-    "PROJECT_NAME":"سوبر جيم"
+    "PROJECT_NAME":"سوبر جيم",
+    "ADD":"اضافه",
+    "EDIT":"تعديل",
+    "CANCEL":"الغاء",
+    "SAVE":"حفظ",
+    "ERROR":"خطأ"
+  },
+  "USERS": {
+    "EMAIL":"البريد الالكترونى",
+    "PASSWORD":"الرقم السرى",
+    "LOGIN_SCREEN": {
+      "LOGIN":"تسجيل الدخول",
+      "LOGIN_VALIDATION":"يرجى التاكد من اسم المستخدم وكلمه المروبر"
+    }
   }
 }

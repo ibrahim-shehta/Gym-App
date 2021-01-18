@@ -5,3 +5,11 @@
 @import '~font-awesome/css/font-awesome.css';
 
 /* You can add global styles to this file, and also import other style files */
+
+.form-control.ng-touched.ng-invalid {
+  border: 1px solid rgb(172, 79, 79)!important;
+}
+
+.form-control.ng-dirty.ng-valid {
+  border: 1px solid rgb(10, 134, 97)!important;
+}

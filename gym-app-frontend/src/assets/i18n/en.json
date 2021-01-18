@@ -1,5 +1,18 @@
 {
   "COMMON": {
-    "PROJECT_NAME":"Super Gym"
+    "PROJECT_NAME":"Super Gym",
+    "ADD":"Add",
+    "EDIT":"Edit",
+    "CANCEL":"Cacnel",
+    "SAVE":"Save",
+    "ERROR":"Error"
+  },
+  "USERS": {
+    "EMAIL":"E-Mail",
+    "PASSWORD":"Password",
+    "LOGIN_SCREEN": {
+      "LOGIN":"Login",
+      "LOGIN_VALIDATION":"Please Check Username And Password"
+    }
   }
 }

@@ -24,5 +24,6 @@
 <button (click)="showToasterWarning()">
     Warning Toaster
 </button> -->
-
+<div [dir]="currentLang == 'ar' ? 'rtl' : 'ltr'">
 <router-outlet></router-outlet>
+</div>

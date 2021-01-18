@@ -10,14 +10,14 @@ import { NotificationService } from './core/service/notification.service';
 })
 export class AppComponent {
   app = 'Super Gym';
-
+  currentLang;
     constructor(public translate: TranslateService, private notifyService : NotificationService) {
       translate.addLangs(['en', 'ar']);
       translate.setDefaultLang('en');
 
      // localStorage.setItem(StorageKeys.APP_LANG, 'ar');
-      const currentLang = localStorage.getItem(StorageKeys.APP_LANG);
-      translate.use(localStorage.currentLang ? currentLang : 'en');
+      this.currentLang = localStorage.getItem(StorageKeys.APP_LANG);
+      translate.use(this.currentLang ? this.currentLang : 'en');
     }
 
 
