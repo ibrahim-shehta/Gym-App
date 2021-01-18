@@ -5,6 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
+import { RoutingUrls } from '../constants/RoutingUrls';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -20,7 +21,7 @@ export class AuthGuardService implements CanActivate {
     if (this.authService.isUserLogged()) {
       return true;
     } else {
-      this.router.navigate(['/login'])
+      this.router.navigate([RoutingUrls.AUTH + RoutingUrls.SLASH + RoutingUrls.LOGIN])
       return false;
     }
   }

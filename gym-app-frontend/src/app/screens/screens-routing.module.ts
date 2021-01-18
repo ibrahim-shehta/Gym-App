@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RoutingUrls } from '../core/constants/RoutingUrls';
 import { AuthGuardService } from '../core/service/auth-guard.service';
-import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { ScreensComponent } from './screens.component';
 
 const routes: Routes = [
@@ -11,7 +10,8 @@ const routes: Routes = [
     path: RoutingUrls.SCREENS,
     component: ScreensComponent,
     children: [
-      {path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuardService]}
+      { path: '', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) }
+      // {path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuardService]}
     ]
   }
   ];

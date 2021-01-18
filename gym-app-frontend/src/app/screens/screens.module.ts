@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { ScreensRoutingModule } from './screens-routing.module';
 import { ScreensComponent } from './screens.component';
-import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 
 @NgModule({
-  declarations: [ScreensComponent, DashboardComponent],
+  declarations: [ScreensComponent],
   imports: [
     CommonModule,
     ScreensRoutingModule
