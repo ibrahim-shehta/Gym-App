@@ -12,4 +12,8 @@ export class AuthService {
   isUserLogged() {
     return localStorage.getItem(StorageKeys.LOGGED_USER) ? true : false;
   }
+
+  getLoggedUser() {
+    return JSON.parse(localStorage.getItem(StorageKeys.LOGGED_USER)).data.user;
+  }
 }
