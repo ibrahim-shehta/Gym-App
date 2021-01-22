@@ -1,0 +1,34 @@
+{
+  "COMMON": {
+    "PROJECT_NAME":"سوبر جيم",
+    "ADD":"اضافه",
+    "EDIT":"تعديل",
+    "CANCEL":"الغاء",
+    "SAVE":"حفظ",
+    "ERROR":"خطأ",
+    "HI":"مرحبا",
+    "SEARCH":"بحث"
+  },
+  "USERS": {
+    "EMAIL":"البريد الالكترونى",
+    "PASSWORD":"الرقم السرى",
+    "LOGIN_SCREEN": {
+      "LOGIN":"تسجيل الدخول",
+      "LOGIN_VALIDATION":"يرجى التاكد من اسم المستخدم وكلمه المروبر",
+      "REMEMBER_ME":"تذكرنى",
+      "REGISTER":"تسجيل"
+    }
+  },
+  "AUTH_NAVBAR": {
+    "LOGOUT":"تسجيل الخروج",
+    "PROFILE":"البروفايل",
+    "SETTINGS":"الاعدادات",
+    "MESSAGES":"الرسائل",
+    "NOTIFICATIONS":"الاشعارات",
+    "LOGIN_SUCCESS":"تم تسجيل الدخول بنجاح",
+    "LOGOUT_SUCCESS":"تم تسجيل الخروج بنجاح",
+    "SELECT_LANG":"اختر اللغه",
+    "ARABIC":"العربيه",
+    "ENGLISH":"الانجليزيه"
+  }
+}

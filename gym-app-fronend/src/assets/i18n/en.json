@@ -1,0 +1,35 @@
+{
+  "COMMON": {
+    "PROJECT_NAME":"Super Gym",
+    "ADD":"Add",
+    "EDIT":"Edit",
+    "CANCEL":"Cacnel",
+    "SAVE":"Save",
+    "ERROR":"Error",
+    "HI":"Hi",
+    "SEARCH":"Search"
+  },
+  "USERS": {
+    "EMAIL":"E-Mail",
+    "PASSWORD":"Password",
+    "LOGIN_SCREEN": {
+      "LOGIN":"Login",
+      "LOGIN_VALIDATION":"Please Check Username And Password",
+      "REMEMBER_ME":"Remember Me",
+      "REGISTER":"Register"
+    }
+  },
+  "AUTH_NAVBAR": {
+    "LOGOUT":"Logout",
+    "PROFILE":"Profile",
+    "SETTINGS":"Settings",
+    "MESSAGES":"Messages",
+    "NOTIFICATIONS":"Notifications",
+    "LOGIN_SUCCESS":"Login Success",
+    "LOGOUT_SUCCESS":"Loutout Success",
+    "SELECT_LANG":"Select Language",
+    "ARABIC":"Arabic",
+    "ENGLISH":"English"
+
+  }
+}

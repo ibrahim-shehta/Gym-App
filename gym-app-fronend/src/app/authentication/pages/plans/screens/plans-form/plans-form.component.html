@@ -1,0 +1,111 @@
+<app-auth-contect>
+  <section class="section">
+    <div class="section-header">
+      <h1>Create Plan</h1>
+    </div>
+    <div class="section-body">
+      <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate="">
+      <div class="row">
+        <div class="col-12">
+          <div class="card author-box card-primary">
+            <div class="card-header">
+              <h4>Add Plan</h4>
+            </div>
+            <div class="card-body">
+              <div class="form-group row mb-4">
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">Name Ar</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="text" class="form-control" name="nameAr" [(ngModel)]="entity.nameAr" required #nameAr="ngModel">
+                </div>
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">Name En</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="text" class="form-control" name="nameEn" [(ngModel)]="entity.nameEn" required #nameEn="ngModel">
+                </div>
+
+              </div>
+
+              <div class="form-group row mb-4">
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">Description Ar</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="text" class="form-control" name="descriptionAr" [(ngModel)]="entity.descriptionAr" required #descriptionAr="ngModel">
+                </div>
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">Description En</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="text" class="form-control" name="descriptionEn" [(ngModel)]="entity.descriptionEn" required #descriptionEn="ngModel">
+                </div>
+
+              </div>
+
+
+              <div class="form-group row mb-4">
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">price</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="number" class="form-control" name="price" [(ngModel)]="entity.price" required #price="ngModel">
+                </div>
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">numberOfDays</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="number" class="form-control" name="numberOfDays" [(ngModel)]="entity.numberOfDays" required #numberOfDays="ngModel">
+                </div>
+
+              </div>
+
+              <div class="form-group row mb-4">
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">numberOfReservedDays</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="number" class="form-control" name="numberOfReservedDays" [(ngModel)]="entity.numberOfReservedDays" required #numberOfReservedDays="ngModel">
+                </div>
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">numberOfInvitations</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="number" class="form-control" name="numberOfInvitations" [(ngModel)]="entity.numberOfInvitations"  #numberOfInvitations="ngModel">
+                </div>
+
+              </div>
+
+              <div class="form-group row mb-4">
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">discount</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="number" class="form-control"  name="discount" [(ngModel)]="entity.discount" #discount="ngModel">
+                </div>
+
+                <div class="custom-control custom-checkbox col-sm-12 col-md-6">
+                  <label class="col-form-label text-md-left col-sm-4"></label>
+                  <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me"
+                  name="isSpecial" [(ngModel)]="entity.isSpecial" #isSpecial="ngModel"
+                  >
+                  <label class="custom-control-label col-sm-8" for="remember-me">{{'USERS.LOGIN_SCREEN.REMEMBER_ME'|translate}}</label>
+                </div>
+
+
+              </div>
+
+                <!-- <div class="custom-control custom-checkbox  col-sm-12 col-md-6">
+                  <label class="col-form-label text-md-left col-sm-4"></label>
+                  <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                  <label class="custom-control-label col-sm-8" for="remember-me">{{'USERS.LOGIN_SCREEN.REMEMBER_ME'|translate}}</label>
+                </div> -->
+
+
+              <div class="form-group row mb-4">
+                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+                <div class="col-sm-12 col-md-7">
+                  <button class="btn btn-primary mx-5">Save</button>
+                  <button class="btn btn-warning mx-5" (click)="goBack()">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </section>
+</app-auth-contect>
