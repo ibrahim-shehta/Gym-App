@@ -18,11 +18,11 @@ export class PlansService {
     return this.http.post(this.baseUrl + '/local/all/filter' , filter);
   }
 
-  addPlan(plan :any) :Observable<any> {
+  add(plan :any) :Observable<any> {
     return this.http.post(this.baseUrl , plan);
   }
 
-  editPlan(plan :any) :Observable<any> {
+  edit(plan :any) :Observable<any> {
     return this.http.put(this.baseUrl , plan);
   }
 

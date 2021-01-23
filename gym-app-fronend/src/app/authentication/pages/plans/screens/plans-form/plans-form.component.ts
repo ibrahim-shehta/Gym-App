@@ -42,7 +42,7 @@ export class PlansFormComponent extends BaseFormCompnent implements OnInit {
   }
 
   add(plan) {
-    this.plansService.addPlan(plan).subscribe(res => {
+    this.plansService.add(plan).subscribe(res => {
       this.addSuccess();
       this.goBack();
     }, err => {
@@ -51,7 +51,7 @@ export class PlansFormComponent extends BaseFormCompnent implements OnInit {
   }
 
   edit(plan) {
-    this.plansService.editPlan(plan).subscribe(res => {
+    this.plansService.edit(plan).subscribe(res => {
       this.eidtSuccess();
       this.goBack();
     }, err => {
