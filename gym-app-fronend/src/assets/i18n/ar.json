@@ -7,7 +7,17 @@
     "SAVE":"حفظ",
     "ERROR":"خطأ",
     "HI":"مرحبا",
-    "SEARCH":"بحث"
+    "SEARCH":"بحث",
+    "NAME":"الاسم",
+    "DESCRIPTION":"الوصف",
+    "FIRST":"الاول",
+    "LAST":"الاخير",
+    "AR":"عربى",
+    "EN":"انجليزى",
+    "SAVE_SUCCESS":"تم الحفظ بنجاح",
+    "EDIT_SUCCESS":"تم التعديل بنجاح",
+    "ERROR_OCCURED":"حدث خطأ",
+    "VALIDATION_ERROR":"الرجاء ادخال بيانات صحيحه"
   },
   "USERS": {
     "EMAIL":"البريد الالكترونى",
@@ -30,5 +40,17 @@
     "SELECT_LANG":"اختر اللغه",
     "ARABIC":"العربيه",
     "ENGLISH":"الانجليزيه"
+  },
+  "PLANS": {
+    "PLANS":"انواع الاشتراكات",
+    "PLANS_MANAGEMENT":"اداره انواع الاشتراكات",
+    "DISCOUNT":"الخصم",
+    "NUMBER_OF_DAYS":"عدد الايام",
+    "NUMBER_OF_RESERVED_DAYS":"الايام المحجوزه",
+    "NUMBER_OF_INVETATIONS":"عدد الدعوات",
+    "PRICE": "السعر",
+    "ADD_PLAN":"اضافه نوع اشتراك",
+    "IS_SPECIAL":"خاص؟",
+    "CREATE_PLANE":"انشاء نوع اشتراك"
   }
 }

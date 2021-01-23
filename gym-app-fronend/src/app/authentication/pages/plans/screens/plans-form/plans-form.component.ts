@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { PlansService } from '../../services/plans.service';
@@ -15,56 +16,46 @@ export class PlansFormComponent extends BaseFormCompnent implements OnInit {
 
 
   constructor(
-    private notificationService :NotificationService,
+    public notificationService :NotificationService,
+    public router :Router,
+    public activatedRoute :ActivatedRoute,
+    public translateService :TranslateService,
     private plansService :PlansService,
-    private router :Router,
-    private activatedRoute :ActivatedRoute
   ) {
-        super();
+        super(router, activatedRoute, notificationService, translateService);
   }
 
   ngOnInit() {
-    if (this.activatedRoute.snapshot.data.plan) {
-      this.isEditMode = true;
-      const data = this.activatedRoute.snapshot.data.plan.data;
-      this.prepareEditPlan(data);
-      console.log(data);
+    this.modeInit();
+    if (this.isEditMode) {
+      this.prepareEditPlan(this.entity);
     }
   }
 
   onSubmit(form :NgForm) {
-    if (form.invalid) {
-      this.notificationService.showError('error', 'validation error');
+    if (this.validForm(form)) {
       return;
     }
+    const entity = this.preparePlan(this.entity);
 
-    console.log(form.value);
-    const val = this.preparePlan(this.entity);
-    console.log(val);
-
-    if (this.isEditMode) {
-      this.edit(val);
-    } else {
-      this.add(val);
-    }
-
+   this.save(entity);
   }
 
   add(plan) {
     this.plansService.addPlan(plan).subscribe(res => {
-      this.notificationService.showSuccess('save', 'save done');
+      this.addSuccess();
       this.goBack();
     }, err => {
-      this.notificationService.showError('backedn error', err.message);
+      this.backendError(err.error);
     })
   }
 
   edit(plan) {
     this.plansService.editPlan(plan).subscribe(res => {
-      this.notificationService.showSuccess('save', 'save done');
+      this.eidtSuccess();
       this.goBack();
     }, err => {
-      this.notificationService.showError('backedn error', err.message);
+      this.backendError(err.error);
     })
   }
 
@@ -113,10 +104,6 @@ export class PlansFormComponent extends BaseFormCompnent implements OnInit {
       descriptionEn: en.description,
       idEn: en.id
     }
-  }
-
-  goBack() {
-    this.router.navigate(['../'], {relativeTo: this.activatedRoute});
   }
 
 }

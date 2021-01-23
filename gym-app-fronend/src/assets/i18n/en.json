@@ -7,7 +7,18 @@
     "SAVE":"Save",
     "ERROR":"Error",
     "HI":"Hi",
-    "SEARCH":"Search"
+    "SEARCH":"Search",
+    "NAME":"Name",
+    "DESCRIPTION":"Description",
+    "FIRST":"First",
+    "LAST":"Last",
+    "AR":"AR",
+    "EN":"EN",
+    "SAVE_SUCCESS":"Save Success",
+    "EDIT_SUCCESS":"Edit Success",
+    "ERROR_OCCURED":"Error Occured",
+    "VALIDATION_ERROR":"Enter Valid Data"
+
   },
   "USERS": {
     "EMAIL":"E-Mail",
@@ -31,5 +42,17 @@
     "ARABIC":"Arabic",
     "ENGLISH":"English"
 
+  },
+  "PLANS": {
+    "PLANS":"Plans",
+    "PLANS_MANAGEMENT":"Manage Plans",
+    "DISCOUNT":"Discount",
+    "NUMBER_OF_DAYS":"Days",
+    "NUMBER_OF_RESERVED_DAYS":"Reserved Days",
+    "NUMBER_OF_INVETATIONS":"Invetations",
+    "PRICE": "Price",
+    "ADD_PLAN":"Add Plan",
+    "IS_SPECIAL":"Is Special",
+    "CREATE_PLANE":"Create Plan"
   }
 }

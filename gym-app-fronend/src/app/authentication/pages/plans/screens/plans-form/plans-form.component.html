@@ -1,7 +1,7 @@
 <app-auth-contect>
   <section class="section">
     <div class="section-header">
-      <h1>Create Plan</h1>
+      <h1>{{'PLANS.CREATE_PLANE'|translate}}</h1>
     </div>
     <div class="section-body">
       <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate="">
@@ -9,17 +9,17 @@
         <div class="col-12">
           <div class="card author-box card-primary">
             <div class="card-header">
-              <h4>Add Plan</h4>
+              <h4>{{'PLANS.ADD_PLAN'|translate}}</h4>
             </div>
             <div class="card-body">
               <div class="form-group row mb-4">
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">Name Ar</label>
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.NAME'|translate}} {{'COMMON.AR'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                   <input type="text" class="form-control" name="nameAr" [(ngModel)]="entity.nameAr" required #nameAr="ngModel">
                 </div>
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">Name En</label>
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.NAME'|translate}} {{'COMMON.EN'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                   <input type="text" class="form-control" name="nameEn" [(ngModel)]="entity.nameEn" required #nameEn="ngModel">
                 </div>
@@ -28,12 +28,12 @@
 
               <div class="form-group row mb-4">
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">Description Ar</label>
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}} {{'COMMON.AR'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                   <input type="text" class="form-control" name="descriptionAr" [(ngModel)]="entity.descriptionAr" required #descriptionAr="ngModel">
                 </div>
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">Description En</label>
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}} {{'COMMON.EN'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                   <input type="text" class="form-control" name="descriptionEn" [(ngModel)]="entity.descriptionEn" required #descriptionEn="ngModel">
                 </div>
@@ -43,12 +43,12 @@
 
               <div class="form-group row mb-4">
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">price</label>
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.PRICE'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                   <input type="number" class="form-control" name="price" [(ngModel)]="entity.price" required #price="ngModel">
                 </div>
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">numberOfDays</label>
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_DAYS'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                   <input type="number" class="form-control" name="numberOfDays" [(ngModel)]="entity.numberOfDays" required #numberOfDays="ngModel">
                 </div>
@@ -57,12 +57,12 @@
 
               <div class="form-group row mb-4">
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">numberOfReservedDays</label>
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_RESERVED_DAYS'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                   <input type="number" class="form-control" name="numberOfReservedDays" [(ngModel)]="entity.numberOfReservedDays" required #numberOfReservedDays="ngModel">
                 </div>
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">numberOfInvitations</label>
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_INVETATIONS'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                   <input type="number" class="form-control" name="numberOfInvitations" [(ngModel)]="entity.numberOfInvitations"  #numberOfInvitations="ngModel">
                 </div>
@@ -71,7 +71,7 @@
 
               <div class="form-group row mb-4">
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">discount</label>
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.DISCOUNT'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                   <input type="number" class="form-control"  name="discount" [(ngModel)]="entity.discount" #discount="ngModel">
                 </div>
@@ -81,7 +81,7 @@
                   <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me"
                   name="isSpecial" [(ngModel)]="entity.isSpecial" #isSpecial="ngModel"
                   >
-                  <label class="custom-control-label col-sm-8" for="remember-me">{{'USERS.LOGIN_SCREEN.REMEMBER_ME'|translate}}</label>
+                  <label class="custom-control-label col-sm-8" for="remember-me">{{'PLANS.IS_SPECIAL'|translate}}</label>
                 </div>
 
 
@@ -97,8 +97,8 @@
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                 <div class="col-sm-12 col-md-7">
-                  <button class="btn btn-primary mx-5">Save</button>
-                  <button class="btn btn-warning mx-5" (click)="goBack()">Cancel</button>
+                  <button class="btn btn-primary mx-5">{{'COMMON.SAVE'|translate}}</button>
+                  <button class="btn btn-warning mx-5" (click)="goBack()">{{'COMMON.CANCEL'|translate}}</button>
                 </div>
               </div>
             </div>

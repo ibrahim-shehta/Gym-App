@@ -21,7 +21,7 @@ const RouteList: Routes = [
     {path : AuthURL.Plans,
       children: [
           {path: '', component: PlansComponent, canActivate: [AuthGuardService]},
-          {path: AuthURL.PlansForm  ,component: PlansFormComponent, canActivate: [AuthGuardService], resolve: {plan: PlansResolverService}}
+          {path: AuthURL.PlansForm  ,component: PlansFormComponent, canActivate: [AuthGuardService], resolve: {entity: PlansResolverService}}
 
       ]
 

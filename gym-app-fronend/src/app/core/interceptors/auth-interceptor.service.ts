@@ -1,6 +1,5 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { error } from 'jquery';
 import { Observable, of, throwError } from "rxjs";
 import { finalize, delay, map, catchError } from "rxjs/operators";
 
@@ -21,12 +20,12 @@ export class AuthInterceptorService implements HttpInterceptor {
       return next.handle(request);
     }
 
-    const token = JSON.parse(localStorage.getItem(StorageKeys.LOGGED_USER)).data.token;
+    const user = JSON.parse(localStorage.getItem(StorageKeys.LOGGED_USER));
     const lang = localStorage.getItem(StorageKeys.APP_LANG);
 
 
-    if (token) {
-      request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
+    if (user) {
+      request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + user.data.token) });
     }
 
   if (!request.headers.has('Content-Type')) {
@@ -38,6 +37,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((err :HttpErrorResponse) => {
+        console.log(err , '------------>')
         if (err.status === 401) {
 
           this.authService.logout();
@@ -54,7 +54,9 @@ export class AuthInterceptorService implements HttpInterceptor {
           //     return next.handle(request);
           //   })
           // );
-          return throwError(error);
+          return throwError(err);
+        } else {
+          return throwError(err);
         }
       }));
   }
