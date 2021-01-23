@@ -15,22 +15,24 @@ export class BaseComponent {
     if (!error) {
       return;
     }
-    if (error.status == ResponseStatus[ResponseStatus.BAD_REQUEST]) {
-      if (error.subErrors && error.subErrors.length > 0) {
-        (<[]> (error.subErrors)).forEach( (i :any)=> {
-          this.notificationService.showError('', i.message);
-        });
-      } else {
+
+    switch(error.status) {
+      case ResponseStatus[ResponseStatus.BAD_REQUEST] :
+        if (error.subErrors && error.subErrors.length > 0) {
+          (<[]> (error.subErrors)).forEach( (i :any)=> {
+            this.notificationService.showError('', i.message);
+          });
+        } else {
+          this.commonError();
+        }
+        break;
+      case ResponseStatus[ResponseStatus.NOT_FOUND]:
+      case ResponseStatus[ResponseStatus.INTERNAL_SERVER_ERROR]:
+      case ResponseStatus[ResponseStatus.METHOD_NOT_ALLOWED]:
+        this.notificationService.showError('', error.message);
+        break;
+      default:
         this.commonError();
-      }
-    } else if (
-      error.status == ResponseStatus[ResponseStatus.NOT_FOUND] ||
-      error.status == ResponseStatus[ResponseStatus.INTERNAL_SERVER_ERROR] ||
-      error.status == ResponseStatus[ResponseStatus.METHOD_NOT_ALLOWED]
-    ) {
-      this.notificationService.showError('', error.message);
-    } else {
-      this.commonError();
     }
   }
 
