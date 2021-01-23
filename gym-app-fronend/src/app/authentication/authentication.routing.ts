@@ -9,6 +9,7 @@ import { AuthGuardService } from '../core/services/auth-guard.service';
 import { PlansComponent } from './pages/plans/screens/plans/plans.component';
 import { PlansFormComponent } from './pages/plans/screens/plans-form/plans-form.component';
 import { PlansResolverService } from './pages/plans/resolvers/plans-resolver.service';
+import { PlansFormResolversService } from './pages/plans/resolvers/plans-form-resolvers.service';
 
 
 const RouteList: Routes = [
@@ -20,8 +21,8 @@ const RouteList: Routes = [
     {path : AuthURL.MembersCreate, component: MembersCreateComponent, canActivate: [AuthGuardService]},
     {path : AuthURL.Plans,
       children: [
-          {path: '', component: PlansComponent, canActivate: [AuthGuardService]},
-          {path: AuthURL.PlansForm  ,component: PlansFormComponent, canActivate: [AuthGuardService], resolve: {entity: PlansResolverService}}
+          {path: '', component: PlansComponent, canActivate: [AuthGuardService], resolve: {dataList: PlansResolverService}},
+          {path: AuthURL.PlansForm  ,component: PlansFormComponent, canActivate: [AuthGuardService], resolve: {entity: PlansFormResolversService}}
 
       ]
 
