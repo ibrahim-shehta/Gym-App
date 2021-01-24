@@ -71,7 +71,7 @@ public class UserController {
 	}
 	
 	
-	@PostMapping("/all/filter")
+	@PostMapping("/filter")
 	public ResponseEntity<BaseResponse<UserListDto>> findAllByLangAndFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
 		Page<User> entity = userService.findAllByFilter(filterDataWithPaginationAndSort);
 		List<UserListDto> dto = UserListDto.mapListToDtos(entity.get().collect(Collectors.toList()));

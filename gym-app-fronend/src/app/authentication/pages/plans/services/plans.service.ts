@@ -11,26 +11,12 @@ export class PlansService extends Baseservice {
 
   baseUrl = environment.baseUrl + '/plan';
 
-
-  constructor(private http :HttpClient) {
-    super();
+  constructor(public http :HttpClient) {
+    super(http);
    }
 
-  filterWithPagination() :Observable<any> {
-    return this.http.post(this.baseUrl + '/local/all/filter' , this.filterDataWithPaginationAndSort);
-  }
-
-  add(plan :any) :Observable<any> {
-    return this.http.post(this.baseUrl , plan);
-  }
-
-  edit(plan :any) :Observable<any> {
-    return this.http.put(this.baseUrl , plan);
-  }
-
-  getById(id) :Observable<any> {
-    return this.http.get(this.baseUrl + '/' + id);
-  }
-
+   getBaseUrl() :string {
+     return this.baseUrl;
+   }
 
 }

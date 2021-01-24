@@ -24,41 +24,15 @@ export class PlansComponent extends BaseTableComponent implements OnInit {
    }
 
   ngOnInit() :void  {
-    this.restorePagination();
-    this.getResolverData();
-  }
-
-  restorePagination() :void {
-    this.currentPage = this.planService.filterDataWithPaginationAndSort.page + 1;
-    this.totalRows = this.planService.totalRows;
-  }
-
-  getResolverData() :void {
-    this.dataList = this.activatedRoute.snapshot.data.dataList.data;
-    this.totalRows = this.activatedRoute.snapshot.data.dataList.totalRows;
-    this.planService.totalRows = this.totalRows;
-  }
-
-  getPage() :void {
-    this.planService.filterWithPagination().subscribe(res => {
-      this.dataList = res.data;
-      this.totalRows = res.totalRows;
-      this.planService.totalRows = res.totalRows;
-    }, err => {
-      this.notificationService.showError('', err.error.message);
-    });
-  }
-
-   add() :void {
-     this.router.navigate([AuthURL.PlansForm], {relativeTo: this.activatedRoute});
-   }
-
-   edit(id) :void {
-    this.router.navigate([AuthURL.PlansForm], {relativeTo: this.activatedRoute, state: {id: id}});
+    this.baseInit();
   }
 
   getService() :PlansService {
     return this.planService;
+  }
+
+  getFormUrl() :string {
+    return AuthURL.PlansForm;
   }
 
 }

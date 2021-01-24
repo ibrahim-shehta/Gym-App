@@ -62,7 +62,7 @@ public class PlanController {
 		return ResponseEntity.ok(new EntityResponse<PlanDto>(dto));
 	}
 	
-	@GetMapping("/local/all")
+	@GetMapping
 	public ResponseEntity<BaseResponse<PlanListDto>> findAllByLang() {
 		List<Plan> entity = this.planService.findAllByLang();
 		List<PlanListDto> dto = PlanListDto.mapListToDtos(entity);
@@ -70,7 +70,7 @@ public class PlanController {
 	}
 	
 	
-	@PostMapping("/local/all/filter")
+	@PostMapping("/filter")
 	public ResponseEntity<BaseResponse<PlanListDto>> findAllByLangAndFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
 		Page<Plan> entity = this.planService.findAllByLangAndFilter(filterDataWithPaginationAndSort);
 		List<PlanListDto> dto = PlanListDto.mapListToDtos(entity.get().collect(Collectors.toList()));

@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-.ng-invalid.ng-touched{
-    border-color: orangered;
+.ng-invalid.ng-touched{border-color: orangered;}
+
+tr:nth-child(even) {background: #f6f6f6}
+
+table tr:nth-child(1) {
+  background-color: #6777EF;
+  color: #FFF
 }

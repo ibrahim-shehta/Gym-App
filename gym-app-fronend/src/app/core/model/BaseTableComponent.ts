@@ -14,6 +14,10 @@ export abstract class BaseTableComponent extends BaseComponent {
   lastText: string = this.translateService.instant('COMMON.LAST');
   maxSize: number = 10;
 
+  abstract  getService() :Baseservice;
+  abstract  getFormUrl() :string;
+
+
   constructor(
     public router :Router,
     public activatedRoute :ActivatedRoute,
@@ -21,16 +25,34 @@ export abstract class BaseTableComponent extends BaseComponent {
     public translateService :TranslateService
   ) {
         super(notificationService, translateService);
-        this.init();
   }
 
-  private init() :void {
-    this.firstText = this.translateService.instant('COMMON.FIRST');
-    this.lastText = this.translateService.instant('COMMON.LAST');
+  baseInit() :void {
+    this.restorePagination();
+    this.getResolverData();
   }
-  abstract getPage() :void;
 
-  abstract  getService() :Baseservice;
+  restorePagination() :void {
+    debugger;
+    this.currentPage = this.getService().filterDataWithPaginationAndSort.page + 1;
+    this.totalRows = this.getService().totalRows;
+  }
+
+  getResolverData() :void {
+    this.dataList = this.activatedRoute.snapshot.data.dataList.data;
+    this.totalRows = this.activatedRoute.snapshot.data.dataList.totalRows;
+    this.getService().totalRows = this.totalRows;
+  }
+
+  getPage() :void {
+    this.getService().filterWithPagination().subscribe(res => {
+      this.dataList = res.data;
+      this.totalRows = res.totalRows;
+      this.getService().totalRows = res.totalRows;
+    }, err => {
+      this.notificationService.showError('', err.error.message);
+    });
+  }
 
   pageChanged(event: any): void {
     if (event.page == (this.getService().filterDataWithPaginationAndSort.page + 1)) {
@@ -58,4 +80,11 @@ export abstract class BaseTableComponent extends BaseComponent {
     this.getService().filterDataWithPaginationAndSort.filterMap = {};
     this.getPage();
   }
+  add() :void {
+    this.router.navigate([this.getFormUrl()], {relativeTo: this.activatedRoute});
+  }
+
+ edit(id) :void {
+   this.router.navigate([this.getFormUrl()], {relativeTo: this.activatedRoute, state: {id: id}});
+ }
 }
