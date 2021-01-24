@@ -48,6 +48,13 @@ public abstract class UserSpecification {
 						filterDataMap.get(FilterKeys.MOBILE) + "%");
 				predicates.add(equalPredicate);
 			}
+			
+			if (filterDataMap.containsKey(FilterKeys.USER_TYPE)) {
+				Predicate equalPredicate = criteriaBuilder.equal(root.get(User_.USER_TYPE),
+						filterDataMap.get(FilterKeys.USER_TYPE));
+				predicates.add(equalPredicate);
+			}
+
 
 			return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
 		};

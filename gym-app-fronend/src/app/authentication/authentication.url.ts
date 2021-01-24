@@ -6,6 +6,8 @@ export const AuthURL = {
     MembersCreate: 'member-create',
     Plans: 'plans',
     PlansForm: 'form',
+    Players: 'players',
+    PlayersForm: "form",
     PathVaribles: {
       Id: 'id'
     }

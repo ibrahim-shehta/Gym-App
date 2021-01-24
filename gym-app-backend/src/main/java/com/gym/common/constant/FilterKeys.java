@@ -11,6 +11,5 @@ public abstract class FilterKeys {
 	public static final String USERNAME = "username";
 	public static final String EMAIL = "email";
 	public static final String PALN_ID = "planId";
-	
-
+	public static final String USER_TYPE = "userType";
 }

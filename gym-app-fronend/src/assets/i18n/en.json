@@ -23,6 +23,12 @@
   "USERS": {
     "EMAIL":"E-Mail",
     "PASSWORD":"Password",
+    "NAME":"Name",
+    "USER_NAME":"Username",
+    "MOBILE":"Mobile",
+    "ADDRESS":"Address",
+    "BIRTH_DAY":"Birth Day",
+
     "LOGIN_SCREEN": {
       "LOGIN":"Login",
       "LOGIN_VALIDATION":"Please Check Username And Password",
@@ -54,5 +60,11 @@
     "ADD_PLAN":"Add Plan",
     "IS_SPECIAL":"Is Special",
     "CREATE_PLANE":"Create Plan"
+  },
+  "PLAYERS":{
+    "MANAGE_PLAYERS":"Manage Players",
+    "ADD_PLAYER":"Add Player",
+    "SHOW_PLAYERS":"List Players"
+
   }
 }

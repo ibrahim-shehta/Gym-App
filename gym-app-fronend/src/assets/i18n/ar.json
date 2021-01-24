@@ -22,6 +22,12 @@
   "USERS": {
     "EMAIL":"البريد الالكترونى",
     "PASSWORD":"الرقم السرى",
+    "NAME":"الاسم",
+    "USER_NAME":"اسم المستخدم",
+    "MOBILE":"رقم الموبايل",
+    "ADDRESS":"العنوان",
+    "BIRTH_DAY":"تاريخ الميلاد",
+
     "LOGIN_SCREEN": {
       "LOGIN":"تسجيل الدخول",
       "LOGIN_VALIDATION":"يرجى التاكد من اسم المستخدم وكلمه المروبر",
@@ -52,5 +58,11 @@
     "ADD_PLAN":"اضافه نوع اشتراك",
     "IS_SPECIAL":"خاص؟",
     "CREATE_PLANE":"انشاء نوع اشتراك"
+  },
+  "PLAYERS":{
+    "MANAGE_PLAYERS":"اداره اللاعبين",
+    "ADD_PLAYER":"اضافه لاعب",
+    "SHOW_PLAYERS":"عرض اللاعبين"
+
   }
 }

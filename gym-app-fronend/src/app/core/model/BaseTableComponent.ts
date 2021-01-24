@@ -33,7 +33,6 @@ export abstract class BaseTableComponent extends BaseComponent {
   }
 
   restorePagination() :void {
-    debugger;
     this.currentPage = this.getService().filterDataWithPaginationAndSort.page + 1;
     this.totalRows = this.getService().totalRows;
   }

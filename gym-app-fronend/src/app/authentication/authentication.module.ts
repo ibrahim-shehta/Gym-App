@@ -9,6 +9,8 @@ import { MembersComponent } from './components/members/members.component';
 import { MembersCreateComponent } from './components/members-create/members-create.component';
 import { PlansComponent } from './pages/plans/screens/plans/plans.component';
 import { PlansFormComponent } from './pages/plans/screens/plans-form/plans-form.component';
+import { PlayersComponent } from './pages/users/screens/players/players.component';
+import { PlayersFormComponent } from './pages/users/screens/players-form/players-form.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { PlansFormComponent } from './pages/plans/screens/plans-form/plans-form.
     MembersComponent,
     MembersCreateComponent,
     PlansComponent,
-    PlansFormComponent
+    PlansFormComponent,
+    PlayersComponent,
+    PlayersFormComponent
   ],
   imports: [
     CommonModule,

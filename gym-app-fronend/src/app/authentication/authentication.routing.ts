@@ -10,6 +10,10 @@ import { PlansComponent } from './pages/plans/screens/plans/plans.component';
 import { PlansFormComponent } from './pages/plans/screens/plans-form/plans-form.component';
 import { PlansResolverService } from './pages/plans/resolvers/plans-resolver.service';
 import { PlansFormResolversService } from './pages/plans/resolvers/plans-form-resolvers.service';
+import { PlayersResolversService } from './pages/users/resolvers/players-resolvers.service';
+import { PlayersComponent } from './pages/users/screens/players/players.component';
+import { PlayersFormComponent } from './pages/users/screens/players-form/players-form.component';
+import { PlayersFormResolverService } from './pages/users/resolvers/players-form-resolver.service';
 
 
 const RouteList: Routes = [
@@ -25,6 +29,13 @@ const RouteList: Routes = [
           {path: AuthURL.PlansForm  ,component: PlansFormComponent, canActivate: [AuthGuardService], resolve: {entity: PlansFormResolversService}}
 
       ]
+    },
+    {path : AuthURL.Players,
+        children: [
+            {path: '', component: PlayersComponent, canActivate: [AuthGuardService], resolve: {dataList: PlayersResolversService}},
+            {path: AuthURL.PlayersForm  ,component: PlayersFormComponent, canActivate: [AuthGuardService], resolve: {entity: PlayersFormResolverService}}
+
+        ]
 
     }
 ];

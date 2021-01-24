@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gym.common.constant.FilterKeys;
 import com.gym.common.helper.ControllerHelper;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
@@ -26,10 +27,11 @@ import com.gym.common.response.ListWithPaginationResponse;
 import com.gym.user.dto.UserDto;
 import com.gym.user.dto.UserListDto;
 import com.gym.user.model.User;
+import com.gym.user.model.UserType;
 import com.gym.user.service.UserService;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping({"/api/v1/employee", "/api/v1/player", "/api/v1/trainer"})
 public class UserController {
 
 	
@@ -43,11 +45,13 @@ public class UserController {
 		this.passwordEncoder = passwordEncoder;
 	}
 	
-	@PostMapping(value= {"/employee", "/player", "/trainer"})
+	@PostMapping
 	public  ResponseEntity<BaseResponse<UserDto>> save(@Valid @RequestBody UserDto dto, HttpServletRequest req) {
-		dto.setUserType(ControllerHelper.getUserType(req));
+		dto.setUserType(getUserType(req));
 		User entity = UserDto.mapDtoToEntity(dto);
-		entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+		if (dto.getPassword() != null && dto.getPassword().length() > 0) {
+			entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+		}
 		entity = userService.save(entity);
 		dto.setId(entity.getId());
 		if (dto.getUserDetails() != null) {
@@ -56,9 +60,9 @@ public class UserController {
 		return ResponseEntity.ok(new EntityResponse<UserDto>(dto));
 	}
 	
-	@PutMapping(value= {"/employee", "/player", "/trainer"})
+	@PutMapping
 	public  ResponseEntity<BaseResponse<UserDto>> update(@Valid @RequestBody UserDto dto, HttpServletRequest req) {
-		dto.setUserType(ControllerHelper.getUserType(req));
+		dto.setUserType(getUserType(req));
 		User entity = UserDto.mapDtoToEntity(dto);
 		entity = userService.update(entity);
 		return ResponseEntity.ok(new EntityResponse<UserDto>(dto));
@@ -72,7 +76,8 @@ public class UserController {
 	
 	
 	@PostMapping("/filter")
-	public ResponseEntity<BaseResponse<UserListDto>> findAllByLangAndFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+	public ResponseEntity<BaseResponse<UserListDto>> findAllByLangAndFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort, HttpServletRequest req) {
+		filterDataWithPaginationAndSort.getFilterMap().put(FilterKeys.USER_TYPE, getUserType(req));
 		Page<User> entity = userService.findAllByFilter(filterDataWithPaginationAndSort);
 		List<UserListDto> dto = UserListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<UserListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
@@ -86,5 +91,23 @@ public class UserController {
 //		Permission entity = permissionService.getPermissionById(id, langCode);
 //		return new PermissionDto().mapEntityToDto(entity);
 //	}
+	
+	
+	private  UserType getUserType(HttpServletRequest req) {
+		String uri = req.getRequestURI();
+		String userTypeString = uri.substring(uri.lastIndexOf("v1/") + 3);
+		int haveAnotherSlash = userTypeString.indexOf("/");
+		if (haveAnotherSlash >= 0) {
+			userTypeString = userTypeString.substring(0, haveAnotherSlash);
+		}
+		if (UserType.valueOf(userTypeString.toUpperCase()) == UserType.EMPLOYEE) {
+			return UserType.EMPLOYEE;
+		} else if (UserType.valueOf(userTypeString.toUpperCase()) == UserType.TRAINER) {
+			return UserType.TRAINER;
+		} else if (UserType.valueOf(userTypeString.toUpperCase()) == UserType.PLAYER) {
+			return UserType.PLAYER;
+		}
+		return null;
+	}
 	
 }

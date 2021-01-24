@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
-import { PlansService } from '../services/plans.service';
+import { PlayersService } from '../services/players.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PlansFormResolversService implements Resolve<any> {
+export class PlayersFormResolverService implements Resolve<any> {
 
   constructor(
     private router :Router,
-    private plansService :PlansService
+    private playersService :PlayersService
   ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -18,7 +18,7 @@ export class PlansFormResolversService implements Resolve<any> {
        id = this.router.getCurrentNavigation().extras.state.id;
 
       if (id) {
-         return this.plansService.getById(id);
+         return this.playersService.getById(id);
       } else {
           return null;
       }
