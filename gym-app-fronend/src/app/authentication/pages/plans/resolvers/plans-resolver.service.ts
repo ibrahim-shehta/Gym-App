@@ -12,7 +12,7 @@ constructor(
 ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log('plans table --------> ');
+    return this.plansService.filterWithPagination();
   }
 
 

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BsDropdownModule, PaginationConfig, PaginationModule } from 'ngx-bootstrap';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 import { AuthNavbarComponent } from './components/auth-navbar/auth-navbar.component';
 import { AuthSidebarComponent } from './components/auth-sidebar/auth-sidebar.component';
 import { AuthContectComponent } from './components/auth-contect/auth-contect.component';
@@ -10,6 +11,7 @@ import { Ng2IziToastModule } from 'ng2-izitoast';
 import { DataTablesModule } from 'angular-datatables';
 import { AccountService } from './services/account.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { TranslateModule } from '@ngx-translate/core';
     Ng2IziToastModule,
     DataTablesModule,
     TranslateModule,
-    PaginationModule
+    PaginationModule.forRoot()
   ],
   exports: [
     AuthNavbarComponent,
@@ -41,8 +43,7 @@ import { TranslateModule } from '@ngx-translate/core';
     PaginationModule
   ],
   providers: [
-    AccountService,
-    PaginationConfig
+    AccountService
   ]
 })
 export class SharedsModule { }

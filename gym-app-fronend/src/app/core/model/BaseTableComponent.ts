@@ -1,16 +1,13 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
-import { PageChangedEvent } from "ngx-bootstrap";
 import { NotificationService } from "../services/notification.service";
 import { BaseComponent } from "./BaseComponent";
-import { FilterDataWithPaginationAndSort } from "./FilterDataWithPaginationAndSort";
+import { Baseservice } from "./BaseService";
 
-export class BaseTableComponent extends BaseComponent {
-  filterDataWithPaginationAndSort: FilterDataWithPaginationAndSort = new FilterDataWithPaginationAndSort();
-  searchText;
-  isClickSearch;
+export abstract class BaseTableComponent extends BaseComponent {
   dataList: any[] = [];
   totalRows: number;
+  currentPage :number = 1;
   directionLinks: boolean = false;
   boundaryLinks: boolean = true;
   firstText: string = this.translateService.instant('COMMON.FIRST');
@@ -31,26 +28,34 @@ export class BaseTableComponent extends BaseComponent {
     this.firstText = this.translateService.instant('COMMON.FIRST');
     this.lastText = this.translateService.instant('COMMON.LAST');
   }
-  getPage() {}
+  abstract getPage() :void;
 
-  pageChanged(event: PageChangedEvent): void {
-    this.filterDataWithPaginationAndSort.page = event.page - 1;
+  abstract  getService() :Baseservice;
+
+  pageChanged(event: any): void {
+    if (event.page == (this.getService().filterDataWithPaginationAndSort.page + 1)) {
+      return;
+    }
+    this.getService().filterDataWithPaginationAndSort.page = event.page - 1;
     this.getPage();
   }
 
   search() {
-    this.isClickSearch = true;
-    this.filterDataWithPaginationAndSort.page = 0;
-    this.filterDataWithPaginationAndSort.filterMap = {
-      name: this.searchText,
+    this.currentPage = 1;
+    this.getService().isClickSearch = true;
+    this.getService().filterDataWithPaginationAndSort.page = 0;
+    this.getService().filterDataWithPaginationAndSort.filterMap = {
+      name: this.getService().searchText,
     };
     this.getPage();
   }
 
   stopSearch() {
-    this.isClickSearch = false;
-    this.filterDataWithPaginationAndSort.page = 0;
-    this.filterDataWithPaginationAndSort.filterMap = {};
+    this.currentPage = 1;
+    this.getService().isClickSearch = false;
+    this.getService().filterDataWithPaginationAndSort.page = 0;
+    this.getService().searchText = '';
+    this.getService().filterDataWithPaginationAndSort.filterMap = {};
     this.getPage();
   }
 }

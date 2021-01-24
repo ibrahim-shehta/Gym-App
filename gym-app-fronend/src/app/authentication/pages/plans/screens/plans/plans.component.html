@@ -14,11 +14,11 @@
 
                   <form>
                     <div class="input-group">
-                      <input type="text" class="form-control" [placeholder]="'COMMON.SEARCH'|translate" name="searchText" [(ngModel)]="searchText" />
+                      <input type="text" class="form-control" [placeholder]="'COMMON.SEARCH'|translate" name="searchText" [(ngModel)]="planService.searchText" />
                       <div class="input-group-btn">
                         <button class="btn btn-primary" (click)="search()"><i class="fas fa-search"></i></button>
                       </div>
-                      <button [hidden]="!isClickSearch" class="btn btn-warning mx-1" (click)="stopSearch()"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <button [hidden]="!planService.isClickSearch" class="btn btn-warning mx-1" (click)="stopSearch()"><i class="fa fa-times" aria-hidden="true"></i></button>
                       <button class="btn btn-danger mx-5" (click)="add()">{{'COMMON.ADD'|translate}}</button>
                     </div>
                   </form>
@@ -61,11 +61,13 @@
                       [lastText]="'COMMON.LAST'|translate"
                       [firstText]="'COMMON.FIRST'|translate"
                       [totalItems]="totalRows"
-                      [itemsPerPage]="filterDataWithPaginationAndSort.size"
+                      [itemsPerPage]="planService.filterDataWithPaginationAndSort.size"
                       [maxSize]="maxSize"
+                      [(ngModel)]="currentPage"
 
                       (pageChanged)="pageChanged($event)"
-                  ></pagination>
+                  >
+                </pagination>
               </nav>
             </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthURL } from 'src/app/authentication/authentication.url';
@@ -13,25 +13,37 @@ import { PlansService } from '../../services/plans.service';
   styleUrls: ['./plans.component.css']
 })
 export class PlansComponent extends BaseTableComponent implements OnInit {
-
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public notificationService: NotificationService,
     public translateService :TranslateService,
-    private planService: PlansService
+    public planService: PlansService
   ) {
     super(router, activatedRoute, notificationService, translateService);
    }
 
   ngOnInit() {
-    this.getPage();
+    this.restorePagination();
+    this.getResolverData();
   }
 
-  getPage() {
-    this.planService.filterWithPagination(this.filterDataWithPaginationAndSort).subscribe(res => {
+  restorePagination() {
+    this.currentPage = this.planService.filterDataWithPaginationAndSort.page + 1;
+    this.totalRows = this.planService.totalRows;
+  }
+
+  getResolverData() {
+    this.dataList = this.activatedRoute.snapshot.data.dataList.data;
+    this.totalRows = this.activatedRoute.snapshot.data.dataList.totalRows;
+    this.planService.totalRows = this.totalRows;
+  }
+
+  getPage() :void {
+    this.planService.filterWithPagination().subscribe(res => {
       this.dataList = res.data;
       this.totalRows = res.totalRows;
+      this.planService.totalRows = res.totalRows;
     }, err => {
       this.notificationService.showError('', err.error.message);
     });
@@ -44,4 +56,9 @@ export class PlansComponent extends BaseTableComponent implements OnInit {
    edit(id) {
     this.router.navigate([AuthURL.PlansForm], {relativeTo: this.activatedRoute, state: {id: id}});
   }
+
+  getService() :PlansService {
+    return this.planService;
+  }
+
 }
