@@ -6,7 +6,7 @@ import { Baseservice } from "./BaseService";
 
 export abstract class BaseTableComponent extends BaseComponent {
   dataList: any[] = [];
-  totalRows: number;
+  totalRows: number = 0;
   currentPage :number = 1;
   directionLinks: boolean = false;
   boundaryLinks: boolean = true;
@@ -24,7 +24,7 @@ export abstract class BaseTableComponent extends BaseComponent {
         this.init();
   }
 
-  private init() {
+  private init() :void {
     this.firstText = this.translateService.instant('COMMON.FIRST');
     this.lastText = this.translateService.instant('COMMON.LAST');
   }
@@ -40,7 +40,7 @@ export abstract class BaseTableComponent extends BaseComponent {
     this.getPage();
   }
 
-  search() {
+  search() :void {
     this.currentPage = 1;
     this.getService().isClickSearch = true;
     this.getService().filterDataWithPaginationAndSort.page = 0;
@@ -50,7 +50,7 @@ export abstract class BaseTableComponent extends BaseComponent {
     this.getPage();
   }
 
-  stopSearch() {
+  stopSearch() :void {
     this.currentPage = 1;
     this.getService().isClickSearch = false;
     this.getService().filterDataWithPaginationAndSort.page = 0;

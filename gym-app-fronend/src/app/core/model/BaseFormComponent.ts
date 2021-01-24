@@ -5,7 +5,7 @@ import { ResponseStatus } from "../constants/response-status-enum";
 import { NotificationService } from "../services/notification.service";
 import { BaseComponent } from "./BaseComponent";
 
-export class BaseFormCompnent extends BaseComponent {
+export abstract class BaseFormCompnent extends BaseComponent {
 
   entity :any = {};
   id :number;
@@ -20,20 +20,20 @@ export class BaseFormCompnent extends BaseComponent {
         super(notificationService, translateService);
   }
 
-  modeInit() {
+  modeInit() :void {
     if (this.activatedRoute.snapshot.data.entity) {
       this.isEditMode = true;
       this.entity = this.activatedRoute.snapshot.data.entity.data;
     }
   }
 
-  validForm(form :NgForm) {
+  validForm(form :NgForm) :boolean {
     if (form.invalid)
       this.notificationService.showError('', this.translateService.instant('COMMON.VALIDATION_ERROR'));
     return form.invalid;
   }
 
-  save(enity :any) {
+  save(enity :any) :void {
     if (this.isEditMode) {
       this.edit(enity);
     } else {
@@ -42,18 +42,18 @@ export class BaseFormCompnent extends BaseComponent {
 
   }
 
-  add(entity :any, reset? :any[]) {}
-  edit(entity :any, reset? :any[]) {}
+  abstract add(entity :any, reset? :any[]) :void ;
+  abstract edit(entity :any, reset? :any[]) :void ;
 
-  goBack() {
+  goBack() :void {
     this.router.navigate(['../'], {relativeTo: this.activatedRoute});
   }
 
-  addSuccess() {
+  addSuccess() :void {
     this.notificationService.showSuccess('', this.translateService.instant('COMMON.SAVE_SUCCESS'));
   }
 
-  eidtSuccess() {
+  eidtSuccess() :void {
     this.notificationService.showSuccess('', this.translateService.instant('COMMON.EDIT_SUCCESS'));
   }
 

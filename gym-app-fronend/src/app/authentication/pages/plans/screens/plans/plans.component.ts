@@ -23,17 +23,17 @@ export class PlansComponent extends BaseTableComponent implements OnInit {
     super(router, activatedRoute, notificationService, translateService);
    }
 
-  ngOnInit() {
+  ngOnInit() :void  {
     this.restorePagination();
     this.getResolverData();
   }
 
-  restorePagination() {
+  restorePagination() :void {
     this.currentPage = this.planService.filterDataWithPaginationAndSort.page + 1;
     this.totalRows = this.planService.totalRows;
   }
 
-  getResolverData() {
+  getResolverData() :void {
     this.dataList = this.activatedRoute.snapshot.data.dataList.data;
     this.totalRows = this.activatedRoute.snapshot.data.dataList.totalRows;
     this.planService.totalRows = this.totalRows;
@@ -49,11 +49,11 @@ export class PlansComponent extends BaseTableComponent implements OnInit {
     });
   }
 
-   add() {
+   add() :void {
      this.router.navigate([AuthURL.PlansForm], {relativeTo: this.activatedRoute});
    }
 
-   edit(id) {
+   edit(id) :void {
     this.router.navigate([AuthURL.PlansForm], {relativeTo: this.activatedRoute, state: {id: id}});
   }
 

@@ -13,8 +13,6 @@ import { PlansService } from '../../services/plans.service';
 })
 export class PlansFormComponent extends BaseFormCompnent implements OnInit {
 
-
-
   constructor(
     public notificationService :NotificationService,
     public router :Router,
@@ -25,14 +23,14 @@ export class PlansFormComponent extends BaseFormCompnent implements OnInit {
         super(router, activatedRoute, notificationService, translateService);
   }
 
-  ngOnInit() {
+  ngOnInit() :void {
     this.modeInit();
     if (this.isEditMode) {
       this.prepareEditPlan(this.entity);
     }
   }
 
-  onSubmit(form :NgForm) {
+  onSubmit(form :NgForm) :void {
     if (this.validForm(form)) {
       return;
     }
@@ -41,7 +39,7 @@ export class PlansFormComponent extends BaseFormCompnent implements OnInit {
    this.save(entity);
   }
 
-  add(plan) {
+  add(plan) :void {
     this.plansService.add(plan).subscribe(res => {
       this.addSuccess();
       this.goBack();
@@ -50,7 +48,7 @@ export class PlansFormComponent extends BaseFormCompnent implements OnInit {
     })
   }
 
-  edit(plan) {
+  edit(plan) :void {
     this.plansService.edit(plan).subscribe(res => {
       this.eidtSuccess();
       this.goBack();

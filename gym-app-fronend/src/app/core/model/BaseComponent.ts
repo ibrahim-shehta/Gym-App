@@ -3,7 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { ResponseStatus } from "../constants/response-status-enum";
 import { NotificationService } from "../services/notification.service";
 
-export class BaseComponent {
+export abstract class BaseComponent {
 
   constructor(
     public notificationService :NotificationService,
@@ -11,7 +11,7 @@ export class BaseComponent {
   ) {}
 
 
-  backendError(error :any) {
+  backendError(error :any) :void {
     if (!error) {
       return;
     }
@@ -36,7 +36,7 @@ export class BaseComponent {
     }
   }
 
-  private commonError() {
+  private commonError() :void {
     this.notificationService.showError('', this.translateService.instant('COMMON.ERROR_OCCURED'));
   }
 
