@@ -27,6 +27,7 @@ export class PlayersFormComponent extends BaseFormCompnent implements OnInit {
     if (this.isEditMode) {
       //this.prepareEditPlan(this.entity);
     }
+    console.log(this.entity)
   }
 
   onSubmit(form :NgForm) :void {
@@ -34,8 +35,9 @@ export class PlayersFormComponent extends BaseFormCompnent implements OnInit {
     if (this.validForm(form)) {
       return;
     }
-
-   this.save(form.value);
+    const obj = form.value;
+    obj.id = this.entity.id;
+   this.save(obj);
   }
 
   add(plan) :void {

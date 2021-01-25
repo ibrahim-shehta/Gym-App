@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 import com.gym.common.model.Auditable;
 
 @Entity
@@ -35,6 +37,7 @@ public class User extends Auditable {
 
 	private String address;
 
+	@Type(type="date")
 	private Date birthDate;
 
 	@Column(updatable=false)

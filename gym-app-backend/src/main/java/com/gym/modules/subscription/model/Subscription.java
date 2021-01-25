@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Type;
+
 import com.gym.common.model.Auditable;
 import com.gym.modules.plan.model.Plan;
 import com.gym.user.model.User;
@@ -25,7 +27,9 @@ public class Subscription extends Auditable {
 	private int discount;
 	private boolean isSpecial;
 
+	@Type(type="date")
 	private Date startDate;
+	@Type(type="date")
 	private Date endDate;
 	private double paidAmount;
 	private boolean isActive;
