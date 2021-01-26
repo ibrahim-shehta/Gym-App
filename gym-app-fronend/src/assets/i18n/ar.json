@@ -17,7 +17,9 @@
     "SAVE_SUCCESS":"تم الحفظ بنجاح",
     "EDIT_SUCCESS":"تم التعديل بنجاح",
     "ERROR_OCCURED":"حدث خطأ",
-    "VALIDATION_ERROR":"الرجاء ادخال بيانات صحيحه"
+    "VALIDATION_ERROR":"الرجاء ادخال بيانات صحيحه",
+    "START_DATE":"تاريخ البدايه ",
+    "END_DATE":"تاريخ النهايه"
   },
   "USERS": {
     "EMAIL":"البريد الالكترونى",
@@ -63,6 +65,20 @@
     "MANAGE_PLAYERS":"اداره اللاعبين",
     "ADD_PLAYER":"اضافه لاعب",
     "SHOW_PLAYERS":"عرض اللاعبين"
+
+  },
+  "SUBSCRIPTIONS":{
+    "MANAGE_SUBSCRIPTIONS":"إداره الاشتراكات",
+    "ADD_SUBSCRIPTIONS":"اضافه اشتراك",
+    "SHOW_SUBSCRIPTIONS":"عرض الاشتراكات",
+    "SUBSCRIPTIONS_TYPE":"نوع الاشتراك",
+    "PAID_AMOUNT":"المبلغ المدفوع",
+    "PRICE":"السعر",
+    "PLAN_DATA":"بينات الاشتراك",
+    "SELECT_PLANE":"اختر نوع الاشتراك",
+    "PLAYER_DATA":"بيانات اللاعب",
+    "SEARCH_BY_NAME_USERNAME_MOBILE_EMAIL":"ابحث بـ الاسم, اسم المستخدم ,رقم الموبايل, الايميل",
+    "SUBSCRIPTION_DATA":"بيانات الاشتراك"
 
   }
 }

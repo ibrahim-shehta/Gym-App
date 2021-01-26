@@ -20,43 +20,48 @@ public abstract class UserSpecification {
 
 	public static Specification<User> filterUsers(Map<String, Object> filterDataMap) {
 		return (Root<User> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
-			List<Predicate> predicates = new ArrayList<>();
+			List<Predicate> orPredicates = new ArrayList<>();
+			List<Predicate> andPredicates = new ArrayList<>();
 
 			if (filterDataMap.isEmpty())
-				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+				return criteriaBuilder.and(orPredicates.toArray(new Predicate[orPredicates.size()]));
 
 			if (filterDataMap.containsKey(FilterKeys.NAME)) {
 				Predicate equalPredicate = criteriaBuilder.like(root.get(PlanTranslate_.NAME),
 						filterDataMap.get(FilterKeys.NAME) + "%");
-				predicates.add(equalPredicate);
+				orPredicates.add(equalPredicate);
 			}
 
 			if (filterDataMap.containsKey(FilterKeys.EMAIL)) {
 				Predicate equalPredicate = criteriaBuilder.like(root.get(User_.EMAIL),
 						filterDataMap.get(FilterKeys.EMAIL) + "%");
-				predicates.add(equalPredicate);
+				orPredicates.add(equalPredicate);
 			}
 
 			if (filterDataMap.containsKey(FilterKeys.USERNAME)) {
 				Predicate equalPredicate = criteriaBuilder.like(root.get(User_.USERNAME),
 						filterDataMap.get(FilterKeys.USERNAME) + "%");
-				predicates.add(equalPredicate);
+				orPredicates.add(equalPredicate);
 			}
 
 			if (filterDataMap.containsKey(FilterKeys.MOBILE)) {
 				Predicate equalPredicate = criteriaBuilder.like(root.get(User_.MOBILE),
 						filterDataMap.get(FilterKeys.MOBILE) + "%");
-				predicates.add(equalPredicate);
+				orPredicates.add(equalPredicate);
 			}
 			
 			if (filterDataMap.containsKey(FilterKeys.USER_TYPE)) {
-				Predicate equalPredicate = criteriaBuilder.equal(root.get(User_.USER_TYPE),
+				Predicate equalPredicate =criteriaBuilder.equal(root.get(User_.USER_TYPE),
 						filterDataMap.get(FilterKeys.USER_TYPE));
-				predicates.add(equalPredicate);
+				andPredicates.add(equalPredicate);
 			}
+			
+			query.where(criteriaBuilder.or(orPredicates.toArray(new Predicate[orPredicates.size()])),
+					criteriaBuilder.and(andPredicates.toArray(new Predicate[andPredicates.size()]))
+					);
 
-
-			return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+			return query.getRestriction();
+			//return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
 		};
 	}
 

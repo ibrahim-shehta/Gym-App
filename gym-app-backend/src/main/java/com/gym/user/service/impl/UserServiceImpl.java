@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.gym.user.model.User_;
 import com.gym.common.constant.MessagesKeys;
+import com.gym.common.exception.exceptions.EnityNotFoundException;
 import com.gym.common.exception.exceptions.EntityDuplicateAttributes;
 import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
@@ -48,6 +49,9 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	public Page<User> findAllByFilter(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
 		Pageable pageRequest = filterDataWithPaginationAndSort.getPageRequest();
 		Page<User> list = userRepository.findAll(UserSpecification.filterUsers(filterDataWithPaginationAndSort.getFilterMap()), pageRequest);
+		if (list.getTotalElements() == 0) {
+			throw new EnityNotFoundException(MessagesKeys.EXCEPTION_MESSAGES_ENTITY_NOT_FOUND);
+		}
 		return list;
 	}
 	

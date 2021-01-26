@@ -21,10 +21,14 @@ export abstract class BaseFormCompnent extends BaseComponent {
   }
 
   modeInit() :void {
-    if (this.activatedRoute.snapshot.data.entity) {
+    if (this.activatedRoute.snapshot.data.form) {
       this.isEditMode = true;
-      this.entity = this.activatedRoute.snapshot.data.entity.data;
+      this.getResolverData();
     }
+  }
+
+  getResolverData() {
+    this.entity = this.activatedRoute.snapshot.data.form.data;
   }
 
   validForm(form :NgForm) :boolean {

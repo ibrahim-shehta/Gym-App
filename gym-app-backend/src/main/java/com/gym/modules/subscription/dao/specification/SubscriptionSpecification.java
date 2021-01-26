@@ -41,11 +41,12 @@ public class SubscriptionSpecification {
     				planTranslate = (Join<Object, Object>) plan.fetch(Plan_.PLAN_TRANSLATE);	
         		}
         		
+        		Predicate langPredicate = criteriaBuilder.equal(planTranslate.get(PlanTranslate_.LANG_CODE), LocaleContextHolder.getLocale().getLanguage());
+                predicates.add(langPredicate);
+                
+                
                 if (filterDataMap.isEmpty()) 
                 	return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-                
-                Predicate langPredicate = criteriaBuilder.equal(planTranslate.get(PlanTranslate_.LANG_CODE), LocaleContextHolder.getLocale().getLanguage());
-                predicates.add(langPredicate);
                 
             	if (filterDataMap.containsKey(FilterKeys.NAME)) {
             		Predicate equalPredicate = criteriaBuilder.like(user.get(User_.NAME), filterDataMap.get(FilterKeys.NAME) + "%");

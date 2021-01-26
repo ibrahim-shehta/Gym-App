@@ -8,3 +8,8 @@ table tr:nth-child(1) {
   background-color: #6777EF;
   color: #FFF
 }
+
+
+.modal-backdrop.show {
+  display: none;
+}

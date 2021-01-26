@@ -14,6 +14,10 @@ import { PlayersResolversService } from './pages/users/resolvers/players-resolve
 import { PlayersComponent } from './pages/users/screens/players/players.component';
 import { PlayersFormComponent } from './pages/users/screens/players-form/players-form.component';
 import { PlayersFormResolverService } from './pages/users/resolvers/players-form-resolver.service';
+import { SubscriptionsResolversService } from './pages/subscriptions/resolvers/subscriptions-resolvers.service';
+import { SubscriptionsFormResolverService } from './pages/subscriptions/resolvers/subscriptions-form-resolver.service';
+import { SubscriptionsComponent } from './pages/subscriptions/screens/subscriptions/subscriptions.component';
+import { SubscriptionsFormComponent } from './pages/subscriptions/screens/subscriptions-form/subscriptions-form.component';
 
 
 const RouteList: Routes = [
@@ -26,18 +30,27 @@ const RouteList: Routes = [
     {path : AuthURL.Plans,
       children: [
           {path: '', component: PlansComponent, canActivate: [AuthGuardService], resolve: {dataList: PlansResolverService}},
-          {path: AuthURL.PlansForm  ,component: PlansFormComponent, canActivate: [AuthGuardService], resolve: {entity: PlansFormResolversService}}
+          {path: AuthURL.PlansForm  ,component: PlansFormComponent, canActivate: [AuthGuardService], resolve: {form: PlansFormResolversService}}
 
       ]
     },
     {path : AuthURL.Players,
         children: [
             {path: '', component: PlayersComponent, canActivate: [AuthGuardService], resolve: {dataList: PlayersResolversService}},
-            {path: AuthURL.PlayersForm  ,component: PlayersFormComponent, canActivate: [AuthGuardService], resolve: {entity: PlayersFormResolverService}}
+            {path: AuthURL.PlayersForm  ,component: PlayersFormComponent, canActivate: [AuthGuardService], resolve: {form: PlayersFormResolverService}}
 
         ]
 
-    }
+    },
+
+    {path : AuthURL.Subscriptions,
+      children: [
+          {path: '', component: SubscriptionsComponent, canActivate: [AuthGuardService], resolve: {dataList: SubscriptionsResolversService}},
+          {path: AuthURL.SubscriptionsForm  ,component: SubscriptionsFormComponent, canActivate: [AuthGuardService], resolve: {form: SubscriptionsFormResolverService}}
+
+      ]
+
+  },
 ];
 
 export const AuthenticationRouting = RouterModule.forChild(RouteList);

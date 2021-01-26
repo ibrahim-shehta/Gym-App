@@ -17,7 +17,9 @@
     "SAVE_SUCCESS":"Save Success",
     "EDIT_SUCCESS":"Edit Success",
     "ERROR_OCCURED":"Error Occured",
-    "VALIDATION_ERROR":"Enter Valid Data"
+    "VALIDATION_ERROR":"Enter Valid Data",
+    "START_DATE":"Start Date",
+    "END_DATE":"End Date"
 
   },
   "USERS": {
@@ -65,6 +67,19 @@
     "MANAGE_PLAYERS":"Manage Players",
     "ADD_PLAYER":"Add Player",
     "SHOW_PLAYERS":"List Players"
+  },
+  "SUBSCRIPTIONS":{
+    "MANAGE_SUBSCRIPTIONS":"Manage Subscriptions",
+    "ADD_SUBSCRIPTIONS":"Add Subscription",
+    "SHOW_SUBSCRIPTIONS":"List Players",
+    "SUBSCRIPTIONS_TYPE":"Subscription Type",
+    "PAID_AMOUNT":"Paid Amount",
+    "PRICE":"Price",
+    "PLAN_DATA":"Subscription Type Data",
+    "SELECT_PLANE":"Select Subscription Type",
+    "PLAYER_DATA":"Player Data",
+    "SEARCH_BY_NAME_USERNAME_MOBILE_EMAIL":"Search By Name, Username, Mobile, Email",
+    "SUBSCRIPTION_DATA":"Subscription Data"
 
   }
 }

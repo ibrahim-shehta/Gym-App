@@ -11,6 +11,8 @@ import { PlansComponent } from './pages/plans/screens/plans/plans.component';
 import { PlansFormComponent } from './pages/plans/screens/plans-form/plans-form.component';
 import { PlayersComponent } from './pages/users/screens/players/players.component';
 import { PlayersFormComponent } from './pages/users/screens/players-form/players-form.component';
+import { SubscriptionsComponent } from './pages/subscriptions/screens/subscriptions/subscriptions.component';
+import { SubscriptionsFormComponent } from './pages/subscriptions/screens/subscriptions-form/subscriptions-form.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { PlayersFormComponent } from './pages/users/screens/players-form/players
     PlansComponent,
     PlansFormComponent,
     PlayersComponent,
-    PlayersFormComponent
+    PlayersFormComponent,
+    SubscriptionsComponent,
+    SubscriptionsFormComponent
   ],
   imports: [
     CommonModule,

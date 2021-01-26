@@ -94,7 +94,7 @@ export class PlansFormComponent extends BaseFormCompnent implements OnInit {
       numberOfReservedDays: data.numberOfReservedDays,
       numberOfInvitations: data.numberOfInvitations,
       discount: data.discount,
-      isSpecial: data.isSpecial,
+      isSpecial: data.special,
       nameAr: ar.name,
       descriptionAr: ar.description,
       idAr: ar.id,

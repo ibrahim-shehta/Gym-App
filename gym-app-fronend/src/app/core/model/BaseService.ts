@@ -16,6 +16,11 @@ export abstract  class Baseservice {
   filterWithPagination() :Observable<any> {
     return this.http.post(this.getBaseUrl() + '/filter' , this.filterDataWithPaginationAndSort);
   }
+
+  filterWithCustomPagination(filterDataWithPaginationAndSort: FilterDataWithPaginationAndSort) :Observable<any> {
+    return this.http.post(this.getBaseUrl() + '/filter' , filterDataWithPaginationAndSort);
+  }
+
   add(plan :any) :Observable<any> {
     return this.http.post(this.getBaseUrl() , plan);
   }

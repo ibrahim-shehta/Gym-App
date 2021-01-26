@@ -8,6 +8,8 @@ export const AuthURL = {
     PlansForm: 'form',
     Players: 'players',
     PlayersForm: "form",
+    Subscriptions: "subscriptions",
+    SubscriptionsForm:"form",
     PathVaribles: {
       Id: 'id'
     }
