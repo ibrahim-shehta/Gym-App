@@ -23,9 +23,6 @@ public abstract class BaseServiceWithSepecificationImpl<E, ID> extends BaseServi
 	public Page<E> filterDataPaginated(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
 		Pageable pageRequest = filterDataWithPaginationAndSort.getPageRequest();
 		Page<E> list = getSpecificationRepository().findAll(getSpecifications(filterDataWithPaginationAndSort.getFilterMap()), pageRequest);
-		if (list.getTotalElements() == 0) {
-			throw new EnityNotFoundException(MessagesKeys.EXCEPTION_MESSAGES_ENTITY_NOT_FOUND);
-		}
 		return list;
 	}
 

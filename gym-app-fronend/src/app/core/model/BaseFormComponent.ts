@@ -22,13 +22,21 @@ export abstract class BaseFormCompnent extends BaseComponent {
 
   modeInit() :void {
     if (this.activatedRoute.snapshot.data.form) {
-      this.isEditMode = true;
       this.getResolverData();
     }
   }
 
   getResolverData() {
     this.entity = this.activatedRoute.snapshot.data.form.data;
+    this.isEditMode = true;
+  }
+
+  onSubmit(form :NgForm) :void {
+    if (this.validForm(form)) {
+      return;
+    }
+
+   this.save(this.entity);
   }
 
   validForm(form :NgForm) :boolean {
@@ -46,8 +54,23 @@ export abstract class BaseFormCompnent extends BaseComponent {
 
   }
 
-  abstract add(entity :any, reset? :any[]) :void ;
-  abstract edit(entity :any, reset? :any[]) :void ;
+  add(plan) :void {
+    this.getService().add(plan).subscribe(res => {
+      this.addSuccess();
+      this.goBack();
+    }, err => {
+      this.backendError(err.error);
+    })
+  }
+
+  edit(plan) :void {
+    this.getService().edit(plan).subscribe(res => {
+      this.eidtSuccess();
+      this.goBack();
+    }, err => {
+      this.backendError(err.error);
+    })
+  }
 
   goBack() :void {
     this.router.navigate(['../'], {relativeTo: this.activatedRoute});

@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { ResponseStatus } from "../constants/response-status-enum";
 import { NotificationService } from "../services/notification.service";
+import { Baseservice } from "./BaseService";
 
 export abstract class BaseComponent {
 
@@ -10,6 +11,9 @@ export abstract class BaseComponent {
     public translateService :TranslateService
   ) {}
 
+
+  abstract  getService() :Baseservice;
+  abstract  getFormUrl() :string;
 
   backendError(error :any) :void {
     if (!error) {

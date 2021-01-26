@@ -1,12 +1,6 @@
 package com.gym.modules.plan.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.gym.common.model.Auditable;
@@ -20,6 +14,8 @@ public class Plan extends Auditable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private String name;
+	private String description;
 	private double price;
 	private int numberOfDays;
 	private int numberOfReservedDays;
@@ -28,8 +24,8 @@ public class Plan extends Auditable {
 	private boolean isSpecial;
 	private boolean isActive;
 
-	@OneToMany(mappedBy = "plan", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<PlanTranslate> planTranslate = new ArrayList<>();
+//	@OneToMany(mappedBy = "plan", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	private List<PlanTranslate> planTranslate = new ArrayList<>();
 
 	public Plan() {
 		// TODO Auto-generated constructor stub
@@ -39,22 +35,28 @@ public class Plan extends Auditable {
 		super(id);
 	}
 
-	public void addTranslate(PlanTranslate planTranslate) {
-		this.planTranslate.add(planTranslate);
-		planTranslate.setPlan(this);
+	public String getName() {
+		return name;
 	}
 
-	public void removeTranslate(PlanTranslate planTranslate) {
-		this.planTranslate.remove(planTranslate);
-		planTranslate.setPlan(null);
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public double getPrice() {
+		return price;
 	}
 
 	public void setPrice(double price) {
 		this.price = price;
-	}
-
-	public List<PlanTranslate> getPlanTranslate() {
-		return planTranslate;
 	}
 
 	public int getNumberOfDays() {
@@ -93,7 +95,7 @@ public class Plan extends Auditable {
 		return isSpecial;
 	}
 
-	public void setIsSpecial(boolean isSpecial) {
+	public void setSpecial(boolean isSpecial) {
 		this.isSpecial = isSpecial;
 	}
 
@@ -101,16 +103,8 @@ public class Plan extends Auditable {
 		return isActive;
 	}
 
-	public void setIsActive(boolean isActive) {
+	public void setActive(boolean isActive) {
 		this.isActive = isActive;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPlanTranslate(List<PlanTranslate> planTranslate) {
-		this.planTranslate = planTranslate;
 	}
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthURL } from 'src/app/authentication/authentication.url';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { PlayersService } from '../../services/players.service';
@@ -56,5 +57,14 @@ export class PlayersFormComponent extends BaseFormCompnent implements OnInit {
     }, err => {
       this.backendError(err.error);
     })
+  }
+
+
+  getService() :PlayersService {
+    return this.playersService;
+  }
+
+  getFormUrl() :string {
+    return AuthURL.PlayersForm;
   }
 }

@@ -11,7 +11,6 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.gym.modules.plan.model.PlanTranslate_;
 import com.gym.user.model.User_;
 import com.gym.common.constant.FilterKeys;
 import com.gym.user.model.User;
@@ -25,12 +24,6 @@ public abstract class UserSpecification {
 
 			if (filterDataMap.isEmpty())
 				return criteriaBuilder.and(orPredicates.toArray(new Predicate[orPredicates.size()]));
-
-			if (filterDataMap.containsKey(FilterKeys.NAME)) {
-				Predicate equalPredicate = criteriaBuilder.like(root.get(PlanTranslate_.NAME),
-						filterDataMap.get(FilterKeys.NAME) + "%");
-				orPredicates.add(equalPredicate);
-			}
 
 			if (filterDataMap.containsKey(FilterKeys.EMAIL)) {
 				Predicate equalPredicate = criteriaBuilder.like(root.get(User_.EMAIL),

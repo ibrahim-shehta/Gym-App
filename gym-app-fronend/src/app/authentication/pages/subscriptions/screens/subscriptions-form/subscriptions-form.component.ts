@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthURL } from 'src/app/authentication/authentication.url';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import {  FilterMap } from 'src/app/core/model/FilterDataWithPaginationAndSort';
 import { NotificationService } from 'src/app/core/services/notification.service';
@@ -117,5 +118,13 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
     }, err => {
       this.backendError(err.error);
     })
+  }
+
+  getService() :SubscriptionsService {
+    return this.subscriptionsService;
+  }
+
+  getFormUrl() :string {
+    return AuthURL.PlayersForm;
   }
 }

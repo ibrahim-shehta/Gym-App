@@ -10,10 +10,8 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.jpa.domain.Specification;
 
-import com.gym.modules.plan.model.PlanTranslate_;
 import com.gym.modules.plan.model.Plan_;
 import com.gym.modules.subscription.model.Subscription_;
 import com.gym.user.model.User_;
@@ -29,20 +27,15 @@ public class SubscriptionSpecification {
         		List<Predicate> predicates = new ArrayList<>();
         		Join<Object, Object> user = null;
         		Join<Object, Object> plan = null;
-        		Join<Object, Object> planTranslate = null;
         		
         		if (DaoHelper.isCountQuery(query)) {
         			user = root.join(Subscription_.USER);
         			plan = root.join(Subscription_.PLAN);
-        			planTranslate = plan.join(Plan_.PLAN_TRANSLATE);
         		} else {
         			user = (Join<Object, Object>) root.fetch(Subscription_.USER);
     				plan = (Join<Object, Object>) root.fetch(Subscription_.PLAN);
-    				planTranslate = (Join<Object, Object>) plan.fetch(Plan_.PLAN_TRANSLATE);	
         		}
         		
-        		Predicate langPredicate = criteriaBuilder.equal(planTranslate.get(PlanTranslate_.LANG_CODE), LocaleContextHolder.getLocale().getLanguage());
-                predicates.add(langPredicate);
                 
                 
                 if (filterDataMap.isEmpty()) 
@@ -70,8 +63,6 @@ public class SubscriptionSpecification {
             	
             	if (filterDataMap.containsKey(FilterKeys.PALN_ID)) {
             		Predicate equalPredicate = criteriaBuilder.equal(plan.get(Plan_.ID), filterDataMap.get(FilterKeys.PALN_ID));
-                    predicates.add(equalPredicate);
-                    equalPredicate = criteriaBuilder.equal(planTranslate.get(PlanTranslate_.LANG_CODE), LocaleContextHolder.getLocale().getLanguage());
                     predicates.add(equalPredicate);
             	} 
                 

@@ -58,14 +58,14 @@ public class PlanController {
 	
 	@GetMapping("/local/{id}")
 	public ResponseEntity<BaseResponse<PlanDto>> findByIdAndLang(@PathVariable Long id) {
-		Plan entity = this.planService.findByIdAndLang(id);
+		Plan entity = this.planService.findById(id);
 		PlanDto dto = PlanDto.mapEntityToDto(entity);
 		return ResponseEntity.ok(new EntityResponse<PlanDto>(dto));
 	}
 	
 	@GetMapping
 	public ResponseEntity<BaseResponse<PlanListDto>> findAllByLang() {
-		List<Plan> entity = this.planService.findAllByLang();
+		List<Plan> entity = this.planService.getAll();
 		List<PlanListDto> dto = PlanListDto.mapListToDtos(entity);
 		return ResponseEntity.ok(new ListResponse<PlanListDto>(dto));
 	}

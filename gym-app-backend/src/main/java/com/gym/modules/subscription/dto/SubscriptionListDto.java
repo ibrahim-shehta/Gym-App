@@ -14,7 +14,7 @@ public class SubscriptionListDto extends BaseSubscriptionDto {
 			return null;
 		SubscriptionListDto dto = new SubscriptionListDto();
 		BaseSubscriptionDto.mapEntityToDto(entity, dto);
-		dto.setPlanName(entity.getPlan().getPlanTranslate().get(0).getName());
+		dto.setPlanName(entity.getPlan().getName());
 		return dto;
 	}
 

@@ -14,28 +14,15 @@
             <div class="card-body">
               <div class="form-group row mb-4">
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.NAME'|translate}} {{'COMMON.AR'|translate}}</label>
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.NAME'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
-                  <input type="text" class="form-control" name="nameAr" [(ngModel)]="entity.nameAr" required #nameAr="ngModel">
+                  <input type="text" class="form-control" name="name" [(ngModel)]="entity.name" required #name="ngModel">
                 </div>
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.NAME'|translate}} {{'COMMON.EN'|translate}}</label>
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
-                  <input type="text" class="form-control" name="nameEn" [(ngModel)]="entity.nameEn" required #nameEn="ngModel">
-                </div>
-
-              </div>
-
-              <div class="form-group row mb-4">
-
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}} {{'COMMON.AR'|translate}}</label>
-                <div class="col-sm-12 col-md-4">
-                  <input type="text" class="form-control" name="descriptionAr" [(ngModel)]="entity.descriptionAr" required #descriptionAr="ngModel">
-                </div>
-
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}} {{'COMMON.EN'|translate}}</label>
-                <div class="col-sm-12 col-md-4">
-                  <input type="text" class="form-control" name="descriptionEn" [(ngModel)]="entity.descriptionEn" required #descriptionEn="ngModel">
+                  <input type="text" class="form-control" name="description" [(ngModel)]="entity.description" required #description="ngModel">
                 </div>
 
               </div>
