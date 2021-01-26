@@ -1,12 +1,13 @@
 package com.gym.modules.subscription.service.serviceImpl;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
 
-import com.gym.common.request.FilterDataWithPaginationAndSort;
-import com.gym.common.service.impl.BaseServiceImpl;
+import com.gym.common.service.impl.BaseServiceWithSepecificationImpl;
 import com.gym.modules.plan.model.Plan;
 import com.gym.modules.plan.service.PlanService;
 import com.gym.modules.subscription.dao.SubscriptionRepository;
@@ -15,7 +16,7 @@ import com.gym.modules.subscription.model.Subscription;
 import com.gym.modules.subscription.service.SubscriptionService;
 
 @Service
-public class SubscriptionServiceImpl extends BaseServiceImpl<Subscription, Long> implements SubscriptionService{
+public class SubscriptionServiceImpl extends BaseServiceWithSepecificationImpl<Subscription, Long> implements SubscriptionService{
 
 	private SubscriptionRepository subscriptionRepository;
 	private PlanService planService;
@@ -31,6 +32,14 @@ public class SubscriptionServiceImpl extends BaseServiceImpl<Subscription, Long>
 		return subscriptionRepository;
 	}
 	
+	public JpaSpecificationExecutor<Subscription> getSpecificationRepository() {
+		return subscriptionRepository;
+	}
+	
+	public Specification<Subscription> getSpecifications(Map<String, Object> filterDataMap) {
+		return SubscriptionSpecification.filterSubscriptions(filterDataMap);
+	}
+	
 	@Override
 	public Subscription save(Subscription entity) {
 		Plan plan = planService.findById(entity.getPlan().getId());
@@ -42,11 +51,5 @@ public class SubscriptionServiceImpl extends BaseServiceImpl<Subscription, Long>
 		entity.setSpecial(plan.isSpecial());
 		return super.save(entity);
 	}
-
-	@Override
-	public Page<Subscription> filterSubscriptions(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
-		Pageable pageRequest = filterDataWithPaginationAndSort.getPageRequest();
-		return subscriptionRepository.findAll(SubscriptionSpecification.filterSubscriptions(filterDataWithPaginationAndSort.getFilterMap()), pageRequest);
-	}
-
+	
 }

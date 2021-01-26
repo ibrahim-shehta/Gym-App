@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
-import { FilterDataWithPaginationAndSort } from 'src/app/core/model/FilterDataWithPaginationAndSort';
+import {  FilterMap } from 'src/app/core/model/FilterDataWithPaginationAndSort';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { PlayersService } from '../../../users/services/players.service';
 import { SubscriptionsService } from '../../services/subscriptions.service';
@@ -51,14 +51,14 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
   }
 
   findUser() {
-    const filterDataWithPaginationAndSort: FilterDataWithPaginationAndSort = new  FilterDataWithPaginationAndSort();
-    filterDataWithPaginationAndSort.filterMap = {
+    const filterMap: FilterMap = new  FilterMap();
+    filterMap.filterMap = {
       "mobile":this.userSearch,
       "username":this.userSearch,
       "email":this.userSearch
     }
 
-    this.playersService.filterWithCustomPagination(filterDataWithPaginationAndSort).subscribe(res => {
+    this.playersService.filterAllData(filterMap).subscribe(res => {
       console.log(res);
       this.usersList = res.data;
       this.selectedUser = res.data[0];

@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gym.common.request.FilterData;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.EntityResponse;
+import com.gym.common.response.ListResponse;
 import com.gym.common.response.ListWithPaginationResponse;
 import com.gym.modules.subscription.dto.SubscriptionDto;
 import com.gym.modules.subscription.dto.SubscriptionListDto;
@@ -51,10 +53,17 @@ public class SubscriptionController {
 		
 	}
 	
-	@PostMapping("/filter")
-	public ResponseEntity<BaseResponse<SubscriptionListDto>> findAllByLangAndFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
-		Page<Subscription> entity = this.subscriptionService.filterSubscriptions(filterDataWithPaginationAndSort);
+	@PostMapping("/paginated-filter")
+	public ResponseEntity<BaseResponse<SubscriptionListDto>> paginatedFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+		Page<Subscription> entity = this.subscriptionService.filterDataPaginated(filterDataWithPaginationAndSort);
 		List<SubscriptionListDto> dto = SubscriptionListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<SubscriptionListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
+	}
+	
+	@PostMapping("/all-filter")
+	public ResponseEntity<BaseResponse<SubscriptionListDto>> allFilter(@RequestBody FilterData filterData) {
+		List<Subscription> entity = this.subscriptionService.filterAllData(filterData);
+		List<SubscriptionListDto> dto = SubscriptionListDto.mapListToDtos(entity);
+		return ResponseEntity.ok(new ListResponse<SubscriptionListDto>(dto));
 	}
 }

@@ -56,12 +56,18 @@ public abstract class UserSpecification {
 				andPredicates.add(equalPredicate);
 			}
 			
-			query.where(criteriaBuilder.or(orPredicates.toArray(new Predicate[orPredicates.size()])),
-					criteriaBuilder.and(andPredicates.toArray(new Predicate[andPredicates.size()]))
-					);
+			if (orPredicates.isEmpty() && !andPredicates.isEmpty()) {
+				query.where(criteriaBuilder.and(andPredicates.toArray(new Predicate[andPredicates.size()])));
+			} else if (!orPredicates.isEmpty() && andPredicates.isEmpty()) {
+				query.where(criteriaBuilder.or(orPredicates.toArray(new Predicate[orPredicates.size()])));
+			} else {
+				query.where(criteriaBuilder.or(orPredicates.toArray(new Predicate[orPredicates.size()])),
+						criteriaBuilder.and(andPredicates.toArray(new Predicate[andPredicates.size()]))
+						);
+			}
+			
 
 			return query.getRestriction();
-			//return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
 		};
 	}
 

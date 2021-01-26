@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { FilterDataWithPaginationAndSort } from "./FilterDataWithPaginationAndSort";
+import { FilterDataWithPaginationAndSort, FilterMap } from "./FilterDataWithPaginationAndSort";
 
 export abstract  class Baseservice {
   filterDataWithPaginationAndSort: FilterDataWithPaginationAndSort = new FilterDataWithPaginationAndSort();
@@ -14,11 +14,15 @@ export abstract  class Baseservice {
 
 
   filterWithPagination() :Observable<any> {
-    return this.http.post(this.getBaseUrl() + '/filter' , this.filterDataWithPaginationAndSort);
+    return this.http.post(this.getBaseUrl() + '/paginated-filter' , this.filterDataWithPaginationAndSort);
   }
 
   filterWithCustomPagination(filterDataWithPaginationAndSort: FilterDataWithPaginationAndSort) :Observable<any> {
-    return this.http.post(this.getBaseUrl() + '/filter' , filterDataWithPaginationAndSort);
+    return this.http.post(this.getBaseUrl() + '/paginated-filter' , filterDataWithPaginationAndSort);
+  }
+
+  filterAllData(filterMap: FilterMap ) :Observable<any> {
+    return this.http.post(this.getBaseUrl() + '/all-filter' , filterMap);
   }
 
   add(plan :any) :Observable<any> {

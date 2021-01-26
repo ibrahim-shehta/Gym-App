@@ -65,10 +65,14 @@ export abstract class BaseTableComponent extends BaseComponent {
     this.currentPage = 1;
     this.getService().isClickSearch = true;
     this.getService().filterDataWithPaginationAndSort.page = 0;
-    this.getService().filterDataWithPaginationAndSort.filterMap = {
+    this.getService().filterDataWithPaginationAndSort.filterMap = this.getFilterMap();
+    this.getPage();
+  }
+
+  getFilterMap() {
+    return {
       name: this.getService().searchText,
     };
-    this.getPage();
   }
 
   stopSearch() :void {

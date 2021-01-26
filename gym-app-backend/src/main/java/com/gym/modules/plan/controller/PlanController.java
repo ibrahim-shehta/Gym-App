@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gym.common.request.FilterData;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.EntityResponse;
@@ -70,11 +71,17 @@ public class PlanController {
 	}
 	
 	
-	@PostMapping("/filter")
-	public ResponseEntity<BaseResponse<PlanListDto>> findAllByLangAndFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
-		Page<Plan> entity = this.planService.findAllByLangAndFilter(filterDataWithPaginationAndSort);
+	@PostMapping("/paginated-filter")
+	public ResponseEntity<BaseResponse<PlanListDto>> paginatedFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+		Page<Plan> entity = this.planService.filterDataPaginated(filterDataWithPaginationAndSort);
 		List<PlanListDto> dto = PlanListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<PlanListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
 	}
 
+	@PostMapping("/all-filter")
+	public ResponseEntity<BaseResponse<PlanListDto>> allFilter(@RequestBody FilterData filterData) {
+		List<Plan> entity = this.planService.filterAllData(filterData);
+		List<PlanListDto> dto = PlanListDto.mapListToDtos(entity);
+		return ResponseEntity.ok(new ListResponse<PlanListDto>(dto));
+	}
 }

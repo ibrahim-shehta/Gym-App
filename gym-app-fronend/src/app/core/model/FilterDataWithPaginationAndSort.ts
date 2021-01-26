@@ -5,3 +5,8 @@ export class FilterDataWithPaginationAndSort {
   sortColumn :string;
   sortDirection :string;
 }
+
+
+export class FilterMap {
+  filterMap: any = {}
+}

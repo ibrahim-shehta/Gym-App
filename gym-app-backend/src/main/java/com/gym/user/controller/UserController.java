@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gym.common.constant.FilterKeys;
-import com.gym.common.helper.ControllerHelper;
+import com.gym.common.request.FilterData;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.EntityResponse;
+import com.gym.common.response.ListResponse;
 import com.gym.common.response.ListWithPaginationResponse;
 import com.gym.user.dto.UserDto;
 import com.gym.user.dto.UserListDto;
@@ -75,14 +76,22 @@ public class UserController {
 	}
 	
 	
-	@PostMapping("/filter")
-	public ResponseEntity<BaseResponse<UserListDto>> findAllByLangAndFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort, HttpServletRequest req) {
+	@PostMapping("/paginated-filter")
+	public ResponseEntity<BaseResponse<UserListDto>> paginatedFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort, HttpServletRequest req) {
 		filterDataWithPaginationAndSort.getFilterMap().put(FilterKeys.USER_TYPE, getUserType(req));
-		Page<User> entity = userService.findAllByFilter(filterDataWithPaginationAndSort);
+		Page<User> entity = userService.filterDataPaginated(filterDataWithPaginationAndSort);
 		List<UserListDto> dto = UserListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<UserListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
 	}
 	
+	
+	@PostMapping("/all-filter")
+	public ResponseEntity<BaseResponse<UserListDto>> allFilter(@RequestBody FilterData filterData, HttpServletRequest req) {
+		filterData.getFilterMap().put(FilterKeys.USER_TYPE, getUserType(req));
+		List<User> entity = userService.filterAllData(filterData);
+		List<UserListDto> dto = UserListDto.mapListToDtos(entity);
+		return ResponseEntity.ok(new ListResponse<UserListDto>(dto));
+	}
 	
 	
 //	@RequestMapping("/permission/{id}")
