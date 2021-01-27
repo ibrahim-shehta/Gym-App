@@ -27,6 +27,10 @@ export class SubscriptionsComponent extends BaseTableComponent implements OnInit
     this.baseInit();
   }
 
+  getFilterArr() {
+    return ["name", "subscriptionNumber"];
+  }
+
   getService() :SubscriptionsService {
     return this.subscriptionsService;
   }

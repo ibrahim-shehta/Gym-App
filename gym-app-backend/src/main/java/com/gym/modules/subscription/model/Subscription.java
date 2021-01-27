@@ -27,18 +27,22 @@ public class Subscription extends Auditable {
 	private int discount;
 	private boolean isSpecial;
 
-	@Type(type="date")
+	@Type(type = "date")
 	private Date startDate;
-	@Type(type="date")
+	@Type(type = "date")
 	private Date endDate;
 	private double paidAmount;
 	private boolean isActive;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Plan plan;
+
+	private int attendanceDays;
+	private int takenInvitations;
+	private String subscriptionNumber;
 
 	public Subscription() {
 
@@ -142,6 +146,30 @@ public class Subscription extends Auditable {
 
 	public void setPlan(Plan plan) {
 		this.plan = plan;
+	}
+
+	public int getAttendanceDays() {
+		return attendanceDays;
+	}
+
+	public void setAttendanceDays(int attendanceDays) {
+		this.attendanceDays = attendanceDays;
+	}
+
+	public int getTakenInvitations() {
+		return takenInvitations;
+	}
+
+	public void setTakenInvitations(int takenInvitations) {
+		this.takenInvitations = takenInvitations;
+	}
+
+	public String getSubscriptionNumber() {
+		return subscriptionNumber;
+	}
+
+	public void setSubscriptionNumber(String subscriptionNumber) {
+		this.subscriptionNumber = subscriptionNumber;
 	}
 
 }

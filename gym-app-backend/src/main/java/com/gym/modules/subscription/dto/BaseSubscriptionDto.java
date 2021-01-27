@@ -10,18 +10,12 @@ import com.gym.user.model.User;
 public class BaseSubscriptionDto extends BaseDto {
 
 	private double price;
-	// private int numberOfDays;
-	// private int numberOfReservedDays;
-	// private int numberOfInvitations;
-	// private int discount;
-	// private boolean isSpecial;
-
 	private Date startDate;
 	private Date endDate;
 	private double paidAmount;
 	private boolean isActive;
 	private UserListDto user;
-
+	private String subscriptionNumber;
 	
 	public static void mapEntityToDto(Subscription entity, BaseSubscriptionDto dto) {
 		BaseDto.mapEntityToDto(entity, dto);
@@ -30,6 +24,7 @@ public class BaseSubscriptionDto extends BaseDto {
 		dto.setEndDate(entity.getEndDate());
 		dto.setPaidAmount(entity.getPaidAmount());
 		dto.setUser(UserListDto.mapEntityToDto(entity.getUser()));
+		dto.setSubscriptionNumber(entity.getSubscriptionNumber());
 	}
 
 	public static void mapDtoToEntity(BaseSubscriptionDto dto, Subscription entity) {
@@ -40,7 +35,7 @@ public class BaseSubscriptionDto extends BaseDto {
 		entity.setPaidAmount(dto.getPaidAmount());
 		entity.setUser(new User(dto.getUser().getId()));
 	}
-	
+
 	public double getPrice() {
 		return price;
 	}
@@ -87,5 +82,13 @@ public class BaseSubscriptionDto extends BaseDto {
 
 	public void setUser(UserListDto user) {
 		this.user = user;
+	}
+
+	public String getSubscriptionNumber() {
+		return subscriptionNumber;
+	}
+
+	public void setSubscriptionNumber(String subscriptionNumber) {
+		this.subscriptionNumber = subscriptionNumber;
 	}
 }

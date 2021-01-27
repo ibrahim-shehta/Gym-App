@@ -65,8 +65,13 @@ public class SubscriptionSpecification {
             		Predicate equalPredicate = criteriaBuilder.equal(plan.get(Plan_.ID), filterDataMap.get(FilterKeys.PALN_ID));
                     predicates.add(equalPredicate);
             	} 
+            	
+            	if (filterDataMap.containsKey(FilterKeys.SUBSCRIPTION_NUMBER)) {
+            		Predicate equalPredicate = criteriaBuilder.like(root.get(Subscription_.SUBSCRIPTION_NUMBER), filterDataMap.get(FilterKeys.SUBSCRIPTION_NUMBER) + "%");
+                    predicates.add(equalPredicate);
+            	}
                 
-                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+                return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
             }; 
 	}
 

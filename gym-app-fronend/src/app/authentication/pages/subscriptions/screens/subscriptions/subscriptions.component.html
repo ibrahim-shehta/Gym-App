@@ -33,6 +33,7 @@
                   <tr>
                     <th>{{'COMMON.NAME'|translate}}</th>
                     <th>{{'SUBSCRIPTIONS.SUBSCRIPTIONS_TYPE'|translate}}</th>
+                    <th>{{'SUBSCRIPTIONS.SUBSCRIPTION_NUMBER'|translate}}</th>
                     <th>{{'SUBSCRIPTIONS.PRICE'|translate}}</th>
                     <th>{{'SUBSCRIPTIONS.PAID_AMOUNT'|translate}}</th>
                     <th>{{'COMMON.START_DATE'|translate}}</th>
@@ -44,6 +45,7 @@
                   <tr *ngFor="let subscription of dataList; let i = index">
                     <td>{{subscription.user.name}}</td>
                     <td>{{subscription.planName}}</td>
+                    <td>{{subscription.subscriptionNumber}}</td>
                     <td>{{subscription.price}}</td>
                     <td>{{subscription.paidAmount}}</td>
                     <td>{{subscription.startDate}}</td>

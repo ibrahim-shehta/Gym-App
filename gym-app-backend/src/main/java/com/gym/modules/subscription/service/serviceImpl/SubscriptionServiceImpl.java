@@ -1,5 +1,6 @@
 package com.gym.modules.subscription.service.serviceImpl;
 
+import java.util.Calendar;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
 
+import com.gym.common.constant.AppConstant;
 import com.gym.common.service.impl.BaseServiceWithSepecificationImpl;
 import com.gym.modules.plan.model.Plan;
 import com.gym.modules.plan.service.PlanService;
@@ -49,7 +51,13 @@ public class SubscriptionServiceImpl extends BaseServiceWithSepecificationImpl<S
 		entity.setNumberOfReservedDays(plan.getNumberOfReservedDays());
 		entity.setNumberOfInvitations(plan.getNumberOfInvitations());
 		entity.setSpecial(plan.isSpecial());
-		return super.save(entity);
+		entity.setSubscriptionNumber(entity.getUser().getId() + AppConstant.UNIQE_SEPERATOR + getSubscriptionNumber());
+		return  super.save(entity);
 	}
 	
+	
+	private String getSubscriptionNumber() {
+		Calendar cal = Calendar.getInstance();
+		return cal.get(Calendar.YEAR) + AppConstant.UNIQE_SEPERATOR + (cal.get(Calendar.MONTH) + 1);
+	}
 }

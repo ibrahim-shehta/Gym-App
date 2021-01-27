@@ -3,6 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { NotificationService } from "../services/notification.service";
 import { BaseComponent } from "./BaseComponent";
 import { Baseservice } from "./BaseService";
+import { FilterMap } from "./FilterDataWithPaginationAndSort";
 
 export abstract class BaseTableComponent extends BaseComponent {
   dataList: any[] = [];
@@ -48,7 +49,7 @@ export abstract class BaseTableComponent extends BaseComponent {
       this.totalRows = res.totalRows;
       this.getService().totalRows = res.totalRows;
     }, err => {
-      this.notificationService.showError('', err.error.message);
+      this.backendError(err.error);
     });
   }
 
@@ -68,10 +69,16 @@ export abstract class BaseTableComponent extends BaseComponent {
     this.getPage();
   }
 
-  getFilterMap() {
-    return {
-      name: this.getService().searchText,
-    };
+  private getFilterMap() :FilterMap{
+    const filterMap = new FilterMap();
+    this.getFilterArr().forEach(item => {
+      filterMap[item] =  this.getService().searchText
+    })
+    return filterMap;
+  }
+
+  getFilterArr() :string[] {
+    return ["name"];
   }
 
   stopSearch() :void {

@@ -35,12 +35,8 @@ export class PlayersComponent extends BaseTableComponent implements OnInit {
     return AuthURL.PlayersForm;
   }
 
-  getFilterMap() {
-    return {
-      name: this.playersService.searchText,
-      username: this.playersService.searchText,
-      email: this.playersService.searchText,
-      mobile: this.playersService.searchText,
-    }
+  getFilterArr() {
+    return ["name", "username", "email", "mobile"]
   }
+
 }

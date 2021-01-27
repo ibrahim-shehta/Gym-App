@@ -79,7 +79,8 @@
     "SELECT_PLANE":"Select Subscription Type",
     "PLAYER_DATA":"Player Data",
     "SEARCH_BY_NAME_USERNAME_MOBILE_EMAIL":"Search By Name, Username, Mobile, Email",
-    "SUBSCRIPTION_DATA":"Subscription Data"
+    "SUBSCRIPTION_DATA":"Subscription Data",
+    "SUBSCRIPTION_NUMBER":"Subscription Number"
 
   }
 }
