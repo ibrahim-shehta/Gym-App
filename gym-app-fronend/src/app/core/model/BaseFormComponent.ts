@@ -54,8 +54,8 @@ export abstract class BaseFormCompnent extends BaseComponent {
 
   }
 
-  add(plan) :void {
-    this.getService().add(plan).subscribe(res => {
+  add(entity) :void {
+    this.getService().add(entity).subscribe(res => {
       this.addSuccess();
       this.goBack();
     }, err => {
@@ -63,8 +63,8 @@ export abstract class BaseFormCompnent extends BaseComponent {
     })
   }
 
-  edit(plan) :void {
-    this.getService().edit(plan).subscribe(res => {
+  edit(entity) :void {
+    this.getService().edit(entity).subscribe(res => {
       this.eidtSuccess();
       this.goBack();
     }, err => {

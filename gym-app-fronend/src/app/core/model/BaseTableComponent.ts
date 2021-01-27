@@ -14,6 +14,9 @@ export abstract class BaseTableComponent extends BaseComponent {
   lastText: string = this.translateService.instant('COMMON.LAST');
   maxSize: number = 10;
 
+  abstract  getFormUrl() :string;
+
+
   constructor(
     public router :Router,
     public activatedRoute :ActivatedRoute,

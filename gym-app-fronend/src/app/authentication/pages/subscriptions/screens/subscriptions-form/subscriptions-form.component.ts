@@ -36,19 +36,16 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
 
   ngOnInit() :void {
     this.modeInit();
-    if (this.isEditMode) {
-      //this.prepareEditPlan(this.entity);
+    if (!this.isEditMode) {
+      this.entity = {user: {}, plan: {}}
     }
-    console.log(this.entity)
   }
 
   getResolverData() {
-    //this.entity = this.activatedRoute.snapshot.data.entity.data;
     this.plans = this.activatedRoute.snapshot.data.form.plans.data;
     if (!this.activatedRoute.snapshot.data.form.entity) {
       this.isEditMode = false;
     }
-    console.log(this.activatedRoute.snapshot.data.entity);
   }
 
   findUser() {
@@ -60,71 +57,30 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
     }
 
     this.playersService.filterAllData(filterMap).subscribe(res => {
-      console.log(res);
       this.usersList = res.data;
       this.selectedUser = res.data[0];
-      this.entity.user =  res.data[0].id
-      console.log(this.entity);
+      this.entity.user.id =  res.data[0].id
     }, err => this.backendError(err.error))
   }
 
-  onChange(id) {
-    console.log(this.entity);
+  onChangePlan(id) {
     if (id == 0) {
       this.entity.plan = null;
-      console.log(this.entity);
       return;
     }
     this.selectedPlan = this.plans.find(plan => plan.id == id);
   }
 
   onChangeUser(id) {
-    console.log(this.entity);
     if (id == 0) {
       this.entity.user = null;
-      console.log(this.entity);
       return;
     }
     this.selectedUser = this.usersList.find(user => user.id == id);
-  }
-
-  onSubmit(form :NgForm) :void {
-    console.log(form.value);
-    if (this.validForm(form)) {
-      return;
-    }
-    this.entity.user = {
-      id: this.entity.user
-    }
-    this.entity.plan = {
-      id: this.entity.plan
-    }
-   this.save(this.entity);
-  }
-
-  add(plan) :void {
-    this.subscriptionsService.add(plan).subscribe(res => {
-      this.addSuccess();
-      this.goBack();
-    }, err => {
-      this.backendError(err.error);
-    })
-  }
-
-  edit(plan) :void {
-    this.subscriptionsService.edit(plan).subscribe(res => {
-      this.eidtSuccess();
-      this.goBack();
-    }, err => {
-      this.backendError(err.error);
-    })
   }
 
   getService() :SubscriptionsService {
     return this.subscriptionsService;
   }
 
-  getFormUrl() :string {
-    return AuthURL.PlayersForm;
-  }
 }

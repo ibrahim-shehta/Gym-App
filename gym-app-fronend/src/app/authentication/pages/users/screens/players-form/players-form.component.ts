@@ -25,46 +25,9 @@ export class PlayersFormComponent extends BaseFormCompnent implements OnInit {
 
   ngOnInit() :void {
     this.modeInit();
-    if (this.isEditMode) {
-      //this.prepareEditPlan(this.entity);
-    }
-    console.log(this.entity)
   }
-
-  onSubmit(form :NgForm) :void {
-    console.log(form.value);
-    if (this.validForm(form)) {
-      return;
-    }
-    const obj = form.value;
-    obj.id = this.entity.id;
-   this.save(obj);
-  }
-
-  add(plan) :void {
-    this.playersService.add(plan).subscribe(res => {
-      this.addSuccess();
-      this.goBack();
-    }, err => {
-      this.backendError(err.error);
-    })
-  }
-
-  edit(plan) :void {
-    this.playersService.edit(plan).subscribe(res => {
-      this.eidtSuccess();
-      this.goBack();
-    }, err => {
-      this.backendError(err.error);
-    })
-  }
-
 
   getService() :PlayersService {
     return this.playersService;
-  }
-
-  getFormUrl() :string {
-    return AuthURL.PlayersForm;
   }
 }

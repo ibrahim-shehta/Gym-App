@@ -32,8 +32,4 @@ export class PlansFormComponent extends BaseFormCompnent implements OnInit {
     return this.plansService;
   }
 
-  getFormUrl() :string {
-    return AuthURL.PlansForm;
-  }
-
 }

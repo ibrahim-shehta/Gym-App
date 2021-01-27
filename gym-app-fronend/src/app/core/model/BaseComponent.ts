@@ -13,7 +13,6 @@ export abstract class BaseComponent {
 
 
   abstract  getService() :Baseservice;
-  abstract  getFormUrl() :string;
 
   backendError(error :any) :void {
     if (!error) {

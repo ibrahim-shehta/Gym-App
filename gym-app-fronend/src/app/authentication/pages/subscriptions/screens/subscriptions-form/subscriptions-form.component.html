@@ -21,8 +21,8 @@
 
                 <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'SUBSCRIPTIONS.SELECT_PLANE'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
-                <select class="form-control" name="plan" [(ngModel)]="entity.plan" required #plan="ngModel"
-                  (change)="onChange($event.target.value)"
+                <select class="form-control" name="plan" [(ngModel)]="entity.plan.id" required #plan="ngModel"
+                  (change)="onChangePlan($event.target.value)"
                   >
                   <option value="0">select one </option>
                   <option *ngFor="let plan of plans" [value]="plan.id">{{plan.name}}</option>
@@ -131,7 +131,7 @@
 
                     <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'USERS.NAME'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
-                    <select class="form-control" name="user" [(ngModel)]="entity.user" required #user="ngModel"
+                    <select class="form-control" name="user" [(ngModel)]="entity.user.id" required #user="ngModel"
                       (change)="onChangeUser($event.target.value)"
                       >
                       <option value="0">select one </option>
