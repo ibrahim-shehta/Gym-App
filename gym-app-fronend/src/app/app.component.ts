@@ -19,9 +19,8 @@ export class AppComponent implements OnInit {
   initTranslation() {
     this.translate.addLangs(['en', 'ar']);
     this.translate.setDefaultLang('en');
-
-   // localStorage.setItem(StorageKeys.APP_LANG, 'ar');
     const currentLang = localStorage.getItem(StorageKeys.APP_LANG);
+    document.dir = currentLang == 'ar' ? 'rtl' : 'ltr';
     this.translate.use(currentLang ? currentLang : 'en');
   }
 }
