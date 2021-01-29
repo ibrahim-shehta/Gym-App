@@ -1,0 +1,49 @@
+/*
+* Default
+*/
+@media screen {
+	html, body, * {
+
+		font-family: 'Al-Jazeera-Arabic-Regular' ;
+	}
+
+	
+	
+	
+		@font-face {
+		font-family:Al-Jazeera-Arabic-Bold;
+		src: url("Al-Jazeera-Arabic-Bold.eot");
+		src: url("Al-Jazeera-Arabic-Bold.eot")
+			format('embedded-opentype'),
+			url("Al-Jazeera-Arabic-Bold.woff")
+			format('woff'),
+			url("Al-Jazeera-Arabic-Bold.ttf")
+			format('truetype');
+	}
+	
+
+	
+		@font-face {
+		font-family:Al-Jazeera-Arabic-Regular;
+		src: url("Al-Jazeera-Arabic-Regular.eot");
+		src: url("Al-Jazeera-Arabic-Regular.eot")
+			format('embedded-opentype'),
+			url("Al-Jazeera-Arabic-Regular.woff")
+			format('woff'),
+			url("Al-Jazeera-Arabic-Regular.ttf")
+			format('truetype');
+	}
+	
+	
+	
+}
+
+@media print {
+	html, body, * {
+		font-family:Al-Jazeera-Arabic-Regular ;
+	}
+}
+
+.text-big{
+		font-family: Al-Jazeera-Arabic-Bold !important;
+}
