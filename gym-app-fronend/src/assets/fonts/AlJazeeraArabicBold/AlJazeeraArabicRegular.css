@@ -1,0 +1,36 @@
+/*
+* Default
+*/
+@media screen {
+	html, body, * {
+		border: 0;
+		outline: 0;
+		padding: 0;
+		margin: 0;
+		font-size: 12px !important;
+		font-family: 'Al-Jazeera-Arabic-Light' !important
+	}
+
+	@font-face {
+		font-family: Al-Jazeera-Arabic-Light;
+		src: url("#{resource['css/fonts/BShiraz.eot']}");
+		src: url('css/fonts/AlJazeeraArabicLight/Al-Jazeera-Arabic-Light.eot?#iefix')
+			format('embedded-opentype'),
+			url("#{resource['css/fonts/AlJazeeraArabicLight/Al-Jazeera-Arabic-Light.woff']}")
+			format('woff'),
+			url("#{resource['css/fonts/AlJazeeraArabicLight/Al-Jazeera-Arabic-Light.ttf']}")
+			format('truetype');
+	}
+}
+
+@media print {
+	html, body, * {
+		border: 0;
+		outline: 0;
+		padding: 0;
+		margin: 0;
+		font-size: 12px !important;
+		direction: rtl !important;
+		font-family: "Times New Roman", Times, serif;
+	}
+}
