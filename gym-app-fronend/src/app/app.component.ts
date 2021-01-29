@@ -14,9 +14,6 @@ export class AppComponent implements OnInit {
   constructor(public translate: TranslateService) { }
   ngOnInit() {
     this.initTranslation();
-    //App.initialLoadPage();
-
-  //  this.loadScripts();
   }
 
   initTranslation() {
@@ -30,16 +27,6 @@ export class AppComponent implements OnInit {
 
 
   loadStyles(lang)  {
-    // AppUtils.loadStyles('assets/css/them/general/bootstrap.min.css');
-
-    // AppUtils.loadStyles('assets/css/them/libs/iziToast.min.css');
-    // AppUtils.loadStyles('assets/css/them/libs/datatables.min.css');
-    // AppUtils.loadStyles('assets/css/them/libs/dataTables.bootstrap4.min.css');
-    // AppUtils.loadStyles('assets/css/them/libs/select.bootstrap4.min.css');
-
-    // AppUtils.loadStyles('assets/css/them/template/style.css');
-    // AppUtils.loadStyles('assets/css/them/template/components.css');
-
     if (lang == 'ar') {
       AppUtils.loadStyles('assets/css/them/rtl/rtl.css');
       AppUtils.loadStyles('assets/css/them/common/custom.css');
@@ -48,22 +35,5 @@ export class AppComponent implements OnInit {
       AppUtils.loadStyles('assets/css/them/common/custom.css');
       AppUtils.loadStyles('assets/css/them/ltr/custom-ltr.css');
     }
-  }
-
-  loadScripts() {
-    AppUtils.loadScript('assets/js/general/jquery.min.js');
-    AppUtils.loadScript('assets/js/general/popper.js');
-    AppUtils.loadScript('assets/js/general/tooltip.js');
-    AppUtils.loadScript('assets/js/general/bootstrap.min.js');
-    AppUtils.loadScript('assets/js/general/jquery.nicescroll.min.js');
-    AppUtils.loadScript('assets/js/general/moment.min.js');
-    AppUtils.loadScript('assets/js/stisla.js');
-
-    AppUtils.loadScript('assets/js/libs/iziToast.min.js');
-
-    AppUtils.loadScript('assets/js/page/modules-toastr.js');
-
-    AppUtils.loadScript('assets/js/scripts.js');
-    AppUtils.loadScript('assets/js/custom.js');
   }
 }
