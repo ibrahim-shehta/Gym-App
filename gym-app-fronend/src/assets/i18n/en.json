@@ -82,5 +82,11 @@
     "SUBSCRIPTION_DATA":"Subscription Data",
     "SUBSCRIPTION_NUMBER":"Subscription Number"
 
+  },"SCREENS": {
+    "PLAYERS_MANAGEMENT":"Plyers Management",
+    "SUBSCRIPTIONS_MANAGEMENT":"Subscriptions Management",
+    "PLAYERS":"Players",
+    "PLANS":"Plans",
+    "SUBSCRIPTIONS":"Subscriptions"
   }
 }

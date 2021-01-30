@@ -10,23 +10,17 @@
       <li class="menu-header">Dashboard</li>
       <li routerLinkActive= "active"><a class="nav-link" [routerLink] = "['/' , AppURL.Authen , AuthURL.Dashboard]"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
       <li class="dropdown" routerLinkActive= "active">
-          <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>User</span></a>
+          <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>{{'SCREENS.PLAYERS_MANAGEMENT'|translate}}</span></a>
           <ul class="dropdown-menu">
-           <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Players]">Add Players</a></li>
+           <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Players]">{{'SCREENS.PLAYERS'|translate}}</a></li>
           </ul>
         </li>
 
         <li class="dropdown" routerLinkActive= "active">
-          <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Plans</span></a>
+          <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>{{'SCREENS.SUBSCRIPTIONS_MANAGEMENT'|translate}}</span></a>
           <ul class="dropdown-menu">
-            <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Plans]">Manage Plans</a></li>
-          </ul>
-        </li>
-
-        <li class="dropdown" routerLinkActive= "active">
-          <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Subscriptions</span></a>
-          <ul class="dropdown-menu">
-            <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Subscriptions]">Manage Subscriptions</a></li>
+            <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Plans]">{{'SCREENS.PLANS'|translate}}</a></li>
+            <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Subscriptions]">{{'SCREENS.SUBSCRIPTIONS'|translate}}</a></li>
           </ul>
         </li>
 

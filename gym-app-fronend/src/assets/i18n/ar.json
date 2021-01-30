@@ -81,5 +81,12 @@
     "SUBSCRIPTION_DATA":"بيانات الاشتراك",
     "SUBSCRIPTION_NUMBER":"رقم الاشتراك"
 
+  },
+  "SCREENS": {
+    "PLAYERS_MANAGEMENT":"اداره المشتركين",
+    "SUBSCRIPTIONS_MANAGEMENT":"اداره الاشتراكات",
+    "PLAYERS":"المشتركين",
+    "PLANS":"انواع الاشتراكات",
+    "SUBSCRIPTIONS":"الاشتراكات"
   }
 }
