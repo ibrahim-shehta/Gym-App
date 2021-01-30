@@ -93,15 +93,6 @@ public class UserController {
 		return ResponseEntity.ok(new ListResponse<UserListDto>(dto));
 	}
 	
-	
-//	@RequestMapping("/permission/{id}")
-//	public PermissionDto getPermissionById(@PathVariable Long id) {
-//		String langCode = LocaleContextHolder.getLocale().getLanguage();
-//		Permission entity = permissionService.getPermissionById(id, langCode);
-//		return new PermissionDto().mapEntityToDto(entity);
-//	}
-	
-	
 	private  UserType getUserType(HttpServletRequest req) {
 		String uri = req.getRequestURI();
 		String userTypeString = uri.substring(uri.lastIndexOf("v1/") + 3);

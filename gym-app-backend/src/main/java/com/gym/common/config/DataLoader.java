@@ -1,4 +1,4 @@
-package com.gym.common.helper;
+package com.gym.common.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
