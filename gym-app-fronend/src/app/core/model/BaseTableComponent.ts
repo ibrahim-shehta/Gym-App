@@ -11,8 +11,8 @@ export abstract class BaseTableComponent extends BaseComponent {
   currentPage :number = 1;
   directionLinks: boolean = false;
   boundaryLinks: boolean = true;
-  firstText: string = this.translateService.instant('COMMON.FIRST');
-  lastText: string = this.translateService.instant('COMMON.LAST');
+  // firstText: string = this.translateService.instant('COMMON.FIRST');
+  // lastText: string = this.translateService.instant('COMMON.LAST');
   maxSize: number = 10;
 
   abstract  getFormUrl() :string;

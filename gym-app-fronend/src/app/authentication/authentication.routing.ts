@@ -61,7 +61,7 @@ const RouteList: Routes = [
     children: [
       {
         path: "",
-        component: CategoriesComponent,
+        component: PlayersComponent,
         canActivate: [AuthGuardService],
         resolve: { dataList: PlayersResolversService },
       },
