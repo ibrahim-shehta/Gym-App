@@ -19,8 +19,8 @@
     "ERROR_OCCURED":"Error Occured",
     "VALIDATION_ERROR":"Enter Valid Data",
     "START_DATE":"Start Date",
-    "END_DATE":"End Date"
-
+    "END_DATE":"End Date",
+    "SELECT_ONE":"Select One"
   },
   "USERS": {
     "EMAIL":"E-Mail",
@@ -82,11 +82,19 @@
     "SUBSCRIPTION_DATA":"Subscription Data",
     "SUBSCRIPTION_NUMBER":"Subscription Number"
 
-  },"SCREENS": {
+  },
+  "EXCERCISE_CATEGORY":{
+    "NEXT_EXCERCISE_CATEGORY": "Next Excersise Category",
+    "ADD_EXCERCISE_CATEGORY":"Add Excersise Category",
+    "CREATE_EXCERCISE_CATEGORY":"Create Excersise Category",
+    "EXCERCISES_CATEGORIES":"Excercises Categories"
+  },
+  "SCREENS": {
     "PLAYERS_MANAGEMENT":"Plyers Management",
     "SUBSCRIPTIONS_MANAGEMENT":"Subscriptions Management",
     "PLAYERS":"Players",
     "PLANS":"Plans",
-    "SUBSCRIPTIONS":"Subscriptions"
+    "SUBSCRIPTIONS":"Subscriptions",
+    "EXCERCISES_CATEGORIES":"Excercises Categories"
   }
 }

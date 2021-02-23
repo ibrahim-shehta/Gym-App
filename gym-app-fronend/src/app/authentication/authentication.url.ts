@@ -9,6 +9,9 @@ export const AuthURL = {
     PlayersForm: "form",
     Subscriptions: "subscriptions",
     SubscriptionsForm:"form",
+    ExcercisesCategory: 'excercises-category',
+
+    Form: 'form',
     PathVaribles: {
       Id: 'id'
     }
