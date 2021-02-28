@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.gym.common.dto.BaseDto;
 import com.gym.modules.attendance.model.Attendance;
+import com.gym.modules.exercises.category.dto.ExcerciseCategoryDto;
 import com.gym.user.dto.UserListDto;
 
 public class AttendanceDto extends BaseDto {
@@ -16,6 +17,7 @@ public class AttendanceDto extends BaseDto {
 	private Date date;
 	private String signIn;
 	private String signOut;
+	private ExcerciseCategoryDto excerciseCategory;
 	
 	
 	public static AttendanceDto mapEntityToDto(Attendance entity) {
@@ -28,6 +30,8 @@ public class AttendanceDto extends BaseDto {
 		dto.setDate(entity.getDate());
 		dto.setSignIn(entity.getSignIn());
 		dto.setSignOut(entity.getSignOut());
+		dto.setExcerciseCategory(ExcerciseCategoryDto.mapEntityToDto(entity.getExcerciseCategory()));
+		dto.setUser(UserListDto.mapEntityToDto(entity.getUser()));
 		return dto;
 	}
 
@@ -40,6 +44,8 @@ public class AttendanceDto extends BaseDto {
 		entity.setDate(dto.getDate());
 		entity.setSignIn(dto.getSignIn());
 		entity.setSignOut(dto.getSignOut());
+		entity.setExcerciseCategory(ExcerciseCategoryDto.mapDtoToEntity(dto.getExcerciseCategory()));
+		entity.setUser(UserListDto.mapDtoToEntity(dto.getUser()));
 		return entity;
 	}
 
@@ -74,6 +80,14 @@ public class AttendanceDto extends BaseDto {
 	}
 	public void setSignOut(String signOut) {
 		this.signOut = signOut;
+	}
+
+	public ExcerciseCategoryDto getExcerciseCategory() {
+		return excerciseCategory;
+	}
+
+	public void setExcerciseCategory(ExcerciseCategoryDto excerciseCategory) {
+		this.excerciseCategory = excerciseCategory;
 	}
 	
 	

@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.Type;
 
 import com.gym.common.model.Auditable;
+import com.gym.modules.exercises.category.model.ExcerciseCategory;
 import com.gym.user.model.User;
 
 @Entity
@@ -26,6 +27,9 @@ public class Attendance extends Auditable {
 	private Date date;
 	private String signIn;
 	private String signOut;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private ExcerciseCategory excerciseCategory;
 	
 	public User getUser() {
 		return user;
@@ -50,6 +54,12 @@ public class Attendance extends Auditable {
 	}
 	public void setSignOut(String signOut) {
 		this.signOut = signOut;
+	}
+	public ExcerciseCategory getExcerciseCategory() {
+		return excerciseCategory;
+	}
+	public void setExcerciseCategory(ExcerciseCategory excerciseCategory) {
+		this.excerciseCategory = excerciseCategory;
 	}
 	
 	
