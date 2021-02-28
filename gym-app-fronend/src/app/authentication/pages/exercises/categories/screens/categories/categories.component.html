@@ -46,23 +46,13 @@
               </div>
             </div>
 
-            <div class="card-footer text-right">
-              <nav class="d-inline-block">
-                <pagination
-                      [boundaryLinks]="boundaryLinks"
-                      [directionLinks]="directionLinks"
-                      [lastText]="'COMMON.LAST'|translate"
-                      [firstText]="'COMMON.FIRST'|translate"
-                      [totalItems]="totalRows"
-                      [itemsPerPage]="categoriesService.filterDataWithPaginationAndSort.size"
-                      [maxSize]="maxSize"
-                      [(ngModel)]="currentPage"
-
-                      (pageChanged)="pageChanged($event)"
-                  >
-                </pagination>
-              </nav>
-            </div>
+            <app-pagination
+              [totalRows]="totalRows"
+              [size]="categoriesService.filterDataWithPaginationAndSort.size"
+              [currentPage]="currentPage"
+              (pageChanged)="pageChanged($event)"
+              >
+            </app-pagination>
 
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthURL } from 'src/app/authentication/authentication.url';
@@ -11,7 +11,7 @@ import { SubscriptionsService } from '../../services/subscriptions.service';
   templateUrl: './subscriptions.component.html',
   styleUrls: ['./subscriptions.component.css']
 })
-export class SubscriptionsComponent extends BaseTableComponent implements OnInit {
+export class SubscriptionsComponent extends BaseTableComponent implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,
@@ -37,5 +37,9 @@ export class SubscriptionsComponent extends BaseTableComponent implements OnInit
 
   getFormUrl() :string {
     return AuthURL.PlayersForm;
+  }
+
+  ngOnDestroy() {
+    super.onDestroy();
   }
 }

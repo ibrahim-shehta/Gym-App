@@ -1,0 +1,17 @@
+<div class="card-footer text-right">
+  <nav class="d-inline-block">
+    <pagination
+          [boundaryLinks]="true"
+          [directionLinks]="false"
+          [lastText]="'COMMON.LAST'|translate"
+          [firstText]="'COMMON.FIRST'|translate"
+          [totalItems]="totalRows"
+          [itemsPerPage]="size"
+          [maxSize]="10"
+          [(ngModel)]="currentPage"
+
+          (pageChanged)="pageChangedEvent($event)"
+      >
+    </pagination>
+  </nav>
+</div>

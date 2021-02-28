@@ -2,19 +2,13 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { NotificationService } from "../services/notification.service";
 import { BaseComponent } from "./BaseComponent";
-import { Baseservice } from "./BaseService";
 import { FilterMap } from "./FilterDataWithPaginationAndSort";
 
 export abstract class BaseTableComponent extends BaseComponent {
   dataList: any[] = [];
   totalRows: number = 0;
   currentPage :number = 1;
-  directionLinks: boolean = false;
-  boundaryLinks: boolean = true;
-  // firstText: string = this.translateService.instant('COMMON.FIRST');
-  // lastText: string = this.translateService.instant('COMMON.LAST');
-  maxSize: number = 10;
-
+  resetState :boolean = true;
   abstract  getFormUrl() :string;
 
 
@@ -28,6 +22,7 @@ export abstract class BaseTableComponent extends BaseComponent {
   }
 
   baseInit() :void {
+    this.resetState = true;
     this.restorePagination();
     this.getResolverData();
   }
@@ -94,6 +89,16 @@ export abstract class BaseTableComponent extends BaseComponent {
   }
 
  edit(id) :void {
+   this.resetState = false;
    this.router.navigate([this.getFormUrl()], {relativeTo: this.activatedRoute, state: {id: id}});
  }
+
+ onDestroy() {
+  if (this.resetState) {
+    this.getService().isClickSearch = false;
+    this.getService().filterDataWithPaginationAndSort.page = 0;
+    this.getService().searchText = '';
+    this.getService().filterDataWithPaginationAndSort.filterMap = {};
+  }
+}
 }

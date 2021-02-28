@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthURL } from 'src/app/authentication/authentication.url';
@@ -12,7 +12,7 @@ import { PlansService } from '../../services/plans.service';
   templateUrl: './plans.component.html',
   styleUrls: ['./plans.component.css']
 })
-export class PlansComponent extends BaseTableComponent implements OnInit {
+export class PlansComponent extends BaseTableComponent implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
@@ -35,4 +35,7 @@ export class PlansComponent extends BaseTableComponent implements OnInit {
     return AuthURL.PlansForm;
   }
 
+  ngOnDestroy() {
+    super.onDestroy();
+  }
 }

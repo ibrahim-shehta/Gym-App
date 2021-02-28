@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthURL } from 'src/app/authentication/authentication.url';
@@ -11,7 +11,7 @@ import { PlayersService } from '../../services/players.service';
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.css']
 })
-export class PlayersComponent extends BaseTableComponent implements OnInit {
+export class PlayersComponent extends BaseTableComponent implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,
@@ -39,4 +39,7 @@ export class PlayersComponent extends BaseTableComponent implements OnInit {
     return ["name", "username", "email", "mobile"]
   }
 
+  ngOnDestroy() {
+    super.onDestroy();
+  }
 }

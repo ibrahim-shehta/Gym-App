@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthURL } from 'src/app/authentication/authentication.url';
@@ -11,7 +11,7 @@ import { CategoriesService } from '../../services/categories-service';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent extends BaseTableComponent implements OnInit {
+export class CategoriesComponent extends BaseTableComponent implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
@@ -32,6 +32,10 @@ export class CategoriesComponent extends BaseTableComponent implements OnInit {
 
   getFormUrl() :string {
     return AuthURL.Form;
+  }
+
+  ngOnDestroy() {
+    super.onDestroy();
   }
 
 }

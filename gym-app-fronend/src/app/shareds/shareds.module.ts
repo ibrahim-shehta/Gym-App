@@ -12,12 +12,14 @@ import { DataTablesModule } from 'angular-datatables';
 import { AccountService } from './services/account.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AuthNavbarComponent,
      AuthSidebarComponent,
-     AuthContectComponent
+     AuthContectComponent,
+     PaginationComponent
     ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     Ng2IziToastModule,
     DataTablesModule,
     TranslateModule,
-    PaginationModule
+    PaginationModule,
+    PaginationComponent
   ],
   providers: [
     AccountService
