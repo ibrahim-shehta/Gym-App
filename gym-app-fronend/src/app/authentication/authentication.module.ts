@@ -15,6 +15,8 @@ import { CategoriesComponent } from './pages/exercises/categories/screens/catego
 import { CategoriesFormComponent } from './pages/exercises/categories/screens/categories-form/categories-form.component';
 import { PlansViewComponent } from './pages/plans/screens/plans-view/plans-view.component';
 import { PlansDetailsComponent } from './pages/plans/components/plans-details/plans-details.component';
+import { PlyersViewComponent } from './pages/users/screens/plyers-view/plyers-view.component';
+import { PlayerDetailsComponent } from './pages/users/components/player-details/player-details.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { PlansDetailsComponent } from './pages/plans/components/plans-details/pl
     CategoriesComponent,
     CategoriesFormComponent,
     PlansViewComponent,
-    PlansDetailsComponent
+    PlansDetailsComponent,
+    PlyersViewComponent,
+    PlayerDetailsComponent
   ],
   imports: [
     CommonModule,

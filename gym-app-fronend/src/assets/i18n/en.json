@@ -21,7 +21,8 @@
     "START_DATE":"Start Date",
     "END_DATE":"End Date",
     "SELECT_ONE":"Select One",
-    "BACK":"Back"
+    "BACK":"Back",
+    "DETAILS":"Details"
   },
   "USERS": {
     "EMAIL":"E-Mail",
@@ -68,7 +69,8 @@
   "PLAYERS":{
     "MANAGE_PLAYERS":"Manage Players",
     "ADD_PLAYER":"Add Player",
-    "SHOW_PLAYERS":"List Players"
+    "SHOW_PLAYERS":"List Players",
+    "VIEW_PLAYER":"Player Details"
   },
   "SUBSCRIPTIONS":{
     "MANAGE_SUBSCRIPTIONS":"Manage Subscriptions",

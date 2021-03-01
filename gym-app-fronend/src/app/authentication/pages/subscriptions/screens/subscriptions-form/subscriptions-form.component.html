@@ -1,13 +1,9 @@
 <app-auth-contect>
   <app-page-header [pageHeader]="'SUBSCRIPTIONS.MANAGE_SUBSCRIPTIONS'" [sectionHeader]="'SUBSCRIPTIONS.ADD_SUBSCRIPTIONS'">
     <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate=""  (keydown.enter)="$event.preventDefault()">
-
-              <!-- Plans -->
-              <h4>{{'SUBSCRIPTIONS.PLAN_DATA'|translate}}</h4>
-              <hr/>
-
-              <div class="form-group row mb-4">
-
+            <h4>{{'SUBSCRIPTIONS.PLAN_DATA'|translate}}</h4>
+            <hr/>
+            <div class="form-group row mb-4">
                 <label class="col-form-label col-sm-12 col-md-2">{{'SUBSCRIPTIONS.SELECT_PLANE'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                 <select class="form-control" name="plan" [(ngModel)]="entity.plan.id" required #plan="ngModel"
@@ -17,110 +13,57 @@
                   <option *ngFor="let plan of plans" [value]="plan.id">{{plan.name}}</option>
                 </select>
                 </div>
+              <p class="btn btn-success" *ngIf="selectedPlan"  (click)="showPlanDetails = true">{{'COMMON.DETAILS'|translate}}</p>
+            </div>
 
-              <p class="btn btn-danger" *ngIf="selectedPlan"  (click)="showPlanDetails = true">click me to show</p>
+            <br/>
 
 
-              </div>
-
-
-                <br/>
-                <br/>
-
-               <!-- Plans -->
-               <!-- Users  -->
-              <h4>{{'SUBSCRIPTIONS.PLAYER_DATA'|translate}}</h4>
-              <hr/>
+            <h4>{{'SUBSCRIPTIONS.PLAYER_DATA'|translate}}</h4>
+            <hr/>
 
               <div class="form-group row mb-4">
-
                 <label class="col-form-label col-sm-12 col-md-2"></label>
                 <div class="col-sm-12 col-md-6">
                     <input type="text" class="form-control" name="userSearch" [(ngModel)]="userSearch"
                       [placeholder]="'SUBSCRIPTIONS.SEARCH_BY_NAME_USERNAME_MOBILE_EMAIL'|translate"
                     >
                 </div>
-
-
                 <button type="button" class="btn btn-danger" (click)="findUser()">
                  {{'COMMON.SEARCH' |translate}}
                 </button>
-
               </div>
 
               <div *ngIf="usersList.length > 0">
                   <div class="form-group row mb-4">
-
                     <label class="col-form-label col-sm-12 col-md-2">{{'USERS.NAME'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                     <select class="form-control" name="user" [(ngModel)]="entity.user.id" required #user="ngModel"
-                      (change)="onChangeUser($event.target.value)"
-                      >
-                      <option value="0">select one </option>
+                      (change)="onChangeUser($event.target.value)">
+                      <option [value]="null">--{{'COMMON.SELECT_ONE'|translate}}--</option>
                       <option *ngFor="let user of usersList" [value]="user.id">{{user.name}}</option>
                     </select>
                     </div>
-
-
-                  </div>
-
-                  <div *ngIf="selectedUser">
-                  <div class="form-group row mb-4">
-
-                    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.NAME'|translate}}</label>
-                    <div class="col-sm-12 col-md-4">
-                      <input type="text" class="form-control" name="name" [(ngModel)]="selectedUser.name" disabled>
-                    </div>
-
-                    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.EMAIL'|translate}}</label>
-                    <div class="col-sm-12 col-md-4">
-                      <input type="text" class="form-control" name="email" [(ngModel)]="selectedUser.email" disabled>
-                    </div>
-
-                  </div>
-
-                  <div class="form-group row mb-4">
-
-                    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.USER_NAME'|translate}} </label>
-                    <div class="col-sm-12 col-md-4">
-                      <input type="text" class="form-control" name="username" [(ngModel)]="selectedUser.username" disabled>
-                    </div>
-
-                    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.MOBILE'|translate}} </label>
-                    <div class="col-sm-12 col-md-4">
-                      <input type="text" class="form-control" name="mobile" [(ngModel)]="selectedUser.mobile" disabled>
-                    </div>
-
-                  </div>
+                    <p class="btn btn-success" *ngIf="selectedUser"  (click)="showPlayerDetails = true">{{'COMMON.DETAILS'|translate}}</p>
                   </div>
               </div>
 
-              <br/>
-              <br/>
-          <!-- Users  -->
-          <!-- subscription  -->
+          <br/>
+
           <h4>{{'SUBSCRIPTIONS.SUBSCRIPTION_DATA'|translate}}</h4>
           <hr/>
-
-
-
           <div class="form-group row mb-4">
-
             <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.START_DATE'|translate}}</label>
             <div class="col-sm-12 col-md-4">
               <input type="date" class="form-control" name="startDate" [(ngModel)]="entity.startDate" #startDate="ngModel" required>
             </div>
-
             <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.END_DATE'|translate}}</label>
             <div class="col-sm-12 col-md-4">
               <input type="date" class="form-control" name="endDate" [(ngModel)]="entity.endDate" #endDate="ngModel" required>
             </div>
-
           </div>
 
-
           <div class="form-group row mb-4">
-
             <label class="col-form-label col-sm-12 col-md-2">{{'SUBSCRIPTIONS.PAID_AMOUNT'|translate}}</label>
             <div class="col-sm-12 col-md-4">
               <input type="number" class="form-control" name="paidAmount" min="0" max="selectedPlan.price" [(ngModel)]="entity.paidAmount" #paidAmount="ngModel" required>
@@ -142,4 +85,9 @@
 <app-modal *ngIf="showPlanDetails" [show]="showPlanDetails" (onClose)="showPlanDetails = false"
   [headerText]="'SUBSCRIPTIONS.PLAN_DATA'">
   <app-plans-details [entity]="selectedPlan"></app-plans-details>
+</app-modal>
+
+<app-modal *ngIf="showPlayerDetails" [show]="showPlayerDetails" (onClose)="showPlayerDetails = false"
+  [headerText]="'SUBSCRIPTIONS.PLAN_DATA'">
+  <app-player-details [entity]="selectedUser"></app-player-details>
 </app-modal>

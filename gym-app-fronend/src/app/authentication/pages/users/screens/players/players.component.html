@@ -1,70 +1,53 @@
 <app-auth-contect>
-  <section class="section">
-    <div class="section-header">
-      <h1>{{'PLAYERS.MANAGE_PLAYERS'|translate}}</h1>
-    </div>
-    <div class="section-body">
-      <div class="row">
-        <div class="col-12 col-md-12 col-lg-12">
-          <div class="card author-box card-primary">
+  <app-page-header
+  [pageHeader]="'PLAYERS.MANAGE_PLAYERS'"
+  [sectionHeader]="'PLAYERS.SHOW_PLAYERS'"
+  [isTablePage]="true"
+  [service]="playersService"
 
-            <div class="card-header">
-              <h4>{{'PLAYERS.SHOW_PLAYERS'|translate}}</h4>
-              <div class="card-header-form">
+  (onSearch)="search()"
+  (onStopSearch)="stopSearch()"
+  (onAdd)="add()"
+>
+      <div class="table-responsive">
+        <table class="table table-striped table-md">
+          <tr>
+            <th>{{'COMMON.NAME'|translate}}</th>
+            <th>{{'USERS.EMAIL'|translate}}</th>
+            <th>{{'USERS.USER_NAME'|translate}}</th>
+            <th>{{'USERS.MOBILE'|translate}}</th>
+            <th>{{'USERS.ADDRESS'|translate}}</th>
+            <th></th>
+          </tr>
 
-                  <form>
-                    <div class="input-group">
-                      <input type="text" class="form-control" [placeholder]="'COMMON.SEARCH'|translate" name="searchText" [(ngModel)]="playersService.searchText" />
-                      <div class="input-group-btn">
-                        <button class="btn btn-primary" (click)="search()"><i class="fas fa-search"></i></button>
-                      </div>
-                      <button [hidden]="!playersService.isClickSearch" class="btn btn-warning mx-1" (click)="stopSearch()"><i class="fa fa-times" aria-hidden="true"></i></button>
-                      <button class="btn btn-danger mx-5" (click)="add()">{{'COMMON.ADD'|translate}}</button>
-                    </div>
-                  </form>
+          <tr *ngFor="let player of dataList; let i = index">
+            <td>{{player.name}}</td>
+            <td>{{player.email}}</td>
+            <td>{{player.username}}</td>
+            <td>{{player.mobile}}</td>
+            <td>{{player.address}}</td>
+            <td>
+              <app-table-context-menu
+                [showView]="true"
+                [showEdit]="true"
 
+                (viewHandler)="view(player.id)"
+                (editHandler)="edit(player.id)"
+              ></app-table-context-menu>
+            </td>
+          </tr>
 
-                </div>
-            </div>
-
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-striped table-md">
-                  <tr>
-                    <th>{{'COMMON.NAME'|translate}}</th>
-                    <th>{{'USERS.EMAIL'|translate}}</th>
-                    <th>{{'USERS.USER_NAME'|translate}}</th>
-                    <th>{{'USERS.MOBILE'|translate}}</th>
-                    <th>{{'USERS.ADDRESS'|translate}}</th>
-                    <th></th>
-                  </tr>
-
-                  <tr *ngFor="let player of dataList; let i = index">
-                    <td>{{player.name}}</td>
-                    <td>{{player.email}}</td>
-                    <td>{{player.username}}</td>
-                    <td>{{player.mobile}}</td>
-                    <td>{{player.address}}</td>
-                    <td><a class="btn btn-secondary" (click)="edit(player.id)">{{'COMMON.EDIT'|translate}}</a></td>
-                  </tr>
-
-                </table>
-              </div>
-            </div>
-
-            <app-pagination
-              [totalRows]="totalRows"
-              [size]="playersService.filterDataWithPaginationAndSort.size"
-              [currentPage]="currentPage"
-              (pageChanged)="pageChanged($event)"
-              >
-            </app-pagination>
-
-          </div>
-        </div>
+        </table>
       </div>
-    </div>
-  </section>
+
+    <app-pagination
+      [totalRows]="totalRows"
+      [size]="playersService.filterDataWithPaginationAndSort.size"
+      [currentPage]="currentPage"
+      (pageChanged)="pageChanged($event)"
+      >
+    </app-pagination>
+  </app-page-header>
 </app-auth-contect>
 
 

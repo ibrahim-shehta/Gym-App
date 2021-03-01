@@ -1,0 +1,22 @@
+<div class="form-group row mb-4">
+  <label class="col-form-label col-sm-12 col-md-2">{{'USERS.NAME'|translate}}</label>
+  <p class="col-sm-12 col-md-4">{{entity.name}}</p>
+  <label class="col-form-label col-sm-12 col-md-2">{{'USERS.EMAIL'|translate}}</label>
+  <p class="col-sm-12 col-md-4">{{entity.email}}</p>
+</div>
+
+<div class="form-group row mb-4">
+  <label class="col-form-label col-sm-12 col-md-2">{{'USERS.USER_NAME'|translate}} </label>
+  <p class="col-sm-12 col-md-4">{{entity.username}}</p>
+  <label class="col-form-label col-sm-12 col-md-2">{{'USERS.MOBILE'|translate}} </label>
+  <p class="col-sm-12 col-md-4">{{entity.mobile}}</p>
+</div>
+
+<div *ngIf="showAll">
+  <div class="form-group row mb-4">
+    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.ADDRESS'|translate}}</label>
+    <p class="col-sm-12 col-md-4">{{entity.address}}</p>
+    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.BIRTH_DAY'|translate}}</label>
+    <p class="col-sm-12 col-md-4">{{entity.birthDate}}</p>
+  </div>
+</div>

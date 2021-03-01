@@ -1,16 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-plans-details',
   templateUrl: './plans-details.component.html',
   styleUrls: ['./plans-details.component.css']
 })
-export class PlansDetailsComponent implements OnInit {
-
+export class PlansDetailsComponent  {
   @Input() entity;
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
