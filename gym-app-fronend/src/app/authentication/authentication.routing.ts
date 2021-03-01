@@ -21,6 +21,7 @@ import { CategoriesFormResolversService } from "./pages/exercises/categories/res
 import { CategoriesResolverService } from "./pages/exercises/categories/resolvers/categories-resolver.service";
 import { CategoriesComponent } from "./pages/exercises/categories/screens/categories/categories.component";
 import { CategoriesFormComponent } from "./pages/exercises/categories/screens/categories-form/categories-form.component";
+import { PlansViewComponent } from "./pages/plans/screens/plans-view/plans-view.component";
 
 const RouteList: Routes = [
   { path: "", redirectTo: AuthURL.Dashboard, pathMatch: "full" },
@@ -54,6 +55,12 @@ const RouteList: Routes = [
         canActivate: [AuthGuardService],
         resolve: { form: PlansFormResolversService },
       },
+      {
+        path: AuthURL.View,
+        component: PlansViewComponent,
+        canActivate: [AuthGuardService],
+        resolve: { form: PlansFormResolversService },
+      }
     ],
   },
   {

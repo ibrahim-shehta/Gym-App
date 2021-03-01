@@ -1,5 +1,6 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
+import { AuthURL } from "src/app/authentication/authentication.url";
 import { NotificationService } from "../services/notification.service";
 import { BaseComponent } from "./BaseComponent";
 import { FilterMap } from "./FilterDataWithPaginationAndSort";
@@ -92,6 +93,12 @@ export abstract class BaseTableComponent extends BaseComponent {
    this.resetState = false;
    this.router.navigate([this.getFormUrl()], {relativeTo: this.activatedRoute, state: {id: id}});
  }
+
+ view(id) :void {
+  this.resetState = false;
+  this.router.navigate([AuthURL.View], {relativeTo: this.activatedRoute, state: {id: id}});
+ }
+
 
  onDestroy() {
   if (this.resetState) {

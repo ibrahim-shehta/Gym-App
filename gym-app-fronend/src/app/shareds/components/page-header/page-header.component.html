@@ -1,0 +1,36 @@
+<section class="section">
+
+  <div class="section-header">
+    <h1>{{pageHeader|translate}}</h1>
+  </div>
+
+  <div class="section-body">
+    <div class="row">
+      <div class="col-12">
+        <div class="card author-box card-primary">
+          <div class="card-header">
+            <h4>{{sectionHeader|translate}}</h4>
+            <div class="card-header-form" *ngIf="isTablePage">
+              <form>
+                <div class="input-group">
+                  <input type="text" class="form-control" [placeholder]="'COMMON.SEARCH'|translate" name="searchText"
+                    [(ngModel)]="service.searchText" />
+                  <div class="input-group-btn">
+                    <button class="btn btn-primary" (click)="onSearchHandler()"><i class="fas fa-search"></i></button>
+                  </div>
+                  <button [hidden]="!service.isClickSearch" class="btn btn-warning mx-1" (click)="onStopSearchHanlder()"><i
+                      class="fa fa-times" aria-hidden="true"></i></button>
+                  <button class="btn btn-danger mx-5" (click)="onAddHandler()">{{'COMMON.ADD'|translate}}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <ng-content></ng-content>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

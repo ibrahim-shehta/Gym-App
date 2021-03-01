@@ -1,72 +1,56 @@
 <app-auth-contect>
-  <section class="section">
-    <div class="section-header">
-      <h1>{{'PLANS.PLANS'|translate}}</h1>
-    </div>
-    <div class="section-body">
-      <div class="row">
-        <div class="col-12 col-md-12 col-lg-12">
-          <div class="card author-box card-primary">
+  <app-page-header
+    [pageHeader]="'PLANS.PLANS'"
+    [sectionHeader]="'PLANS.PLANS'"
+    [isTablePage]="true"
+    [service]="planService"
 
-            <div class="card-header">
-              <h4>{{'PLANS.PLANS'|translate}}</h4>
-              <div class="card-header-form">
+    (onSearch)="search()"
+    (onStopSearch)="stopSearch()"
+    (onAdd)="add()"
+  >
+      <div class="table-responsive">
+        <table class="table table-striped table-md">
+          <tr>
+            <th>{{'COMMON.NAME'|translate}}</th>
+            <th>{{'PLANS.DISCOUNT'|translate}}</th>
+            <th>{{'PLANS.NUMBER_OF_DAYS'|translate}}</th>
+            <th>{{'PLANS.NUMBER_OF_INVETATIONS'|translate}}</th>
+            <th>{{'PLANS.NUMBER_OF_RESERVED_DAYS'|translate}}</th>
+            <th>{{'PLANS.PRICE'|translate}}</th>
+            <th></th>
+          </tr>
 
-                  <form>
-                    <div class="input-group">
-                      <input type="text" class="form-control" [placeholder]="'COMMON.SEARCH'|translate" name="searchText" [(ngModel)]="planService.searchText" />
-                      <div class="input-group-btn">
-                        <button class="btn btn-primary" (click)="search()"><i class="fas fa-search"></i></button>
-                      </div>
-                      <button [hidden]="!planService.isClickSearch" class="btn btn-warning mx-1" (click)="stopSearch()"><i class="fa fa-times" aria-hidden="true"></i></button>
-                      <button class="btn btn-danger mx-5" (click)="add()">{{'COMMON.ADD'|translate}}</button>
-                    </div>
-                  </form>
+          <tr *ngFor="let plan of dataList; let i = index">
+            <td>{{plan.name}}</td>
+            <td>{{plan.discount}}</td>
+            <td>{{plan.numberOfDays}}</td>
+            <td>{{plan.numberOfInvitations}}</td>
+            <td>{{plan.numberOfReservedDays}}</td>
+            <td>{{plan.price}}</td>
+            <td>
+              <app-table-context-menu
+                [showView]="true"
+                [showEdit]="true"
 
+                (viewHandler)="view(plan.id)"
+                (editHandler)="edit(plan.id)"
+              ></app-table-context-menu>
+            </td>
+          </tr>
 
-                </div>
-            </div>
-
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-striped table-md">
-                  <tr>
-                    <th>{{'COMMON.NAME'|translate}}</th>
-                    <th>{{'PLANS.DISCOUNT'|translate}}</th>
-                    <th>{{'PLANS.NUMBER_OF_DAYS'|translate}}</th>
-                    <th>{{'PLANS.NUMBER_OF_INVETATIONS'|translate}}</th>
-                    <th>{{'PLANS.NUMBER_OF_RESERVED_DAYS'|translate}}</th>
-                    <th>{{'PLANS.PRICE'|translate}}</th>
-                    <th></th>
-                  </tr>
-
-                  <tr *ngFor="let plan of dataList; let i = index">
-                    <td>{{plan.name}}</td>
-                    <td>{{plan.discount}}</td>
-                    <td>{{plan.numberOfDays}}</td>
-                    <td>{{plan.numberOfInvitations}}</td>
-                    <td>{{plan.numberOfReservedDays}}</td>
-                    <td>{{plan.price}}</td>
-                    <td><a class="btn btn-secondary" (click)="edit(plan.id)">{{'COMMON.EDIT'|translate}}</a></td>
-                  </tr>
-
-                </table>
-              </div>
-            </div>
-
-            <app-pagination
-              [totalRows]="totalRows"
-              [size]="planService.filterDataWithPaginationAndSort.size"
-              [currentPage]="currentPage"
-              (pageChanged)="pageChanged($event)"
-              >
-            </app-pagination>
-
-          </div>
-        </div>
+        </table>
       </div>
-    </div>
-  </section>
+
+    <app-pagination
+      [totalRows]="totalRows"
+      [size]="planService.filterDataWithPaginationAndSort.size"
+      [currentPage]="currentPage"
+      (pageChanged)="pageChanged($event)"
+      >
+    </app-pagination>
+
+  </app-page-header>
 </app-auth-contect>
 
 

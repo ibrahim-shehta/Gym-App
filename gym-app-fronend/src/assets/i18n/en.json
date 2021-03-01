@@ -20,7 +20,8 @@
     "VALIDATION_ERROR":"Enter Valid Data",
     "START_DATE":"Start Date",
     "END_DATE":"End Date",
-    "SELECT_ONE":"Select One"
+    "SELECT_ONE":"Select One",
+    "BACK":"Back"
   },
   "USERS": {
     "EMAIL":"E-Mail",
@@ -61,7 +62,8 @@
     "PRICE": "Price",
     "ADD_PLAN":"Add Plan",
     "IS_SPECIAL":"Is Special",
-    "CREATE_PLANE":"Create Plan"
+    "CREATE_PLANE":"Create Plan",
+    "PLAN_DETAILS":"Plan Details"
   },
   "PLAYERS":{
     "MANAGE_PLAYERS":"Manage Players",

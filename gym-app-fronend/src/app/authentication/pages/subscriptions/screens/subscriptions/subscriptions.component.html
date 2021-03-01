@@ -1,75 +1,56 @@
 <app-auth-contect>
-  <section class="section">
-    <div class="section-header">
-      <h1>{{'SUBSCRIPTIONS.MANAGE_SUBSCRIPTIONS'|translate}}</h1>
+  <app-page-header
+  [pageHeader]="'SUBSCRIPTIONS.MANAGE_SUBSCRIPTIONS'"
+  [sectionHeader]="'SUBSCRIPTIONS.SHOW_SUBSCRIPTIONS'"
+  [isTablePage]="true"
+  [service]="subscriptionsService"
+
+  (onSearch)="search()"
+  (onStopSearch)="stopSearch()"
+  (onAdd)="add()"
+>
+    <div class="table-responsive">
+      <table class="table table-striped table-md">
+        <tr>
+          <th>{{'COMMON.NAME'|translate}}</th>
+          <th>{{'SUBSCRIPTIONS.SUBSCRIPTIONS_TYPE'|translate}}</th>
+          <th>{{'SUBSCRIPTIONS.SUBSCRIPTION_NUMBER'|translate}}</th>
+          <th>{{'SUBSCRIPTIONS.PRICE'|translate}}</th>
+          <th>{{'SUBSCRIPTIONS.PAID_AMOUNT'|translate}}</th>
+          <th>{{'COMMON.START_DATE'|translate}}</th>
+          <th>{{'COMMON.END_DATE'|translate}}</th>
+          <th></th>
+        </tr>
+
+        <tr *ngFor="let subscription of dataList; let i = index">
+          <td>{{subscription.user.name}}</td>
+          <td>{{subscription.planName}}</td>
+          <td>{{subscription.subscriptionNumber}}</td>
+          <td>{{subscription.price}}</td>
+          <td>{{subscription.paidAmount}}</td>
+          <td>{{subscription.startDate}}</td>
+          <td>{{subscription.endDate}}</td>
+          <td>
+            <app-table-context-menu
+                [showView]="true"
+
+                (viewHandler)="view(subscription.id)"
+              ></app-table-context-menu>
+          </td>
+        </tr>
+
+      </table>
     </div>
-    <div class="section-body">
-      <div class="row">
-        <div class="col-12 col-md-12 col-lg-12">
-          <div class="card author-box card-primary">
 
-            <div class="card-header">
-              <h4>{{'SUBSCRIPTIONS.SHOW_SUBSCRIPTIONS'|translate}}</h4>
-              <div class="card-header-form">
+  <app-pagination
+    [totalRows]="totalRows"
+    [size]="subscriptionsService.filterDataWithPaginationAndSort.size"
+    [currentPage]="currentPage"
+    (pageChanged)="pageChanged($event)"
+    >
+  </app-pagination>
 
-                  <form>
-                    <div class="input-group">
-                      <input type="text" class="form-control" [placeholder]="'COMMON.SEARCH'|translate" name="searchText" [(ngModel)]="subscriptionsService.searchText" />
-                      <div class="input-group-btn">
-                        <button class="btn btn-primary" (click)="search()"><i class="fas fa-search"></i></button>
-                      </div>
-                      <button [hidden]="!subscriptionsService.isClickSearch" class="btn btn-warning mx-1" (click)="stopSearch()"><i class="fa fa-times" aria-hidden="true"></i></button>
-                      <button class="btn btn-danger mx-5" (click)="add()">{{'COMMON.ADD'|translate}}</button>
-                    </div>
-                  </form>
-
-
-                </div>
-            </div>
-
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-striped table-md">
-                  <tr>
-                    <th>{{'COMMON.NAME'|translate}}</th>
-                    <th>{{'SUBSCRIPTIONS.SUBSCRIPTIONS_TYPE'|translate}}</th>
-                    <th>{{'SUBSCRIPTIONS.SUBSCRIPTION_NUMBER'|translate}}</th>
-                    <th>{{'SUBSCRIPTIONS.PRICE'|translate}}</th>
-                    <th>{{'SUBSCRIPTIONS.PAID_AMOUNT'|translate}}</th>
-                    <th>{{'COMMON.START_DATE'|translate}}</th>
-                    <th>{{'COMMON.END_DATE'|translate}}</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-
-                  <tr *ngFor="let subscription of dataList; let i = index">
-                    <td>{{subscription.user.name}}</td>
-                    <td>{{subscription.planName}}</td>
-                    <td>{{subscription.subscriptionNumber}}</td>
-                    <td>{{subscription.price}}</td>
-                    <td>{{subscription.paidAmount}}</td>
-                    <td>{{subscription.startDate}}</td>
-                    <td>{{subscription.endDate}}</td>
-                    <td><a class="btn btn-secondary" (click)="edit(subscription.id)">{{'COMMON.EDIT'|translate}}</a></td>
-                  </tr>
-
-                </table>
-              </div>
-            </div>
-
-            <app-pagination
-              [totalRows]="totalRows"
-              [size]="subscriptionsService.filterDataWithPaginationAndSort.size"
-              [currentPage]="currentPage"
-              (pageChanged)="pageChanged($event)"
-              >
-            </app-pagination>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </app-page-header>
 </app-auth-contect>
 
 

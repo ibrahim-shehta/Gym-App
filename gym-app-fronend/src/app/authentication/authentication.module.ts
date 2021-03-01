@@ -13,6 +13,7 @@ import { SubscriptionsComponent } from './pages/subscriptions/screens/subscripti
 import { SubscriptionsFormComponent } from './pages/subscriptions/screens/subscriptions-form/subscriptions-form.component';
 import { CategoriesComponent } from './pages/exercises/categories/screens/categories/categories.component';
 import { CategoriesFormComponent } from './pages/exercises/categories/screens/categories-form/categories-form.component';
+import { PlansViewComponent } from './pages/plans/screens/plans-view/plans-view.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CategoriesFormComponent } from './pages/exercises/categories/screens/ca
     SubscriptionsComponent,
     SubscriptionsFormComponent,
     CategoriesComponent,
-    CategoriesFormComponent
+    CategoriesFormComponent,
+    PlansViewComponent
   ],
   imports: [
     CommonModule,

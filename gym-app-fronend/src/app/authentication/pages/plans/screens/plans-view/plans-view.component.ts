@@ -1,33 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
+import { BaseViewComponent } from 'src/app/core/model/BaseViewComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { PlansService } from '../../services/plans.service';
-
 @Component({
-  selector: 'app-plans-form',
-  templateUrl: './plans-form.component.html',
-  styleUrls: ['./plans-form.component.scss']
+  selector: 'app-plans-view',
+  templateUrl: './plans-view.component.html',
+  styleUrls: ['./plans-view.component.css']
 })
-export class PlansFormComponent extends BaseFormCompnent implements OnInit {
+export class PlansViewComponent extends BaseViewComponent implements OnInit {
 
   constructor(
     public notificationService :NotificationService,
     public router :Router,
     public activatedRoute :ActivatedRoute,
     public translateService :TranslateService,
-    private plansService :PlansService,
   ) {
         super(router, activatedRoute, notificationService, translateService);
   }
 
   ngOnInit() :void {
-    this.modeInit();
-  }
-
-  getService() :PlansService {
-    return this.plansService;
+    this.getResolverData();
   }
 
 }

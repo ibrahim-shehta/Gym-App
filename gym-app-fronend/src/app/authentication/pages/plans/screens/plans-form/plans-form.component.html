@@ -1,98 +1,78 @@
 <app-auth-contect>
-  <section class="section">
-    <div class="section-header">
-      <h1>{{'PLANS.CREATE_PLANE'|translate}}</h1>
-    </div>
-    <div class="section-body">
-      <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate="">
-      <div class="row">
-        <div class="col-12">
-          <div class="card author-box card-primary">
-            <div class="card-header">
-              <h4>{{'PLANS.ADD_PLAN'|translate}}</h4>
-            </div>
-            <div class="card-body">
-              <div class="form-group row mb-4">
+  <app-page-header [pageHeader]="'PLANS.CREATE_PLANE'" [sectionHeader]="'PLANS.ADD_PLAN'">
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.NAME'|translate}}</label>
-                <div class="col-sm-12 col-md-4">
-                  <input type="text" class="form-control" name="name" [(ngModel)]="entity.name" required #name="ngModel">
-                </div>
+    <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate="">
 
+      <div class="form-group row mb-4">
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}}</label>
-                <div class="col-sm-12 col-md-4">
-                  <input type="text" class="form-control" name="description" [(ngModel)]="entity.description" required #description="ngModel">
-                </div>
-
-              </div>
-
-
-              <div class="form-group row mb-4">
-
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.PRICE'|translate}}</label>
-                <div class="col-sm-12 col-md-4">
-                  <input type="number" class="form-control" name="price" [(ngModel)]="entity.price" required #price="ngModel">
-                </div>
-
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_DAYS'|translate}}</label>
-                <div class="col-sm-12 col-md-4">
-                  <input type="number" class="form-control" name="numberOfDays" [(ngModel)]="entity.numberOfDays" required #numberOfDays="ngModel">
-                </div>
-
-              </div>
-
-              <div class="form-group row mb-4">
-
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_RESERVED_DAYS'|translate}}</label>
-                <div class="col-sm-12 col-md-4">
-                  <input type="number" class="form-control" name="numberOfReservedDays" [(ngModel)]="entity.numberOfReservedDays" required #numberOfReservedDays="ngModel">
-                </div>
-
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_INVETATIONS'|translate}}</label>
-                <div class="col-sm-12 col-md-4">
-                  <input type="number" class="form-control" name="numberOfInvitations" [(ngModel)]="entity.numberOfInvitations"  #numberOfInvitations="ngModel">
-                </div>
-
-              </div>
-
-              <div class="form-group row mb-4">
-
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.DISCOUNT'|translate}}</label>
-                <div class="col-sm-12 col-md-4">
-                  <input type="number" class="form-control"  name="discount" [(ngModel)]="entity.discount" #discount="ngModel">
-                </div>
-
-                <div class="custom-control custom-checkbox col-sm-12 col-md-6">
-                  <label class="col-form-label text-md-left col-sm-4"></label>
-                  <input type="checkbox"  class="custom-control-input" tabindex="3" id="isSpecial"
-                    name="isSpecial" [(ngModel)]="entity.isSpecial" #isSpecial="ngModel"
-                  >
-                  <label class="custom-control-label col-sm-8" for="isSpecial">{{'PLANS.IS_SPECIAL'|translate}} </label>
-                </div>
-
-
-              </div>
-
-                <!-- <div class="custom-control custom-checkbox  col-sm-12 col-md-6">
-                  <label class="col-form-label text-md-left col-sm-4"></label>
-                  <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                  <label class="custom-control-label col-sm-8" for="remember-me">{{'USERS.LOGIN_SCREEN.REMEMBER_ME'|translate}}</label>
-                </div> -->
-
-
-              <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
-                <div class="col-sm-12 col-md-7">
-                  <button class="btn btn-primary mx-5" type="submit">{{'COMMON.SAVE'|translate}}</button>
-                  <button class="btn btn-warning mx-5" type="button" (click)="goBack()">{{'COMMON.CANCEL'|translate}}</button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.NAME'|translate}}</label>
+        <div class="col-sm-12 col-md-4">
+          <input type="text" class="form-control" name="name" [(ngModel)]="entity.name" required #name="ngModel">
         </div>
+
+
+        <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}}</label>
+        <div class="col-sm-12 col-md-4">
+          <input type="text" class="form-control" name="description" [(ngModel)]="entity.description" required
+            #description="ngModel">
+        </div>
+
       </div>
-      </form>
-    </div>
-  </section>
+
+
+      <div class="form-group row mb-4">
+
+        <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.PRICE'|translate}}</label>
+        <div class="col-sm-12 col-md-4">
+          <input type="number" class="form-control" name="price" [(ngModel)]="entity.price" required #price="ngModel">
+        </div>
+
+        <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_DAYS'|translate}}</label>
+        <div class="col-sm-12 col-md-4">
+          <input type="number" class="form-control" name="numberOfDays" [(ngModel)]="entity.numberOfDays" required
+            #numberOfDays="ngModel">
+        </div>
+
+      </div>
+
+      <div class="form-group row mb-4">
+
+        <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_RESERVED_DAYS'|translate}}</label>
+        <div class="col-sm-12 col-md-4">
+          <input type="number" class="form-control" name="numberOfReservedDays"
+            [(ngModel)]="entity.numberOfReservedDays" required #numberOfReservedDays="ngModel">
+        </div>
+
+        <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_INVETATIONS'|translate}}</label>
+        <div class="col-sm-12 col-md-4">
+          <input type="number" class="form-control" name="numberOfInvitations" [(ngModel)]="entity.numberOfInvitations"
+            #numberOfInvitations="ngModel">
+        </div>
+
+      </div>
+
+      <div class="form-group row mb-4">
+
+        <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.DISCOUNT'|translate}}</label>
+        <div class="col-sm-12 col-md-4">
+          <input type="number" class="form-control" name="discount" [(ngModel)]="entity.discount" #discount="ngModel">
+        </div>
+
+        <div class="custom-control custom-checkbox col-sm-12 col-md-6">
+          <input type="checkbox" class="custom-control-input" tabindex="3" id="isSpecial" name="isSpecial"
+            [(ngModel)]="entity.special" #isSpecial="ngModel">
+          <label class="custom-control-label col-sm-8" for="isSpecial">{{'PLANS.IS_SPECIAL'|translate}} </label>
+        </div>
+
+
+      </div>
+
+      <app-view-edit-actions
+        [showSave]="true"
+        [showCancel]="true"
+        (onClickCancel)="goBack()"
+      ></app-view-edit-actions>
+    </form>
+
+  </app-page-header>
 </app-auth-contect>

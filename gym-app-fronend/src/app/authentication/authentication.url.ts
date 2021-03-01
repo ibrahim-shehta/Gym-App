@@ -12,6 +12,7 @@ export const AuthURL = {
     ExcercisesCategory: 'excercises-category',
 
     Form: 'form',
+    View: 'view',
     PathVaribles: {
       Id: 'id'
     }

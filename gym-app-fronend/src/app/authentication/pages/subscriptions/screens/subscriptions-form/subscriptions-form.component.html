@@ -1,17 +1,6 @@
 <app-auth-contect>
-  <section class="section">
-    <div class="section-header">
-      <h1>{{'SUBSCRIPTIONS.MANAGE_SUBSCRIPTIONS'|translate}}</h1>
-    </div>
-    <div class="section-body">
-      <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate=""  (keydown.enter)="$event.preventDefault()">
-      <div class="row">
-        <div class="col-12">
-          <div class="card author-box card-primary">
-            <div class="card-header">
-              <h4>{{'SUBSCRIPTIONS.ADD_SUBSCRIPTIONS'|translate}}</h4>
-            </div>
-            <div class="card-body">
+  <app-page-header [pageHeader]="'SUBSCRIPTIONS.MANAGE_SUBSCRIPTIONS'" [sectionHeader]="'SUBSCRIPTIONS.ADD_SUBSCRIPTIONS'">
+    <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate=""  (keydown.enter)="$event.preventDefault()">
 
               <!-- Plans -->
               <h4>{{'SUBSCRIPTIONS.PLAN_DATA'|translate}}</h4>
@@ -19,31 +8,28 @@
 
               <div class="form-group row mb-4">
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'SUBSCRIPTIONS.SELECT_PLANE'|translate}}</label>
+                <label class="col-form-label col-sm-12 col-md-2">{{'SUBSCRIPTIONS.SELECT_PLANE'|translate}}</label>
                 <div class="col-sm-12 col-md-4">
                 <select class="form-control" name="plan" [(ngModel)]="entity.plan.id" required #plan="ngModel"
                   (change)="onChangePlan($event.target.value)"
                   >
-                  <option value="0">select one </option>
+                  <option [value]="null">--{{'COMMON.SELECT_ONE'|translate}}--</option>
                   <option *ngFor="let plan of plans" [value]="plan.id">{{plan.name}}</option>
                 </select>
                 </div>
 
               </div>
-                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="selectedPlan.id">
-                  show Details
-                </button> -->
 
                 <div *ngIf="selectedPlan">
 
                   <div class="form-group row mb-4">
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.NAME'|translate}}</label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.NAME'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                       <input type="text" class="form-control" name="name" [(ngModel)]="selectedPlan.name" disabled>
                     </div>
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}}</label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                       <input type="text" class="form-control" name="description" [(ngModel)]="selectedPlan.description" disabled>
                     </div>
@@ -53,12 +39,12 @@
 
                   <div class="form-group row mb-4">
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.PRICE'|translate}}</label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.PRICE'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                       <input type="number" class="form-control" name="price" [(ngModel)]="selectedPlan.price" disabled>
                     </div>
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_DAYS'|translate}}</label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_DAYS'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                       <input type="number" class="form-control" name="numberOfDays" [(ngModel)]="selectedPlan.numberOfDays" disabled>
                     </div>
@@ -67,12 +53,12 @@
 
                   <div class="form-group row mb-4">
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_RESERVED_DAYS'|translate}}</label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_RESERVED_DAYS'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                       <input type="number" class="form-control" name="numberOfReservedDays" [(ngModel)]="selectedPlan.numberOfReservedDays" disabled>
                     </div>
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_INVETATIONS'|translate}}</label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_INVETATIONS'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                       <input type="number" class="form-control" name="numberOfInvitations" [(ngModel)]="selectedPlan.numberOfInvitations"  disabled>
                     </div>
@@ -81,13 +67,13 @@
 
                   <div class="form-group row mb-4">
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLANS.DISCOUNT'|translate}}</label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.DISCOUNT'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                       <input type="number" class="form-control"  name="discount" [(ngModel)]="selectedPlan.discount" disabled>
                     </div>
 
                     <div class="custom-control custom-checkbox col-sm-12 col-md-6">
-                      <label class="col-form-label text-md-left col-sm-4"></label>
+                      <label class="col-form-label col-sm-4"></label>
                       <input type="checkbox"  class="custom-control-input" tabindex="3" id="isSpecial"
                         name="special" [(ngModel)]="selectedPlan.special" disabled
                       >
@@ -112,7 +98,7 @@
 
               <div class="form-group row mb-4">
 
-                <label class="col-form-label text-md-left col-sm-12 col-md-2"></label>
+                <label class="col-form-label col-sm-12 col-md-2"></label>
                 <div class="col-sm-12 col-md-6">
                     <input type="text" class="form-control" name="userSearch" [(ngModel)]="userSearch"
                       [placeholder]="'SUBSCRIPTIONS.SEARCH_BY_NAME_USERNAME_MOBILE_EMAIL'|translate"
@@ -129,7 +115,7 @@
               <div *ngIf="usersList.length > 0">
                   <div class="form-group row mb-4">
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'USERS.NAME'|translate}}</label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.NAME'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                     <select class="form-control" name="user" [(ngModel)]="entity.user.id" required #user="ngModel"
                       (change)="onChangeUser($event.target.value)"
@@ -145,12 +131,12 @@
                   <div *ngIf="selectedUser">
                   <div class="form-group row mb-4">
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'USERS.NAME'|translate}}</label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.NAME'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                       <input type="text" class="form-control" name="name" [(ngModel)]="selectedUser.name" disabled>
                     </div>
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'USERS.EMAIL'|translate}}</label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.EMAIL'|translate}}</label>
                     <div class="col-sm-12 col-md-4">
                       <input type="text" class="form-control" name="email" [(ngModel)]="selectedUser.email" disabled>
                     </div>
@@ -159,12 +145,12 @@
 
                   <div class="form-group row mb-4">
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'USERS.USER_NAME'|translate}} </label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.USER_NAME'|translate}} </label>
                     <div class="col-sm-12 col-md-4">
                       <input type="text" class="form-control" name="username" [(ngModel)]="selectedUser.username" disabled>
                     </div>
 
-                    <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'USERS.MOBILE'|translate}} </label>
+                    <label class="col-form-label col-sm-12 col-md-2">{{'USERS.MOBILE'|translate}} </label>
                     <div class="col-sm-12 col-md-4">
                       <input type="text" class="form-control" name="mobile" [(ngModel)]="selectedUser.mobile" disabled>
                     </div>
@@ -184,12 +170,12 @@
 
           <div class="form-group row mb-4">
 
-            <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.START_DATE'|translate}}</label>
+            <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.START_DATE'|translate}}</label>
             <div class="col-sm-12 col-md-4">
               <input type="date" class="form-control" name="startDate" [(ngModel)]="entity.startDate" #startDate="ngModel" required>
             </div>
 
-            <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.END_DATE'|translate}}</label>
+            <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.END_DATE'|translate}}</label>
             <div class="col-sm-12 col-md-4">
               <input type="date" class="form-control" name="endDate" [(ngModel)]="entity.endDate" #endDate="ngModel" required>
             </div>
@@ -199,29 +185,19 @@
 
           <div class="form-group row mb-4">
 
-            <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'SUBSCRIPTIONS.PAID_AMOUNT'|translate}}</label>
+            <label class="col-form-label col-sm-12 col-md-2">{{'SUBSCRIPTIONS.PAID_AMOUNT'|translate}}</label>
             <div class="col-sm-12 col-md-4">
               <input type="number" class="form-control" name="paidAmount" min="0" max="selectedPlan.price" [(ngModel)]="entity.paidAmount" #paidAmount="ngModel" required>
             </div>
           </div>
 
+      <app-view-edit-actions
+        [showSave]="true"
+        [showCancel]="true"
+        (onClickCancel)="goBack()"
+      ></app-view-edit-actions>
 
+    </form>
+  </app-page-header>
 
-           <!-- subscription  -->
-              <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
-                <div class="col-sm-12 col-md-7">
-                  <button class="btn btn-primary mx-5" type="submit">{{'COMMON.SAVE'|translate}}</button>
-                  <button class="btn btn-warning mx-5" type="button" (click)="goBack()">{{'COMMON.CANCEL'|translate}}</button>
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-        </div>
-      </div>
-      </form>
-    </div>
-  </section>
 </app-auth-contect>

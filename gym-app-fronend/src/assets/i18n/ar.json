@@ -20,7 +20,9 @@
     "VALIDATION_ERROR":"الرجاء ادخال بيانات صحيحه",
     "START_DATE":"تاريخ البدايه ",
     "END_DATE":"تاريخ النهايه",
-    "SELECT_ONE":"اختر"
+    "SELECT_ONE":"اختر",
+    "BACK":"رجوع"
+
   },
   "USERS": {
     "EMAIL":"البريد الالكترونى",
@@ -60,7 +62,8 @@
     "PRICE": "السعر",
     "ADD_PLAN":"اضافه نوع اشتراك",
     "IS_SPECIAL":"خاص؟",
-    "CREATE_PLANE":"انشاء نوع اشتراك"
+    "CREATE_PLANE":"انشاء نوع اشتراك",
+    "PLAN_DETAILS":"تفاصيل الاشتراك"
   },
   "PLAYERS":{
     "MANAGE_PLAYERS":"اداره اللاعبين",

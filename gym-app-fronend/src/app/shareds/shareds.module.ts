@@ -13,13 +13,19 @@ import { AccountService } from './services/account.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { TableContextMenuComponent } from './components/table-context-menu/table-context-menu.component';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { ViewEditActionsComponent } from './components/view-edit-actions/view-edit-actions.component';
 
 @NgModule({
   declarations: [
     AuthNavbarComponent,
      AuthSidebarComponent,
      AuthContectComponent,
-     PaginationComponent
+     PaginationComponent,
+     TableContextMenuComponent,
+     PageHeaderComponent,
+     ViewEditActionsComponent
     ],
   imports: [
     CommonModule,
@@ -43,7 +49,10 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     DataTablesModule,
     TranslateModule,
     PaginationModule,
-    PaginationComponent
+    PaginationComponent,
+    TableContextMenuComponent,
+    PageHeaderComponent,
+    ViewEditActionsComponent
   ],
   providers: [
     AccountService
