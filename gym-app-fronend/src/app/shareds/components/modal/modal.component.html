@@ -1,0 +1,9 @@
+
+<div id="myModal" class="modal" [style]="{display: show ? 'block' : 'none'}">
+
+  <div class="modal-content" [style]="{width: width + '%'}">
+    <span class="close" (click)="onCloseHandler()">&times;</span>
+    <ng-content></ng-content>
+  </div>
+
+</div>

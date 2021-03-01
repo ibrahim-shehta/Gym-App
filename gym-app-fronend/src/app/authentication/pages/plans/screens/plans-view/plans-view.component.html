@@ -1,38 +1,7 @@
 <app-auth-contect>
   <app-page-header [pageHeader]="'PLANS.PLANS'" [sectionHeader]="'PLANS.PLAN_DETAILS'">
-    <div class="form-group row mb-4">
-      <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.NAME'|translate}}</label>
-      <p class="col-sm-12 col-md-4">{{entity.name}}</p>
 
-      <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}}</label>
-      <p class="col-sm-12 col-md-4">{{entity.description}}</p>
-    </div>
-
-    <div class="form-group row mb-4">
-      <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.PRICE'|translate}}</label>
-      <p class="col-sm-12 col-md-4">{{entity.price}}</p>
-
-      <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_DAYS'|translate}}</label>
-      <p class="col-sm-12 col-md-4">{{entity.numberOfDays}}</p>
-    </div>
-
-    <div class="form-group row mb-4">
-      <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_RESERVED_DAYS'|translate}}</label>
-      <p class="col-sm-12 col-md-4">{{entity.numberOfReservedDays}}</p>
-
-      <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.NUMBER_OF_INVETATIONS'|translate}}</label>
-      <p class="col-sm-12 col-md-4">{{entity.numberOfInvitations}}</p>
-    </div>
-
-    <div class="form-group row mb-4">
-      <label class="col-form-label col-sm-12 col-md-2">{{'PLANS.DISCOUNT'|translate}}</label>
-      <p class="col-sm-12 col-md-4">{{entity.discount}}</p>
-
-      <div class="custom-control custom-checkbox col-sm-12 col-md-6">
-        <input type="checkbox" class="custom-control-input" id="isSpecial" [(ngModel)]="entity.special" disabled />
-        <label class="custom-control-label col-sm-8" for="isSpecial">{{'PLANS.IS_SPECIAL'|translate}}</label>
-      </div>
-    </div>
+    <app-plans-details [entity]="entity"></app-plans-details>
 
     <app-view-edit-actions
         [showBack]="true"

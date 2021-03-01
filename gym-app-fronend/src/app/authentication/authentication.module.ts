@@ -14,6 +14,7 @@ import { SubscriptionsFormComponent } from './pages/subscriptions/screens/subscr
 import { CategoriesComponent } from './pages/exercises/categories/screens/categories/categories.component';
 import { CategoriesFormComponent } from './pages/exercises/categories/screens/categories-form/categories-form.component';
 import { PlansViewComponent } from './pages/plans/screens/plans-view/plans-view.component';
+import { PlansDetailsComponent } from './pages/plans/components/plans-details/plans-details.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { PlansViewComponent } from './pages/plans/screens/plans-view/plans-view.
     SubscriptionsFormComponent,
     CategoriesComponent,
     CategoriesFormComponent,
-    PlansViewComponent
+    PlansViewComponent,
+    PlansDetailsComponent
   ],
   imports: [
     CommonModule,

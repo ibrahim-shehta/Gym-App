@@ -16,6 +16,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { TableContextMenuComponent } from './components/table-context-menu/table-context-menu.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { ViewEditActionsComponent } from './components/view-edit-actions/view-edit-actions.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ViewEditActionsComponent } from './components/view-edit-actions/view-ed
      PaginationComponent,
      TableContextMenuComponent,
      PageHeaderComponent,
-     ViewEditActionsComponent
+     ViewEditActionsComponent,
+     ModalComponent
     ],
   imports: [
     CommonModule,
@@ -52,7 +54,8 @@ import { ViewEditActionsComponent } from './components/view-edit-actions/view-ed
     PaginationComponent,
     TableContextMenuComponent,
     PageHeaderComponent,
-    ViewEditActionsComponent
+    ViewEditActionsComponent,
+    ModalComponent
   ],
   providers: [
     AccountService
