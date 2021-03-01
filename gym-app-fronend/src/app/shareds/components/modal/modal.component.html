@@ -1,8 +1,9 @@
 
-<div id="myModal" class="modal" [style]="{display: show ? 'block' : 'none'}">
+<div id="myModal" class="my-modal row" [style]="{display: show ? 'block' : 'none'}">
 
-  <div class="modal-content" [style]="{width: width + '%'}">
-    <span class="close" (click)="onCloseHandler()">&times;</span>
+  <div [class]="'my-modal-content ' + width">
+    <span class="my-modal-close" (click)="onCloseHandler()">&times;</span>
+    <h3 style="border-bottom: 1px solid #DDD" class="text-center">{{headerText|translate}}</h3>
     <ng-content></ng-content>
   </div>
 

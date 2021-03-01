@@ -15,12 +15,7 @@ import { SubscriptionsService } from '../../services/subscriptions.service';
   styleUrls: ['./subscriptions-form.component.scss']
 })
 export class SubscriptionsFormComponent extends BaseFormCompnent implements OnInit {
-
-
   showPlanDetails = false;
-
-
-
   plans :any[] = [];
   selectedPlan :any;
   list = [];

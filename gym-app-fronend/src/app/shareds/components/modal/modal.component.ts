@@ -8,7 +8,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ModalComponent {
 
   @Input() show :boolean = false;
-  @Input() width :number = 50;
+  @Input() headerText :string;
+  @Input() width :string = 'col-sm-6';
   @Output() onClose = new EventEmitter<any>();
 
   onCloseHandler() {

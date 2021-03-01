@@ -139,9 +139,7 @@
 </app-auth-contect>
 
 
-<app-modal *ngIf="showPlanDetails" [show]="showPlanDetails" (onClose)="showPlanDetails = false" [width]="60">
-
+<app-modal *ngIf="showPlanDetails" [show]="showPlanDetails" (onClose)="showPlanDetails = false"
+  [headerText]="'SUBSCRIPTIONS.PLAN_DATA'">
   <app-plans-details [entity]="selectedPlan"></app-plans-details>
-
-
 </app-modal>
