@@ -1,7 +1,7 @@
 <app-auth-contect>
   <app-page-header [pageHeader]="'SUBSCRIPTIONS.MANAGE_SUBSCRIPTIONS'" [sectionHeader]="'SUBSCRIPTIONS.ADD_SUBSCRIPTIONS'">
     <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate=""  (keydown.enter)="$event.preventDefault()">
-            <h4>{{'SUBSCRIPTIONS.PLAN_DATA'|translate}}</h4>
+            <h6>{{'SUBSCRIPTIONS.PLAN_DATA'|translate}}</h6>
             <hr/>
             <div class="form-group row mb-4">
                 <label class="col-form-label col-sm-12 col-md-2">{{'SUBSCRIPTIONS.SELECT_PLANE'|translate}}</label>
@@ -19,7 +19,7 @@
             <br/>
 
 
-            <h4>{{'SUBSCRIPTIONS.PLAYER_DATA'|translate}}</h4>
+            <h6>{{'SUBSCRIPTIONS.PLAYER_DATA'|translate}}</h6>
             <hr/>
 
               <div class="form-group row mb-4">
@@ -50,7 +50,7 @@
 
           <br/>
 
-          <h4>{{'SUBSCRIPTIONS.SUBSCRIPTION_DATA'|translate}}</h4>
+          <h6>{{'SUBSCRIPTIONS.SUBSCRIPTION_DATA'|translate}}</h6>
           <hr/>
           <div class="form-group row mb-4">
             <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.START_DATE'|translate}}</label>
@@ -66,8 +66,16 @@
           <div class="form-group row mb-4">
             <label class="col-form-label col-sm-12 col-md-2">{{'SUBSCRIPTIONS.PAID_AMOUNT'|translate}}</label>
             <div class="col-sm-12 col-md-4">
-              <input type="number" class="form-control" name="paidAmount" min="0" max="selectedPlan.price" [(ngModel)]="entity.paidAmount" #paidAmount="ngModel" required>
+              <input type="number" class="form-control" name="paidAmount" min="0" [max]="netPrice" [(ngModel)]="entity.paidAmount" #paidAmount="ngModel" required>
             </div>
+            </div>
+
+          <div class="form-group row mb-4" *ngIf="selectedPlan && entity.paidAmount">
+            <label class="col-form-label col-sm-12 col-md-2">{{'SUBSCRIPTIONS.REQUIRED_AMOUNT'|translate}}</label>
+            <p class="col-sm-12 col-md-4">{{netPrice}}</p>
+
+            <label class="col-form-label col-sm-12 col-md-2">{{'SUBSCRIPTIONS.REMAIN_AMOUNT'|translate}}</label>
+            <p class="col-sm-12 col-md-4">{{netPrice - entity.paidAmount}}</p>
           </div>
 
       <app-view-edit-actions

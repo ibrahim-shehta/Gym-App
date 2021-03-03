@@ -85,7 +85,9 @@
     "PLAYER_DATA":"بيانات اللاعب",
     "SEARCH_BY_NAME_USERNAME_MOBILE_EMAIL":"ابحث بـ الاسم, اسم المستخدم ,رقم الموبايل, الايميل",
     "SUBSCRIPTION_DATA":"بيانات الاشتراك",
-    "SUBSCRIPTION_NUMBER":"رقم الاشتراك"
+    "SUBSCRIPTION_NUMBER":"رقم الاشتراك",
+    "REQUIRED_AMOUNT":"المبلغ المطلوب",
+    "REMAIN_AMOUNT":"المبلغ المتبقى"
   },
   "EXCERCISE_CATEGORY":{
     "NEXT_EXCERCISE_CATEGORY": "مجموعه التمارين التاليه",

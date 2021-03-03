@@ -23,6 +23,7 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
   userSearch = '';
   usersList :any[] = [];
   selectedUser :any;
+  netPrice = 0;
 
   constructor(
     public notificationService :NotificationService,
@@ -70,6 +71,7 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
       return;
     }
     this.selectedPlan = this.plans.find(plan => plan.id == id);
+    this.netPrice = (this.selectedPlan.price - (this.selectedPlan.price *this.selectedPlan.discount / 100));
   }
 
   onChangeUser(id) {
