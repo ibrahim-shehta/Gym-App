@@ -15,7 +15,6 @@ import { SubscriptionsService } from '../../services/subscriptions.service';
   styleUrls: ['./subscriptions-form.component.scss']
 })
 export class SubscriptionsFormComponent extends BaseFormCompnent implements OnInit {
-  showPlanDetails :boolean= false;
   showPlayerDetails :boolean = false;
   plans :any[] = [];
   selectedPlan :any;
@@ -67,16 +66,18 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
 
   onChangePlan(id) {
     if (id == 0) {
-      this.entity.plan = null;
+      this.entity.plan.id = null;
+      this.selectedPlan = null;
       return;
     }
     this.selectedPlan = this.plans.find(plan => plan.id == id);
-    this.netPrice = (this.selectedPlan.price - (this.selectedPlan.price *this.selectedPlan.discount / 100));
+    this.netPrice = Math.ceil(this.selectedPlan.price - (this.selectedPlan.price *this.selectedPlan.discount / 100));
   }
 
   onChangeUser(id) {
     if (id == 0) {
-      this.entity.user = null;
+      this.entity.user.id = null;
+      this.selectedUser = null;
       return;
     }
     this.selectedUser = this.usersList.find(user => user.id == id);

@@ -85,8 +85,10 @@
     "SEARCH_BY_NAME_USERNAME_MOBILE_EMAIL":"Search By Name, Username, Mobile, Email",
     "SUBSCRIPTION_DATA":"Subscription Data",
     "SUBSCRIPTION_NUMBER":"Subscription Number",
-    "REQUIRED_AMOUNT":"Demand Amount",
-    "REMAIN_AMOUNT":"Remain Amount"
+    "REQUIRED_AMOUNT":"Before Discount",
+    "REMAIN_AMOUNT":"Remain Amount",
+    "BFORE_DISCOUNT":"After Discount",
+    "DISCOUNT_PERCENT":"Discount Percent"
   },
   "EXCERCISE_CATEGORY":{
     "NEXT_EXCERCISE_CATEGORY": "Next Excersise Category",

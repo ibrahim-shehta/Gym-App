@@ -1,0 +1,11 @@
+<div class="form-group row mb-4">
+    <label class="col-form-label col-sm-12 col-md-2">{{'SUBSCRIPTIONS.SELECT_PLANE'|translate}}</label>
+    <div class="col-sm-12 col-md-4">
+      <ng-content></ng-content>
+    </div>
+  <p class="btn btn-success" *ngIf="selectedPlan"  (click)="showPlanDetails = true">{{'COMMON.DETAILS'|translate}}</p>
+</div>
+
+<app-modal *ngIf="showPlanDetails" [show]="showPlanDetails" (onClose)="showPlanDetails = false" [headerText]="'SUBSCRIPTIONS.PLAN_DATA'">
+  <app-plans-details [entity]="selectedPlan"></app-plans-details>
+</app-modal>
