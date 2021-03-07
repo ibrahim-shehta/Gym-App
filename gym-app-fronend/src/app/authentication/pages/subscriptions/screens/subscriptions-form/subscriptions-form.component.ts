@@ -81,6 +81,11 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
     this.selectedUser = this.usersList.find(user => user.id == id);
   }
 
+  goBack() :void {
+    this.getService().status = -1;
+    this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+  }
+
   getService() :SubscriptionsService {
     return this._componentService;
   }

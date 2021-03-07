@@ -1,7 +1,10 @@
 package com.gym.modules.subscription.service.serviceImpl;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,9 +18,11 @@ import com.gym.modules.plan.service.PlanService;
 import com.gym.modules.subscription.dao.SubscriptionRepository;
 import com.gym.modules.subscription.dao.specification.SubscriptionSpecification;
 import com.gym.modules.subscription.model.Subscription;
+import com.gym.modules.subscription.model.enums.SubscriptionStatus;
 import com.gym.modules.subscription.service.SubscriptionService;
 
 @Service
+@Transactional
 public class SubscriptionServiceImpl extends BaseServiceWithSepecificationImpl<Subscription, Long> implements SubscriptionService{
 
 	private SubscriptionRepository subscriptionRepository;
@@ -44,6 +49,17 @@ public class SubscriptionServiceImpl extends BaseServiceWithSepecificationImpl<S
 	
 	@Override
 	public Subscription save(Subscription entity) {
+		List<Long> expiredIds =  subscriptionRepository.findSubscriptionByStatusAndUser(SubscriptionStatus.EXPIRED, entity.getUser().getId());
+		List<Long> inProgressIds =  subscriptionRepository.findSubscriptionByStatusAndUser(SubscriptionStatus.IN_PROGRESS, entity.getUser().getId());
+		if (expiredIds.isEmpty() && inProgressIds.isEmpty()) {
+			entity.setStatus(SubscriptionStatus.IN_PROGRESS);
+		} else if (!expiredIds.isEmpty()) {
+			entity.setStatus(SubscriptionStatus.IN_PROGRESS);
+			subscriptionRepository.updateSubscriptionStatusById(expiredIds.get(0), SubscriptionStatus.RENEWED);
+		} else if (!inProgressIds.isEmpty()) {
+			entity.setStatus(SubscriptionStatus.NEW);
+		}
+
 		Plan plan = planService.findById(entity.getPlan().getId());
 		entity.setPrice(plan.getPrice());
 		entity.setDiscount(plan.getDiscount());
