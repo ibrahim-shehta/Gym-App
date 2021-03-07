@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.gym.common.dto.BaseDto;
 import com.gym.modules.subscription.model.Subscription;
+import com.gym.modules.subscription.model.enums.SubscriptionStatus;
 import com.gym.user.dto.UserListDto;
 import com.gym.user.model.User;
 
@@ -13,9 +14,10 @@ public class BaseSubscriptionDto extends BaseDto {
 	private Date startDate;
 	private Date endDate;
 	private double paidAmount;
-	private boolean isActive;
 	private UserListDto user;
 	private String subscriptionNumber;
+	private String statusReason;
+	private SubscriptionStatus status;
 	
 	public static void mapEntityToDto(Subscription entity, BaseSubscriptionDto dto) {
 		BaseDto.mapEntityToDto(entity, dto);
@@ -25,6 +27,8 @@ public class BaseSubscriptionDto extends BaseDto {
 		dto.setPaidAmount(entity.getPaidAmount());
 		dto.setUser(UserListDto.mapEntityToDto(entity.getUser()));
 		dto.setSubscriptionNumber(entity.getSubscriptionNumber());
+		dto.setStatusReason(entity.getStatusReason());
+		dto.setStatus(entity.getStatus());
 	}
 
 	public static void mapDtoToEntity(BaseSubscriptionDto dto, Subscription entity) {
@@ -34,6 +38,8 @@ public class BaseSubscriptionDto extends BaseDto {
 		entity.setEndDate(dto.getEndDate());
 		entity.setPaidAmount(dto.getPaidAmount());
 		entity.setUser(new User(dto.getUser().getId()));
+		entity.setStatusReason(entity.getStatusReason());
+		entity.setStatus(dto.getStatus());
 	}
 
 	public double getPrice() {
@@ -68,14 +74,6 @@ public class BaseSubscriptionDto extends BaseDto {
 		this.paidAmount = paidAmount;
 	}
 
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
 	public UserListDto getUser() {
 		return user;
 	}
@@ -90,5 +88,21 @@ public class BaseSubscriptionDto extends BaseDto {
 
 	public void setSubscriptionNumber(String subscriptionNumber) {
 		this.subscriptionNumber = subscriptionNumber;
+	}
+
+	public SubscriptionStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(SubscriptionStatus status) {
+		this.status = status;
+	}
+
+	public String getStatusReason() {
+		return statusReason;
+	}
+
+	public void setStatusReason(String statusReason) {
+		this.statusReason = statusReason;
 	}
 }

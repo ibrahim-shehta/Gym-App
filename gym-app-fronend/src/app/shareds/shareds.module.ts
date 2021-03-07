@@ -17,6 +17,7 @@ import { TableContextMenuComponent } from './components/table-context-menu/table
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { ViewEditActionsComponent } from './components/view-edit-actions/view-edit-actions.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { StatusListFilterComponent } from './components/status-list-filter/status-list-filter.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ModalComponent } from './components/modal/modal.component';
      TableContextMenuComponent,
      PageHeaderComponent,
      ViewEditActionsComponent,
-     ModalComponent
+     ModalComponent,
+     StatusListFilterComponent
     ],
   imports: [
     CommonModule,
@@ -55,7 +57,8 @@ import { ModalComponent } from './components/modal/modal.component';
     TableContextMenuComponent,
     PageHeaderComponent,
     ViewEditActionsComponent,
-    ModalComponent
+    ModalComponent,
+    StatusListFilterComponent
   ],
   providers: [
     AccountService

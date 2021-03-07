@@ -9,6 +9,9 @@
   (onStopSearch)="stopSearch()"
   (onAdd)="add()"
 >
+
+  <app-status-list-filter [statusList]="statusList" (onSelectStatus)="onSelectStatusHandler($event)"
+    [selectedStatusIndex]="subscriptionsService.status? subscriptionsService.status : 0"></app-status-list-filter>
     <div class="table-responsive">
       <table class="table table-striped table-md">
         <tr>

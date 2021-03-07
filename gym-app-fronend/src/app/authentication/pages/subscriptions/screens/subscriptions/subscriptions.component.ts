@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthURL } from 'src/app/authentication/authentication.url';
 import { BaseTableComponent } from 'src/app/core/model/BaseTableComponent';
+import { BaseTableWithStatusComponent } from 'src/app/core/model/BaseTableWithStatusComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { SubscriptionsService } from '../../services/subscriptions.service';
 
@@ -11,7 +12,7 @@ import { SubscriptionsService } from '../../services/subscriptions.service';
   templateUrl: './subscriptions.component.html',
   styleUrls: ['./subscriptions.component.css']
 })
-export class SubscriptionsComponent extends BaseTableComponent implements OnInit, OnDestroy {
+export class SubscriptionsComponent extends BaseTableWithStatusComponent implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,
@@ -33,10 +34,6 @@ export class SubscriptionsComponent extends BaseTableComponent implements OnInit
 
   getService() :SubscriptionsService {
     return this.subscriptionsService;
-  }
-
-  getFormUrl() :string {
-    return AuthURL.PlayersForm;
   }
 
   ngOnDestroy() {

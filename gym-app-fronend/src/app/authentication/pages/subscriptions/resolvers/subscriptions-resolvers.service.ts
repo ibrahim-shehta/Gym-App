@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { SubscriptionsService } from '../services/subscriptions.service';
 
 @Injectable({
@@ -13,7 +14,12 @@ export class SubscriptionsResolversService  implements Resolve<any>  {
   ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      return this.subscriptionsService.filterWithPagination();
+
+      return forkJoin([
+        this.subscriptionsService.getStatusList(),
+        this.subscriptionsService.filterWithPagination()
+      ]);
+      //return this.subscriptionsService.filterWithPagination();
     }
 
 

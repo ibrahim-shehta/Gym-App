@@ -13,4 +13,5 @@ public abstract class FilterKeys {
 	public static final String PALN_ID = "planId";
 	public static final String USER_TYPE = "userType";
 	public static final String SUBSCRIPTION_NUMBER = "subscriptionNumber";
+	public static final String STATUS = "status";
 }

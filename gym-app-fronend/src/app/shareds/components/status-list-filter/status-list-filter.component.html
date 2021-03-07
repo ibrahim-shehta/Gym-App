@@ -1,0 +1,4 @@
+<select class="form-control col-md-2" (change)="onSelectStatusHandler($event.target.value)" [(ngModel)]="selectedStatusIndex">
+  <option [value]="-1">{{'COMMON.ALL'|translate}}</option>
+  <option *ngFor="let status of statusList; let i = index" [value]="i"> {{'STATUS.' + status|translate}} </option>
+</select>

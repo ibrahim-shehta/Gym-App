@@ -51,11 +51,9 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
 
   findUser() {
     const filterMap: FilterMap = new  FilterMap();
-    filterMap.filterMap = {
-      "mobile":this.userSearch,
-      "username":this.userSearch,
-      "email":this.userSearch
-    }
+    filterMap['mobile'] = this.userSearch
+    filterMap['username'] = this.userSearch
+    filterMap['email'] = this.userSearch
 
     this.playersService.filterAllData(filterMap).subscribe(res => {
       this.usersList = res.data;

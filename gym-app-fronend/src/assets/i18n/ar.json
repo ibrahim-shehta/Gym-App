@@ -22,7 +22,8 @@
     "END_DATE":"تاريخ النهايه",
     "SELECT_ONE":"اختر",
     "BACK":"رجوع",
-    "DETAILS":"تفاصيل"
+    "DETAILS":"تفاصيل",
+    "ALL":"الكل"
 
   },
   "USERS": {
@@ -104,5 +105,13 @@
     "PLANS":"انواع الاشتراكات",
     "SUBSCRIPTIONS":"الاشتراكات",
     "EXCERCISES_CATEGORIES":"مجموعات التمارين"
+  },
+
+  "STATUS": {
+    "NEW":"غير مفعل",
+    "IN_PROGRESS": "مفعل",
+    "EXPIRED": "منتهى",
+    "RENEWED": "منتهى و تم تجديده",
+    "BLOCKED": "موقوف"
   }
 }

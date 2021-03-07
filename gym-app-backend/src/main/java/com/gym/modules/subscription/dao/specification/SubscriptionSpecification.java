@@ -14,7 +14,9 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.gym.modules.plan.model.Plan_;
 import com.gym.modules.subscription.model.Subscription_;
+import com.gym.modules.subscription.model.enums.SubscriptionStatus;
 import com.gym.user.model.User_;
+import com.gym.common.constant.AppUtils;
 import com.gym.common.constant.FilterKeys;
 import com.gym.common.helper.DaoHelper;
 import com.gym.modules.subscription.model.Subscription;
@@ -24,7 +26,9 @@ public class SubscriptionSpecification {
 	@SuppressWarnings("unchecked")
 	public static Specification<Subscription> filterSubscriptions(Map<String, Object> filterDataMap) {
 		return (Root<Subscription> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
-        		List<Predicate> predicates = new ArrayList<>();
+				List<Predicate> orPredicates = new ArrayList<>();
+				List<Predicate> andPredicates = new ArrayList<>();
+				
         		Join<Object, Object> user = null;
         		Join<Object, Object> plan = null;
         		
@@ -37,41 +41,62 @@ public class SubscriptionSpecification {
         		}
         		
                 
-                
                 if (filterDataMap.isEmpty()) 
-                	return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+                	return null;
                 
             	if (filterDataMap.containsKey(FilterKeys.NAME)) {
             		Predicate equalPredicate = criteriaBuilder.like(user.get(User_.NAME), filterDataMap.get(FilterKeys.NAME) + "%");
-                    predicates.add(equalPredicate);
+            		orPredicates.add(equalPredicate);
             	}
             	
             	if (filterDataMap.containsKey(FilterKeys.USERNAME)) {
             		Predicate equalPredicate = criteriaBuilder.like(user.get(User_.USERNAME), filterDataMap.get(FilterKeys.USERNAME) + "%");
-                    predicates.add(equalPredicate);
+            		orPredicates.add(equalPredicate);
             	}
             	
             	if (filterDataMap.containsKey(FilterKeys.EMAIL)) {
             		Predicate equalPredicate = criteriaBuilder.like(user.get(User_.EMAIL), filterDataMap.get(FilterKeys.EMAIL) + "%");
-                    predicates.add(equalPredicate);
+            		orPredicates.add(equalPredicate);
             	}
             	
             	if (filterDataMap.containsKey(FilterKeys.MOBILE)) {
             		Predicate equalPredicate = criteriaBuilder.like(user.get(User_.MOBILE), filterDataMap.get(FilterKeys.MOBILE) + "%");
-                    predicates.add(equalPredicate);
+            		orPredicates.add(equalPredicate);
             	}  
             	
             	if (filterDataMap.containsKey(FilterKeys.PALN_ID)) {
             		Predicate equalPredicate = criteriaBuilder.equal(plan.get(Plan_.ID), filterDataMap.get(FilterKeys.PALN_ID));
-                    predicates.add(equalPredicate);
+            		orPredicates.add(equalPredicate);
             	} 
             	
             	if (filterDataMap.containsKey(FilterKeys.SUBSCRIPTION_NUMBER)) {
             		Predicate equalPredicate = criteriaBuilder.like(root.get(Subscription_.SUBSCRIPTION_NUMBER), filterDataMap.get(FilterKeys.SUBSCRIPTION_NUMBER) + "%");
-                    predicates.add(equalPredicate);
+            		orPredicates.add(equalPredicate);
+            	}
+            	if (filterDataMap.containsKey(FilterKeys.STATUS)) {
+            		String statusStr = filterDataMap.get(FilterKeys.STATUS) + "";
+            		SubscriptionStatus status;
+            		if (AppUtils.isInteger(statusStr)) {
+            			int index = Integer.parseInt(statusStr);
+            			status = SubscriptionStatus.values()[index];
+            		} else {
+            			status = SubscriptionStatus.valueOf(statusStr);
+            		}            		
+            		Predicate equalPredicate = criteriaBuilder.equal(root.get(Subscription_.STATUS), status);
+            		andPredicates.add(equalPredicate);
             	}
                 
-                return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
+            	if (orPredicates.isEmpty() && !andPredicates.isEmpty()) {
+    				query.where(criteriaBuilder.and(andPredicates.toArray(new Predicate[andPredicates.size()])));
+    			} else if (!orPredicates.isEmpty() && andPredicates.isEmpty()) {
+    				query.where(criteriaBuilder.or(orPredicates.toArray(new Predicate[orPredicates.size()])));
+    			} else {
+    				query.where(criteriaBuilder.or(orPredicates.toArray(new Predicate[orPredicates.size()])),
+    						criteriaBuilder.and(andPredicates.toArray(new Predicate[andPredicates.size()]))
+    						);
+    			}
+						
+                return query.getRestriction();
             }; 
 	}
 

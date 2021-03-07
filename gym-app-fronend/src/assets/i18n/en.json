@@ -22,7 +22,8 @@
     "END_DATE":"End Date",
     "SELECT_ONE":"Select One",
     "BACK":"Back",
-    "DETAILS":"Details"
+    "DETAILS":"Details",
+    "ALL":"All"
   },
   "USERS": {
     "EMAIL":"E-Mail",
@@ -103,5 +104,13 @@
     "PLANS":"Plans",
     "SUBSCRIPTIONS":"Subscriptions",
     "EXCERCISES_CATEGORIES":"Excercises Categories"
+  },
+
+  "STATUS": {
+    "NEW":"غير مفعل",
+    "IN_PROGRESS": "مفعل",
+    "EXPIRED": "منتهى",
+    "RENEWED": "منتهى و تم تجديده",
+    "BLOCKED": "موقوف"
   }
 }

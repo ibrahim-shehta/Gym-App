@@ -10,7 +10,6 @@ export abstract class BaseTableComponent extends BaseComponent {
   totalRows: number = 0;
   currentPage :number = 1;
   resetState :boolean = true;
-  abstract  getFormUrl() :string;
 
 
   constructor(
@@ -65,8 +64,8 @@ export abstract class BaseTableComponent extends BaseComponent {
     this.getPage();
   }
 
-  private getFilterMap() :FilterMap{
-    const filterMap = new FilterMap();
+  private getFilterMap() :any {
+    let filterMap = {};
     this.getFilterArr().forEach(item => {
       filterMap[item] =  this.getService().searchText
     })
@@ -78,13 +77,18 @@ export abstract class BaseTableComponent extends BaseComponent {
   }
 
   stopSearch() :void {
+    this.resetServiceState();
+    this.getPage();
+  }
+
+  resetServiceState() :void {
     this.currentPage = 1;
     this.getService().isClickSearch = false;
     this.getService().filterDataWithPaginationAndSort.page = 0;
     this.getService().searchText = '';
     this.getService().filterDataWithPaginationAndSort.filterMap = {};
-    this.getPage();
   }
+
   add() :void {
     this.router.navigate([this.getFormUrl()], {relativeTo: this.activatedRoute});
   }
@@ -94,11 +98,15 @@ export abstract class BaseTableComponent extends BaseComponent {
    this.router.navigate([this.getFormUrl()], {relativeTo: this.activatedRoute, state: {id: id}});
  }
 
+ getFormUrl() :string {
+   return "form";
+ }
+
+
  view(id) :void {
   this.resetState = false;
   this.router.navigate([AuthURL.View], {relativeTo: this.activatedRoute, state: {id: id}});
  }
-
 
  onDestroy() {
   if (this.resetState) {

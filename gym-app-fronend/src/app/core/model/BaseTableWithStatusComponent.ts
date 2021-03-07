@@ -1,0 +1,42 @@
+import { ActivatedRoute, Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
+import { NotificationService } from "../services/notification.service";
+import { BaseServiceWithStatus } from "./BaseServiceWithStatus";
+import { BaseTableComponent } from "./BaseTableComponent";
+
+export abstract class BaseTableWithStatusComponent extends BaseTableComponent {
+
+  statusList :[] = [];
+  abstract  getService() :BaseServiceWithStatus;
+
+  constructor(
+    public router :Router,
+    public activatedRoute :ActivatedRoute,
+    public notificationService :NotificationService,
+    public translateService :TranslateService
+  ) {
+        super(router, activatedRoute, notificationService, translateService);
+  }
+
+  onSelectStatusHandler(event) {
+    this.currentPage = 1;
+    this.getService().filterDataWithPaginationAndSort.page = 0;
+    this.getService().status = event;
+
+     this.getPage();
+  }
+
+  getResolverData() :void {
+    this.statusList = this.activatedRoute.snapshot.data.dataList[0].data;
+    this.dataList = this.activatedRoute.snapshot.data.dataList[1].data;
+    this.totalRows = this.activatedRoute.snapshot.data.dataList[1].totalRows;
+    this.getService().totalRows = this.totalRows;
+  }
+
+  onDestroy() {
+    if (this.resetState)
+      this.getService().status = this.getService().getDefaultStatus();
+
+    super.onDestroy();
+  }
+}

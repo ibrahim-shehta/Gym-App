@@ -1,5 +1,6 @@
 package com.gym.modules.subscription.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,7 @@ import com.gym.common.response.ListWithPaginationResponse;
 import com.gym.modules.subscription.dto.SubscriptionDto;
 import com.gym.modules.subscription.dto.SubscriptionListDto;
 import com.gym.modules.subscription.model.Subscription;
+import com.gym.modules.subscription.model.enums.SubscriptionStatus;
 import com.gym.modules.subscription.service.SubscriptionService;
 
 @RestController
@@ -65,5 +67,11 @@ public class SubscriptionController {
 		List<Subscription> entity = this.subscriptionService.filterAllData(filterData);
 		List<SubscriptionListDto> dto = SubscriptionListDto.mapListToDtos(entity);
 		return ResponseEntity.ok(new ListResponse<SubscriptionListDto>(dto));
+	}
+	
+	@GetMapping("/status-list")
+	public ResponseEntity<BaseResponse<List<String>>> getStatusList() {
+		List<String> statusList = Arrays.asList(SubscriptionStatus.values()).stream().map(status -> status.toString()).collect(Collectors.toList());
+		return ResponseEntity.ok(new EntityResponse<List<String>>(statusList));	
 	}
 }
