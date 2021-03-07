@@ -4,7 +4,6 @@ export class FilterDataWithPaginationAndSort {
   size: number = 3;
   sortColumn :string;
   sortDirection :string;
-  status: any = 0;
 }
 
 

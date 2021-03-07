@@ -19,7 +19,7 @@ export class SubscriptionsComponent extends BaseTableWithStatusComponent impleme
     public activatedRoute: ActivatedRoute,
     public notificationService: NotificationService,
     public translateService :TranslateService,
-    public subscriptionsService: SubscriptionsService
+    public _componentService: SubscriptionsService
   ) {
     super(router, activatedRoute, notificationService, translateService);
    }
@@ -33,7 +33,7 @@ export class SubscriptionsComponent extends BaseTableWithStatusComponent impleme
   }
 
   getService() :SubscriptionsService {
-    return this.subscriptionsService;
+    return this._componentService;
   }
 
   ngOnDestroy() {

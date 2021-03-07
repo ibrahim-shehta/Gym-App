@@ -22,8 +22,7 @@ export abstract class BaseTableWithStatusComponent extends BaseTableComponent {
     this.currentPage = 1;
     this.getService().filterDataWithPaginationAndSort.page = 0;
     this.getService().status = event;
-
-     this.getPage();
+    this.getPage();
   }
 
   getResolverData() :void {

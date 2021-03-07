@@ -29,7 +29,7 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
     public router :Router,
     public activatedRoute :ActivatedRoute,
     public translateService :TranslateService,
-    private subscriptionsService :SubscriptionsService,
+    private _componentService :SubscriptionsService,
     private playersService :PlayersService
   ) {
         super(router, activatedRoute, notificationService, translateService);
@@ -82,7 +82,7 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
   }
 
   getService() :SubscriptionsService {
-    return this.subscriptionsService;
+    return this._componentService;
   }
 
 }

@@ -3,7 +3,7 @@
   [pageHeader]="'SUBSCRIPTIONS.MANAGE_SUBSCRIPTIONS'"
   [sectionHeader]="'SUBSCRIPTIONS.SHOW_SUBSCRIPTIONS'"
   [isTablePage]="true"
-  [service]="subscriptionsService"
+  [service]="_componentService"
 
   (onSearch)="search()"
   (onStopSearch)="stopSearch()"
@@ -11,7 +11,7 @@
 >
 
   <app-status-list-filter [statusList]="statusList" (onSelectStatus)="onSelectStatusHandler($event)"
-    [selectedStatusIndex]="subscriptionsService.status? subscriptionsService.status : 0"></app-status-list-filter>
+    [selectedStatusIndex]="_componentService.status? _componentService.status : _componentService.getDefaultStatus()"></app-status-list-filter>
     <div class="table-responsive">
       <table class="table table-striped table-md">
         <tr>
@@ -47,7 +47,7 @@
 
   <app-pagination
     [totalRows]="totalRows"
-    [size]="subscriptionsService.filterDataWithPaginationAndSort.size"
+    [size]="_componentService.filterDataWithPaginationAndSort.size"
     [currentPage]="currentPage"
     (pageChanged)="pageChanged($event)"
     >
