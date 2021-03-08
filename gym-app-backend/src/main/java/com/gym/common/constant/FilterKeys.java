@@ -14,4 +14,5 @@ public abstract class FilterKeys {
 	public static final String USER_TYPE = "userType";
 	public static final String SUBSCRIPTION_NUMBER = "subscriptionNumber";
 	public static final String STATUS = "status";
+	public static final String USER_ID = "userId";
 }

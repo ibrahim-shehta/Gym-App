@@ -18,6 +18,8 @@ import { PlansDetailsComponent } from './pages/plans/components/plans-details/pl
 import { PlyersViewComponent } from './pages/users/screens/plyers-view/plyers-view.component';
 import { PlayerDetailsComponent } from './pages/users/components/player-details/player-details.component';
 import { SelectPlanComponent } from './pages/plans/components/select-plan/select-plan.component';
+import { PlayerAttendanceComponent } from './pages/users/screens/player-attendance/player-attendance.component';
+import { PlayerAttendanceHistoryComponent } from './pages/users/screens/player-attendance-history/player-attendance-history.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { SelectPlanComponent } from './pages/plans/components/select-plan/select
     PlansDetailsComponent,
     PlyersViewComponent,
     PlayerDetailsComponent,
-    SelectPlanComponent
+    SelectPlanComponent,
+    PlayerAttendanceComponent,
+    PlayerAttendanceHistoryComponent
   ],
   imports: [
     CommonModule,

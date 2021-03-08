@@ -1,0 +1,24 @@
+<div class="table-responsive">
+  <table class="table table-striped table-md">
+    <tr>
+      <th>{{'COMMON.DATE'|translate}}</th>
+      <th>{{'COMMON.TIME'|translate}}</th>
+      <th>{{'PLAYERS.EXCERCISES_CATEGORY'|translate}}</th>
+    </tr>
+
+    <tr *ngFor="let player of dataList; let i = index">
+      <td>{{player.date}}</td>
+      <td>{{player.signIn}}</td>
+      <td>{{player.excerciseCategoryName}}</td>
+
+    </tr>
+
+  </table>
+</div>
+
+<app-pagination
+[totalRows]="totalRows"
+[size]="_componentService.filterDataWithPaginationAndSort.size"
+[currentPage]="currentPage"
+(pageChanged)="pageChanged($event)"
+>

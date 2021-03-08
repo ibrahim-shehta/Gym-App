@@ -10,7 +10,7 @@ export const AuthURL = {
     Subscriptions: "subscriptions",
     SubscriptionsForm:"form",
     ExcercisesCategory: 'excercises-category',
-
+    Attendance: 'attendance',
     Form: 'form',
     View: 'view',
     PathVaribles: {

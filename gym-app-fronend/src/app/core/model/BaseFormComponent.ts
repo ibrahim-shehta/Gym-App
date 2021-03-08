@@ -1,7 +1,6 @@
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
-import { ResponseStatus } from "../constants/response-status-enum";
 import { NotificationService } from "../services/notification.service";
 import { BaseComponent } from "./BaseComponent";
 

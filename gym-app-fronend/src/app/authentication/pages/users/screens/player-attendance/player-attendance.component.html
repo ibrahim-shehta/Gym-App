@@ -1,0 +1,28 @@
+<app-auth-contect>
+  <app-page-header [pageHeader]="'PLAYERS.MANAGE_PLAYERS'" [sectionHeader]="'PLAYERS.PLAYER_ATTENDANCE'">
+     <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate="">
+      <div class="form-group row mb-4">
+
+        <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLAYERS.EXCERCISES_CATEGORY'|translate}}</label>
+        <div class="col-sm-12 col-md-4">
+
+        <select class="form-control" name="nextCategory" [(ngModel)]="entity.excerciseCategory.id" #excerciseCategory="ngModel" required>
+          <option [value]="null">--{{'COMMON.SELECT_ONE'|translate}}--</option>
+          <option *ngFor="let cat of excercisesCategories" [value]="cat.id">{{cat.name}}</option>
+        </select>
+
+        </div>
+
+      </div>
+      <app-view-edit-actions
+        [showSave]="true"
+        [showCancel]="true"
+        (onClickCancel)="goBack()"
+      ></app-view-edit-actions>
+
+     </form>
+
+     <router-outlet></router-outlet>
+
+    </app-page-header>
+</app-auth-contect>

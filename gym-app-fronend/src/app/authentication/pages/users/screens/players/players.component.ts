@@ -27,12 +27,12 @@ export class PlayersComponent extends BaseTableComponent implements OnInit, OnDe
     this.baseInit();
   }
 
+  onClickAttendace(id) {
+      this.resetState = false;
+      this.router.navigate([AuthURL.Attendance], {relativeTo: this.activatedRoute, state: {id: id}});
+  }
   getService() :PlayersService {
     return this.playersService;
-  }
-
-  getFormUrl() :string {
-    return AuthURL.PlayersForm;
   }
 
   getFilterArr() {

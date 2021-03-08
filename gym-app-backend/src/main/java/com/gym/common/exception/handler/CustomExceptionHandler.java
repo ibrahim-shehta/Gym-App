@@ -47,10 +47,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(EntityDuplicateAttributes.class)
 	protected ResponseEntity<Object> handleEntityDuplicateAttributes(EntityDuplicateAttributes ex) {
-		ex.getErrors().forEach(error -> {
-			AppValidationError validationError = (AppValidationError) error;
-			validationError.setMessage(resourceBundleMessageSource.getMessage(validationError.getMessage(),null, LocaleContextHolder.getLocale()));
-		});
+		if (ex.getErrors() != null && !ex.getErrors().isEmpty()) {
+			ex.getErrors().forEach(error -> {
+				AppValidationError validationError = (AppValidationError) error;
+				validationError.setMessage(resourceBundleMessageSource.getMessage(validationError.getMessage(),null, LocaleContextHolder.getLocale()));
+			});
+		}
 		AppError apiError = new AppError(HttpStatus.BAD_REQUEST);
 		apiError.setMessage(resourceBundleMessageSource.getMessage(ex.getMessage(),null, LocaleContextHolder.getLocale()));
 		apiError.setDebugMessage(null);

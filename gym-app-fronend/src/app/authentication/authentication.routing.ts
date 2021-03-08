@@ -23,6 +23,10 @@ import { CategoriesComponent } from "./pages/exercises/categories/screens/catego
 import { CategoriesFormComponent } from "./pages/exercises/categories/screens/categories-form/categories-form.component";
 import { PlansViewComponent } from "./pages/plans/screens/plans-view/plans-view.component";
 import { PlyersViewComponent } from "./pages/users/screens/plyers-view/plyers-view.component";
+import { PlayerAttendanceComponent } from "./pages/users/screens/player-attendance/player-attendance.component";
+import { PlayersAttendanceService } from "./pages/users/resolvers/players-attendance.service";
+import { PlayerAttendanceHistoryComponent } from "./pages/users/screens/player-attendance-history/player-attendance-history.component";
+import { PlayerAttendanceHistoryResolverService } from "./pages/users/resolvers/player-attendance-history-resolver.service";
 
 const RouteList: Routes = [
   { path: "", redirectTo: AuthURL.Dashboard, pathMatch: "full" },
@@ -83,6 +87,19 @@ const RouteList: Routes = [
         component: PlyersViewComponent,
         canActivate: [AuthGuardService],
         resolve: { form: PlayersFormResolverService },
+      }, {
+        path: AuthURL.Attendance,
+        component: PlayerAttendanceComponent,
+        canActivate: [AuthGuardService],
+        resolve: { form: PlayersAttendanceService },
+        children: [
+          {
+            path: '',
+            component: PlayerAttendanceHistoryComponent,
+            resolve: { dataList: PlayerAttendanceHistoryResolverService },
+
+          }
+        ]
       }
     ],
   },

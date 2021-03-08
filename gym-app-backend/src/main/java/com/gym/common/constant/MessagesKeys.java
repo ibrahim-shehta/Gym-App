@@ -19,7 +19,9 @@ public abstract class MessagesKeys {
 	public static final String VALIDATION_USER_EMAIL= "validation.user.email";
 	public static final String VALIDATION_USER_NAME= "validation.user.name";	
 	public static final String VALIDATION_USER_USERNAME= "validation.user.username";	
-	public static final String VALIDATION_USER_MOBILE= "validation.user.mobile";	
+	public static final String VALIDATION_USER_MOBILE= "validation.user.mobile";
+	
+	public static final String VALIDATION_USER_DUPLICATE_LOGIN="validation.user.duplicate.login";
 
 			
 }

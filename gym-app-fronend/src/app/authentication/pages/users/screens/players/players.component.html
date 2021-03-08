@@ -33,7 +33,9 @@
 
                 (viewHandler)="view(player.id)"
                 (editHandler)="edit(player.id)"
-              ></app-table-context-menu>
+              >
+                <span (click)="onClickAttendace(player.id)" class="dropdown-item">{{'PLAYERS.ATTENDANCE'|translate}}<i class="fa fa-clock mx-2" aria-hidden="true"></i></span>
+            </app-table-context-menu>
             </td>
           </tr>
 

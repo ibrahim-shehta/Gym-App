@@ -6,16 +6,15 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PlayersService extends Baseservice {
+export class AttendanceService  extends Baseservice {
 
-baseUrl = environment.baseUrl + '/player'
+  baseUrl = environment.baseUrl + '/attendance'
 
-constructor(public http :HttpClient) {
-  super(http);
-}
+  constructor(public http :HttpClient) {
+    super(http);
+  }
 
-getBaseUrl(): string {
-  return this.baseUrl;
-}
-
+  getBaseUrl(): string {
+    return this.baseUrl;
+  }
 }

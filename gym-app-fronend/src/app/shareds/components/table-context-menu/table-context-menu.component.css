@@ -1,3 +1,9 @@
-.fa-ellipsis-v {
+
+:host ::ng-deep .fa {
+  color: #6777EF;
+  cursor: pointer;
+}
+
+:host ::ng-deep .dropdown-item {
   cursor: pointer;
 }
