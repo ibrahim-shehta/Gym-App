@@ -8,8 +8,6 @@ import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +21,13 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.gym.common.constant.MessagesKeys;
+import com.gym.common.exception.exceptions.BusinessException;
 import com.gym.common.exception.exceptions.EnityNotFoundException;
 import com.gym.common.exception.exceptions.EntityDuplicateAttributes;
 import com.gym.common.exception.model.AppError;
 import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
 
-@Order(Ordered.HIGHEST_PRECEDENCE)
 @RestControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -44,6 +42,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		return buildResponseEntity(apiError);
 	}
 	
+	@ExceptionHandler(BusinessException.class)
+	protected ResponseEntity<Object> handleBusniessException(BusinessException ex) {
+		AppError apiError = new AppError(HttpStatus.NOT_FOUND);
+		apiError.setMessage(resourceBundleMessageSource.getMessage(ex.getMessage(),null, LocaleContextHolder.getLocale()));
+		return buildResponseEntity(apiError);
+	}
 	
 	@ExceptionHandler(EntityDuplicateAttributes.class)
 	protected ResponseEntity<Object> handleEntityDuplicateAttributes(EntityDuplicateAttributes ex) {

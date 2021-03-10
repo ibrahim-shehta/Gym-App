@@ -22,6 +22,9 @@ public abstract class MessagesKeys {
 	public static final String VALIDATION_USER_MOBILE= "validation.user.mobile";
 	
 	public static final String VALIDATION_USER_DUPLICATE_LOGIN="validation.user.duplicate.login";
+	public static final String PLAYER_NOT_HAVE_VALID_SUBSCRIPTION="player.not.have.valid.subscription";
+	public static final String SUBSCRIPTION_DAYS_EXPIRED="subscription.days.expired";
+	public static final String SUBSCRIPTION_DATE_EXPIRED="subscription.date.expired";
 
 			
 }

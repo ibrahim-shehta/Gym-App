@@ -1,6 +1,5 @@
 package com.gym.modules.attendance.service.impl;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.gym.common.constant.AppUtils;
 import com.gym.common.constant.FilterKeys;
 import com.gym.common.constant.MessagesKeys;
+import com.gym.common.exception.exceptions.BusinessException;
 import com.gym.common.exception.exceptions.EntityDuplicateAttributes;
 import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
@@ -23,16 +23,17 @@ import com.gym.modules.attendance.model.Attendance;
 import com.gym.modules.attendance.model.Attendance_;
 import com.gym.modules.attendance.repository.AttendanceRepostory;
 import com.gym.modules.attendance.service.AttendanceService;
-import com.gym.user.model.User;
-import com.gym.user.model.User_;
+import com.gym.modules.subscription.service.SubscriptionService;
 
 @Service
-@Transactional
 public class AttendanceServiceImpl extends BaseServiceImpl<Attendance, Long> implements AttendanceService {
 
 	
 	@Autowired
 	private AttendanceRepostory attendanceRepostory;
+	
+	@Autowired
+	private SubscriptionService subscriptionService;
 	
 	@Override
 	public AttendanceRepostory getRepository() {
@@ -40,14 +41,17 @@ public class AttendanceServiceImpl extends BaseServiceImpl<Attendance, Long> imp
 	}
 	
 	@Override
+	@Transactional(dontRollbackOn= {BusinessException.class})
 	public Attendance save(Attendance entity) {
 		thorwExceptionIfUserDuplicateLoggin(entity);
+		subscriptionService.validateUserSubscription(entity.getUser().getId());
 		entity.setDate(new Date());
 		entity.setSignIn(AppUtils.getCurrentTime());
 		return super.save(entity);
 	}
 	
 	@Override
+	@Transactional
 	public Attendance update(Attendance entity) {
 		String currentTime = AppUtils.getCurrentTime();
 		entity.setSignOut(currentTime);
@@ -67,7 +71,6 @@ public class AttendanceServiceImpl extends BaseServiceImpl<Attendance, Long> imp
 			List<AppSubError> errors = new ArrayList<>();
 			errors.add(new AppValidationError(Attendance_.DATE, "" , MessagesKeys.VALIDATION_USER_DUPLICATE_LOGIN));
 			throw new EntityDuplicateAttributes(MessagesKeys.VALIDATION_USER_DUPLICATE_LOGIN, errors);
-
 		}
 
 	}
