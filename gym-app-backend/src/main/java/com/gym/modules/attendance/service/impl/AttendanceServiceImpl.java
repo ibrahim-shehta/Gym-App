@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import com.gym.common.constant.AppUtils;
 import com.gym.common.constant.FilterKeys;
 import com.gym.common.constant.MessagesKeys;
-import com.gym.common.exception.exceptions.BusinessException;
 import com.gym.common.exception.exceptions.EntityDuplicateAttributes;
+import com.gym.common.exception.exceptions.SubscriptionException;
 import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
@@ -41,13 +41,20 @@ public class AttendanceServiceImpl extends BaseServiceImpl<Attendance, Long> imp
 	}
 	
 	@Override
-	@Transactional(dontRollbackOn= {BusinessException.class})
+	@Transactional(dontRollbackOn= {SubscriptionException.class})
 	public Attendance save(Attendance entity) {
 		thorwExceptionIfUserDuplicateLoggin(entity);
-		subscriptionService.validateUserSubscription(entity.getUser().getId());
+		Long days = subscriptionService.validateUserSubscription(entity.getUser().getId());
 		entity.setDate(new Date());
 		entity.setSignIn(AppUtils.getCurrentTime());
-		return super.save(entity);
+		entity =  super.save(entity);
+		if (days == 0) {
+			throw new SubscriptionException(MessagesKeys.LAST_DAY_IN_SUBSCRIPTION, true);
+		}
+		if (days < 7) {
+			throw new SubscriptionException(MessagesKeys.REMAIN_DAYS_TO_EXPIRE_SUBSCRIPTION, days.toString(), true);
+		}
+		 return entity;
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ResponseStatus } from 'src/app/core/constants/response-status-enum';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { AttendanceService } from '../../services/attendance.service';
@@ -40,6 +41,19 @@ export class PlayerAttendanceComponent extends BaseFormCompnent implements OnIni
 
   getResolverData() {
     this.excercisesCategories = this.activatedRoute.snapshot.data.form.data;
+  }
+
+  add(entity) :void {
+    this.getService().add(entity).subscribe(res => {
+      this.addSuccess();
+      this.goBack();
+    }, err => {
+      this.backendError(err.error);
+      if(err.error.status == ResponseStatus[ResponseStatus.CONFLICT]) {
+        this.addSuccess();
+        this.goBack();
+      }
+    })
   }
 
   getService() :PlayersService {

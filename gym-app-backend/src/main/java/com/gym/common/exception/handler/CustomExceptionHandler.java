@@ -24,6 +24,7 @@ import com.gym.common.constant.MessagesKeys;
 import com.gym.common.exception.exceptions.BusinessException;
 import com.gym.common.exception.exceptions.EnityNotFoundException;
 import com.gym.common.exception.exceptions.EntityDuplicateAttributes;
+import com.gym.common.exception.exceptions.SubscriptionException;
 import com.gym.common.exception.model.AppError;
 import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
@@ -46,6 +47,14 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleBusniessException(BusinessException ex) {
 		AppError apiError = new AppError(HttpStatus.NOT_FOUND);
 		apiError.setMessage(resourceBundleMessageSource.getMessage(ex.getMessage(),null, LocaleContextHolder.getLocale()));
+		return buildResponseEntity(apiError);
+	}
+	
+	@ExceptionHandler(SubscriptionException.class)
+	protected ResponseEntity<Object> handleSubscriptionException(SubscriptionException ex) {
+		AppError apiError = new AppError(ex.isWarning() ? HttpStatus.CONFLICT : HttpStatus.NOT_FOUND);
+		final String[] params = new String[]{ex.getDays()};
+		apiError.setMessage(resourceBundleMessageSource.getMessage(ex.getMessage(), params, LocaleContextHolder.getLocale()));
 		return buildResponseEntity(apiError);
 	}
 	

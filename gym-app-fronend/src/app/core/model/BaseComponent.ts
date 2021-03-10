@@ -29,6 +29,9 @@ export abstract class BaseComponent {
           this.commonError();
         }
         break;
+      case ResponseStatus[ResponseStatus.CONFLICT]:
+        this.notificationService.showInfo('', error.message);
+        break;
       case ResponseStatus[ResponseStatus.NOT_FOUND]:
       case ResponseStatus[ResponseStatus.INTERNAL_SERVER_ERROR]:
       case ResponseStatus[ResponseStatus.METHOD_NOT_ALLOWED]:

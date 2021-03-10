@@ -25,6 +25,8 @@ public abstract class MessagesKeys {
 	public static final String PLAYER_NOT_HAVE_VALID_SUBSCRIPTION="player.not.have.valid.subscription";
 	public static final String SUBSCRIPTION_DAYS_EXPIRED="subscription.days.expired";
 	public static final String SUBSCRIPTION_DATE_EXPIRED="subscription.date.expired";
+	public static final String REMAIN_DAYS_TO_EXPIRE_SUBSCRIPTION="remain.days.to.expire.subscriptoin";
+	public static final String LAST_DAY_IN_SUBSCRIPTION="last.day.in.subscription";
 
 			
 }

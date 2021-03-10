@@ -1,7 +1,7 @@
 package com.gym.modules.subscription.service.serviceImpl;
 
+import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +13,9 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
 
 import com.gym.common.constant.AppConstant;
+import com.gym.common.constant.AppUtils;
 import com.gym.common.constant.MessagesKeys;
-import com.gym.common.exception.exceptions.BusinessException;
+import com.gym.common.exception.exceptions.SubscriptionException;
 import com.gym.common.service.impl.BaseServiceWithSepecificationImpl;
 import com.gym.modules.plan.model.Plan;
 import com.gym.modules.plan.service.PlanService;
@@ -83,33 +84,37 @@ public class SubscriptionServiceImpl extends BaseServiceWithSepecificationImpl<S
 	}
 
 	@Override
-	public void validateUserSubscription(Long userId) {
+	public Long validateUserSubscription(Long userId) {
 		List<Subscription> subscriptions = subscriptionRepository.getSubscriptionEntityByStatusAndUserId(SubscriptionStatus.IN_PROGRESS, userId);
 		checkUserNotHaveValidSubscription(subscriptions);
 		checkIfPlayerExceededDays(subscriptions.get(0));
-		checkIfDateExceeded(subscriptions.get(0));
+		Long diffDays = checkIfDateExceeded(subscriptions.get(0));
 		incrementAttendanceDays(subscriptions.get(0).getId());
+		return diffDays;
 	}
 	
 	private void checkUserNotHaveValidSubscription(List<Subscription> subscriptions) {
 		if (subscriptions.isEmpty()) {
-			throw new BusinessException(MessagesKeys.PLAYER_NOT_HAVE_VALID_SUBSCRIPTION);
+			throw new SubscriptionException(MessagesKeys.PLAYER_NOT_HAVE_VALID_SUBSCRIPTION);
 		}
 	}
 	
 	private void checkIfPlayerExceededDays(Subscription subscritpion) {
 		if (subscritpion.getNumberOfReservedDays() == subscritpion.getAttendanceDays()) {
 			subscriptionRepository.updateSubscriptionStatusById(subscritpion.getId() ,SubscriptionStatus.EXPIRED);
-			throw new BusinessException(MessagesKeys.SUBSCRIPTION_DAYS_EXPIRED);
+			throw new SubscriptionException(MessagesKeys.SUBSCRIPTION_DAYS_EXPIRED);
 		}
 	}
 	
-	private void checkIfDateExceeded(Subscription subscritpion) {
-		int value = new Date().compareTo(subscritpion.getEndDate());
-		if (value > 0) {
+	private Long checkIfDateExceeded(Subscription subscritpion) {
+		LocalDate endDate = AppUtils.convertDateToLocalDate(subscritpion.getEndDate());
+		LocalDate currentDate = LocalDate.now();
+		
+		if (currentDate.isAfter(endDate)) {
 			subscriptionRepository.updateSubscriptionStatusById(subscritpion.getId() ,SubscriptionStatus.EXPIRED);
-			throw new BusinessException(MessagesKeys.SUBSCRIPTION_DATE_EXPIRED);
+			throw new SubscriptionException(MessagesKeys.SUBSCRIPTION_DATE_EXPIRED);
 		}
+		return AppUtils.getDurationInDays(currentDate, endDate);
 	}
 	
 	private void incrementAttendanceDays(Long id) {
