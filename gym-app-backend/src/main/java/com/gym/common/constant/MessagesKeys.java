@@ -27,6 +27,8 @@ public abstract class MessagesKeys {
 	public static final String SUBSCRIPTION_DATE_EXPIRED="subscription.date.expired";
 	public static final String REMAIN_DAYS_TO_EXPIRE_SUBSCRIPTION="remain.days.to.expire.subscriptoin";
 	public static final String LAST_DAY_IN_SUBSCRIPTION="last.day.in.subscription";
+	
+	public static final String VALIDATION_FILE_LARGE = "validation.file.large";
 
 			
 }

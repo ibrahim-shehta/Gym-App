@@ -28,9 +28,10 @@ export class AuthInterceptorService implements HttpInterceptor {
       request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + user.data.token) });
     }
 
-  if (!request.headers.has('Content-Type')) {
-      request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
-    }
+  // Make issue with files because files need to set boundries and browser set it automic
+  // if (!request.headers.has('Content-Type')) {
+  //     request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
+  //   }
 
      request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
      request = request.clone({ headers: request.headers.set('Accept-Language', lang ? lang : 'en') });

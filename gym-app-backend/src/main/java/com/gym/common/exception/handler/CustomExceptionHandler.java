@@ -17,9 +17,11 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.gym.common.constant.AppConstant;
 import com.gym.common.constant.MessagesKeys;
 import com.gym.common.exception.exceptions.BusinessException;
 import com.gym.common.exception.exceptions.EnityNotFoundException;
@@ -57,6 +59,14 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		apiError.setMessage(resourceBundleMessageSource.getMessage(ex.getMessage(), params, LocaleContextHolder.getLocale()));
 		return buildResponseEntity(apiError);
 	}
+	
+	
+	@ExceptionHandler(MaxUploadSizeExceededException.class)
+	  public ResponseEntity<Object> handleMaxSizeException(MaxUploadSizeExceededException ex) {
+		AppError apiError = new AppError(HttpStatus.NOT_FOUND);
+		apiError.setMessage(resourceBundleMessageSource.getMessage(MessagesKeys.VALIDATION_FILE_LARGE, new String[] {AppConstant.MAX_FILE_SIZE_IN_MEGA}, LocaleContextHolder.getLocale()));
+		return buildResponseEntity(apiError);
+	  }
 	
 	@ExceptionHandler(EntityDuplicateAttributes.class)
 	protected ResponseEntity<Object> handleEntityDuplicateAttributes(EntityDuplicateAttributes ex) {

@@ -42,6 +42,9 @@ public class User extends Auditable {
 
 	@Column(updatable=false)
 	private String password;
+	
+	@Column(updatable=false)
+	private String imageName;
 
 	private boolean isActive;
 
@@ -175,6 +178,14 @@ public class User extends Auditable {
 
 	public void setUserDetails(UserDetails userDetails) {
 		this.userDetails = userDetails;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 
 }

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:8080/gym/api/v1"
+  baseUrl: "http://localhost:8080/gym/api/v1",
+  baseImagesUrl: "http://localhost:8080/gym-images"
 };
 
 /*

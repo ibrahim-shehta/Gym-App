@@ -56,7 +56,7 @@ export class PlayerAttendanceComponent extends BaseFormCompnent implements OnIni
     })
   }
 
-  getService() :PlayersService {
+  getService() :AttendanceService {
     return this._componentService;
   }
 }

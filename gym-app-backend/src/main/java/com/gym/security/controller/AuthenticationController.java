@@ -8,6 +8,8 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +26,7 @@ import com.gym.user.dto.UserListDto;
 import com.gym.user.model.User;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/authenticate")
 public class AuthenticationController {
 
 	@Autowired
@@ -36,7 +38,7 @@ public class AuthenticationController {
 	@Autowired
 	private JwtUtil jwtUtil;
 
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	@PostMapping
 	public ResponseEntity<BaseResponse<AuthenticationResponse>> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
 			throws Exception {
 		try {
@@ -58,5 +60,10 @@ public class AuthenticationController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody UserDto user) throws Exception {
 		return ResponseEntity.ok(userDetailsService.save(user));
+	}
+	
+	@GetMapping
+	public String showMessage() {
+		return "Hello My Client To Gym App !";
 	}
 }

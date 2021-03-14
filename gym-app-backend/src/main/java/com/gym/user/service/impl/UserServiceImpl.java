@@ -10,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gym.user.model.User_;
+import com.gym.common.constant.AppConstant;
+import com.gym.common.constant.AppUtils;
 import com.gym.common.constant.MessagesKeys;
 import com.gym.common.exception.exceptions.EntityDuplicateAttributes;
 import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
+import com.gym.common.files.service.FilesStorageService;
 import com.gym.common.service.impl.BaseServiceWithSepecificationImpl;
 import com.gym.user.model.User;
 import com.gym.user.repository.UserRepository;
@@ -28,6 +32,9 @@ public class UserServiceImpl extends BaseServiceWithSepecificationImpl<User, Lon
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private FilesStorageService filesStorageService;
 
 	@Override
 	public UserRepository getRepository() {
@@ -68,5 +75,15 @@ public class UserServiceImpl extends BaseServiceWithSepecificationImpl<User, Lon
 
 		throw new EntityDuplicateAttributes(MessagesKeys.EXCEPTION_MESSAGES_DATA_NOT_VALID, errors);
 
+	}
+
+	@Override
+	public User saveUserImage(MultipartFile file) {
+		User user = AppUtils.getCurrentUser().get();
+		AppUtils.deleteFileByFullPath(AppConstant.UPLOAD_PROFILE_PATH + "/" + user.getImageName());
+		String fileName = user.getId() + AppConstant.UNIQE_SEPERATOR + user.getUsername() + AppConstant.UNIQE_SEPERATOR + System.currentTimeMillis() + AppConstant.PNG_FILE;
+		filesStorageService.save(file, AppConstant.UPLOAD_PROFILE_PATH, fileName);
+		userRepository.updateImageName(fileName, user.getId());
+		return userRepository.findById(user.getId()).get();
 	}
 }

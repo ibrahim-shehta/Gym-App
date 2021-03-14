@@ -1,80 +1,62 @@
 <app-auth-contect>
-  <section class="section">
-    <div class="section-header">
-      <h1>Profile</h1>
-    </div>
-    <div class="section-body">
-    </div>
-    <div class="row mt-sm-4">
-      <div class="col-12 col-md-12 col-lg-12">
-        <div class="card author-box card-primary">
-          <form action="" [formGroup]="form" class="needs-validation" (submit)="onSubmit()">
-            <div class="card-header">
-              <h4>Edit Profile</h4>
-              <div class="card-header-action">
-                <a href="#" class="btn btn-primary btn-icon icon-right">Change Password</a>
-              </div>
-            </div>
-            <div class="card-body">
+  <app-page-header [pageHeader]="'PLAYERS.MANAGE_PLAYERS'" [sectionHeader]="'PLAYERS.ADD_PLAYER'">
+
+    <div class="row">
+      <div class="col-md-8">
+        <form (submit)="onSubmit(form)" #form class="needs-validation" novalidate="">
+          <div class="row">
+            <div class="col-7 col-md-7 col-lg-7">
               <div class="row">
-                <div class="col-5 col-md-5 col-lg-5">
-                  <div class="form-group">
-                    <img *ngIf="!form.value.image" class="img-fluid img-thumbnail" src="assets/img/avatar/avatar-1.png" alt="">
-                    <img *ngIf="form.value.image" class="img-fluid img-thumbnail" [src] = "form.value.image" alt="">
-                  </div>
-                  <div class="form-group">
-                    <input type="file" (change) = "onConvertImage(inputFile)" name="" id="" #inputFile>
-                  </div>
-                </div>
-                <div class="col-7 col-md-7 col-lg-7">
-                  <div class="row">
-                    <div class="form-group col-md-12 col-12">
-                      <label>Email</label>
-                      <input type="email" class="form-control" formControlName="email" value="admin@gmail.com" required="">
-                      <div class="invalid-feedback">
-                        Please fill in the email
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstname" value="Tanapon" required="">
-                      <div class="invalid-feedback">
-                        Please fill in the first name
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label>Last Name</label>
-                      <input type="text" class="form-control" formControlName="lastname" value="Kongjaroensuk" required="">
-                      <div class="invalid-feedback">
-                        Please fill in the last name
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-md-12">
-                      <label>Position</label>
-                      <select class="form-control selectric" formControlName="position">
-                        <option value="">Please Select</option>
-                        <option *ngFor="let item of positionItems" [value]="item">{{item}}</option>
-                      </select>
-                      <div class="invalid-feedback">
-                        Please fill in the position
-                      </div>
-                    </div>
+                <div class="form-group col-md-12 col-12">
+                  <label>Email</label>
+                  <input type="email" class="form-control" [(ngModel)]="user.email" required name="email">
+                  <div class="invalid-feedback">
+                    Please fill in the email
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="card-footer">
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" [(ngModel)]="user.name" required="" name="name">
+                  <div class="invalid-feedback">
+                    Please fill in the first name
+                  </div>
+                </div>
               </div>
+
+
+
             </div>
-          </form>
+          </div>
+        </form>
+
+
+        <app-view-edit-actions [showSave]="true" [showCancel]="true" (onClickCancel)="goBack()"></app-view-edit-actions>
+
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <img class="img-fluid img-thumbnail" [src]="image || 'assets/img/avatar/avatar-1.png'" alt="">
         </div>
+        <div class="form-group">
+          <input type="file" style="display: none;" (change)="onFileChanged($event)" name="" id="" #inputFile>
+          <button class="btn btn-success" (click)="inputFile.click()">upload </button>
+          <button class="btn btn-danger mx-3" *ngIf="isFileSelected" (click)="uploadImage()">upload image</button>
+        </div>
+
+        <div *ngIf="message">{{message}}</div>
+        <div *ngIf="progress > 0" class="progress my-2">
+          <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+            attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+            [ngStyle]="{ width: progress + '%' }">
+            {{ progress }}%
+          </div>
+        </div>
+
       </div>
     </div>
-  </section>
+
+
+  </app-page-header>
 </app-auth-contect>

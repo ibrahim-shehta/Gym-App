@@ -8,6 +8,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { NotificationService } from "src/app/core/services/notification.service";
 import { TranslateService } from "@ngx-translate/core";
 import { StorageKeys } from "src/app/core/constants/StorageKeys";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-auth-navbar",
@@ -18,7 +19,8 @@ export class AuthNavbarComponent implements OnInit {
   AppURL = AppURL;
   AuthURL = AuthURL;
   UserLogin;
-
+user;
+userImg;
   constructor(
     private router: Router,
     private notificationService: NotificationService,
@@ -28,6 +30,9 @@ export class AuthNavbarComponent implements OnInit {
 
   ngOnInit() {
     this.initUser();
+    this.user = JSON.parse(localStorage.getItem(StorageKeys.LOGGED_USER)).data.user;
+    this.userImg = environment.baseImagesUrl + '/profile/' + this.user.imageName;
+
   }
 
   initUser() {

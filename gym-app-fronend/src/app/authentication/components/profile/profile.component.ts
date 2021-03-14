@@ -1,106 +1,103 @@
 import { Component, OnInit } from '@angular/core';
-import { IProfileComponent } from './profile.interface';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AccountService } from 'src/app/shareds/services/account.service';
-import { AuthenService } from 'src/app/core/services/authen.service';
-import { Ng2IzitoastService } from 'ng2-izitoast';
-import { ReadVarExpr } from '@angular/compiler';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/core/services/notification.service';
+import { TranslateService } from '@ngx-translate/core';
+import {UserService} from './users.service';
+import { StorageKeys } from 'src/app/core/constants/StorageKeys';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { UploadService } from 'src/app/shareds/services/upload.service';
+import { environment } from 'src/environments/environment';
+import { PlayersService } from '../../pages/users/services/players.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements IProfileComponent {
+export class ProfileComponent extends BaseFormCompnent implements OnInit{
+  user: any;
+  image;
+  imageFile :File;
+  progress;
+  message;
 
   constructor(
-    private builder: FormBuilder,
-    private account: AccountService,
-    private authen: AuthenService,
-    private alert: Ng2IzitoastService
+    public router :Router,
+    public activatedRoute :ActivatedRoute,
+    public notificationService :NotificationService,
+    public translateService :TranslateService,
+    private playersService: PlayersService,
+    private uploadService :UploadService
   ) {
-    this.initcialCreateFormData();
-    this.initcialLoadData();
+    super(router, activatedRoute, notificationService, translateService);
   }
 
-  form: FormGroup;
-
-  positionItems: any[] = [
-    'Frontend Developer',
-    'Backend Developer'
-  ]
-
-  onSubmit() {
-    if (this.form.invalid) {
-      return this.alert.warning({
-        title: 'แจ้งเตือน !',
-        message: "กรุณากรอกข้อมูลให้ครบถ้วน และถูกต้อง",
-        position: 'topRight'
-      });
-    }
-    this.account
-      .onUpdateProfile(this.authen.getAuthenticated(), this.form.value)
-      .then(() => this.alert.success({
-        title: 'แจ้งเตือน !',
-        message: "แก้ไขข้อมูลสำเร็จ",
-        position: 'topRight'
-      }))
-      .catch(err => {
-        this.alert.warning({
-          title: 'แจ้งเตือน !',
-          message: err.Message,
-          position: 'topRight'
-        })
-      })
+  ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem(StorageKeys.LOGGED_USER)).data.user;
+    this.image = environment.baseImagesUrl + '/profile/' + this.user.imageName;
   }
 
-  onConvertImage(input: HTMLInputElement) {
-    const imageControl = this.form.controls['image'];
-    const imageTypes = ['image/jpeg', 'image/png'];
-    imageControl.setValue(null);
-    if (input.files.length == 0) return;
-    if (imageTypes.indexOf(input.files[0].type) < 0) {
-      input.value = null;
-      this.alert.warning({
-        title: 'แจ้งเตือน !',
-        message: "กรุณาอัพโหลดรูปภาพเท่านั้น",
-        position: 'topRight'
-      });
-    }
+  uploadImage() {
+    this.playersService.uploadUserProfileImage(this.imageFile).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        console.log(event);
+        this.progress = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+        this.message = 'file uploaded successfuly';
+        setTimeout(() => {
+          this.progress = 0;
+          this.message = null;
+        }, 1000);
+        const logedUserData = JSON.parse(localStorage.getItem(StorageKeys.LOGGED_USER));
+        logedUserData.data.user = event.body.data;
+        localStorage.setItem(StorageKeys.LOGGED_USER, JSON.stringify(logedUserData));
+        console.log(event);
+      }
+    },
+    err => {
+      this.progress = 0;
+      this.backendError(err.error);
+      this.message = 'Could not upload the file:' + this.imageFile.name;
+    })
+  }
+
+
+  isFileSelected = false;
+  onFileChanged(event) {
+    this.imageFile = event.target.files[0];
     const reader = new FileReader;
-    reader.readAsDataURL(input.files[0]);
-    reader.addEventListener('load', () => {
-      imageControl.setValue(reader.result);
-    })
+    reader.readAsDataURL(this.imageFile);
+    this.isFileSelected = true;
+    reader.onload = (event :any) => {
+      this.image = event.target.result;
+    }
+    // reader.addEventListener('load', () => {
+    //   this.image = reader.result;
+    // })
   }
 
-  private initcialCreateFormData() {
-    this.form = this.builder.group({
-      email: [''],
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      position: ['', Validators.required],
-      image: [null]
-    })
-    this.form.get('email').disable();
-  }
+  // onConvertImage(input: HTMLInputElement, form: NgForm) {
+  //   const imageControl = input.value;
+  //   const imageTypes = ['image/jpeg', 'image/png'];
+  //   imageControl.setValue(null);
+  //   if (input.files.length == 0) return;
+  //   if (imageTypes.indexOf(input.files[0].type) < 0) {
+  //     input.value = null;
+  //     this.image = null;
+  //     return;
+  //   }
+  //   this.image = imageControl;
+  //   const reader = new FileReader;
+  //   reader.readAsDataURL(input.files[0]);
+  //   reader.addEventListener('load', () => {
+  //     imageControl.setValue(reader.result);
+  //   })
+  // }
 
-  private initcialLoadData() {
-    this.account
-      .getUserLogin(this.authen.getAuthenticated())
-      .then(user => {
-        this.form.controls['email'].setValue(user.email);
-        this.form.controls['firstname'].setValue(user.firstname);
-        this.form.controls['lastname'].setValue(user.lastname);
-        this.form.controls['position'].setValue(user.position);
-        this.form.controls['image'].setValue(user.image);
-      })
-      .catch(err => {
-        this.alert.warning({
-          title: 'เกิดข้อผิดพลาด!',
-          message: err.Message,
-          position: 'topRight'
-        });
-      });
+
+  getService() :UserService {
+    return null//this.userService;
   }
 }

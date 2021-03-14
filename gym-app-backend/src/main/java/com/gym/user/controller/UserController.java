@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gym.common.constant.FilterKeys;
 import com.gym.common.request.FilterData;
@@ -92,6 +94,14 @@ public class UserController {
 		List<UserListDto> dto = UserListDto.mapListToDtos(entity);
 		return ResponseEntity.ok(new ListResponse<UserListDto>(dto));
 	}
+	
+	@PostMapping("/upload/profile")
+	  public ResponseEntity<BaseResponse<UserListDto>> uploadFile(@RequestParam("file") MultipartFile file) {
+		User entity = userService.saveUserImage(file);
+		UserListDto dto = UserListDto.mapEntityToDto(entity);
+		return ResponseEntity.ok(new EntityResponse<UserListDto>(dto));
+	  }
+
 	
 	private  UserType getUserType(HttpServletRequest req) {
 		String uri = req.getRequestURI();

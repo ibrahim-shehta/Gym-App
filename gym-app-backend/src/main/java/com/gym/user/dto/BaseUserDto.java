@@ -30,6 +30,8 @@ public class BaseUserDto extends BaseDto {
 
 	private String address;
 	
+	private String imageName;
+
 	public static void mapEntityToDto(User entity, BaseUserDto dto) {
 		BaseDto.mapEntityToDto(entity, dto);
 		dto.setName(entity.getName());
@@ -37,6 +39,7 @@ public class BaseUserDto extends BaseDto {
 		dto.setUsername(entity.getUsername());
 		dto.setMobile(entity.getMobile());
 		dto.setAddress(entity.getAddress());
+		dto.setImageName(entity.getImageName());
 	}
 	
 	public static void mapDtoToEntity(BaseUserDto dto, User entity) {
@@ -86,6 +89,14 @@ public class BaseUserDto extends BaseDto {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 
 }
