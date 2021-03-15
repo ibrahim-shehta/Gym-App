@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/core/services/notification.service';
@@ -7,9 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import {UserService} from './users.service';
 import { StorageKeys } from 'src/app/core/constants/StorageKeys';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { UploadService } from 'src/app/shareds/services/upload.service';
 import { environment } from 'src/environments/environment';
 import { PlayersService } from '../../pages/users/services/players.service';
+import { AppStateService } from 'src/app/core/services/app-state.service';
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +28,8 @@ export class ProfileComponent extends BaseFormCompnent implements OnInit{
     public notificationService :NotificationService,
     public translateService :TranslateService,
     private playersService: PlayersService,
-    private uploadService :UploadService
+    private appStateService :AppStateService
+
   ) {
     super(router, activatedRoute, notificationService, translateService);
   }
@@ -46,10 +46,12 @@ export class ProfileComponent extends BaseFormCompnent implements OnInit{
         this.progress = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
         this.message = 'file uploaded successfuly';
+        this.appStateService.changeProfileImage(event.body.data.imageName);
         setTimeout(() => {
           this.progress = 0;
           this.message = null;
         }, 1000);
+
         const logedUserData = JSON.parse(localStorage.getItem(StorageKeys.LOGGED_USER));
         logedUserData.data.user = event.body.data;
         localStorage.setItem(StorageKeys.LOGGED_USER, JSON.stringify(logedUserData));

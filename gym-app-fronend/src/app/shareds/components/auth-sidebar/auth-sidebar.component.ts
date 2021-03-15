@@ -5,6 +5,8 @@ import { AccountService, IAccount } from '../../services/account.service';
 import { Router } from '@angular/router';
 import { Ng2IzitoastService } from 'ng2-izitoast';
 import { AuthenService } from 'src/app/core/services/authen.service';
+import { environment } from 'src/environments/environment';
+import { AppStateService } from 'src/app/core/services/app-state.service';
 
 @Component({
   selector: 'app-auth-sidebar',
@@ -13,11 +15,14 @@ import { AuthenService } from 'src/app/core/services/authen.service';
 })
 export class AuthSidebarComponent implements OnInit {
 
+  userImg;
+
   constructor(
     private account:AccountService,
     private authen:AuthenService,
     private router:Router,
     private iziToast: Ng2IzitoastService ,
+    private appStateService: AppStateService
   ) {
     //this.initialloadUserLogin();
   }
@@ -25,6 +30,13 @@ export class AuthSidebarComponent implements OnInit {
   AuthURL = AuthURL;
   UserLogin : IAccount;
   ngOnInit() {
+    this.getProfileImage();
+  }
+
+  getProfileImage() {
+    this.appStateService.profileImage.subscribe(res => {
+      this.userImg = res ? environment.baseImagesUrl + '/profile/' +res : null;
+    })
   }
 
   private initialloadUserLogin(){

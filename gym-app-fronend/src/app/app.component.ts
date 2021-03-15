@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageKeys } from './core/constants/StorageKeys';
+import { AppStateService } from './core/services/app-state.service';
 import { AppUtils } from './core/utils/app-utils';
 declare const App: any;
 @Component({
@@ -11,9 +12,21 @@ declare const App: any;
 export class AppComponent implements OnInit {
   title = 'angular';
 
-  constructor(public translate: TranslateService) { }
+  constructor(
+    public translate: TranslateService,
+    private appStateService :AppStateService
+    ) { }
   ngOnInit() {
+    this.loadStateIfUserLogged();
     this.initTranslation();
+  }
+
+  loadStateIfUserLogged () {
+    const userObj = localStorage.getItem(StorageKeys.LOGGED_USER);
+    if (userObj) {
+      const user = JSON.parse(userObj).data.user;
+      this.appStateService.changeProfileImage(user.imageName);
+    }
   }
 
   initTranslation() {

@@ -9,6 +9,7 @@ import { StorageKeys } from 'src/app/core/constants/StorageKeys';
 import { AuthURL } from 'src/app/authentication/authentication.url';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UnAuthService } from '../../services/un-auth.service';
+import { AppStateService } from 'src/app/core/services/app-state.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements ILoginComponent, OnInit{
     private router: Router,
     private authService: AuthService,
     private unAuthService : UnAuthService,
-    public translate :TranslateService
+    public translate :TranslateService,
+    private appStateService :AppStateService
   ) {}
 
   ngOnInit() {
@@ -46,6 +48,7 @@ export class LoginComponent implements ILoginComponent, OnInit{
     }
 
     this.unAuthService.login({username: this.form.value.email, password: this.form.value.password}).subscribe(res => {
+      this.appStateService.changeProfileImage(res.data.user.imageName);
       localStorage.setItem(StorageKeys.LOGGED_USER, JSON.stringify(res));
       this.notificationService.showSuccess(this.translate.instant('AUTH_NAVBAR.LOGIN_SUCCESS'), '');
       this.router.navigate(['/' , AppURL.Authen , AuthURL.Dashboard]);

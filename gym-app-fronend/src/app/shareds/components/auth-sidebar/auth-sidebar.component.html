@@ -1,5 +1,8 @@
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
+    <div class="text-center">
+      <img alt="image" [src]="userImg || 'assets/img/avatar/avatar-1.png'" class="rounded-circle mr-1" style="height: 150px; width: 75%;">
+    </div>
     <div class="sidebar-brand">
       <a [routerLink]="['/', AppURL.Authen]">{{'COMMON.PROJECT_NAME'|translate}}</a>
     </div>
@@ -7,7 +10,6 @@
       <a [routerLink]="['/', AppURL.Authen]">SA</a>
     </div>
     <ul class="sidebar-menu">
-      <li class="menu-header">Dashboard</li>
       <li routerLinkActive= "active"><a class="nav-link" [routerLink] = "['/' , AppURL.Authen , AuthURL.Dashboard]"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
       <li class="dropdown" routerLinkActive= "active">
           <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>{{'SCREENS.PLAYERS_MANAGEMENT'|translate}}</span></a>

@@ -1,12 +1,7 @@
 package com.gym.security.controller;
 
-import javax.mail.MessagingException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -17,16 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.EntityResponse;
-import com.gym.common.response.ResponseMessage;
 import com.gym.modules.resetpassword.dao.ResetPasswordRequest;
-import com.gym.modules.resetpassword.model.ResetPassword;
 import com.gym.modules.resetpassword.service.ResetPasswordService;
 import com.gym.security.model.AuthenticationRequest;
 import com.gym.security.model.AuthenticationResponse;

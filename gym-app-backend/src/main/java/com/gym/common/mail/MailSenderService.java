@@ -1,11 +1,14 @@
 package com.gym.common.mail;
 
+import java.util.Date;
+
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -29,6 +32,7 @@ public class MailSenderService {
 		javaMailSender.send(msg);
 	}
 
+	@Async
 	public void resetPassword(String to, String link, String name) throws MessagingException {
 		Context context = new Context();
 		context.setVariable("link", link);
@@ -40,6 +44,7 @@ public class MailSenderService {
 		helper.setText(process, true);
 		helper.setTo(to);
         javaMailSender.send(mimeMessage);
+        System.out.println("Reset Mail To --> " + to + " --" + new Date());
 	}
 	
 }
