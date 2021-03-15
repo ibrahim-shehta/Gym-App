@@ -18,11 +18,11 @@ export class AppComponent implements OnInit {
 
   initTranslation() {
     this.translate.addLangs(['en', 'ar']);
-    this.translate.setDefaultLang('en');
+    this.translate.setDefaultLang('ar');
     const currentLang = localStorage.getItem(StorageKeys.APP_LANG);
-    document.dir = currentLang == 'ar' ? 'rtl' : 'ltr';
-    this.loadStyles(currentLang);
-    this.translate.use(currentLang ? currentLang : 'en');
+    document.dir =  currentLang == 'en' ? 'ltr' : 'rtl';
+    this.loadStyles(currentLang ? currentLang : 'ar');
+    this.translate.use(currentLang ? currentLang : 'ar');
   }
 
 

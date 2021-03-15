@@ -16,6 +16,7 @@ import com.gym.user.model.User_;
 import com.gym.common.constant.AppConstant;
 import com.gym.common.constant.AppUtils;
 import com.gym.common.constant.MessagesKeys;
+import com.gym.common.exception.exceptions.BusinessException;
 import com.gym.common.exception.exceptions.EntityDuplicateAttributes;
 import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
@@ -85,5 +86,19 @@ public class UserServiceImpl extends BaseServiceWithSepecificationImpl<User, Lon
 		filesStorageService.save(file, AppConstant.UPLOAD_PROFILE_PATH, fileName);
 		userRepository.updateImageName(fileName, user.getId());
 		return userRepository.findById(user.getId()).get();
+	}
+
+	@Override
+	public void updateUserPassword(String password, Long id) {
+		userRepository.updateUserPassword(password, id);	
+	}
+
+	@Override
+	public User findByEmail(String email) {
+		User user = userRepository.findByEmail(email);
+		if (user == null) {
+			throw new BusinessException(MessagesKeys.RESET_PASSWORD_EMAIL_NOTFOUND);
+		}
+		return user;
 	}
 }

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AppURL } from '../../app.url';
+import { AppURL } from '../../../app.url';
 import { ILoginComponent } from './login.interface';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageKeys } from 'src/app/core/constants/StorageKeys';
 import { AuthURL } from 'src/app/authentication/authentication.url';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { UnAuthService } from '../../services/un-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements ILoginComponent, OnInit{
+
+  showResetPassword :boolean = false;
   Url = AppURL;
   form: FormGroup;
 
@@ -23,6 +26,7 @@ export class LoginComponent implements ILoginComponent, OnInit{
     private notificationService: NotificationService ,
     private router: Router,
     private authService: AuthService,
+    private unAuthService : UnAuthService,
     public translate :TranslateService
   ) {}
 
@@ -32,7 +36,7 @@ export class LoginComponent implements ILoginComponent, OnInit{
       return;
     }
     this.initialCreateFormData();
-
+    this.initResetPasswordForm();
   }
 
   onSubmit() {
@@ -41,7 +45,7 @@ export class LoginComponent implements ILoginComponent, OnInit{
        return;
     }
 
-    this.authService.login({username: this.form.value.email, password: this.form.value.password}).subscribe(res => {
+    this.unAuthService.login({username: this.form.value.email, password: this.form.value.password}).subscribe(res => {
       localStorage.setItem(StorageKeys.LOGGED_USER, JSON.stringify(res));
       this.notificationService.showSuccess(this.translate.instant('AUTH_NAVBAR.LOGIN_SUCCESS'), '');
       this.router.navigate(['/' , AppURL.Authen , AuthURL.Dashboard]);
@@ -52,7 +56,6 @@ export class LoginComponent implements ILoginComponent, OnInit{
 
   }
 
-
   private initialCreateFormData() {
     this.form = this.builder.group({
       email: ['', Validators.required],
@@ -60,4 +63,27 @@ export class LoginComponent implements ILoginComponent, OnInit{
       remember: [true]
     });
   }
+
+  resetForm :FormGroup;
+  private initResetPasswordForm() {
+    this.resetForm = this.builder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
+  }
+
+
+  sendMailToResetPassword() {
+    if (this.resetForm.invalid) {
+      this.notificationService.showError(this.translate.instant('COMMON.VALIDATION_ERROR'), '');
+      return;
+    }
+
+    this.unAuthService.sendEmail({email: this.resetForm.value.email}).subscribe(res => {
+      this.notificationService.showSuccess(this.translate.instant('RESET_PASSWORD.SEND_SUCCESS'), '');
+      this.showResetPassword = false;
+    }, err => {
+        this.notificationService.showError(err.error.message, '');
+    })
+  }
+
 }

@@ -38,7 +38,7 @@ export class AuthSidebarComponent implements OnInit {
               position: 'topRight'
             });
             this.authen.clearAuthenticated();
-            this.router.navigate(['/', AppURL.Login])
+            this.router.navigate(['/',AppURL.UnAuth,  AppURL.Login])
           })
   }
 

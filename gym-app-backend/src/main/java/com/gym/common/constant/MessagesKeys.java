@@ -29,6 +29,11 @@ public abstract class MessagesKeys {
 	public static final String LAST_DAY_IN_SUBSCRIPTION="last.day.in.subscription";
 	
 	public static final String VALIDATION_FILE_LARGE = "validation.file.large";
-
+	
+	public static final String RESET_PASSWORD_EMAIL_NOTFOUND="reset.password.mail.notfound";
+	public static final String RESET_PASSWORD_CODE_EXPIRED = "reset.password.code.expired";
+	public static final String RESET_PASSWORD_DATE_EXPIRED = "reset.password.date.expired";
+	public static final String RESET_PASSWORD_CODE_NOT_FOUND = "reset.password.notfound.code";
+	
 			
 }

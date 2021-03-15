@@ -15,9 +15,16 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
 	User findByUsername(String username);
 	
+	
+	User findByEmail(String email);
+	
 	List<User> findByUsernameOrEmailOrMobile(String userName, String email, String mobile);
 
 	@Modifying
 	@Query("update User set imageName = :imageName where id = :id")
 	void updateImageName(String imageName, Long id);
+	
+	@Modifying
+	@Query("update User set password = :password where id = :id")
+	void updateUserPassword(String password, Long id);
 }

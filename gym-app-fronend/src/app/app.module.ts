@@ -3,15 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { LoginComponent } from './components/login/login.component';
 import { AppRouting } from './app.routing';
 import { SharedsModule } from './shareds/shareds.module';
-import { RegisterComponent } from './components/register/register.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NotificationService } from './core/services/notification.service';
-import { AuthServiceService } from './components/services/auth-service.service';
 import { AuthService } from './core/services/auth.service';
 import { Ng2IzitoastService } from 'ng2-izitoast';
 import { AuthInterceptorService } from './core/interceptors/auth-interceptor.service';
@@ -19,8 +16,6 @@ import { AuthInterceptorService } from './core/interceptors/auth-interceptor.ser
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +34,6 @@ import { AuthInterceptorService } from './core/interceptors/auth-interceptor.ser
   ],
   providers: [
     NotificationService,
-    AuthServiceService,
     AuthService,
     Ng2IzitoastService,
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { IRegister } from 'src/app/components/register/register.interface';
-import { ILogin } from 'src/app/components/login/login.interface';
+import { ILogin } from 'src/app/un-auth-user/pages/login/login.interface';
 import { IProfile } from 'src/app/authentication/components/profile/profile.interface';
 import { resolve } from 'url';
+import { IRegister } from 'src/app/un-auth-user/pages/register/register.interface';
 
 @Injectable()
 export class AccountService {

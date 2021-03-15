@@ -15,14 +15,14 @@ export class AuthInterceptorService implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Get token & add to request headers
 
-    const isLoggin = request.url.indexOf('authenticate') > -1 ? true : false;
-    if (isLoggin) {
-      return next.handle(request);
-    }
-
     const user = JSON.parse(localStorage.getItem(StorageKeys.LOGGED_USER));
     const lang = localStorage.getItem(StorageKeys.APP_LANG);
 
+    const isLoggin = request.url.indexOf('authenticate') > -1 ? true : false;
+    if (isLoggin) {
+       request = request.clone({ headers: request.headers.set('Accept-Language', lang ? lang : 'ar') });
+       return next.handle(request);
+    }
 
     if (user) {
       request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + user.data.token) });
@@ -34,7 +34,7 @@ export class AuthInterceptorService implements HttpInterceptor {
   //   }
 
      request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
-     request = request.clone({ headers: request.headers.set('Accept-Language', lang ? lang : 'en') });
+     request = request.clone({ headers: request.headers.set('Accept-Language', lang ? lang : 'ar') });
 
     return next.handle(request).pipe(
       catchError((err :HttpErrorResponse) => {

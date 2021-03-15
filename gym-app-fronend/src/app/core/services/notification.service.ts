@@ -34,7 +34,7 @@ appLang;
     return {
       title: message,
       message: title,
-      position: this.appLang == 'ar' ? 'topLeft' : 'topRight'
+      position: this.appLang == 'en' ? 'topRight' : 'topLeft'
     };
   }
 }

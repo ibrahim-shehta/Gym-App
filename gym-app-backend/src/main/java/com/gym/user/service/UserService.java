@@ -10,4 +10,7 @@ public interface UserService extends BaseServiceWithSepecification<User, Long> {
 
 	public User saveUserImage(MultipartFile file);
 	
+	public User findByEmail(String email);
+	
+	void updateUserPassword(String password, Long id);
 }
