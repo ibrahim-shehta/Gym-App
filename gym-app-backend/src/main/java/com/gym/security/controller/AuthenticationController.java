@@ -1,5 +1,7 @@
 package com.gym.security.controller;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gym.common.jasper.impl.JasperExporterServiceImpl;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.EntityResponse;
 import com.gym.modules.resetpassword.dao.ResetPasswordRequest;
@@ -45,6 +48,9 @@ public class AuthenticationController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private JasperExporterServiceImpl jasperExporterServiceImpl;
 
 	@PostMapping
 	public ResponseEntity<BaseResponse<AuthenticationResponse>> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
@@ -72,8 +78,7 @@ public class AuthenticationController {
 	
 	@GetMapping
 	public String showMessage() {
-//		User u = userService.findById(1L);
-//		resetPasswordService.generateResetPassword(u);
+		jasperExporterServiceImpl.exportPdfToFile("D:/gym/report-templates/Users.jasper", "D:/gym/report-templates/Users.pdf", new HashMap<String, Object>());
 		return "Hello My Client To Gym App !";
 	}
 	

@@ -99,11 +99,19 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 		
+		<!-- thymeleaf To Mail Templates -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
+		<!-- Jasper reports dependency. -->
+        <dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports</artifactId>
+		    <version>6.15.0</version>
+		</dependency>
+        
 	</dependencies>
 
 	<build>
