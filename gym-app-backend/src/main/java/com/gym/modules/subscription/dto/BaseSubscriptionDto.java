@@ -5,19 +5,16 @@ import java.util.Date;
 import com.gym.common.dto.BaseDto;
 import com.gym.modules.subscription.model.Subscription;
 import com.gym.modules.subscription.model.enums.SubscriptionStatus;
-import com.gym.user.dto.UserListDto;
-import com.gym.user.model.User;
-
 public class BaseSubscriptionDto extends BaseDto {
 
 	private double price;
 	private Date startDate;
 	private Date endDate;
 	private double paidAmount;
-	private UserListDto user;
 	private String subscriptionNumber;
 	private String statusReason;
 	private SubscriptionStatus status;
+	private double requiredAmount;
 	
 	public static void mapEntityToDto(Subscription entity, BaseSubscriptionDto dto) {
 		BaseDto.mapEntityToDto(entity, dto);
@@ -25,10 +22,10 @@ public class BaseSubscriptionDto extends BaseDto {
 		dto.setStartDate(entity.getStartDate());
 		dto.setEndDate(entity.getEndDate());
 		dto.setPaidAmount(entity.getPaidAmount());
-		dto.setUser(UserListDto.mapEntityToDto(entity.getUser()));
 		dto.setSubscriptionNumber(entity.getSubscriptionNumber());
 		dto.setStatusReason(entity.getStatusReason());
 		dto.setStatus(entity.getStatus());
+		dto.setRequiredAmount(entity.getRequiredAmount());
 	}
 
 	public static void mapDtoToEntity(BaseSubscriptionDto dto, Subscription entity) {
@@ -37,9 +34,9 @@ public class BaseSubscriptionDto extends BaseDto {
 		entity.setStartDate(dto.getStartDate());
 		entity.setEndDate(dto.getEndDate());
 		entity.setPaidAmount(dto.getPaidAmount());
-		entity.setUser(new User(dto.getUser().getId()));
 		entity.setStatusReason(entity.getStatusReason());
 		entity.setStatus(dto.getStatus());
+		entity.setRequiredAmount(dto.getRequiredAmount());
 	}
 
 	public double getPrice() {
@@ -74,14 +71,6 @@ public class BaseSubscriptionDto extends BaseDto {
 		this.paidAmount = paidAmount;
 	}
 
-	public UserListDto getUser() {
-		return user;
-	}
-
-	public void setUser(UserListDto user) {
-		this.user = user;
-	}
-
 	public String getSubscriptionNumber() {
 		return subscriptionNumber;
 	}
@@ -104,5 +93,13 @@ public class BaseSubscriptionDto extends BaseDto {
 
 	public void setStatusReason(String statusReason) {
 		this.statusReason = statusReason;
+	}
+
+	public double getRequiredAmount() {
+		return requiredAmount;
+	}
+
+	public void setRequiredAmount(double requiredAmount) {
+		this.requiredAmount = requiredAmount;
 	}
 }

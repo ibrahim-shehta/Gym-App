@@ -8,13 +8,15 @@ import com.gym.modules.subscription.model.Subscription;
 
 public class SubscriptionListDto extends BaseSubscriptionDto {
 	private String planName;
-
+	private String playerName;
+	
 	public static SubscriptionListDto mapEntityToDto(Subscription entity) {
 		if (entity == null)
 			return null;
 		SubscriptionListDto dto = new SubscriptionListDto();
 		BaseSubscriptionDto.mapEntityToDto(entity, dto);
 		dto.setPlanName(entity.getPlan().getName());
+		dto.setPlayerName(entity.getUser().getName());
 		return dto;
 	}
 
@@ -31,6 +33,14 @@ public class SubscriptionListDto extends BaseSubscriptionDto {
 
 	public void setPlanName(String planName) {
 		this.planName = planName;
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
 
 

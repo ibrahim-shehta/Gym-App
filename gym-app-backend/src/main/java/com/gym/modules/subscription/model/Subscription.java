@@ -48,6 +48,7 @@ public class Subscription extends Auditable {
 	private String statusReason;
 	@Enumerated(EnumType.STRING)
 	private SubscriptionStatus status;
+	private double requiredAmount;
 
 	public Subscription() {
 
@@ -183,5 +184,13 @@ public class Subscription extends Auditable {
 
 	public void setStatus(SubscriptionStatus status) {
 		this.status = status;
+	}
+
+	public double getRequiredAmount() {
+		return requiredAmount;
+	}
+
+	public void setRequiredAmount(double requiredAmount) {
+		this.requiredAmount = requiredAmount;
 	}
 }

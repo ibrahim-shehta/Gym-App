@@ -70,6 +70,7 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
     }
     this.selectedPlan = this.plans.find(plan => plan.id == id);
     this.netPrice = Math.ceil(this.selectedPlan.price - (this.selectedPlan.price *this.selectedPlan.discount / 100));
+    this.entity.requiredAmount = this.netPrice;
   }
 
   onChangeUser(id) {

@@ -4,6 +4,8 @@ import com.gym.modules.plan.dto.BasePlanDto;
 import com.gym.modules.plan.dto.PlanListDto;
 import com.gym.modules.plan.model.Plan;
 import com.gym.modules.subscription.model.Subscription;
+import com.gym.user.dto.UserListDto;
+import com.gym.user.model.User;
 
 public class SubscriptionDto extends BaseSubscriptionDto {
 
@@ -13,6 +15,7 @@ public class SubscriptionDto extends BaseSubscriptionDto {
 	 private int discount;
 	 private boolean isSpecial;
 	 private BasePlanDto plan;
+	 private UserListDto user;
 	 
 		public static SubscriptionDto mapEntityToDto(Subscription entity) {
 			if (entity == null) 
@@ -25,6 +28,7 @@ public class SubscriptionDto extends BaseSubscriptionDto {
 			dto.setDiscount(entity.getDiscount());
 			dto.setSpecial(entity.isSpecial());
 			dto.setPlan(PlanListDto.mapEntityToDto(entity.getPlan()));
+			dto.setUser(UserListDto.mapEntityToDto(entity.getUser()));
 			return dto;
 		}
 
@@ -39,6 +43,7 @@ public class SubscriptionDto extends BaseSubscriptionDto {
 			entity.setDiscount(dto.getDiscount());
 			entity.setSpecial(dto.isSpecial());
 			entity.setPlan(new Plan(dto.getPlan().getId()));
+			entity.setUser(new User(dto.getUser().getId()));
 			return entity;
 		}
 		
@@ -81,7 +86,15 @@ public class SubscriptionDto extends BaseSubscriptionDto {
 	public void setPlan(BasePlanDto plan) {
 		this.plan = plan;
 	}
-	 
+	
+	public UserListDto getUser() {
+		return user;
+	}
+
+	public void setUser(UserListDto user) {
+		this.user = user;
+	}
+
 	 
 
 }
