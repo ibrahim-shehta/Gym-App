@@ -120,4 +120,10 @@ public class SubscriptionServiceImpl extends BaseServiceWithSepecificationImpl<S
 	private void incrementAttendanceDays(Long id) {
 		subscriptionRepository.incrementDaysBySubscriptionId(id);
 	}
+
+	@Override
+	@Transactional
+	public void payRemainAmount(Subscription subscription) {
+		subscriptionRepository.payRemainAmount(subscription.getId(), subscription.getPaidAmount());
+	}
 }

@@ -12,10 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gym.common.constant.FilterKeys;
 import com.gym.common.request.FilterData;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
@@ -47,6 +49,13 @@ public class SubscriptionController {
 		return ResponseEntity.ok(new EntityResponse<SubscriptionDto>(dto));
 	}
 	
+	@PutMapping("/remain-amount")
+	public ResponseEntity<BaseResponse<SubscriptionDto>> payRemainAmount(@RequestBody SubscriptionDto dto) {
+		Subscription entity = SubscriptionDto.mapDtoToEntity(dto);
+		this.subscriptionService.payRemainAmount(entity);
+		return ResponseEntity.ok(new EntityResponse<SubscriptionDto>(null));
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<BaseResponse<SubscriptionDto>> findById(@PathVariable Long id) {
 		Subscription entity = subscriptionService.findById(id);
@@ -74,4 +83,21 @@ public class SubscriptionController {
 		List<String> statusList = Arrays.asList(SubscriptionStatus.values()).stream().map(status -> status.toString()).collect(Collectors.toList());
 		return ResponseEntity.ok(new EntityResponse<List<String>>(statusList));	
 	}
+	
+	@GetMapping("/{userId}/in-progress-subscription")
+	public ResponseEntity<BaseResponse<SubscriptionDto>> getInProgressSubscription(@PathVariable Long userId) {
+		FilterDataWithPaginationAndSort filterDataWithPaginationAndSort = new FilterDataWithPaginationAndSort();
+		filterDataWithPaginationAndSort.getFilterMap().put(FilterKeys.USER_ID, userId);
+		filterDataWithPaginationAndSort.getFilterMap().put(FilterKeys.STATUS, SubscriptionStatus.IN_PROGRESS);
+		
+		Page<Subscription> entity = this.subscriptionService.filterDataPaginated(filterDataWithPaginationAndSort);
+		List<Subscription> list = entity.get().collect(Collectors.toList());
+		if (list.isEmpty()) {
+			return ResponseEntity.ok(new EntityResponse<SubscriptionDto>(null));
+		}
+		SubscriptionDto dto = SubscriptionDto.mapEntityToDto(list.get(0));
+		return ResponseEntity.ok(new EntityResponse<SubscriptionDto>(dto));
+	}
+	
+	
 }

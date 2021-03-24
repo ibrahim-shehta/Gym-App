@@ -27,6 +27,8 @@ import { PlayerAttendanceComponent } from "./pages/users/screens/player-attendan
 import { PlayersAttendanceService } from "./pages/users/resolvers/players-attendance.service";
 import { PlayerAttendanceHistoryComponent } from "./pages/users/screens/player-attendance-history/player-attendance-history.component";
 import { PlayerAttendanceHistoryResolverService } from "./pages/users/resolvers/player-attendance-history-resolver.service";
+import { SubscriptionViewComponent } from "./pages/subscriptions/screens/subscription-view/subscription-view.component";
+import { SubscriptionsViewResolverService } from "./pages/subscriptions/resolvers/subscriptions-view-resolver.service";
 
 const RouteList: Routes = [
   { path: "", redirectTo: AuthURL.Dashboard, pathMatch: "full" },
@@ -119,6 +121,12 @@ const RouteList: Routes = [
         canActivate: [AuthGuardService],
         resolve: { form: SubscriptionsFormResolverService },
       },
+      {
+        path: AuthURL.View,
+        component: SubscriptionViewComponent,
+        canActivate: [AuthGuardService],
+        resolve: { form: SubscriptionsViewResolverService },
+      }
     ],
   },
 

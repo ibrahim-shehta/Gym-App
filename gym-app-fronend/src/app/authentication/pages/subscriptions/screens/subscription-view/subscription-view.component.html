@@ -1,0 +1,9 @@
+<app-auth-contect>
+  <app-page-header [pageHeader]="'SUBSCRIPTIONS.SUBSCRIPTION_DETAILS'" [sectionHeader]="'SUBSCRIPTIONS.SUBSCRIPTION_DETAILS'">
+    <app-subscriptions-details [entity]="entity"></app-subscriptions-details>
+    <app-view-edit-actions
+        [showCancel]="true"
+        (onClickCancel)="goBack()"
+    ></app-view-edit-actions>
+  </app-page-header>
+</app-auth-contect>

@@ -20,6 +20,8 @@ import { PlayerDetailsComponent } from './pages/users/components/player-details/
 import { SelectPlanComponent } from './pages/plans/components/select-plan/select-plan.component';
 import { PlayerAttendanceComponent } from './pages/users/screens/player-attendance/player-attendance.component';
 import { PlayerAttendanceHistoryComponent } from './pages/users/screens/player-attendance-history/player-attendance-history.component';
+import { SubscriptionViewComponent } from './pages/subscriptions/screens/subscription-view/subscription-view.component';
+import { SubscriptionsDetailsComponent } from './pages/subscriptions/components/subscriptions-details/subscriptions-details.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { PlayerAttendanceHistoryComponent } from './pages/users/screens/player-a
     PlayerDetailsComponent,
     SelectPlanComponent,
     PlayerAttendanceComponent,
-    PlayerAttendanceHistoryComponent
+    PlayerAttendanceHistoryComponent,
+    SubscriptionViewComponent,
+    SubscriptionsDetailsComponent
   ],
   imports: [
     CommonModule,

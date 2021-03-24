@@ -20,4 +20,13 @@ export class SubscriptionsService extends BaseServiceWithStatus {
   getStatusList() {
     return this.http.get(this.baseUrl + "/status-list");
   }
+
+  getInProgressSubscription(userId) {
+    return this.http.get(this.baseUrl + "/" + userId + "/in-progress-subscription");
+  }
+
+  payRemainAmount(obj) {
+    return this.http.put(this.baseUrl + "/remain-amount", obj);
+  }
+
 }

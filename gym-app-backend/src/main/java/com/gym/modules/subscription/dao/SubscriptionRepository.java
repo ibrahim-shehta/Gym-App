@@ -37,4 +37,9 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
 	@Modifying
 	@Query("update Subscription s set s.attendanceDays = s.attendanceDays + 1 where s.id = :id")
 	public void incrementDaysBySubscriptionId(Long id);
+	
+	@Modifying
+	@Query("update Subscription s set s.paidAmount = (s.paidAmount + :paidAmount) where s.id = :id")
+	public void payRemainAmount(Long id, double paidAmount);
+	
 }

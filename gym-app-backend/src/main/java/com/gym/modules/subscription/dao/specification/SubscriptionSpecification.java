@@ -44,6 +44,11 @@ public class SubscriptionSpecification {
                 if (filterDataMap.isEmpty()) 
                 	return null;
                 
+                if (filterDataMap.containsKey(FilterKeys.USER_ID)) {
+            		Predicate equalPredicate = criteriaBuilder.equal(user.get(User_.ID), filterDataMap.get(FilterKeys.USER_ID));
+            		andPredicates.add(equalPredicate);
+            	}
+                
             	if (filterDataMap.containsKey(FilterKeys.NAME)) {
             		Predicate equalPredicate = criteriaBuilder.like(user.get(User_.NAME), filterDataMap.get(FilterKeys.NAME) + "%");
             		orPredicates.add(equalPredicate);
