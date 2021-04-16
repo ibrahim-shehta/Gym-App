@@ -11,7 +11,7 @@ import { PlayersService } from '../../services/players.service';
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.css']
 })
-export class PlayersComponent extends BaseTableComponent implements OnInit, OnDestroy {
+export class PlayersComponent extends BaseTableComponent<any> implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,

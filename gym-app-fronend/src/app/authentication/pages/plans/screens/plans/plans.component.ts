@@ -12,7 +12,7 @@ import { PlansService } from '../../services/plans.service';
   templateUrl: './plans.component.html',
   styleUrls: ['./plans.component.css']
 })
-export class PlansComponent extends BaseTableComponent implements OnInit, OnDestroy {
+export class PlansComponent extends BaseTableComponent<any> implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,

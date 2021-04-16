@@ -10,6 +10,7 @@ import com.gym.modules.exercises.category.model.ExcerciseCategory;
 public class ExcerciseCategoryListDto extends BaseDto {
 
 	private String name;
+	private String nextExcerciseCategoryName;
 
 	public static ExcerciseCategoryListDto mapEntityToDto(ExcerciseCategory entity) {
 		if (entity == null) {
@@ -18,7 +19,7 @@ public class ExcerciseCategoryListDto extends BaseDto {
 		ExcerciseCategoryListDto dto = new ExcerciseCategoryListDto();
 		BaseDto.mapEntityToDto(entity, dto);
 		dto.setName(entity.getName());
-
+		dto.setNextExcerciseCategoryName(entity.getNextExcerciseCategory() != null ? entity.getNextExcerciseCategory().getName() : null);
 		return dto;
 	}
 
@@ -35,6 +36,14 @@ public class ExcerciseCategoryListDto extends BaseDto {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getNextExcerciseCategoryName() {
+		return nextExcerciseCategoryName;
+	}
+
+	public void setNextExcerciseCategoryName(String nextExcerciseCategoryName) {
+		this.nextExcerciseCategoryName = nextExcerciseCategoryName;
 	}
 
 }

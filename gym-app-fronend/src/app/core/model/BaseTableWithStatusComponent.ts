@@ -1,10 +1,11 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { NotificationService } from "../services/notification.service";
+import { BaseEntity } from "./BaseEntity";
 import { BaseServiceWithStatus } from "./BaseServiceWithStatus";
 import { BaseTableComponent } from "./BaseTableComponent";
 
-export abstract class BaseTableWithStatusComponent extends BaseTableComponent {
+export abstract class BaseTableWithStatusComponent<T extends BaseEntity> extends BaseTableComponent<T> {
 
   statusList :[] = [];
   abstract  getService() :BaseServiceWithStatus;

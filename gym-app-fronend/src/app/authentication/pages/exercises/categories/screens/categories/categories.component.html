@@ -38,7 +38,7 @@
 
                   <tr *ngFor="let cat of dataList; let i = index">
                     <td>{{cat.name}}</td>
-                    <td>{{cat.nextExcerciseCategory?.name}}</td>
+                    <td>{{cat.nextExcerciseCategoryName }}</td>
                     <td><a class="btn btn-secondary" (click)="edit(cat.id)">{{'COMMON.EDIT'|translate}}</a></td>
                   </tr>
 

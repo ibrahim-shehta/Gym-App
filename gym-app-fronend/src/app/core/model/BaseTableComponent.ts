@@ -3,10 +3,11 @@ import { TranslateService } from "@ngx-translate/core";
 import { AuthURL } from "src/app/authentication/authentication.url";
 import { NotificationService } from "../services/notification.service";
 import { BaseComponent } from "./BaseComponent";
+import { BaseEntity } from "./BaseEntity";
 import { FilterMap } from "./FilterDataWithPaginationAndSort";
 
-export abstract class BaseTableComponent extends BaseComponent {
-  dataList: any[] = [];
+export abstract class BaseTableComponent<T extends BaseEntity> extends BaseComponent {
+  dataList: T[] = [];
   totalRows: number = 0;
   currentPage :number = 1;
   resetState :boolean = true;

@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthURL } from 'src/app/authentication/authentication.url';
 import { BaseTableComponent } from 'src/app/core/model/BaseTableComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { ExcerciseCategoryLight } from '../../model/ExcerciseCategory';
 import { CategoriesService } from '../../services/categories-service';
 
 
@@ -11,7 +12,7 @@ import { CategoriesService } from '../../services/categories-service';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent extends BaseTableComponent implements OnInit, OnDestroy {
+export class CategoriesComponent extends BaseTableComponent<ExcerciseCategoryLight> implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,

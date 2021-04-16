@@ -12,7 +12,7 @@ import { SubscriptionsService } from '../../services/subscriptions.service';
   templateUrl: './subscriptions.component.html',
   styleUrls: ['./subscriptions.component.css']
 })
-export class SubscriptionsComponent extends BaseTableWithStatusComponent implements OnInit, OnDestroy {
+export class SubscriptionsComponent extends BaseTableWithStatusComponent<any> implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,

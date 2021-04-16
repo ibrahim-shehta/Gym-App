@@ -10,7 +10,7 @@ import { AttendanceService } from '../../services/attendance.service';
   templateUrl: './player-attendance-history.component.html',
   styleUrls: ['./player-attendance-history.component.css']
 })
-export class PlayerAttendanceHistoryComponent extends BaseTableComponent implements OnInit {
+export class PlayerAttendanceHistoryComponent extends BaseTableComponent<any> implements OnInit {
 
   back :boolean = false;
   constructor(

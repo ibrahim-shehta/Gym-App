@@ -67,10 +67,10 @@ public class ExcerciseCategoryController {
 	
 	
 	@PostMapping("/paginated-filter")
-	public ResponseEntity<BaseResponse<ExcerciseCategoryDto>> paginatedFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+	public ResponseEntity<BaseResponse<ExcerciseCategoryListDto>> paginatedFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
 		Page<ExcerciseCategory> entity = this.excerciseCategoryService.filterCategoryByName(filterDataWithPaginationAndSort); //this.excerciseCategoryService.filterDataPaginated(filterDataWithPaginationAndSort);
-		List<ExcerciseCategoryDto> dto = ExcerciseCategoryDto.mapListToDtos(entity.get().collect(Collectors.toList()));
-		return ResponseEntity.ok(new ListWithPaginationResponse<ExcerciseCategoryDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
+		List<ExcerciseCategoryListDto> dto = ExcerciseCategoryListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
+		return ResponseEntity.ok(new ListWithPaginationResponse<ExcerciseCategoryListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
 	}
 
 	
