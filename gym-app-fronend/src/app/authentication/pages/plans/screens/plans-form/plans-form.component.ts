@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { Plan } from '../../model/Plan';
 import { PlansService } from '../../services/plans.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { PlansService } from '../../services/plans.service';
   templateUrl: './plans-form.component.html',
   styleUrls: ['./plans-form.component.scss']
 })
-export class PlansFormComponent extends BaseFormCompnent implements OnInit {
+export class PlansFormComponent extends BaseFormCompnent<Plan> implements OnInit {
 
   constructor(
     public notificationService :NotificationService,
@@ -20,6 +21,7 @@ export class PlansFormComponent extends BaseFormCompnent implements OnInit {
     private plansService :PlansService,
   ) {
         super(router, activatedRoute, notificationService, translateService);
+        this.entity = new Plan();
   }
 
   ngOnInit() :void {

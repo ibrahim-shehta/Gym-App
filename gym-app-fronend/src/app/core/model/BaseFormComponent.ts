@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { NotificationService } from "../services/notification.service";
 import { BaseComponent } from "./BaseComponent";
+import { BaseEntity } from "./BaseEntity";
 
-export abstract class BaseFormCompnent extends BaseComponent {
+export abstract class BaseFormCompnent<T extends BaseEntity> extends BaseComponent {
 
-  entity :any = {};
+  entity :T;
   id :number;
   isEditMode :boolean;
 
@@ -34,8 +35,8 @@ export abstract class BaseFormCompnent extends BaseComponent {
     if (this.validForm(form)) {
       return;
     }
-
-   this.save(this.entity);
+    console.log(form.value)
+    this.save(this.entity);
   }
 
   validForm(form :NgForm) :boolean {

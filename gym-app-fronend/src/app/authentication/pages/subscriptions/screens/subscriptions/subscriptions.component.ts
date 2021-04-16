@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthURL } from 'src/app/authentication/authentication.url';
-import { BaseTableComponent } from 'src/app/core/model/BaseTableComponent';
 import { BaseTableWithStatusComponent } from 'src/app/core/model/BaseTableWithStatusComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { SubscriptionList } from '../../model/Subscription';
 import { SubscriptionsService } from '../../services/subscriptions.service';
 
 @Component({
@@ -12,7 +11,7 @@ import { SubscriptionsService } from '../../services/subscriptions.service';
   templateUrl: './subscriptions.component.html',
   styleUrls: ['./subscriptions.component.css']
 })
-export class SubscriptionsComponent extends BaseTableWithStatusComponent<any> implements OnInit, OnDestroy {
+export class SubscriptionsComponent extends BaseTableWithStatusComponent<SubscriptionList> implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,

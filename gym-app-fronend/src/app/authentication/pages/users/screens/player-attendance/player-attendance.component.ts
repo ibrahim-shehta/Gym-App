@@ -5,13 +5,14 @@ import { ResponseStatus } from 'src/app/core/constants/response-status-enum';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { SubscriptionsService } from '../../../subscriptions/services/subscriptions.service';
+import { PlayerAttendance } from '../../model/PlayerAttendance';
 import { AttendanceService } from '../../services/attendance.service';
 @Component({
   selector: 'app-player-attendance',
   templateUrl: './player-attendance.component.html',
   styleUrls: ['./player-attendance.component.css']
 })
-export class PlayerAttendanceComponent extends BaseFormCompnent implements OnInit {
+export class PlayerAttendanceComponent extends BaseFormCompnent<PlayerAttendance> implements OnInit {
   userId;
   excercisesCategories :any[] = [];
   activeSubscription :any = {user: {}};
@@ -29,7 +30,7 @@ export class PlayerAttendanceComponent extends BaseFormCompnent implements OnIni
     private subscriptionService: SubscriptionsService
   ) {
         super(router, activatedRoute, notificationService, translateService);
-        this.entity = {user: {id: null}, excerciseCategory: {id: null}}
+        this.entity = new PlayerAttendance();
         if (this.router.getCurrentNavigation().extras.state)
           this.entity.user.id = this.router.getCurrentNavigation().extras.state.id;
         else

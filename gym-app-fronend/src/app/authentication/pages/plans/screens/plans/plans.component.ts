@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthURL } from 'src/app/authentication/authentication.url';
 import { BaseTableComponent } from 'src/app/core/model/BaseTableComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { PlanList } from '../../model/Plan';
 import { PlansService } from '../../services/plans.service';
 
 
@@ -12,7 +13,7 @@ import { PlansService } from '../../services/plans.service';
   templateUrl: './plans.component.html',
   styleUrls: ['./plans.component.css']
 })
-export class PlansComponent extends BaseTableComponent<any> implements OnInit, OnDestroy {
+export class PlansComponent extends BaseTableComponent<PlanList> implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,

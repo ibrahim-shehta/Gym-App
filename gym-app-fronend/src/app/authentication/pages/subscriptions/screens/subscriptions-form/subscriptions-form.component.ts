@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthURL } from 'src/app/authentication/authentication.url';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import {  FilterMap } from 'src/app/core/model/FilterDataWithPaginationAndSort';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { PlayersService } from '../../../users/services/players.service';
+import { Subscription } from '../../model/Subscription';
 import { SubscriptionsService } from '../../services/subscriptions.service';
 
 @Component({
@@ -14,7 +13,7 @@ import { SubscriptionsService } from '../../services/subscriptions.service';
   templateUrl: './subscriptions-form.component.html',
   styleUrls: ['./subscriptions-form.component.scss']
 })
-export class SubscriptionsFormComponent extends BaseFormCompnent implements OnInit {
+export class SubscriptionsFormComponent extends BaseFormCompnent<Subscription> implements OnInit {
   showPlayerDetails :boolean = false;
   plans :any[] = [];
   selectedPlan :any;
@@ -33,13 +32,14 @@ export class SubscriptionsFormComponent extends BaseFormCompnent implements OnIn
     private playersService :PlayersService
   ) {
         super(router, activatedRoute, notificationService, translateService);
+        this.entity = new Subscription();
   }
 
   ngOnInit() :void {
     this.modeInit();
-    if (!this.isEditMode) {
-      this.entity = {user: {}, plan: {}}
-    }
+    // if (!this.isEditMode) {
+    //   this.entity = {user: {}, plan: {}}
+    // }
   }
 
   getResolverData() {

@@ -15,7 +15,7 @@ import { AppStateService } from 'src/app/core/services/app-state.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent extends BaseFormCompnent implements OnInit{
+export class ProfileComponent extends BaseFormCompnent<any> implements OnInit{
   user: any;
   image;
   imageFile :File;
