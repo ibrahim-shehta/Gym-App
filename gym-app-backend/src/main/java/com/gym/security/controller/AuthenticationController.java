@@ -1,6 +1,7 @@
 package com.gym.security.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -78,7 +79,12 @@ public class AuthenticationController {
 	
 	@GetMapping
 	public String showMessage() {
-		jasperExporterServiceImpl.exportPdfToFile("D:/gym/report-templates/Users.jasper", "D:/gym/report-templates/Users.pdf", new HashMap<String, Object>());
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", new Long(26));
+		params.put("startDate", "2021-03-10");
+		params.put("endDate", "2021-03-24");
+		jasperExporterServiceImpl.exportPdfToFile("D:/gym/report-templates/UserAttendance.jasper", "D:/gym/report-templates/UserAttendance.pdf", params);
 		return "Hello My Client To Gym App !";
 	}
 	
