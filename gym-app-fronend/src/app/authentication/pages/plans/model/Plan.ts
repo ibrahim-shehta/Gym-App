@@ -6,8 +6,9 @@ class BasePlan extends BaseEntity {
   price :number;
   numberOfDays :number;
   numberOfReservedDays :number;
+  numberOfInvitations :number;
   discount :number;
-  isSpecial :boolean;
+  special :boolean;
   isActive :boolean;
 }
 
