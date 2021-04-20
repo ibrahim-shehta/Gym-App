@@ -12,6 +12,7 @@ import { NotificationService } from './core/services/notification.service';
 import { AuthService } from './core/services/auth.service';
 import { Ng2IzitoastService } from 'ng2-izitoast';
 import { AuthInterceptorService } from './core/interceptors/auth-interceptor.service';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,6 @@ export class AppModule { }
 // }
 
 export function HttpLoaderFactory(http: HttpClient) {
-  const path = window.location.origin + '/assets/i18n/';
+  const path = window.location.origin + environment.appContext + '/assets/i18n/';
   return new TranslateHttpLoader(http, path, '.json');
 }
