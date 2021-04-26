@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PlayersService extends Baseservice {
+export class PlayersService extends Baseservice<any, any> {
 
 baseUrl = environment.baseUrl + '/player'
 

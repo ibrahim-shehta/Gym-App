@@ -6,7 +6,7 @@ import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: "root",
 })
-export class SubscriptionsService extends BaseServiceWithStatus {
+export class SubscriptionsService extends BaseServiceWithStatus<any, any> {
   baseUrl = environment.baseUrl + "/subscription";
 
   constructor(public http: HttpClient) {

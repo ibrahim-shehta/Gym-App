@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Baseservice } from 'src/app/core/model/BaseService';
 import { environment } from 'src/environments/environment';
+import { Plan, PlanList } from '../model/Plan';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PlansService extends Baseservice {
+export class PlansService extends Baseservice<PlanList, Plan> {
 
   baseUrl = environment.baseUrl + '/plan';
 

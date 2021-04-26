@@ -29,7 +29,7 @@ export abstract class BaseViewComponent extends BaseComponent {
     this.router.navigate(["../"], { relativeTo: this.activatedRoute });
   }
 
-  getService() :Baseservice {
+  getService() :Baseservice<any,any> {
     return null;
   }
 

@@ -11,7 +11,7 @@ export class PageHeaderComponent implements OnInit {
   @Input() pageHeader :string = '';
   @Input() sectionHeader :string = '';
   @Input() isTablePage :boolean = false;
-  @Input() service :Baseservice;
+  @Input() service :Baseservice<any, any>;
 
   @Output() onSearch = new EventEmitter<any>();
   @Output() onStopSearch = new EventEmitter<any>();

@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends Baseservice {
+export class UserService extends Baseservice<any, any> {
 
 baseUrl = environment.baseUrl + '/employee'
 

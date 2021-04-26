@@ -12,7 +12,7 @@ export abstract class BaseComponent {
   ) {}
 
 
-  abstract  getService() :Baseservice;
+  abstract  getService() :Baseservice<any, any>;
 
   backendError(error :any) :void {
     if (!error) {

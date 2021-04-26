@@ -8,7 +8,7 @@ import { BaseTableComponent } from "./BaseTableComponent";
 export abstract class BaseTableWithStatusComponent<T extends BaseEntity> extends BaseTableComponent<T> {
 
   statusList :[] = [];
-  abstract  getService() :BaseServiceWithStatus;
+  abstract  getService() :BaseServiceWithStatus<any, any>;
 
   constructor(
     public router :Router,
