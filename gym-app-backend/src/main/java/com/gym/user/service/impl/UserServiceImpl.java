@@ -22,6 +22,9 @@ import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
 import com.gym.common.files.service.FilesStorageService;
 import com.gym.common.service.impl.BaseServiceWithSepecificationImpl;
+import com.gym.modules.settings.model.Settings;
+import com.gym.modules.settings.model.enums.SettingsCode;
+import com.gym.modules.settings.service.SettingsService;
 import com.gym.user.model.User;
 import com.gym.user.repository.UserRepository;
 import com.gym.user.repository.specification.UserSpecification;
@@ -42,6 +45,9 @@ public class UserServiceImpl extends BaseServiceWithSepecificationImpl<User, Lon
 		return userRepository;
 	}
 
+	 @Autowired
+	 private SettingsService settingsService;
+	 
 	public JpaSpecificationExecutor<User> getSpecificationRepository() {
 		return userRepository;
 	}
@@ -80,10 +86,11 @@ public class UserServiceImpl extends BaseServiceWithSepecificationImpl<User, Lon
 
 	@Override
 	public User saveUserImage(MultipartFile file) {
+		Settings settings = settingsService.findByCode(SettingsCode.PROFILES_IMAGES_PATH);
 		User user = AppUtils.getCurrentUser().get();
-		AppUtils.deleteFileByFullPath(AppConstant.UPLOAD_PROFILE_PATH + "/" + user.getImageName());
+		AppUtils.deleteFileByFullPath(settings.getValue() + "/" + user.getImageName());
 		String fileName = user.getId() + AppConstant.UNIQE_SEPERATOR + user.getUsername() + AppConstant.UNIQE_SEPERATOR + System.currentTimeMillis() + AppConstant.PNG_FILE;
-		filesStorageService.save(file, AppConstant.UPLOAD_PROFILE_PATH, fileName);
+		filesStorageService.save(file, settings.getValue(), fileName);
 		userRepository.updateImageName(fileName, user.getId());
 		return userRepository.findById(user.getId()).get();
 	}

@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppURL } from 'src/app/app.url';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { IRegisterComponent } from './register.interface';
 import { Ng2IzitoastService } from 'ng2-izitoast';
 import { AccountService } from 'src/app/shareds/services/account.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -17,14 +16,12 @@ export class RegisterComponent implements IRegisterComponent {
     private builder: FormBuilder,
     private iziToast: Ng2IzitoastService ,
     private account: AccountService ,
-    private router: Router,
-    private http: HttpClient) {
+    private router: Router) {
     this.initialCreateFormData();
   }
 
   Url = AppURL;
   form: FormGroup;
-  public API = 'http://192.168.2.34:8080';
 
   onSubmit() {
     if (this.form.invalid) {
@@ -38,7 +35,7 @@ export class RegisterComponent implements IRegisterComponent {
     this.account
     .onRegister(this.form.value)
     .then(res => {
-      // this.http.get(this.API + '/getallusers')
+      // this.http.get(this.API + '/getAllUsers')
       //   .subscribe(
       //   data => {console.log(data);
       //   },
@@ -49,7 +46,6 @@ export class RegisterComponent implements IRegisterComponent {
         message: 'กรุณากรอกข้อมูลเพื่อเข้าสู่ระบบ',
         position: 'topRight'
       });
-      console.log(res);
       this.router.navigate(['/', AppURL.Login]);
     }).catch(err =>
       this.iziToast.warning({

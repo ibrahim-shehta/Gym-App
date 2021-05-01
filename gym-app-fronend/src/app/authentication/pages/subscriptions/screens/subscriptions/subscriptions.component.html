@@ -48,7 +48,7 @@
   <app-pagination
     [totalRows]="totalRows"
     [size]="_componentService.filterDataWithPaginationAndSort.size"
-    [currentPage]="currentPage"
+    [currentPage]="getService().filterDataWithPaginationAndSort.page + 1"
     (pageChanged)="pageChanged($event)"
     >
   </app-pagination>

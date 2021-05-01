@@ -20,9 +20,8 @@ export abstract class BaseTableWithStatusComponent<T extends BaseEntity> extends
   }
 
   onSelectStatusHandler(event) {
-    this.currentPage = 1;
     this.getService().filterDataWithPaginationAndSort.page = 0;
-    this.getService().status = event;
+    this.getService().status = event != -1 ? event : null;
     this.getPage();
   }
 

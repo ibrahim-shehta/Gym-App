@@ -12,12 +12,12 @@ export abstract class BaseServiceWithStatus<L, E> extends Baseservice<L, E> {
 
   }
 
-  getDefaultStatus() {
+  getDefaultStatus(): any {
     return 0;
   };
 
   filterWithPagination() :Observable<L> {
-    if (this.status >= 0) {
+    if (this.status) {
       this.filterDataWithPaginationAndSort.filterMap['status'] = this.status;
     } else {
       delete this.filterDataWithPaginationAndSort.filterMap['status'];
