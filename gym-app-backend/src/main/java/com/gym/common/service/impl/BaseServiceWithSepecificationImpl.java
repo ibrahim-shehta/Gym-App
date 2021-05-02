@@ -16,8 +16,8 @@ import com.gym.common.service.BaseServiceWithSepecification;
 
 public abstract class BaseServiceWithSepecificationImpl<E, ID> extends BaseServiceImpl<E, ID> implements BaseServiceWithSepecification<E, ID> {
 
-	public abstract Specification<E> getSpecifications(Map<String, Object> filterDataMap);
 	public abstract JpaSpecificationExecutor<E> getSpecificationRepository();
+	public abstract Specification<E> getSpecifications(Map<String, Object> filterDataMap);
 	
 	@Override
 	public Page<E> filterDataPaginated(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
