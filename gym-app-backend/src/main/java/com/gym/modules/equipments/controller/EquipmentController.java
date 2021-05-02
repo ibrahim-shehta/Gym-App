@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gym.common.controller.BaseController;
-import com.gym.common.dto.BaseMapper;
+import com.gym.common.dto.mapper.BaseMapper;
 import com.gym.common.service.BaseService;
 import com.gym.common.service.BaseServiceWithSepecification;
 import com.gym.modules.equipments.dto.EquipmentDto;

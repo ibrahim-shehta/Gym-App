@@ -3,75 +3,61 @@ package com.gym.modules.exercises.category.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gym.common.controller.BaseController;
+import com.gym.common.dto.mapper.BaseMapper;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
-import com.gym.common.response.EntityResponse;
-import com.gym.common.response.ListResponse;
 import com.gym.common.response.ListWithPaginationResponse;
+import com.gym.common.service.BaseService;
 import com.gym.modules.exercises.category.dto.ExcerciseCategoryDto;
 import com.gym.modules.exercises.category.dto.ExcerciseCategoryListDto;
+import com.gym.modules.exercises.category.dto.mapper.ExcerciseCategoryDtoMapper;
+import com.gym.modules.exercises.category.dto.mapper.ExcerciseCategoryListDtoMapper;
 import com.gym.modules.exercises.category.model.ExcerciseCategory;
 import com.gym.modules.exercises.category.service.ExcerciseCategoryService;
 
 
 @Controller
 @RequestMapping("/api/v1/excercises/category")
-public class ExcerciseCategoryController {
+public class ExcerciseCategoryController extends BaseController<ExcerciseCategory, Long, ExcerciseCategoryDto, ExcerciseCategoryListDto>{
 
 	@Autowired
 	private ExcerciseCategoryService excerciseCategoryService;
 	
+	@Autowired
+	private ExcerciseCategoryDtoMapper excerciseCategoryDtoMapper;
 	
-	@PostMapping
-	public ResponseEntity<BaseResponse<ExcerciseCategoryDto>> save(@Valid @RequestBody ExcerciseCategoryDto dto) {
-		ExcerciseCategory entity = ExcerciseCategoryDto.mapDtoToEntity(dto);
-		entity = this.excerciseCategoryService.save(entity);
-		dto = ExcerciseCategoryDto.mapEntityToDto(entity);
-		return ResponseEntity.ok(new EntityResponse<ExcerciseCategoryDto>(dto));
+	@Autowired
+	private ExcerciseCategoryListDtoMapper excerciseCategoryListDtoMapper;
+
+	@Override
+	protected BaseService<ExcerciseCategory, Long> getService() {
+		return excerciseCategoryService;
 	}
-	
-	@PutMapping
-	public ResponseEntity<BaseResponse<ExcerciseCategoryDto>> edit(@Valid @RequestBody ExcerciseCategoryDto dto) {
-		ExcerciseCategory entity = ExcerciseCategoryDto.mapDtoToEntity(dto);
-		entity = this.excerciseCategoryService.update(entity);
-		dto = ExcerciseCategoryDto.mapEntityToDto(entity);
-		return ResponseEntity.ok(new EntityResponse<ExcerciseCategoryDto>(dto));
+
+	@Override
+	protected BaseMapper<ExcerciseCategory, ExcerciseCategoryDto> getEntityDtoMapper() {
+		return excerciseCategoryDtoMapper;
 	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<BaseResponse<ExcerciseCategoryDto>> getById(@PathVariable Long id) {
-		ExcerciseCategory entity = this.excerciseCategoryService.findById(id);
-		ExcerciseCategoryDto dto = ExcerciseCategoryDto.mapEntityToDto(entity);
-		return ResponseEntity.ok(new EntityResponse<ExcerciseCategoryDto>(dto));
+
+	@Override
+	protected BaseMapper<ExcerciseCategory, ExcerciseCategoryListDto> getListDtoMapper() {
+		return excerciseCategoryListDtoMapper;
 	}
-	
-	@GetMapping
-	public ResponseEntity<BaseResponse<ExcerciseCategoryListDto>> findAllByLang() {
-		List<ExcerciseCategory> entity = this.excerciseCategoryService.getAll();
-		List<ExcerciseCategoryListDto> dto = ExcerciseCategoryListDto.mapListToDtos(entity);
-		return ResponseEntity.ok(new ListResponse<ExcerciseCategoryListDto>(dto));
-	}
-	
-	
-	@PostMapping("/paginated-filter")
-	public ResponseEntity<BaseResponse<ExcerciseCategoryListDto>> paginatedFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
-		Page<ExcerciseCategory> entity = this.excerciseCategoryService.filterCategoryByName(filterDataWithPaginationAndSort); //this.excerciseCategoryService.filterDataPaginated(filterDataWithPaginationAndSort);
+
+	@Override
+	protected ResponseEntity<BaseResponse<ExcerciseCategoryListDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+		Page<ExcerciseCategory> entity = this.excerciseCategoryService.filterCategoryByName(filterDataWithPaginationAndSort);
 		List<ExcerciseCategoryListDto> dto = ExcerciseCategoryListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<ExcerciseCategoryListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
 	}
-
+	
 	
 }

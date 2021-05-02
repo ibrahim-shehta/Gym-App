@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.gym.common.dto.BaseMapper;
+import com.gym.common.dto.mapper.BaseMapper;
 import com.gym.modules.equipments.dto.EquipmentDto;
 import com.gym.modules.equipments.model.Equipment;
 

@@ -1,9 +1,5 @@
 package com.gym.modules.exercises.category.dto;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.gym.common.dto.BaseDto;
 import com.gym.modules.exercises.category.model.ExcerciseCategory;
 
@@ -33,6 +29,7 @@ public class ExcerciseCategoryDto extends BaseDto {
 		if (dto == null) {
 			return null;
 		}
+		
 		ExcerciseCategory entity = new ExcerciseCategory();
 		BaseDto.mapDtoToEntity(dto, entity);
 		entity.setName(dto.getName());
@@ -42,13 +39,6 @@ public class ExcerciseCategoryDto extends BaseDto {
 			entity.setNextExcerciseCategory(nextExcerciseCategory);
 		}
 		return entity;
-	}
-
-	public static List<ExcerciseCategoryDto> mapListToDtos(List<ExcerciseCategory> entity) {
-		if (entity == null || entity.isEmpty()) {
-			return Collections.emptyList();
-		}
-		return entity.stream().map(item -> mapEntityToDto(item)).collect(Collectors.toList());
 	}
 
 	public String getName() {
