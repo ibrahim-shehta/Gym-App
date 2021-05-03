@@ -1,11 +1,8 @@
 package com.gym.modules.exercises.category.dto;
 
-import com.gym.common.dto.BaseDto;
 import com.gym.modules.exercises.category.model.ExcerciseCategory;
 
-public class ExcerciseCategoryDto extends BaseDto {
-
-	private String name;
+public class ExcerciseCategoryDto extends BaseExcerciseCategoryDto {
 
 	private ExcerciseCategoryDto nextExcerciseCategory;
 
@@ -14,12 +11,10 @@ public class ExcerciseCategoryDto extends BaseDto {
 			return null;
 		}
 		ExcerciseCategoryDto dto = new ExcerciseCategoryDto();
-		BaseDto.mapEntityToDto(entity, dto);
-		dto.setName(entity.getName());
+		BaseExcerciseCategoryDto.mapEntityToDto(entity, dto);
 		if (entity.getNextExcerciseCategory() != null) {
 			ExcerciseCategoryDto nextExcerciseCategory = new ExcerciseCategoryDto();
-			BaseDto.mapEntityToDto(entity.getNextExcerciseCategory(), nextExcerciseCategory);
-			nextExcerciseCategory.setName(entity.getNextExcerciseCategory().getName());
+			BaseExcerciseCategoryDto.mapEntityToDto(entity.getNextExcerciseCategory(), nextExcerciseCategory);
 			dto.setNextExcerciseCategory(nextExcerciseCategory);
 		}
 		return dto;
@@ -31,22 +26,13 @@ public class ExcerciseCategoryDto extends BaseDto {
 		}
 		
 		ExcerciseCategory entity = new ExcerciseCategory();
-		BaseDto.mapDtoToEntity(dto, entity);
-		entity.setName(dto.getName());
+		BaseExcerciseCategoryDto.mapDtoToEntity(dto, entity);
 		if (dto.getNextExcerciseCategory() != null && dto.getNextExcerciseCategory().getId() != null) {
 			ExcerciseCategory nextExcerciseCategory = new ExcerciseCategory();
-			BaseDto.mapDtoToEntity(dto.getNextExcerciseCategory(), nextExcerciseCategory);
+			BaseExcerciseCategoryDto.mapDtoToEntity(dto.getNextExcerciseCategory(), nextExcerciseCategory);
 			entity.setNextExcerciseCategory(nextExcerciseCategory);
 		}
 		return entity;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public ExcerciseCategoryDto getNextExcerciseCategory() {

@@ -4,12 +4,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.gym.common.dto.BaseDto;
 import com.gym.modules.exercises.category.model.ExcerciseCategory;
 
-public class ExcerciseCategoryListDto extends BaseDto {
+public class ExcerciseCategoryListDto extends BaseExcerciseCategoryDto {
 
-	private String name;
 	private String nextExcerciseCategoryName;
 
 	public static ExcerciseCategoryListDto mapEntityToDto(ExcerciseCategory entity) {
@@ -17,25 +15,25 @@ public class ExcerciseCategoryListDto extends BaseDto {
 			return null;
 		}
 		ExcerciseCategoryListDto dto = new ExcerciseCategoryListDto();
-		BaseDto.mapEntityToDto(entity, dto);
-		dto.setName(entity.getName());
+		BaseExcerciseCategoryDto.mapEntityToDto(entity, dto);
 		dto.setNextExcerciseCategoryName(entity.getNextExcerciseCategory() != null ? entity.getNextExcerciseCategory().getName() : null);
 		return dto;
 	}
 
+	public static ExcerciseCategory mapDtoToEntity(ExcerciseCategoryListDto dto) {
+		if (dto == null) {
+			return null;
+		}
+		ExcerciseCategory entity = new ExcerciseCategory();
+		BaseExcerciseCategoryDto.mapDtoToEntity(dto, entity);
+		return entity;
+	}
+	
 	public static List<ExcerciseCategoryListDto> mapListToDtos(List<ExcerciseCategory> entity) {
 		if (entity == null || entity.isEmpty()) {
 			return Collections.emptyList();
 		}
 		return entity.stream().map(item -> mapEntityToDto(item)).collect(Collectors.toList());
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getNextExcerciseCategoryName() {
