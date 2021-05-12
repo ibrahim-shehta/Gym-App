@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.gym.common.dto.BaseDto;
 import com.gym.common.dto.mapper.BaseMapper;
 import com.gym.common.model.BaseEntity;
+import com.gym.common.request.FilterData;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.EntityResponse;
@@ -61,6 +62,13 @@ public abstract class BaseController<E extends BaseEntity, ID extends Serializab
 	@GetMapping
 	public ResponseEntity<BaseResponse<LDto>> getAll() {
 		List<E> entity = getService().getAll();
+		List<LDto> dto = getListDtoMapper().mapListToDtos(entity);
+		return ResponseEntity.ok(new ListResponse<LDto>(dto));
+	}
+	
+	@PostMapping("/all-filter")
+	public ResponseEntity<BaseResponse<LDto>> allFilter(@RequestBody FilterData filterData) {
+		List<E> entity = getServiceWithSepecification().filterAllData(filterData);
 		List<LDto> dto = getListDtoMapper().mapListToDtos(entity);
 		return ResponseEntity.ok(new ListResponse<LDto>(dto));
 	}
