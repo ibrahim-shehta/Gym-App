@@ -8,15 +8,15 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableAsync
-public class BataryatApplication extends SpringBootServletInitializer {
+public class GymApplication extends SpringBootServletInitializer {
 
 	@Override  
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {  
-	return application.sources(BataryatApplication.class);  
+	return application.sources(GymApplication.class);  
 	}  
 	
 	public static void main(String[] args) {
-		SpringApplication.run(BataryatApplication.class, args);
+		SpringApplication.run(GymApplication.class, args);
 	}
 
 }

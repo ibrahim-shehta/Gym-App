@@ -14,7 +14,6 @@ export class SubscriptionsResolversService  implements Resolve<any>  {
   ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
       return forkJoin([
         this.subscriptionsService.getStatusList(),
         this.subscriptionsService.filterWithPagination()

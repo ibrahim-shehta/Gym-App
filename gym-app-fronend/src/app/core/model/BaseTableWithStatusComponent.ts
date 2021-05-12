@@ -35,7 +35,6 @@ export abstract class BaseTableWithStatusComponent<T extends BaseEntity> extends
   onDestroy() {
     if (this.resetState)
       this.getService().status = this.getService().getDefaultStatus();
-
     super.onDestroy();
   }
 }
