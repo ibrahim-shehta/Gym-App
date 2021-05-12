@@ -1,0 +1,53 @@
+<app-auth-contect>
+  <section class="section">
+    <div class="section-header">
+      <h1>{{'EQUIPMENT.HEADER'|translate}}</h1>
+    </div>
+    <div class="section-body">
+      <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate="">
+      <div class="row">
+        <div class="col-12">
+          <div class="card author-box card-primary">
+            <div class="card-header">
+              <h4>{{'EQUIPMENT.FORM_HEADER'|translate}}</h4>
+            </div>
+            <div class="card-body">
+              <div class="form-group row mb-4">
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.NAME'|translate}}</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="text" class="form-control" name="name" [(ngModel)]="entity.name" required #name="ngModel">
+                </div>
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}}</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="text" class="form-control" name="description" [(ngModel)]="entity.description" required #description="ngModel">
+                </div>
+
+                </div>
+
+
+
+              <div class="form-group row mb-4">
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.CODE'|translate}}</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="text" class="form-control" name="code" [(ngModel)]="entity.code" required #code="ngModel">
+                </div>
+              </div>
+            </div>
+
+              <div class="form-group row mb-4">
+                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+                <div class="col-sm-12 col-md-7">
+                  <button class="btn btn-primary mx-5" type="submit">{{'COMMON.SAVE'|translate}}</button>
+                  <button class="btn btn-warning mx-5" type="button" (click)="goBack()">{{'COMMON.CANCEL'|translate}}</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</app-auth-contect>

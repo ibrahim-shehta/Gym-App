@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -27,11 +28,11 @@ public abstract class ExerciseSpecification {
         		Join<Object, Object> equipment = null;
         		
         		if (DaoHelper.isCountQuery(query)) {
-        			category = root.join(Exercise_.CATEGORY);
-        			equipment = root.join(Exercise_.EQUIPMENT);
+        			category = root.join(Exercise_.CATEGORY, JoinType.LEFT);
+        			equipment = root.join(Exercise_.EQUIPMENT, JoinType.LEFT);
         		} else {
-        			category = (Join<Object, Object>) root.fetch(Exercise_.CATEGORY);
-        			equipment = (Join<Object, Object>) root.fetch(Exercise_.EQUIPMENT);
+        			category = (Join<Object, Object>) root.fetch(Exercise_.CATEGORY, JoinType.LEFT);
+        			equipment = (Join<Object, Object>) root.fetch(Exercise_.EQUIPMENT, JoinType.LEFT);
         		}
         		
                 if (filterDataMap.isEmpty()) 

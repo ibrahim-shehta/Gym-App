@@ -1,0 +1,82 @@
+<app-auth-contect>
+  <section class="section">
+    <div class="section-header">
+      <h1>{{'EXERCISE.HEADER'|translate}}</h1>
+    </div>
+    <div class="section-body">
+      <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate="">
+      <div class="row">
+        <div class="col-12">
+          <div class="card author-box card-primary">
+            <div class="card-header">
+              <h4>{{'EXERCISE.FORM_HEADER'|translate}}</h4>
+            </div>
+            <div class="card-body">
+              <div class="form-group row mb-4">
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.NAME'|translate}}</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="text" class="form-control" name="name" [(ngModel)]="entity.name" required #name="ngModel">
+                </div>
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'COMMON.DESCRIPTION'|translate}}</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="text" class="form-control" name="description" [(ngModel)]="entity.description" required #description="ngModel">
+                </div>
+
+              </div>
+
+              <div class="form-group row mb-4">
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'EXERCISE.EXERCISE_CATEGORY_NAME'|translate}}</label>
+                <div class="col-sm-12 col-md-4">
+
+                <select class="form-control" name="nextCategory" [(ngModel)]="entity.category.id" #plan="ngModel" required>
+                  <option [value]="null">--{{'COMMON.SELECT_ONE'|translate}}--</option>
+                  <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+                </select>
+                </div>
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'EXERCISE.EQUIPMENT_NAME'|translate}}</label>
+                <div class="col-sm-12 col-md-4">
+
+                <select class="form-control" name="equipment" [(ngModel)]="entity.equipment.id" #equipment="ngModel" required>
+                  <option [value]="null">--{{'COMMON.SELECT_ONE'|translate}}--</option>
+                  <option *ngFor="let equipment of equipments" [value]="equipment.id">{{equipment.name}}</option>
+                </select>
+
+                </div>
+                </div>
+
+              <div class="form-group row mb-4">
+
+                <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'EXERCISE.DEFAULT_COUNT'|translate}}</label>
+                <div class="col-sm-12 col-md-4">
+                  <input type="number" class="form-control" name="defaultCount" [(ngModel)]="entity.defaultCount" required #defaultCount="ngModel">
+                </div>
+
+                </div>
+
+
+
+              <div class="form-group row mb-4">
+                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+                <div class="col-sm-12 col-md-7">
+                  <button class="btn btn-primary mx-5" type="submit">{{'COMMON.SAVE'|translate}}</button>
+                  <button class="btn btn-warning mx-5" type="button" (click)="goBack()">{{'COMMON.CANCEL'|translate}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+      <!-- <video width="320" height="240" controls>
+        <source src="http://localhost:8080/gym-images/profile/vedio.mp4" type="video/mp4">
+        <source src="movie.ogg" type="video/ogg">
+        Your browser does not support the video tag.
+      </video> -->
+
+    </div>
+  </section>
+</app-auth-contect>

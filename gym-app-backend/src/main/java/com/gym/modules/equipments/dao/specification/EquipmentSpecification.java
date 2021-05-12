@@ -40,7 +40,7 @@ public abstract class EquipmentSpecification {
                     predicates.add(codePredicate);
             	}
                 
-                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+                return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
             }; 
 	}
 

@@ -23,7 +23,10 @@
     "SELECT_ONE":"اختر",
     "BACK":"رجوع",
     "DETAILS":"تفاصيل",
-    "ALL":"الكل"
+    "ALL":"الكل",
+    "DATE":"التاريخ",
+    "TIME":"الوقت",
+    "CODE":"الكود"
 
   },
   "USERS": {
@@ -39,7 +42,8 @@
       "LOGIN":"تسجيل الدخول",
       "LOGIN_VALIDATION":"يرجى التاكد من اسم المستخدم وكلمه المروبر",
       "REMEMBER_ME":"تذكرنى",
-      "REGISTER":"تسجيل"
+      "REGISTER":"تسجيل",
+      "FORGET_PASSWORD":"نسيت كلمه السر"
     }
   },
   "AUTH_NAVBAR": {
@@ -71,8 +75,11 @@
     "MANAGE_PLAYERS":"اداره اللاعبين",
     "ADD_PLAYER":"اضافه لاعب",
     "SHOW_PLAYERS":"عرض اللاعبين",
-    "VIEW_PLAYER":"تفاصيل اللاعب"
-
+    "VIEW_PLAYER":"تفاصيل اللاعب",
+    "ATTENDANCE":"الحضور",
+    "PLAYER_ATTENDANCE":"تسجيل حضور اللاعب",
+    "EXCERCISES_CATEGORY":"مجموعه التمارين",
+    "THIS_PLAYER_NOT_HAVE_ACTIVE_SUBSCRIPTION":"لا يوجد اشتراك مفعل لهذا اللاعب يرجى تجديد الاشتراك لتسجيل الحضور"
   },
   "SUBSCRIPTIONS":{
     "MANAGE_SUBSCRIPTIONS":"إداره الاشتراكات",
@@ -90,7 +97,9 @@
     "REQUIRED_AMOUNT":"بعد الخصم",
     "REMAIN_AMOUNT":"المبلغ المتبقى",
     "BFORE_DISCOUNT":"قبل الخصم",
-    "DISCOUNT_PERCENT":"نسبه الخصم"
+    "DISCOUNT_PERCENT":"نسبه الخصم",
+    "PAY_REMAIN":"دفع المتبقى",
+    "SUBSCRIPTION_DETAILS":"تفاصيل الاشتراك"
   },
   "EXCERCISE_CATEGORY":{
     "NEXT_EXCERCISE_CATEGORY": "مجموعه التمارين التاليه",
@@ -104,7 +113,9 @@
     "PLAYERS":"المشتركين",
     "PLANS":"انواع الاشتراكات",
     "SUBSCRIPTIONS":"الاشتراكات",
-    "EXCERCISES_CATEGORIES":"مجموعات التمارين"
+    "EXCERCISES_CATEGORIES":"مجموعات التمارين",
+    "EXCERCISES":"التمارين",
+    "EQUIPMENTS":"الاجهزه"
   },
 
   "STATUS": {
@@ -113,5 +124,33 @@
     "EXPIRED": "منتهى",
     "RENEWED": "منتهى و تم تجديده",
     "BLOCKED": "موقوف"
+  },
+
+  "RESET_PASSWORD": {
+    "SEND_SUCCESS":"تم ارسال البريد الالكترونى يرجى مراجعه الرسائل الوارده",
+    "CHANGE_SUCCESS":"تم تغيير الرقم السرى الرجاء تسجيل الدخول مره اخرى",
+    "RESET_PASSWORD":"اعاده تعيين الرقم السرى",
+    "PASSWORD":"الرقم السرى",
+    "CONFIRM_PASSWORD":"تاكيد الرقم السرى",
+    "CHANGE":"تغيير",
+    "SEND":"ارسال"
+  },
+  "EQUIPMENT": {
+    "HEADER":"إداره الاجهزه",
+    "TABLE_HEADER":"عرض الاجهزه",
+    "FORM_HEADER":"اضافه /تعديل الاجهزه",
+    "EQUIPMENT":"الاجهزه",
+    "ADD_EQUIPMENT":"اضافه جهاز"
+  },
+  "EXERCISE": {
+    "HEADER":"إداره التمارين",
+    "TABLE_HEADER":"عرض التمارين",
+    "FORM_HEADER":"اضافه / تعديل التمارين",
+    "ADD_EXERCISE": "اضافه التمارين",
+    "EQUIPMENT_NAME":"الجهاز",
+    "EXERCISE_CATEGORY_NAME":"مجموعه التمارين",
+    "DEFAULT_COUNT":"العدد الافتراضى",
+    "IMAGE":"صوره",
+    "VEDIO":"فيديو"
   }
 }

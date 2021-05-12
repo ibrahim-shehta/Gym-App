@@ -1,6 +1,6 @@
 import { BaseEntity } from "src/app/core/model/BaseEntity";
 
-class BaseExcerciseCategory extends BaseEntity {
+export class BaseExcerciseCategory extends BaseEntity {
   name;
 }
 

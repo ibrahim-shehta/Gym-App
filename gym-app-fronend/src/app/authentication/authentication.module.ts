@@ -22,6 +22,10 @@ import { PlayerAttendanceComponent } from './pages/users/screens/player-attendan
 import { PlayerAttendanceHistoryComponent } from './pages/users/screens/player-attendance-history/player-attendance-history.component';
 import { SubscriptionViewComponent } from './pages/subscriptions/screens/subscription-view/subscription-view.component';
 import { SubscriptionsDetailsComponent } from './pages/subscriptions/components/subscriptions-details/subscriptions-details.component';
+import { ExerciseComponent } from './pages/exercises/exercises/screens/categories/exercise.component';
+import { ExerciseFormComponent } from './pages/exercises/exercises/screens/categories-form/exercise-form.component';
+import { EquipmentComponent } from './pages/equipment/screens/equipment/equipment.component';
+import { EquipmentFormComponent } from './pages/equipment/screens/equipment-form/equipment-form.component';
 
 
 @NgModule({
@@ -45,7 +49,11 @@ import { SubscriptionsDetailsComponent } from './pages/subscriptions/components/
     PlayerAttendanceComponent,
     PlayerAttendanceHistoryComponent,
     SubscriptionViewComponent,
-    SubscriptionsDetailsComponent
+    SubscriptionsDetailsComponent,
+    ExerciseComponent,
+    ExerciseFormComponent,
+    EquipmentComponent,
+    EquipmentFormComponent
   ],
   imports: [
     CommonModule,

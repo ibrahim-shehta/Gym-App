@@ -29,6 +29,14 @@ import { PlayerAttendanceHistoryComponent } from "./pages/users/screens/player-a
 import { PlayerAttendanceHistoryResolverService } from "./pages/users/resolvers/player-attendance-history-resolver.service";
 import { SubscriptionViewComponent } from "./pages/subscriptions/screens/subscription-view/subscription-view.component";
 import { SubscriptionsViewResolverService } from "./pages/subscriptions/resolvers/subscriptions-view-resolver.service";
+import { ExerciseComponent } from "./pages/exercises/exercises/screens/categories/exercise.component";
+import { ExerciseResolverService } from "./pages/exercises/exercises/resolvers/exercise-resolver.service";
+import { ExerciseFormComponent } from "./pages/exercises/exercises/screens/categories-form/exercise-form.component";
+import { ExerciseFormResolversService } from "./pages/exercises/exercises/resolvers/exercise-form-resolvers.service";
+import { EquipmentComponent } from "./pages/equipment/screens/equipment/equipment.component";
+import { EquipmentFormComponent } from "./pages/equipment/screens/equipment-form/equipment-form.component";
+import { EquipmentResolverService } from "./pages/equipment/resolvers/equipment-resolver.service"
+import { EquipmentFormResolversService } from "./pages/equipment/resolvers/equipment-form-resolvers.service"
 
 const RouteList: Routes = [
   { path: "", redirectTo: AuthURL.Dashboard, pathMatch: "full" },
@@ -144,6 +152,43 @@ const RouteList: Routes = [
         component: CategoriesFormComponent,
         canActivate: [AuthGuardService],
         resolve: { form: CategoriesFormResolversService },
+      },
+    ],
+  },
+
+
+  {
+    path: AuthURL.Exercise,
+    children: [
+      {
+        path: "",
+        component: ExerciseComponent,
+        canActivate: [AuthGuardService],
+        resolve: { dataList: ExerciseResolverService },
+      },
+      {
+        path: AuthURL.Form,
+        component: ExerciseFormComponent,
+        canActivate: [AuthGuardService],
+        resolve: { form: ExerciseFormResolversService },
+      },
+    ],
+  },
+
+  {
+    path: AuthURL.Equipment,
+    children: [
+      {
+        path: "",
+        component: EquipmentComponent,
+        canActivate: [AuthGuardService],
+        resolve: { dataList: EquipmentResolverService },
+      },
+      {
+        path: AuthURL.Form,
+        component: EquipmentFormComponent,
+        canActivate: [AuthGuardService],
+        resolve: { form: EquipmentFormResolversService },
       },
     ],
   },
