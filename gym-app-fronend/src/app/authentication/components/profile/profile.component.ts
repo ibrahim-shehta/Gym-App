@@ -18,7 +18,6 @@ import { AppStateService } from 'src/app/core/services/app-state.service';
 export class ProfileComponent extends BaseFormCompnent<any> implements OnInit{
   user: any;
   image;
-  imageFile :File;
   progress;
   message;
 
@@ -36,16 +35,16 @@ export class ProfileComponent extends BaseFormCompnent<any> implements OnInit{
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem(StorageKeys.LOGGED_USER)).data.user;
-    this.image = environment.baseImagesUrl + '/profile/' + this.user.imageName;
+    this.image = environment.baseFilesesUrl + '/profile/' + this.user.imageName;
   }
 
-  uploadImage() {
-    this.playersService.uploadUserProfileImage(this.imageFile).subscribe(event => {
+
+  onSaveSelectedFileHandler(e) {
+    this.playersService.uploadUserProfileImage(e).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
-        console.log(event);
         this.progress = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
-        this.message = 'file uploaded successfuly';
+        this.message = this.translateService.instant('COMMON.UPLOAD_SUCCESS');
         this.appStateService.changeProfileImage(event.body.data.imageName);
         setTimeout(() => {
           this.progress = 0;
@@ -55,30 +54,15 @@ export class ProfileComponent extends BaseFormCompnent<any> implements OnInit{
         const logedUserData = JSON.parse(localStorage.getItem(StorageKeys.LOGGED_USER));
         logedUserData.data.user = event.body.data;
         localStorage.setItem(StorageKeys.LOGGED_USER, JSON.stringify(logedUserData));
-        console.log(event);
       }
     },
     err => {
       this.progress = 0;
       this.backendError(err.error);
-      this.message = 'Could not upload the file:' + this.imageFile.name;
+      this.message = this.translateService.instant('COMMON.UPLOAD_FAIL');
     })
   }
 
-
-  isFileSelected = false;
-  onFileChanged(event) {
-    this.imageFile = event.target.files[0];
-    const reader = new FileReader;
-    reader.readAsDataURL(this.imageFile);
-    this.isFileSelected = true;
-    reader.onload = (event :any) => {
-      this.image = event.target.result;
-    }
-    // reader.addEventListener('load', () => {
-    //   this.image = reader.result;
-    // })
-  }
 
   // onConvertImage(input: HTMLInputElement, form: NgForm) {
   //   const imageControl = input.value;

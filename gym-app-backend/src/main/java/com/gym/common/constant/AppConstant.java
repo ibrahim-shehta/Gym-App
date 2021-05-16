@@ -12,6 +12,11 @@ public abstract class AppConstant {
 	
 	public static final String UPLOAD_PROFILE_PATH = "D:/gym/uploads/profile";
 	public static final String UPLOAD_EXCERCISES_PATH = "D:/gym/uploads/excercises";
-	public static final String MAX_FILE_SIZE_IN_MEGA = "2";
+	public static final String MAX_FILE_SIZE_IN_MEGA = "50";
 	public static final String PNG_FILE = ".png";
+	public static final String MP4_FILE = ".mp4";
+	public static final String GIF_FILE = ".gif";
+	public static final String IMAGE = "image";
+	public static final String VEDIO = "video";
+	
 }

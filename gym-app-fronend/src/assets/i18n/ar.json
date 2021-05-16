@@ -26,7 +26,11 @@
     "ALL":"الكل",
     "DATE":"التاريخ",
     "TIME":"الوقت",
-    "CODE":"الكود"
+    "CODE":"الكود",
+    "CHOOSE":"اختر",
+    "UPLOAD":"رفع",
+    "UPLOAD_SUCCESS":"تم الرفع بنجاح",
+    "UPLOAD_FAIL":"فشل الرفع"
 
   },
   "USERS": {
@@ -151,6 +155,6 @@
     "EXERCISE_CATEGORY_NAME":"مجموعه التمارين",
     "DEFAULT_COUNT":"العدد الافتراضى",
     "IMAGE":"صوره",
-    "VEDIO":"فيديو"
+    "VIDEO":"فيديو"
   }
 }

@@ -18,6 +18,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { ViewEditActionsComponent } from './components/view-edit-actions/view-edit-actions.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { StatusListFilterComponent } from './components/status-list-filter/status-list-filter.component';
+import { UploadComponent } from './components/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { StatusListFilterComponent } from './components/status-list-filter/statu
      PageHeaderComponent,
      ViewEditActionsComponent,
      ModalComponent,
-     StatusListFilterComponent
+     StatusListFilterComponent,
+     UploadComponent
     ],
   imports: [
     CommonModule,
@@ -58,7 +60,8 @@ import { StatusListFilterComponent } from './components/status-list-filter/statu
     PageHeaderComponent,
     ViewEditActionsComponent,
     ModalComponent,
-    StatusListFilterComponent
+    StatusListFilterComponent,
+    UploadComponent
   ],
   providers: [
     AccountService

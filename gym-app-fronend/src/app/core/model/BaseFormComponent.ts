@@ -56,11 +56,15 @@ export abstract class BaseFormCompnent<T extends BaseEntity> extends BaseCompone
 
   add(entity) :void {
     this.getService().add(entity).subscribe(res => {
-      this.addSuccess();
-      this.goBack();
+      this.entity.id = res.data.id;
+      this.afterSave();
     }, err => {
       this.backendError(err.error);
     })
+  }
+
+  afterSave() {
+    this.showSuccessMessageAndBack();
   }
 
   edit(entity) :void {
@@ -70,6 +74,11 @@ export abstract class BaseFormCompnent<T extends BaseEntity> extends BaseCompone
     }, err => {
       this.backendError(err.error);
     })
+  }
+
+  showSuccessMessageAndBack() {
+    this.addSuccess();
+    this.goBack();
   }
 
   goBack() :void {

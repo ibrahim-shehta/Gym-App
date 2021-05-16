@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Baseservice } from 'src/app/core/model/BaseService';
 import { environment } from 'src/environments/environment';
 import { Exercise, ExerciseList } from '../models/Exercise';
@@ -19,4 +20,14 @@ export class ExerciseService extends Baseservice<ExerciseList, Exercise> {
      return this.baseUrl;
    }
 
+
+   uploadFile(file: File, id: number): Observable<HttpEvent<any>>  {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    const req = new HttpRequest('POST', `${this.baseUrl}/upload/${id}`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
 }

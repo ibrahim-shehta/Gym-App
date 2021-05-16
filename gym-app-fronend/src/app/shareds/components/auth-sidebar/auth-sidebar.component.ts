@@ -35,7 +35,7 @@ export class AuthSidebarComponent implements OnInit {
 
   getProfileImage() {
     this.appStateService.profileImage.subscribe(res => {
-      this.userImg = res ? environment.baseImagesUrl + '/profile/' +res : null;
+      this.userImg = res ? environment.baseFilesesUrl + '/profile/' +res : null;
     })
   }
 
