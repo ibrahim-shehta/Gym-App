@@ -113,7 +113,7 @@
 		</dependency>
 
 		<!-- 
-			After Export Jar File From Jasper Studio We Add It To Maven Repo By This Comman
+			After Export Jar File From Jasper Studio We Add It To Maven Repo By This Command
 			mvn install:install-file -Dfile=C:\assets\Arial.jar -DgroupId=com.local.repo -DartifactId=arial-font -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
 			And Use It Like Normal Jar 
 		 -->
@@ -121,6 +121,11 @@
     		<groupId>com.local.repo</groupId>
     		<artifactId>arial-font</artifactId>
     		<version>1.0</version>
+		</dependency>
+		
+		<dependency>
+   			<groupId>org.liquibase</groupId>
+   			<artifactId>liquibase-core</artifactId>
 		</dependency>
 
 	</dependencies>
