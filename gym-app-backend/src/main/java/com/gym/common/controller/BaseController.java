@@ -37,7 +37,7 @@ public abstract class BaseController<E extends BaseEntity, ID extends Serializab
 	}
 	
 	@PostMapping
-	public ResponseEntity<BaseResponse<EDto>> save(@Valid @RequestBody EDto dto) {
+	public ResponseEntity<BaseResponse<EDto>> insert(@Valid @RequestBody EDto dto) {
 		  E entity = getEntityDtoMapper().mapDtoToEntity(dto); 
 		  entity = getService().save(entity); 
 		  dto = getEntityDtoMapper().mapEntityToDto(entity);
@@ -45,7 +45,7 @@ public abstract class BaseController<E extends BaseEntity, ID extends Serializab
 	}	
 	
 	@PutMapping
-	public ResponseEntity<BaseResponse<EDto>> edit(@Valid @RequestBody EDto dto) {
+	public ResponseEntity<BaseResponse<EDto>> update(@Valid @RequestBody EDto dto) {
 		E entity = getEntityDtoMapper().mapDtoToEntity(dto);
 		entity = getService().update(entity);
 		dto = getEntityDtoMapper().mapEntityToDto(entity);

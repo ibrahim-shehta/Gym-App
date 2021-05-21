@@ -18,8 +18,8 @@ public class Exercise extends Auditable {
 
 	private String name;
 	private String description;
-	private String imagePath;
-	private String vedioPath;
+	private String imageName;
+	private String videoName;
 	private int defaultCount;
 	private boolean isActive;
 	
@@ -49,22 +49,6 @@ public class Exercise extends Auditable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-
-	public String getVedioPath() {
-		return vedioPath;
-	}
-
-	public void setVedioPath(String vedioPath) {
-		this.vedioPath = vedioPath;
 	}
 
 	public int getDefaultCount() {
@@ -97,6 +81,22 @@ public class Exercise extends Auditable {
 
 	public void setCategory(ExcerciseCategory category) {
 		this.category = category;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+	public String getVideoName() {
+		return videoName;
+	}
+
+	public void setVideoName(String videoName) {
+		this.videoName = videoName;
 	}
 	
 	

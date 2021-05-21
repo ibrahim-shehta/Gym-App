@@ -20,7 +20,7 @@ export abstract class BaseFormCompnent<T extends BaseEntity> extends BaseCompone
         super(notificationService, translateService);
   }
 
-  modeInit() :void {
+  initFormMode() :void {
     if (this.activatedRoute.snapshot.data.form) {
       this.getResolverData();
     }
@@ -35,7 +35,6 @@ export abstract class BaseFormCompnent<T extends BaseEntity> extends BaseCompone
     if (this.validForm(form)) {
       return;
     }
-    console.log(form.value)
     this.save(this.entity);
   }
 
@@ -46,51 +45,59 @@ export abstract class BaseFormCompnent<T extends BaseEntity> extends BaseCompone
   }
 
   save(enity :any) :void {
-    if (this.isEditMode) {
-      this.edit(enity);
-    } else {
-      this.add(enity);
-    }
+    if (this.isEditMode)
+      this.update(enity);
+    else
+      this.insert(enity);
 
   }
 
-  add(entity) :void {
-    this.getService().add(entity).subscribe(res => {
+  insert(entity) :void {
+    this.getService().insert(entity).subscribe(res => {
       this.entity.id = res.data.id;
-      this.afterSave();
+      this.afterInsertSuccess();
     }, err => {
       this.backendError(err.error);
     })
   }
 
-  afterSave() {
-    this.showSuccessMessageAndBack();
+  afterInsertSuccess() {
+    this.showInsertSuccessMessageAndBack();
   }
 
-  edit(entity) :void {
-    this.getService().edit(entity).subscribe(res => {
-      this.eidtSuccess();
-      this.goBack();
-    }, err => {
-      this.backendError(err.error);
-    })
-  }
-
-  showSuccessMessageAndBack() {
-    this.addSuccess();
+  showInsertSuccessMessageAndBack() {
+    this.insertSuccessMsg();
     this.goBack();
+  }
+
+
+  insertSuccessMsg() :void {
+    this.notificationService.showSuccess('', this.translateService.instant('COMMON.SAVE_SUCCESS'));
+  }
+
+  update(entity) :void {
+    this.getService().update(entity).subscribe(res => {
+      this.afterUpdateSuccess();
+    }, err => {
+      this.backendError(err.error);
+    })
+  }
+
+  afterUpdateSuccess() {
+      this.showUpdatetSuccessMessageAndBack();
+  }
+
+  showUpdatetSuccessMessageAndBack() {
+    this.updateSuccessMsg();
+    this.goBack();
+  }
+
+  updateSuccessMsg() :void {
+    this.notificationService.showSuccess('', this.translateService.instant('COMMON.EDIT_SUCCESS'));
   }
 
   goBack() :void {
     this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-  }
-
-  addSuccess() :void {
-    this.notificationService.showSuccess('', this.translateService.instant('COMMON.SAVE_SUCCESS'));
-  }
-
-  eidtSuccess() :void {
-    this.notificationService.showSuccess('', this.translateService.instant('COMMON.EDIT_SUCCESS'));
   }
 
 }

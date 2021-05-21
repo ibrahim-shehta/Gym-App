@@ -26,7 +26,7 @@ export class EquipmentFormComponent extends BaseFormCompnent<Equipment> implemen
 
   ngOnInit() :void {
     this.entity = new Equipment();
-    this.modeInit();
+    this.initFormMode();
   }
 
   getService() :EquipmentService {

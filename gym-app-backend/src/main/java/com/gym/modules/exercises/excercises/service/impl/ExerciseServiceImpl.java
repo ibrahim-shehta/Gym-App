@@ -56,21 +56,21 @@ public class ExerciseServiceImpl extends BaseServiceWithSepecificationImpl<Exerc
 		String fileType = file.getContentType();
 		if (fileType.startsWith(AppConstant.VEDIO)) {
 			Settings settings = settingsService.findByCode(SettingsCode.EXERCISE_VEDIOS_PATH);
-			if (exercise.getVedioPath() != null && exercise.getVedioPath().trim().length() > 0)
-				AppUtils.deleteFileByFullPath(settings.getValue() + exercise.getVedioPath());
-			String fileName = exercise.getId() + AppConstant.UNIQE_SEPERATOR  + System.currentTimeMillis() + AppConstant.MP4_FILE;
-			filesStorageService.save(file, settings.getValue(), fileName);
-			exerciseRepository.updateVedeoName(fileName, exercise.getId());
-			exercise.setVedioPath(fileName);
+			if (exercise.getVideoName() != null && exercise.getVideoName().trim().length() > 0)
+				AppUtils.deleteFileByFullPath(settings.getValue() + exercise.getVideoName());
+			String videoName = exercise.getId() + AppConstant.UNIQE_SEPERATOR  + System.currentTimeMillis() + AppConstant.MP4_FILE;
+			filesStorageService.save(file, settings.getValue(), videoName);
+			exerciseRepository.updateVideoName(videoName, exercise.getId());
+			exercise.setVideoName(videoName);
 			return exercise; 
 		} else {
 			Settings settings = settingsService.findByCode(SettingsCode.EXERCISE_IMAGES_PATH);
-			if (exercise.getImagePath() != null && exercise.getImagePath().trim().length() > 0)
-				AppUtils.deleteFileByFullPath(settings.getValue() + exercise.getImagePath());
-			String fileName = exercise.getId() + AppConstant.UNIQE_SEPERATOR  + System.currentTimeMillis() + AppConstant.GIF_FILE;
-			filesStorageService.save(file, settings.getValue(), fileName);
-			exerciseRepository.updateImageName(fileName, exercise.getId());
-			exercise.setImagePath(fileName);
+			if (exercise.getImageName() != null && exercise.getImageName().trim().length() > 0)
+				AppUtils.deleteFileByFullPath(settings.getValue() + exercise.getImageName());
+			String imageName = exercise.getId() + AppConstant.UNIQE_SEPERATOR  + System.currentTimeMillis() + AppConstant.GIF_FILE;
+			filesStorageService.save(file, settings.getValue(), imageName);
+			exerciseRepository.updateImageName(imageName, exercise.getId());
+			exercise.setImageName(imageName);
 			return exercise;
 		}
 

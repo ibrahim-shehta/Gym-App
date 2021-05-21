@@ -49,7 +49,7 @@ export class ExerciseFormComponent extends BaseFormCompnent<Exercise> implements
     this.entity = new Exercise();
     this.entity.category = new BaseExcerciseCategory();
     this.entity.equipment = new Equipment();
-    this.modeInit();
+    this.initFormMode();
   }
 
   getResolverData() {
@@ -58,8 +58,8 @@ export class ExerciseFormComponent extends BaseFormCompnent<Exercise> implements
     if (this.activatedRoute.snapshot.data.form.entity) {
       this.entity = this.activatedRoute.snapshot.data.form.entity.data;
       this.isEditMode = true;
-      this.imageUrl = this.entity.imagePath ? environment.baseFilesesUrl + '/exercise/imgs/' + this.entity.imagePath : null;
-      this.videoUrl = this.entity.vedioPath ? environment.baseFilesesUrl + '/exercise/videos/' + this.entity.vedioPath : null;
+      this.imageUrl = this.entity.imageName ? environment.baseFilesesUrl + '/exercise/imgs/' + this.entity.imageName : null;
+      this.videoUrl = this.entity.videoName ? environment.baseFilesesUrl + '/exercise/videos/' + this.entity.videoName : null;
     }
   }
 
@@ -72,7 +72,7 @@ export class ExerciseFormComponent extends BaseFormCompnent<Exercise> implements
     this.videoFile = e;
   }
 
-  afterSave() {
+  afterInsertSuccess() {
     this.onSaveSelectedImageHandler(this.imageFile);
   }
 
@@ -87,7 +87,7 @@ export class ExerciseFormComponent extends BaseFormCompnent<Exercise> implements
         if (this.progressImage > 0)
           this.messageImage = this.translateService.instant('COMMON.UPLOAD_SUCCESS');
       } else if (event instanceof HttpResponse) {
-        this.entity.imagePath = event.body.data.imagePath;
+        this.entity.imageName = event.body.data.imageName;
         setTimeout(() => {
           this.progressImage = 0;
           this.messageImage = null;
@@ -107,7 +107,7 @@ export class ExerciseFormComponent extends BaseFormCompnent<Exercise> implements
 
   onSaveSelectedVideoHandler(e) {
     if (!e) {
-      this.showSuccessMessageAndBack();
+      this.showInsertSuccessMessageAndBack();
       return;
     }
     this.exerciseService.uploadFile(e, this.entity.id).subscribe(event => {
@@ -116,7 +116,7 @@ export class ExerciseFormComponent extends BaseFormCompnent<Exercise> implements
       if (this.progressVideo == 100)
         this.messageVideo = this.translateService.instant('COMMON.UPLOAD_SUCCESS');
     } else if (event instanceof HttpResponse) {
-      this.entity.vedioPath = event.body.data.vedioPath;
+      this.entity.videoName = event.body.data.videoName;
       setTimeout(() => {
         this.progressVideo = 0;
         this.messageVideo = null;
@@ -129,7 +129,7 @@ export class ExerciseFormComponent extends BaseFormCompnent<Exercise> implements
     this.messageVideo = this.translateService.instant('COMMON.UPLOAD_FAIL');
   }, () => {
     if (!this.isEditMode) {
-      this.showSuccessMessageAndBack();
+      this.showInsertSuccessMessageAndBack();
     }
     })
 }

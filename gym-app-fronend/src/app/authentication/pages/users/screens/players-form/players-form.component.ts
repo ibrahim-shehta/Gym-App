@@ -24,7 +24,7 @@ export class PlayersFormComponent extends BaseFormCompnent<Player> implements On
   }
 
   ngOnInit() :void {
-    this.modeInit();
+    this.initFormMode();
   }
 
   getService() :PlayersService {

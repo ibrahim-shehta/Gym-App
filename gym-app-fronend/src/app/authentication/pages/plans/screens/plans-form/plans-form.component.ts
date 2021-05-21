@@ -25,7 +25,7 @@ export class PlansFormComponent extends BaseFormCompnent<Plan> implements OnInit
   }
 
   ngOnInit() :void {
-    this.modeInit();
+    this.initFormMode();
   }
 
   getService() :PlansService {

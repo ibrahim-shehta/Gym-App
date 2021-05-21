@@ -25,11 +25,11 @@ export abstract  class Baseservice<L, E> {
     return this.http.post<L>(this.getBaseUrl() + '/all-filter' , filterMap);
   }
 
-  add(entity :any) :Observable<E> {
+  insert(entity :any) :Observable<E> {
     return this.http.post<E>(this.getBaseUrl() , entity);
   }
 
-  edit(entity :any) :Observable<E> {
+  update(entity :any) :Observable<E> {
     return this.http.put<E>(this.getBaseUrl() , entity);
   }
 

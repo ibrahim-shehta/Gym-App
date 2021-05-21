@@ -27,7 +27,7 @@ export class CategoriesFormComponent extends BaseFormCompnent<ExcerciseCategory>
   }
 
   ngOnInit() :void {
-    this.modeInit();
+    this.initFormMode();
   }
 
   getResolverData() {

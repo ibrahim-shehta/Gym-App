@@ -12,11 +12,11 @@ import com.gym.modules.exercises.excercises.model.Exercise;
 public interface ExerciseRepository extends JpaRepository<Exercise, Long>, JpaSpecificationExecutor<Exercise> {
 
 	@Modifying
-	@Query("update Exercise set vedioPath = :fileName where id = :id")
-	void updateVedeoName(String fileName, Long id);
+	@Query("update Exercise set videoName = :videoName where id = :id")
+	void updateVideoName(String videoName, Long id);
 	
 	@Modifying
-	@Query("update Exercise set imagePath = :fileName where id = :id")
-	void updateImageName(String fileName, Long id);
+	@Query("update Exercise set imageName = :imageName where id = :id")
+	void updateImageName(String imageName, Long id);
 
 }

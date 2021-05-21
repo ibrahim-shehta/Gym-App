@@ -36,7 +36,7 @@ export class SubscriptionsFormComponent extends BaseFormCompnent<Subscription> i
   }
 
   ngOnInit() :void {
-    this.modeInit();
+    this.initFormMode();
     // if (!this.isEditMode) {
     //   this.entity = {user: {}, plan: {}}
     // }

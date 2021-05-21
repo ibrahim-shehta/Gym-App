@@ -7,8 +7,8 @@ public class BaseExerciseDto extends BaseDto {
 
 	private String name;
 	private String description;
-	private String imagePath;
-	private String vedioPath;
+	private String imageName;
+	private String videoName;
 	private int defaultCount;
 	private boolean isActive;
 	
@@ -16,8 +16,8 @@ public class BaseExerciseDto extends BaseDto {
 		BaseDto.mapEntityToDto(entity, dto);
 		dto.setName(entity.getName());
 		dto.setDescription(entity.getDescription());
-		dto.setImagePath(entity.getImagePath());
-		dto.setVedioPath(entity.getVedioPath());
+		dto.setImageName(entity.getImageName());
+		dto.setVideoName(entity.getVideoName());
 		dto.setDefaultCount(entity.getDefaultCount());
 		dto.setActive(entity.isActive());
 	}
@@ -26,8 +26,8 @@ public class BaseExerciseDto extends BaseDto {
 		BaseDto.mapDtoToEntity(dto, entity);
 		entity.setName(dto.getName());
 		entity.setDescription(dto.getDescription());
-		entity.setImagePath(dto.getImagePath());
-		entity.setVedioPath(dto.getVedioPath());
+		entity.setImageName(dto.getImageName());
+		entity.setVideoName(dto.getVideoName());
 		entity.setDefaultCount(dto.getDefaultCount());
 		entity.setActive(dto.isActive());
 	}
@@ -44,18 +44,6 @@ public class BaseExerciseDto extends BaseDto {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImagePath() {
-		return imagePath;
-	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-	public String getVedioPath() {
-		return vedioPath;
-	}
-	public void setVedioPath(String vedioPath) {
-		this.vedioPath = vedioPath;
-	}
 	public int getDefaultCount() {
 		return defaultCount;
 	}
@@ -67,6 +55,22 @@ public class BaseExerciseDto extends BaseDto {
 	}
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+	public String getVideoName() {
+		return videoName;
+	}
+
+	public void setVideoName(String videoName) {
+		this.videoName = videoName;
 	}
 	
 	

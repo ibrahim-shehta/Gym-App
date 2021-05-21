@@ -51,13 +51,13 @@ export class PlayerAttendanceComponent extends BaseFormCompnent<PlayerAttendance
   }
 
   add(entity) :void {
-    this.getService().add(entity).subscribe(res => {
-      this.addSuccess();
+    this.getService().insert(entity).subscribe(res => {
+      this.insertSuccessMsg();
       this.goBack();
     }, err => {
       this.backendError(err.error);
       if(err.error.status == ResponseStatus[ResponseStatus.CONFLICT]) {
-        this.addSuccess();
+        this.insertSuccessMsg();
         this.goBack();
       }
     })

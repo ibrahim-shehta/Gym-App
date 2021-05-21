@@ -4,8 +4,8 @@ import { Equipment } from "../../../equipment/models/Equipment";
 export class BaseExercise extends BaseEntity {
   name: string;
   description: string;
-  imagePath: string;
-  vedioPath: string;
+  imageName: string;
+  videoName: string;
   defaultCount: number;
   isActive: boolean = true;
 }
