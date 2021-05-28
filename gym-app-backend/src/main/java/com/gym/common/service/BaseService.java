@@ -1,8 +1,11 @@
 package com.gym.common.service;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface BaseService<E, ID> {
+import com.gym.common.model.BaseEntity;
+
+public interface BaseService<E extends BaseEntity, ID extends Serializable> {
 
 	public E save(E entity);
 	
@@ -11,4 +14,5 @@ public interface BaseService<E, ID> {
 	public E findById(ID id);
 	
 	public List<E> getAll();
+	
 }

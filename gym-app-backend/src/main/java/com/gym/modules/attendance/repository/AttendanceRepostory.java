@@ -4,15 +4,15 @@ import java.util.Date;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.gym.common.dao.BaseRepository;
 import com.gym.modules.attendance.model.Attendance;
 
 @Repository
-public interface AttendanceRepostory extends JpaRepository<Attendance, Long> {
+public interface AttendanceRepostory extends BaseRepository<Attendance, Long> {
 
 	@Modifying
 	@Query("update Attendance a set a.signOut = :signOut where a.id = :id")

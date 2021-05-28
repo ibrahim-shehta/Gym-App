@@ -1,9 +1,9 @@
 package com.gym.modules.settings.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import com.gym.common.dao.BaseRepository;
 import com.gym.common.service.impl.BaseServiceImpl;
 import com.gym.modules.settings.model.Settings;
 import com.gym.modules.settings.model.enums.SettingsCode;
@@ -17,7 +17,7 @@ public class SettingsServiceImpl extends BaseServiceImpl<Settings, Long> impleme
 	private SettingsRepository settingsRepository;
 	
 	@Override
-	public JpaRepository<Settings, Long> getRepository() {
+	public BaseRepository<Settings, Long> getRepository() {
 		return settingsRepository;
 	}
 

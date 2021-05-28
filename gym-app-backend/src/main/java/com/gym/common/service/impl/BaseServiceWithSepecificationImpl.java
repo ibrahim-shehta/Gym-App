@@ -1,5 +1,6 @@
 package com.gym.common.service.impl;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +11,12 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.gym.common.constant.MessagesKeys;
 import com.gym.common.exception.exceptions.EnityNotFoundException;
+import com.gym.common.model.BaseEntity;
 import com.gym.common.request.FilterData;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.service.BaseServiceWithSepecification;
 
-public abstract class BaseServiceWithSepecificationImpl<E, ID> extends BaseServiceImpl<E, ID> implements BaseServiceWithSepecification<E, ID> {
+public abstract class BaseServiceWithSepecificationImpl<E extends BaseEntity, ID extends Serializable> extends BaseServiceImpl<E , ID> implements BaseServiceWithSepecification<E, ID> {
 
 	public abstract JpaSpecificationExecutor<E> getSpecificationRepository();
 	public abstract Specification<E> getSpecifications(Map<String, Object> filterDataMap);

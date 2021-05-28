@@ -6,4 +6,5 @@ import com.gym.modules.equipments.model.Equipment;
 
 public interface EquipmentService extends BaseServiceWithSepecification<Equipment, Long> {
 
+	void updateStatus(boolean isActive, Long id);
 }

@@ -1,13 +1,13 @@
 package com.gym.user.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.gym.common.dao.BaseRepository;
 import com.gym.user.model.Permission;
 
 @Repository
-public interface PermissionRepository extends JpaRepository<Permission, Long>{
+public interface PermissionRepository extends BaseRepository<Permission, Long>{
 
 	public Permission findByIdAndPermissionTranslateLangCode(Long id, String langCode);
 	

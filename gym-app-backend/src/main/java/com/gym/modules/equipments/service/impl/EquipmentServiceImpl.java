@@ -2,6 +2,8 @@ package com.gym.modules.equipments.service.impl;
 
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -14,6 +16,7 @@ import com.gym.modules.equipments.model.Equipment;
 import com.gym.modules.equipments.service.EquipmentService;
 
 @Service
+@Transactional
 public class EquipmentServiceImpl extends BaseServiceWithSepecificationImpl<Equipment, Long> implements EquipmentService {
 
 	
@@ -33,6 +36,11 @@ public class EquipmentServiceImpl extends BaseServiceWithSepecificationImpl<Equi
 	@Override
 	public Specification<Equipment> getSpecifications(Map<String, Object> filterDataMap) {
 		return EquipmentSpecification.filterEquipments(filterDataMap);
+	}
+
+	@Override
+	public void updateStatus(boolean isActive, Long id) {
+		//getRepository().updateStatus(isActive, id);
 	}
 
 	

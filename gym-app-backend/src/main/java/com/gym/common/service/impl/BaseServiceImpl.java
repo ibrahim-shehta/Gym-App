@@ -1,17 +1,19 @@
 package com.gym.common.service.impl;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.gym.common.constant.MessagesKeys;
+import com.gym.common.dao.BaseRepository;
 import com.gym.common.exception.exceptions.EnityNotFoundException;
+import com.gym.common.model.BaseEntity;
 import com.gym.common.service.BaseService;
 
-public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
+public abstract class BaseServiceImpl<E extends BaseEntity, ID extends Serializable> implements BaseService<E, ID>{
 
-	public abstract JpaRepository<E, ID> getRepository();
+	public abstract BaseRepository<E, ID> getRepository();
 	
 	@Override
 	public E save(E entity) {
@@ -33,5 +35,4 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
 	public List<E> getAll() {
 		return getRepository().findAll();
 	}
-
 }
