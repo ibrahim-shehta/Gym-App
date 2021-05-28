@@ -1,4 +1,4 @@
-package com.gym.common.config.local;
+package com.gym.config.locale;
 
 import java.util.Locale;
 
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 @Configuration
-public class LocalConfig {
+public class LocaleConfig {
 
 	
 	// when remove this bean "localization work fine may this is default configuration of spring boot"
