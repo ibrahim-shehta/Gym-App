@@ -5,15 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.gym.common.dto.BaseDto;
+import com.gym.common.dto.BaseStatusDto;
 import com.gym.modules.equipments.model.Equipment;
 
-public class EquipmentDto extends BaseDto {
+public class EquipmentDto extends BaseStatusDto {
 
 	private String name;
 	private String description;
 	private String Code;
-	private boolean isActive;
-	private String statusReason;
 	
 	public static EquipmentDto mapEntityToDto(Equipment entity) {
 		if (entity == null) {
@@ -24,8 +23,6 @@ public class EquipmentDto extends BaseDto {
 		dto.setName(entity.getName());
 		dto.setDescription(entity.getDescription());
 		dto.setCode(entity.getCode());
-		dto.setActive(entity.isActive());
-		dto.setStatusReason(entity.getStatusReason());
 		return dto;
 	}
 
@@ -38,8 +35,6 @@ public class EquipmentDto extends BaseDto {
 		entity.setName(dto.getName());
 		entity.setDescription(dto.getDescription());
 		entity.setCode(dto.getCode());
-		entity.setActive(dto.isActive());
-		entity.setStatusReason(dto.getStatusReason());
 		return entity;
 	}
 	
@@ -73,22 +68,5 @@ public class EquipmentDto extends BaseDto {
 	public void setCode(String code) {
 		Code = code;
 	}
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	public String getStatusReason() {
-		return statusReason;
-	}
-
-	public void setStatusReason(String statusReason) {
-		this.statusReason = statusReason;
-	}
-
 
 }

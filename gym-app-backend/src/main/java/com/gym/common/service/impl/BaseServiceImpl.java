@@ -11,7 +11,7 @@ import com.gym.common.exception.exceptions.EnityNotFoundException;
 import com.gym.common.model.BaseEntity;
 import com.gym.common.service.BaseService;
 
-public abstract class BaseServiceImpl<E extends BaseEntity, ID extends Serializable> implements BaseService<E, ID>{
+public abstract class BaseServiceImpl<E extends BaseEntity, ID extends Serializable> implements BaseService<E, ID> {
 
 	public abstract BaseRepository<E, ID> getRepository();
 	

@@ -2,11 +2,12 @@ package com.gym.modules.equipments.model;
 
 import javax.persistence.Entity;
 
-import com.gym.common.model.Auditable;
+import com.gym.common.model.BaseStatusEntity;
+
 
 
 @Entity
-public class Equipment extends Auditable {
+public class Equipment extends BaseStatusEntity {
 
 	/**
 	 * 
@@ -16,8 +17,7 @@ public class Equipment extends Auditable {
 	private String name;
 	private String description;
 	private String Code;
-	private boolean isActive;
-	private String statusReason;
+
 	 
 	public Equipment() {}
 	
@@ -48,21 +48,4 @@ public class Equipment extends Auditable {
 	public void setCode(String code) {
 		Code = code;
 	}
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	public String getStatusReason() {
-		return statusReason;
-	}
-
-	public void setStatusReason(String statusReason) {
-		this.statusReason = statusReason;
-	}
-	
 }

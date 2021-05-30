@@ -9,42 +9,37 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
 
-import com.gym.common.service.impl.BaseServiceWithSepecificationImpl;
-import com.gym.modules.equipments.dao.EquipmentRepostory;
+import com.gym.common.dao.BaseStatusRepository;
+import com.gym.common.service.impl.BaseStatusWithSpcificationServiceImpl;
+import com.gym.modules.equipments.dao.EquipmentRepository;
 import com.gym.modules.equipments.dao.specification.EquipmentSpecification;
 import com.gym.modules.equipments.model.Equipment;
 import com.gym.modules.equipments.service.EquipmentService;
 
+
+
+
+
 @Service
 @Transactional
-public class EquipmentServiceImpl extends BaseServiceWithSepecificationImpl<Equipment, Long> implements EquipmentService {
+public class EquipmentServiceImpl extends BaseStatusWithSpcificationServiceImpl<Equipment, Long> implements EquipmentService {
 
-	
 	@Autowired
-	private EquipmentRepostory equipmentRepostory;
+	private EquipmentRepository equipmentRepository;
 	
 	@Override
-	public EquipmentRepostory getRepository() {
-		return equipmentRepostory;
+	public BaseStatusRepository<Equipment, Long> getRepository() {
+		return equipmentRepository;
 	}
-	
+
 	@Override
 	public JpaSpecificationExecutor<Equipment> getSpecificationRepository() {
-		return equipmentRepostory;
+		return equipmentRepository;
 	}
-	
+
 	@Override
 	public Specification<Equipment> getSpecifications(Map<String, Object> filterDataMap) {
 		return EquipmentSpecification.filterEquipments(filterDataMap);
 	}
-
-	@Override
-	public void updateStatus(boolean isActive, Long id) {
-		//getRepository().updateStatus(isActive, id);
-	}
-
-	
-	
-
 
 }
