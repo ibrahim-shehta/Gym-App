@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { Lookup } from 'src/app/core/model/Lookup';
 import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
@@ -10,14 +11,13 @@ import { NotificationService } from 'src/app/core/services/notification.service'
 })
 export class StatusComponent implements OnInit {
   @Input() entity :any;
-  @Input() statusList :any[] = [];
-  @Input() service :any;
+  @Input() statusList :Lookup[] = [];
   @Output() onCloseDialog = new EventEmitter<any>();
   @Output() onSaveStatusEvent = new EventEmitter<any>();
 
   statusName: string = '';
-  filteredList: any[];
-  entityBackup;
+  filteredList: Lookup[] = [];
+  entityBackup :any;
 
   constructor(
     private translateService: TranslateService,

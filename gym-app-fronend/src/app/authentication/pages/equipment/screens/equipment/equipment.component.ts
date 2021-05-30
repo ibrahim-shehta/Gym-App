@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthURL } from 'src/app/authentication/authentication.url';
-import { BaseTableComponent } from 'src/app/core/model/BaseTableComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { Equipment } from '../../models/Equipment';
 import { EquipmentService } from '../../services/equipment-service';
@@ -35,6 +33,7 @@ export class EquipmentComponent extends BaseTableWithStatusComponent<Equipment> 
   getFilterArr() {
     return ['name', 'code']
   }
+
   ngOnDestroy() {
     super.onDestroy();
   }

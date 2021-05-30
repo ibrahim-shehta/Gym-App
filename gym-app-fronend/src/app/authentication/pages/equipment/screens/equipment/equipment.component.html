@@ -52,11 +52,11 @@
             </app-pagination>
 
 
-  <app-modal *ngIf="showStatusDialog" [show]="showStatusDialog" (onClose)="showStatusDialog = false" [headerText]="'STATUS.CHANGE_STATUS'">
-  <app-status
-    [entity]="entity"
-    [statusList]="statusList"
-    (onCloseDialog)="showStatusDialog = false"
-    (onSaveStatusEvent)="onSaveStatusHandler($event)"
-  ></app-status>
+<app-modal *ngIf="showStatusDialog" [show]="showStatusDialog" (onClose)="showStatusDialog = false" [headerText]="'STATUS.CHANGE_STATUS'">
+    <app-status
+      [entity]="entity"
+      [statusList]="statusList"
+      (onCloseDialog)="showStatusDialog = false"
+      (onSaveStatusEvent)="onSaveStatusHandler($event)"
+    ></app-status>
 </app-modal>

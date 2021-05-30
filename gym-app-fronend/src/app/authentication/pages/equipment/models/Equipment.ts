@@ -1,6 +1,6 @@
-import { BaseEntity } from "src/app/core/model/BaseEntity";
+import { BaseStatusEntity } from "src/app/core/model/BaseStatusEntity";
 
-export class Equipment extends BaseEntity {
+export class Equipment extends BaseStatusEntity {
   name :string;
   description: string;
   code: string;

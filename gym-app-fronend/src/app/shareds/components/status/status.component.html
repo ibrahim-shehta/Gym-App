@@ -10,13 +10,13 @@
 
 <div class="form-group row mb-4">
   <label class="col-form-label col-sm-12 col-md-4">{{'STATUS.STATUS_DATE'|translate}}</label>
-  <p class="col-sm-12 col-md-8">{{entity.statusDate}}</p>
+  <p class="col-sm-12 col-md-8">{{entity.statusDate|date:'dd-MM-yyyy - hh:mm'}}</p>
 </div>
 <form #form="ngForm">
 <div class="form-group row mb-4">
   <label class="col-form-label col-sm-12 col-md-4">{{'STATUS.NEW_STATUS'|translate}}</label>
   <select class="form-control cols-ms-12 col-md-8" name="status" [(ngModel)]="entityBackup.status" required>
-                      <option [value]="0">--{{'COMMON.SELECT_ONE'|translate}}--</option>
+                      <option disabled>--{{'COMMON.SELECT_ONE'|translate}}--</option>
                       <option *ngFor="let st  of filteredList" [value]="st.value">{{st.name}}</option>
                     </select>
 </div>

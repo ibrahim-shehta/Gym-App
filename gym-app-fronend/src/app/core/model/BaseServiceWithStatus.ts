@@ -1,7 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { lookupTypeCode } from "../constants/lookup-type-code.enum";
 import { Baseservice } from "./BaseService";
+import { Lookup } from "./Lookup";
 
 export abstract class BaseServiceWithStatus<L, E> extends Baseservice<L, E> {
   baseStatusUrl = environment.baseUrl + "/lookup";
@@ -13,8 +15,8 @@ export abstract class BaseServiceWithStatus<L, E> extends Baseservice<L, E> {
 
   }
 
-  getStatusList(code) {
-    return this.http.get(this.baseStatusUrl +  `/${code}`)
+  getStatusList(code :lookupTypeCode) :Observable<Lookup> {
+    return this.http.get<Lookup>(this.baseStatusUrl +  `/${lookupTypeCode[code].toLowerCase()}`)
   }
 
   filterWithPagination() :Observable<L> {

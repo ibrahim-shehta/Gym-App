@@ -4,13 +4,14 @@ import { NotificationService } from "../services/notification.service";
 import { BaseEntity } from "./BaseEntity";
 import { BaseServiceWithStatus } from "./BaseServiceWithStatus";
 import { BaseTableComponent } from "./BaseTableComponent";
+import { Lookup } from "./Lookup";
 
 export abstract class BaseTableWithStatusComponent<T extends BaseEntity> extends BaseTableComponent<T> {
 
-  statusList :[] = [];
-  abstract  getService() :BaseServiceWithStatus<any, any>;
+  statusList :Lookup[] = [];
   showStatusDialog = false;
   entity;
+  abstract  getService() :BaseServiceWithStatus<any, any>;
 
   constructor(
     public router :Router,
