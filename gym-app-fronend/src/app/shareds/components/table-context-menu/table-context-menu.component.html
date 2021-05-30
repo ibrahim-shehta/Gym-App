@@ -4,6 +4,7 @@
   <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
     <span *ngIf="showEdit" (click)="onEdit()" class="dropdown-item">{{'COMMON.EDIT'|translate}}<i class="fa fa-edit mx-2" aria-hidden="true"></i></span>
     <span *ngIf="showView" (click)="onView()" class="dropdown-item">{{'COMMON.DETAILS'|translate}}<i class="fa fa-eye mx-2" aria-hidden="true"></i></span>
+    <span *ngIf="showStatus" (click)="onClickStatus()" class="dropdown-item">{{'COMMON.STATUS'|translate}}<i class="fa fa-eye mx-2" aria-hidden="true"></i></span>
     <ng-content></ng-content>
   </div>
 </div>

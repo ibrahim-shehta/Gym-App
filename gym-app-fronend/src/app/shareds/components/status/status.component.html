@@ -1,0 +1,38 @@
+<div class="form-group row mb-4">
+  <label class="col-form-label col-sm-12 col-md-4">{{'STATUS.CURRENT_STATUS'|translate}}</label>
+  <p class="col-sm-12 col-md-8">{{statusName}}</p>
+</div>
+
+<div class="form-group row mb-4">
+  <label class="col-form-label col-sm-12 col-md-4">{{'STATUS.STATUS_REASON'|translate}}</label>
+  <p class="col-sm-12 col-md-8">{{entity.statusReason ? entity.statusReason : '--'}}</p>
+</div>
+
+<div class="form-group row mb-4">
+  <label class="col-form-label col-sm-12 col-md-4">{{'STATUS.STATUS_DATE'|translate}}</label>
+  <p class="col-sm-12 col-md-8">{{entity.statusDate}}</p>
+</div>
+<form #form="ngForm">
+<div class="form-group row mb-4">
+  <label class="col-form-label col-sm-12 col-md-4">{{'STATUS.NEW_STATUS'|translate}}</label>
+  <select class="form-control cols-ms-12 col-md-8" name="status" [(ngModel)]="entityBackup.status" required>
+                      <option [value]="0">--{{'COMMON.SELECT_ONE'|translate}}--</option>
+                      <option *ngFor="let st  of filteredList" [value]="st.value">{{st.name}}</option>
+                    </select>
+</div>
+
+<div class="form-group row mb-4">
+  <label class="col-form-label col-sm-12 col-md-4">{{'STATUS.STATUS_REASON'|translate}}</label>
+  <textarea
+    name="statusReason"
+    id="statusReason"
+    class="form-control cols-ms-12 col-md-8"
+    [(ngModel)]="entityBackup.statusReason"
+  ></textarea>
+</div>
+<div class="text-center">
+  <button class="btn btn-primary mx-5" type="submit"  (click)="onClickSaveStatus(form)">{{'COMMON.SAVE'|translate}}</button>
+  <button class="btn btn-warning mx-5" type="button" (click)="onClickCancel()">{{'COMMON.CANCEL'|translate}}</button>
+</div>
+</form>
+

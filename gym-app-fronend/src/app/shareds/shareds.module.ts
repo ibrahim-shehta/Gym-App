@@ -19,6 +19,7 @@ import { ViewEditActionsComponent } from './components/view-edit-actions/view-ed
 import { ModalComponent } from './components/modal/modal.component';
 import { StatusListFilterComponent } from './components/status-list-filter/status-list-filter.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { StatusComponent } from './components/status/status.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UploadComponent } from './components/upload/upload.component';
      ViewEditActionsComponent,
      ModalComponent,
      StatusListFilterComponent,
-     UploadComponent
+     UploadComponent,
+     StatusComponent
     ],
   imports: [
     CommonModule,
@@ -61,7 +63,8 @@ import { UploadComponent } from './components/upload/upload.component';
     ViewEditActionsComponent,
     ModalComponent,
     StatusListFilterComponent,
-    UploadComponent
+    UploadComponent,
+    StatusComponent
   ],
   providers: [
     AccountService

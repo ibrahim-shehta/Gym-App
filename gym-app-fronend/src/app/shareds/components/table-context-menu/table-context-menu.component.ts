@@ -13,6 +13,11 @@ export class TableContextMenuComponent implements OnInit {
   @Input() showView :boolean = false;
   @Output() viewHandler = new EventEmitter<any>();
 
+  @Input() showStatus :boolean = true;
+  @Output() showStatusEvent = new EventEmitter<any>();
+
+
+
   constructor() { }
 
   ngOnInit(): void {
@@ -25,4 +30,9 @@ export class TableContextMenuComponent implements OnInit {
   onView() {
     this.viewHandler.emit();
   }
+
+  onClickStatus() {
+    this.showStatusEvent.emit();
+  }
+
 }

@@ -30,10 +30,10 @@ public abstract class EquipmentSpecification {
                     predicates.add(namePredicate);
             	}
             	
-//            	if (filterDataMap.containsKey(FilterKeys.IS_ACTIVE)) {
-//            		Predicate isActivePredicate = criteriaBuilder.equal(root.get(Equipment_.IS_ACTIVE), filterDataMap.get(FilterKeys.IS_ACTIVE));
-//                    predicates.add(isActivePredicate);
-//            	}
+            	if (filterDataMap.containsKey(FilterKeys.STATUS)) {
+            		Predicate isActivePredicate = criteriaBuilder.equal(root.get(Equipment_.STATUS), filterDataMap.get(FilterKeys.STATUS));
+                    predicates.add(isActivePredicate);
+            	}
             	
             	if (filterDataMap.containsKey(FilterKeys.CODE)) {
             		Predicate codePredicate = criteriaBuilder.equal(root.get(Equipment_.CODE), filterDataMap.get(FilterKeys.CODE));

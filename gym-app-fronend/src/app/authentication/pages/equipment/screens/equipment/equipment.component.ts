@@ -6,19 +6,20 @@ import { BaseTableComponent } from 'src/app/core/model/BaseTableComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { Equipment } from '../../models/Equipment';
 import { EquipmentService } from '../../services/equipment-service';
+import { BaseTableWithStatusComponent } from 'src/app/core/model/BaseTableWithStatusComponent';
 
 
 @Component({
   templateUrl: './equipment.component.html',
   styleUrls: ['./equipment.component.css']
 })
-export class EquipmentComponent extends BaseTableComponent<Equipment> implements OnInit, OnDestroy {
+export class EquipmentComponent extends BaseTableWithStatusComponent<Equipment> implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public notificationService: NotificationService,
     public translateService :TranslateService,
-    public equipmentService :EquipmentService
+    public _componentService :EquipmentService
   ) {
     super(router, activatedRoute, notificationService, translateService);
    }
@@ -28,11 +29,7 @@ export class EquipmentComponent extends BaseTableComponent<Equipment> implements
   }
 
   getService() :EquipmentService {
-    return this.equipmentService;
-  }
-
-  getFormUrl() :string {
-    return AuthURL.Form;
+    return this._componentService;
   }
 
   getFilterArr() {

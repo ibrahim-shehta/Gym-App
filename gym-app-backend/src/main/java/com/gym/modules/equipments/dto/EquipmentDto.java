@@ -19,7 +19,7 @@ public class EquipmentDto extends BaseStatusDto {
 			return null;
 		}
 		EquipmentDto dto = new EquipmentDto();
-		BaseDto.mapEntityToDto(entity, dto);
+		BaseStatusDto.mapEntityToDto(entity, dto);
 		dto.setName(entity.getName());
 		dto.setDescription(entity.getDescription());
 		dto.setCode(entity.getCode());
@@ -31,7 +31,7 @@ public class EquipmentDto extends BaseStatusDto {
 			return null;
 		}
 		Equipment entity = new Equipment();
-		BaseDto.mapDtoToEntity(dto, entity);
+		BaseStatusDto.mapDtoToEntity(dto, entity);
 		entity.setName(dto.getName());
 		entity.setDescription(dto.getDescription());
 		entity.setCode(dto.getCode());

@@ -9,6 +9,8 @@ export abstract class BaseTableWithStatusComponent<T extends BaseEntity> extends
 
   statusList :[] = [];
   abstract  getService() :BaseServiceWithStatus<any, any>;
+  showStatusDialog = false;
+  entity;
 
   constructor(
     public router :Router,
@@ -30,6 +32,25 @@ export abstract class BaseTableWithStatusComponent<T extends BaseEntity> extends
     this.dataList = this.activatedRoute.snapshot.data.dataList[1].data;
     this.totalRows = this.activatedRoute.snapshot.data.dataList[1].totalRows;
     this.getService().totalRows = this.totalRows;
+  }
+
+  onShowStatusHandler(entity) {
+    this.entity= entity;
+    this.showStatusDialog = true
+
+  }
+
+  onSaveStatusHandler(entity) {
+    this.getService().updateStatus(entity).subscribe(res => {
+      console.log(res);
+      this.showStatusDialog = false;
+      this.updateSuccessMsg();
+      this.getPage();
+    })
+  }
+
+  updateSuccessMsg() :void {
+    this.notificationService.showSuccess('', this.translateService.instant('COMMON.EDIT_SUCCESS'));
   }
 
   onDestroy() {

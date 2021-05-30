@@ -30,7 +30,8 @@
     "CHOOSE":"اختر",
     "UPLOAD":"رفع",
     "UPLOAD_SUCCESS":"تم الرفع بنجاح",
-    "UPLOAD_FAIL":"فشل الرفع"
+    "UPLOAD_FAIL":"فشل الرفع",
+    "STATUS":"الحاله"
 
   },
   "USERS": {
@@ -127,7 +128,12 @@
     "IN_PROGRESS": "مفعل",
     "EXPIRED": "منتهى",
     "RENEWED": "منتهى و تم تجديده",
-    "BLOCKED": "موقوف"
+    "BLOCKED": "موقوف",
+    "CURRENT_STATUS":"الحاله الحاليه",
+    "NEW_STATUS":"الحاله الجديده",
+    "STATUS_REASON":"السبب",
+    "CHANGE_STATUS":"تغيير الحاله",
+    "STATUS_DATE":"تاريخ الحاله"
   },
 
   "RESET_PASSWORD": {
