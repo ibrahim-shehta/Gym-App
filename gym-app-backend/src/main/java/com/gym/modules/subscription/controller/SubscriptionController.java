@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gym.common.constant.FilterKeys;
-import com.gym.common.controller.BaseAuditController;
+import com.gym.common.controller.BaseStatusController;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.EntityResponse;
@@ -29,7 +29,7 @@ import com.gym.modules.subscription.service.SubscriptionService;
 
 @RestController
 @RequestMapping("/api/v1/subscription")
-public class SubscriptionController extends BaseAuditController<Subscription, Long, SubscriptionDto, SubscriptionListDto> {
+public class SubscriptionController extends BaseStatusController<Subscription, Long, SubscriptionDto, SubscriptionListDto> {
 
 	@Autowired
 	private SubscriptionService subscriptionService;

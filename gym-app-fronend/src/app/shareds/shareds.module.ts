@@ -20,6 +20,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { StatusListFilterComponent } from './components/status-list-filter/status-list-filter.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { StatusComponent } from './components/status/status.component';
+import { AuditComponent } from './components/audit/audit.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { StatusComponent } from './components/status/status.component';
      ModalComponent,
      StatusListFilterComponent,
      UploadComponent,
-     StatusComponent
+     StatusComponent,
+     AuditComponent
     ],
   imports: [
     CommonModule,
@@ -64,7 +66,8 @@ import { StatusComponent } from './components/status/status.component';
     ModalComponent,
     StatusListFilterComponent,
     UploadComponent,
-    StatusComponent
+    StatusComponent,
+    AuditComponent
   ],
   providers: [
     AccountService

@@ -3,20 +3,17 @@ package com.gym.modules.subscription.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
 
-import com.gym.common.model.Auditable;
+import com.gym.common.model.BaseStatusEntity;
 import com.gym.modules.plan.model.Plan;
-import com.gym.modules.subscription.model.enums.SubscriptionStatus;
 import com.gym.user.model.User;
 
 @Entity
-public class Subscription extends Auditable {
+public class Subscription extends BaseStatusEntity {
 
 	/**
 	 * 
@@ -45,9 +42,6 @@ public class Subscription extends Auditable {
 	private int attendanceDays;
 	private int takenInvitations;
 	private String subscriptionNumber;
-	private String statusReason;
-	@Enumerated(EnumType.STRING)
-	private SubscriptionStatus status;
 	private double requiredAmount;
 
 	public Subscription() {
@@ -168,22 +162,6 @@ public class Subscription extends Auditable {
 
 	public void setSubscriptionNumber(String subscriptionNumber) {
 		this.subscriptionNumber = subscriptionNumber;
-	}
-
-	public String getStatusReason() {
-		return statusReason;
-	}
-
-	public void setStatusReason(String statusReason) {
-		this.statusReason = statusReason;
-	}
-
-	public SubscriptionStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(SubscriptionStatus status) {
-		this.status = status;
 	}
 
 	public double getRequiredAmount() {

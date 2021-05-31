@@ -16,6 +16,8 @@ export class TableContextMenuComponent implements OnInit {
   @Input() showStatus :boolean = true;
   @Output() showStatusEvent = new EventEmitter<any>();
 
+  @Input() showAudit :boolean = true;
+  @Output() showAuditEvent = new EventEmitter<any>();
 
 
   constructor() { }
@@ -33,6 +35,10 @@ export class TableContextMenuComponent implements OnInit {
 
   onClickStatus() {
     this.showStatusEvent.emit();
+  }
+
+  onClickAudit() {
+    this.showAuditEvent.emit();
   }
 
 }

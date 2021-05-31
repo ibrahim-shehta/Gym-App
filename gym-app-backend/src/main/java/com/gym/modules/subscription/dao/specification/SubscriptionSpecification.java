@@ -14,9 +14,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.gym.modules.plan.model.Plan_;
 import com.gym.modules.subscription.model.Subscription_;
-import com.gym.modules.subscription.model.enums.SubscriptionStatus;
 import com.gym.user.model.User_;
-import com.gym.common.constant.AppUtils;
 import com.gym.common.constant.FilterKeys;
 import com.gym.common.helper.DaoHelper;
 import com.gym.modules.subscription.model.Subscription;
@@ -78,16 +76,8 @@ public class SubscriptionSpecification {
             		Predicate equalPredicate = criteriaBuilder.like(root.get(Subscription_.SUBSCRIPTION_NUMBER), filterDataMap.get(FilterKeys.SUBSCRIPTION_NUMBER) + "%");
             		orPredicates.add(equalPredicate);
             	}
-            	if (filterDataMap.containsKey(FilterKeys.STATUS)) {
-            		String statusStr = filterDataMap.get(FilterKeys.STATUS) + "";
-            		SubscriptionStatus status;
-            		if (AppUtils.isInteger(statusStr)) {
-            			int index = Integer.parseInt(statusStr);
-            			status = SubscriptionStatus.values()[index];
-            		} else {
-            			status = SubscriptionStatus.valueOf(statusStr);
-            		}            		
-            		Predicate equalPredicate = criteriaBuilder.equal(root.get(Subscription_.STATUS), status);
+            	if (filterDataMap.containsKey(FilterKeys.STATUS)) {          		
+            		Predicate equalPredicate = criteriaBuilder.equal(root.get(Subscription_.STATUS), filterDataMap.get(FilterKeys.STATUS));
             		andPredicates.add(equalPredicate);
             	}
                 

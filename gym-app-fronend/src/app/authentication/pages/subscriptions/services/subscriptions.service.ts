@@ -17,13 +17,9 @@ export class SubscriptionsService extends BaseServiceWithStatus<any, any> {
     return this.baseUrl;
   }
 
-  getDefaultStatus(): string {
-    return 'IN_PROGRESS';
+  getDefaultStatus(): any {
+    return 0;
   };
-
-  getStatusList2() {
-    return this.http.get(this.baseUrl + "/status-list");
-  }
 
   getInProgressSubscription(userId) {
     return this.http.get(this.baseUrl + "/" + userId + "/in-progress-subscription");

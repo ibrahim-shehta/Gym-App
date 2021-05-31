@@ -136,6 +136,15 @@
     "STATUS_DATE":"تاريخ الحاله"
   },
 
+  "AUDIT": {
+    "AUDIT":"الاجراءات",
+    "AUDIT_TITILE":"تفاصيل العمليات",
+    "CREATED_AT":"تاريخ الاضافه",
+    "CREATED_BY_NAME":"اضيف بواسطه",
+    "LAST_MODIFIED_AT":"اخر تاريخ تعديل",
+    "LAST_MODIFIED_BY":"اخر تعديل بواسطه"
+  },
+
   "RESET_PASSWORD": {
     "SEND_SUCCESS":"تم ارسال البريد الالكترونى يرجى مراجعه الرسائل الوارده",
     "CHANGE_SUCCESS":"تم تغيير الرقم السرى الرجاء تسجيل الدخول مره اخرى",

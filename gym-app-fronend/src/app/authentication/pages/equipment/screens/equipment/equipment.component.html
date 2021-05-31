@@ -35,6 +35,8 @@
                         [showEdit]="true"
                         (editHandler)="edit(equipment.id)"
                         (showStatusEvent)="onShowStatusHandler(equipment)"
+                        (showAuditEvent)="onShowAuditHandler(equipment)"
+
                       >
                     </app-table-context-menu>
                   </tr>
@@ -59,4 +61,8 @@
       (onCloseDialog)="showStatusDialog = false"
       (onSaveStatusEvent)="onSaveStatusHandler($event)"
     ></app-status>
+</app-modal>
+
+<app-modal *ngIf="showAuditDialog" [show]="showAuditDialog" (onClose)="showAuditDialog = false" [headerText]="'AUDIT.AUDIT_TITILE'">
+  <app-audit [audit]="audit"></app-audit>
 </app-modal>

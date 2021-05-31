@@ -38,6 +38,7 @@
                 [showView]="true"
 
                 (viewHandler)="view(subscription.id)"
+                (showStatusEvent)="onShowStatusHandler(subscription)"
               ></app-table-context-menu>
           </td>
         </tr>
@@ -57,3 +58,15 @@
 </app-auth-contect>
 
 
+<app-modal *ngIf="showStatusDialog" [show]="showStatusDialog" (onClose)="showStatusDialog = false" [headerText]="'STATUS.CHANGE_STATUS'">
+  <app-status
+    [entity]="entity"
+    [statusList]="statusList"
+    (onCloseDialog)="showStatusDialog = false"
+    (onSaveStatusEvent)="onSaveStatusHandler($event)"
+  ></app-status>
+</app-modal>
+
+<app-modal *ngIf="showAuditDialog" [show]="showAuditDialog" (onClose)="showAuditDialog = false" [headerText]="'AUDIT.AUDIT_TITILE'">
+  <app-audit [audit]="audit"></app-audit>
+</app-modal>

@@ -2,10 +2,10 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { lookupTypeCode } from "../constants/lookup-type-code.enum";
-import { Baseservice } from "./BaseService";
+import { BaseAuditService } from "./BaseAuditService";
 import { Lookup } from "./Lookup";
 
-export abstract class BaseServiceWithStatus<L, E> extends Baseservice<L, E> {
+export abstract class BaseServiceWithStatus<L, E> extends BaseAuditService<L, E> {
   baseStatusUrl = environment.baseUrl + "/lookup";
   status :any = null;
 

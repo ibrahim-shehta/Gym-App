@@ -3,10 +3,10 @@ import { TranslateService } from "@ngx-translate/core";
 import { NotificationService } from "../services/notification.service";
 import { BaseEntity } from "./BaseEntity";
 import { BaseServiceWithStatus } from "./BaseServiceWithStatus";
-import { BaseTableComponent } from "./BaseTableComponent";
+import { BaseTableWithAuditComponent } from "./BaseTableWithAuditComponent";
 import { Lookup } from "./Lookup";
 
-export abstract class BaseTableWithStatusComponent<T extends BaseEntity> extends BaseTableComponent<T> {
+export abstract class BaseTableWithStatusComponent<T extends BaseEntity> extends BaseTableWithAuditComponent<T> {
 
   statusList :Lookup[] = [];
   showStatusDialog = false;

@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.gym.common.dto.mapper.BaseMapper;
+import com.gym.common.dto.mapper.BaseStatusMapper;
 import com.gym.modules.subscription.dto.SubscriptionListDto;
 import com.gym.modules.subscription.model.Subscription;
 
 @Component
-public class SubscriptionListDtoMapper implements BaseMapper<Subscription, SubscriptionListDto> {
+public class SubscriptionListDtoMapper implements BaseStatusMapper<Subscription, SubscriptionListDto> {
 
 	@Override
 	public SubscriptionListDto mapEntityToDto(Subscription entity) {
