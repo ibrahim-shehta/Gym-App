@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gym.common.controller.BaseController;
-import com.gym.common.dto.mapper.BaseMapper;
-import com.gym.common.service.BaseService;
-import com.gym.common.service.BaseServiceWithSepecification;
+import com.gym.common.controller.BaseAuditController;
 import com.gym.modules.plan.dto.PlanDto;
 import com.gym.modules.plan.dto.PlanListDto;
 import com.gym.modules.plan.dto.mapper.PlanDtoMapper;
@@ -17,7 +14,7 @@ import com.gym.modules.plan.service.PlanService;
 
 @RestController
 @RequestMapping("/api/v1/plan")
-public class PlanController extends BaseController<Plan, Long, PlanDto, PlanListDto> {
+public class PlanController extends BaseAuditController<Plan, Long, PlanDto, PlanListDto> {
 
 	@Autowired
 	private PlanService planService;
@@ -30,22 +27,18 @@ public class PlanController extends BaseController<Plan, Long, PlanDto, PlanList
 	
 	
 	@Override
-	protected BaseService<Plan, Long> getService() {
+	protected PlanService getService() {
 		return planService;
 	}
 
-	@Override
-	protected BaseServiceWithSepecification<Plan, Long> getServiceWithSepecification() {
-		return planService;
-	}
 	
 	@Override
-	protected BaseMapper<Plan, PlanDto> getEntityDtoMapper() {
+	protected PlanDtoMapper getEntityDtoMapper() {
 		return planDtoMapper;
 	}
 
 	@Override
-	protected BaseMapper<Plan, PlanListDto> getListDtoMapper() {
+	protected PlanListDtoMapper getListDtoMapper() {
 		return planListDtoMapper;
 	}
 }

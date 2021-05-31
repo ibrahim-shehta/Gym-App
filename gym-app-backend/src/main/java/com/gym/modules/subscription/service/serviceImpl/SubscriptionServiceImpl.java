@@ -9,14 +9,13 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
 
 import com.gym.common.constant.AppConstant;
 import com.gym.common.constant.AppUtils;
 import com.gym.common.constant.MessagesKeys;
 import com.gym.common.exception.exceptions.SubscriptionException;
-import com.gym.common.service.impl.BaseServiceWithSepecificationImpl;
+import com.gym.common.service.impl.BaseAuditServiceImpl;
 import com.gym.modules.plan.model.Plan;
 import com.gym.modules.plan.service.PlanService;
 import com.gym.modules.subscription.dao.SubscriptionRepository;
@@ -26,7 +25,7 @@ import com.gym.modules.subscription.model.enums.SubscriptionStatus;
 import com.gym.modules.subscription.service.SubscriptionService;
 
 @Service
-public class SubscriptionServiceImpl extends BaseServiceWithSepecificationImpl<Subscription, Long> implements SubscriptionService{
+public class SubscriptionServiceImpl extends BaseAuditServiceImpl<Subscription, Long> implements SubscriptionService {
 
 	private SubscriptionRepository subscriptionRepository;
 	private PlanService planService;
@@ -42,10 +41,7 @@ public class SubscriptionServiceImpl extends BaseServiceWithSepecificationImpl<S
 		return subscriptionRepository;
 	}
 	
-	public JpaSpecificationExecutor<Subscription> getSpecificationRepository() {
-		return subscriptionRepository;
-	}
-	
+	@Override
 	public Specification<Subscription> getSpecifications(Map<String, Object> filterDataMap) {
 		return SubscriptionSpecification.filterSubscriptions(filterDataMap);
 	}

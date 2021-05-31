@@ -5,11 +5,11 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.gym.common.dao.BaseRepository;
+import com.gym.common.dao.BaseAuditRepository;
 import com.gym.modules.exercises.excercises.model.Exercise;
 
 @Repository
-public interface ExerciseRepository extends BaseRepository<Exercise, Long>, JpaSpecificationExecutor<Exercise> {
+public interface ExerciseRepository extends BaseAuditRepository<Exercise, Long>, JpaSpecificationExecutor<Exercise> {
 
 	@Modifying
 	@Query("update Exercise set videoName = :videoName where id = :id")

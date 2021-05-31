@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +20,7 @@ import com.gym.common.exception.exceptions.EntityDuplicateAttributes;
 import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
 import com.gym.common.files.service.FilesStorageService;
-import com.gym.common.service.impl.BaseServiceWithSepecificationImpl;
+import com.gym.common.service.impl.BaseAuditServiceImpl;
 import com.gym.modules.settings.model.Settings;
 import com.gym.modules.settings.model.enums.SettingsCode;
 import com.gym.modules.settings.service.SettingsService;
@@ -32,7 +31,7 @@ import com.gym.user.service.UserService;
 
 @Service
 @Transactional
-public class UserServiceImpl extends BaseServiceWithSepecificationImpl<User, Long> implements UserService {
+public class UserServiceImpl extends BaseAuditServiceImpl<User, Long> implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -47,11 +46,8 @@ public class UserServiceImpl extends BaseServiceWithSepecificationImpl<User, Lon
 
 	 @Autowired
 	 private SettingsService settingsService;
-	 
-	public JpaSpecificationExecutor<User> getSpecificationRepository() {
-		return userRepository;
-	}
 	
+	 @Override
 	public Specification<User> getSpecifications(Map<String, Object> filterDataMap) {
 		return UserSpecification.filterUsers(filterDataMap);
 	}

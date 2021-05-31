@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.gym.common.controller.BaseController;
-import com.gym.common.dto.mapper.BaseMapper;
+import com.gym.common.controller.BaseAuditController;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.EntityResponse;
-import com.gym.common.service.BaseService;
-import com.gym.common.service.BaseServiceWithSepecification;
 import com.gym.modules.exercises.excercises.dto.ExerciseDto;
 import com.gym.modules.exercises.excercises.dto.ExerciseListDto;
 import com.gym.modules.exercises.excercises.dto.mapper.ExerciseDtoMapper;
@@ -25,7 +22,7 @@ import com.gym.modules.exercises.excercises.service.ExerciseService;
 
 @Controller
 @RequestMapping("/api/v1/excercises/exersise")
-public class ExerciseController extends BaseController<Exercise, Long, ExerciseDto, ExerciseListDto> {
+public class ExerciseController extends BaseAuditController<Exercise, Long, ExerciseDto, ExerciseListDto> {
 
 	@Autowired
 	private ExerciseService exerciseService;
@@ -37,22 +34,18 @@ public class ExerciseController extends BaseController<Exercise, Long, ExerciseD
 	private ExerciseListDtoMapper exerciseListDtoMapper;
 
 	@Override
-	protected BaseService<Exercise, Long> getService() {
+	protected ExerciseService getService() {
 		return exerciseService;
 	}
 	
-	@Override
-	protected BaseServiceWithSepecification<Exercise, Long> getServiceWithSepecification() {
-		return exerciseService;
-	}
 
 	@Override
-	protected BaseMapper<Exercise, ExerciseDto> getEntityDtoMapper() {
+	protected ExerciseDtoMapper getEntityDtoMapper() {
 		return exerciseDtoMapper;
 	}
 
 	@Override
-	protected BaseMapper<Exercise, ExerciseListDto> getListDtoMapper() {
+	protected ExerciseListDtoMapper getListDtoMapper() {
 		return exerciseListDtoMapper;
 	}
 	

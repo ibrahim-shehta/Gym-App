@@ -1,6 +1,5 @@
 package com.gym.modules.resetpassword.service;
 
-import com.gym.modules.resetpassword.dao.ResetPasswordRequest;
 import com.gym.user.model.User;
 
 public interface ResetPasswordService  {

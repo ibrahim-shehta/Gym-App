@@ -27,11 +27,6 @@ public class EquipmentController extends BaseStatusController<Equipment, Long, E
 	}
 
 	@Override
-	protected EquipmentService getServiceWithSepecification() {
-		return equipmentService;
-	}
-
-	@Override
 	protected EquipmentDtoMapper getEntityDtoMapper() {
 		return equipmentDtoMapper;
 	}

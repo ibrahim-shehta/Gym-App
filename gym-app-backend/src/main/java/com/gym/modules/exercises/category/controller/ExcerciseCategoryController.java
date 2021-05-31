@@ -10,12 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gym.common.controller.BaseController;
-import com.gym.common.dto.mapper.BaseMapper;
+import com.gym.common.controller.BaseAuditController;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.ListWithPaginationResponse;
-import com.gym.common.service.BaseService;
 import com.gym.modules.exercises.category.dto.ExcerciseCategoryDto;
 import com.gym.modules.exercises.category.dto.ExcerciseCategoryListDto;
 import com.gym.modules.exercises.category.dto.mapper.ExcerciseCategoryDtoMapper;
@@ -26,7 +24,7 @@ import com.gym.modules.exercises.category.service.ExcerciseCategoryService;
 
 @Controller
 @RequestMapping("/api/v1/excercises/category")
-public class ExcerciseCategoryController extends BaseController<ExcerciseCategory, Long, ExcerciseCategoryDto, ExcerciseCategoryListDto>{
+public class ExcerciseCategoryController extends BaseAuditController<ExcerciseCategory, Long, ExcerciseCategoryDto, ExcerciseCategoryListDto>{
 
 	@Autowired
 	private ExcerciseCategoryService excerciseCategoryService;
@@ -38,17 +36,17 @@ public class ExcerciseCategoryController extends BaseController<ExcerciseCategor
 	private ExcerciseCategoryListDtoMapper excerciseCategoryListDtoMapper;
 
 	@Override
-	protected BaseService<ExcerciseCategory, Long> getService() {
+	protected ExcerciseCategoryService getService() {
 		return excerciseCategoryService;
 	}
 
 	@Override
-	protected BaseMapper<ExcerciseCategory, ExcerciseCategoryDto> getEntityDtoMapper() {
+	protected ExcerciseCategoryDtoMapper getEntityDtoMapper() {
 		return excerciseCategoryDtoMapper;
 	}
 
 	@Override
-	protected BaseMapper<ExcerciseCategory, ExcerciseCategoryListDto> getListDtoMapper() {
+	protected ExcerciseCategoryListDtoMapper getListDtoMapper() {
 		return excerciseCategoryListDtoMapper;
 	}
 

@@ -10,12 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gym.common.controller.BaseController;
-import com.gym.common.dto.mapper.BaseMapper;
+import com.gym.common.controller.BaseAuditController;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.ListWithPaginationResponse;
-import com.gym.common.service.BaseService;
 import com.gym.modules.attendance.dto.AttendanceDto;
 import com.gym.modules.attendance.dto.AttendanceListDto;
 import com.gym.modules.attendance.dto.mapper.AttendanceDtoMapper;
@@ -26,7 +24,7 @@ import com.gym.modules.attendance.service.AttendanceService;
 
 @Controller
 @RequestMapping("/api/v1/attendance")
-public class AttendanceController extends BaseController<Attendance, Long, AttendanceDto, AttendanceListDto> {
+public class AttendanceController extends BaseAuditController<Attendance, Long, AttendanceDto, AttendanceListDto> {
 
 	@Autowired
 	private AttendanceService attendanceService;
@@ -39,17 +37,17 @@ public class AttendanceController extends BaseController<Attendance, Long, Atten
 	
 	
 	@Override
-	protected BaseService<Attendance, Long> getService() {
+	protected AttendanceService getService() {
 		return attendanceService;
 	}
 
 	@Override
-	protected BaseMapper<Attendance, AttendanceDto> getEntityDtoMapper() {
+	protected AttendanceDtoMapper getEntityDtoMapper() {
 		return attendanceDtoMapper;
 	}
 
 	@Override
-	protected BaseMapper<Attendance, AttendanceListDto> getListDtoMapper() {
+	protected AttendanceListDtoMapper getListDtoMapper() {
 		return attendanceListDtoMapper;
 	}
 	

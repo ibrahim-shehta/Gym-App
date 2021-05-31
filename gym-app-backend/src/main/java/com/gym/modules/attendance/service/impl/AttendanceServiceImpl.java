@@ -3,11 +3,13 @@ package com.gym.modules.attendance.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.gym.common.constant.AppUtils;
@@ -18,7 +20,7 @@ import com.gym.common.exception.exceptions.SubscriptionException;
 import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
-import com.gym.common.service.impl.BaseServiceImpl;
+import com.gym.common.service.impl.BaseAuditServiceImpl;
 import com.gym.modules.attendance.model.Attendance;
 import com.gym.modules.attendance.model.Attendance_;
 import com.gym.modules.attendance.repository.AttendanceRepostory;
@@ -26,7 +28,7 @@ import com.gym.modules.attendance.service.AttendanceService;
 import com.gym.modules.subscription.service.SubscriptionService;
 
 @Service
-public class AttendanceServiceImpl extends BaseServiceImpl<Attendance, Long> implements AttendanceService {
+public class AttendanceServiceImpl extends BaseAuditServiceImpl<Attendance, Long> implements AttendanceService {
 
 	
 	@Autowired
@@ -39,6 +41,9 @@ public class AttendanceServiceImpl extends BaseServiceImpl<Attendance, Long> imp
 	public AttendanceRepostory getRepository() {
 		return attendanceRepostory;
 	}
+
+	@Override
+	public Specification<Attendance> getSpecifications(Map<String, Object> filterDataMap) {return null;}
 	
 	@Override
 	@Transactional(dontRollbackOn= {SubscriptionException.class})

@@ -24,7 +24,6 @@ import com.gym.common.response.EntityResponse;
 import com.gym.common.response.ListResponse;
 import com.gym.common.response.ListWithPaginationResponse;
 import com.gym.common.service.BaseService;
-import com.gym.common.service.BaseServiceWithSepecification;
 
 public abstract class BaseController<E extends BaseEntity, ID extends Serializable ,EDto extends BaseDto, LDto extends BaseDto> {
 
@@ -32,9 +31,6 @@ public abstract class BaseController<E extends BaseEntity, ID extends Serializab
 	protected abstract BaseMapper<E, EDto> getEntityDtoMapper();
 	protected abstract BaseMapper<E, LDto> getListDtoMapper();
 
-	protected BaseServiceWithSepecification<E, ID> getServiceWithSepecification() {
-		return null;
-	}
 	
 	@PostMapping
 	public ResponseEntity<BaseResponse<EDto>> insert(@Valid @RequestBody EDto dto) {
@@ -68,7 +64,7 @@ public abstract class BaseController<E extends BaseEntity, ID extends Serializab
 	
 	@PostMapping("/all-filter")
 	public ResponseEntity<BaseResponse<LDto>> allFilter(@RequestBody FilterData filterData) {
-		List<E> entity = getServiceWithSepecification().filterAllData(filterData);
+		List<E> entity = getService().filterAllData(filterData);
 		List<LDto> dto = getListDtoMapper().mapListToDtos(entity);
 		return ResponseEntity.ok(new ListResponse<LDto>(dto));
 	}
@@ -79,7 +75,7 @@ public abstract class BaseController<E extends BaseEntity, ID extends Serializab
 	}
 	
 	protected ResponseEntity<BaseResponse<LDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
-		Page<E> entity = getServiceWithSepecification().filterDataPaginated(filterDataWithPaginationAndSort); 
+		Page<E> entity = getService().filterDataPaginated(filterDataWithPaginationAndSort); 
 		List<LDto> dto = (List<LDto>) getListDtoMapper().mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<LDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
 	}

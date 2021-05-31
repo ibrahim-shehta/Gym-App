@@ -15,21 +15,17 @@ import com.gym.common.model.BaseStatusEntity;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.EntityResponse;
 import com.gym.common.service.BaseStatusService;
-import com.gym.common.service.BaseStatusWithSpcificationService;
 
 public abstract class BaseStatusController <E extends BaseStatusEntity, ID extends Serializable ,EDto extends BaseStatusDto, LDto extends BaseStatusDto>
-	extends BaseController<E, ID, EDto, LDto>
-{
+	extends BaseAuditController<E, ID, EDto, LDto> {
 
 	protected abstract BaseStatusService<E, ID> getService();
 	protected abstract BaseStatusMapper<E, EDto> getEntityDtoMapper();
 	protected abstract BaseStatusMapper<E, LDto> getListDtoMapper();
 
-	protected BaseStatusWithSpcificationService<E, ID> getServiceWithSepecification() {
-		return null;
-	}
 
 	
+	@SuppressWarnings("unchecked")
 	@PutMapping("/status")
 	public ResponseEntity<BaseResponse<String>> updateStatus(@Valid @RequestBody EDto dto) {
 		getService().updateStatus((ID)dto.getId(), dto.getStatus(), dto.getStatusReason(), new Date());

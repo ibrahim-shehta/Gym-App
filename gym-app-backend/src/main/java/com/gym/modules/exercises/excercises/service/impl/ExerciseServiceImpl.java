@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.gym.common.constant.AppConstant;
 import com.gym.common.constant.AppUtils;
 import com.gym.common.files.service.FilesStorageService;
-import com.gym.common.service.impl.BaseServiceWithSepecificationImpl;
+import com.gym.common.service.impl.BaseAuditServiceImpl;
 import com.gym.modules.exercises.excercises.dao.ExerciseRepository;
 import com.gym.modules.exercises.excercises.dao.specification.ExerciseSpecification;
 import com.gym.modules.exercises.excercises.model.Exercise;
@@ -23,7 +23,7 @@ import com.gym.modules.settings.service.SettingsService;
 
 @Service
 @Transactional
-public class ExerciseServiceImpl extends BaseServiceWithSepecificationImpl<Exercise, Long> implements ExerciseService {
+public class ExerciseServiceImpl extends BaseAuditServiceImpl<Exercise, Long> implements ExerciseService {
 
 	
 	@Autowired
@@ -37,11 +37,6 @@ public class ExerciseServiceImpl extends BaseServiceWithSepecificationImpl<Exerc
 	
 	@Override
 	public ExerciseRepository getRepository() {
-		return exerciseRepository;
-	}
-
-	@Override
-	public ExerciseRepository getSpecificationRepository() {
 		return exerciseRepository;
 	}
 

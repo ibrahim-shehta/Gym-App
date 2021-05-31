@@ -7,11 +7,11 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.gym.common.dao.BaseRepository;
+import com.gym.common.dao.BaseAuditRepository;
 import com.gym.user.model.User;
 
 @Repository
-public interface UserRepository extends BaseRepository<User, Long>, JpaSpecificationExecutor<User>{
+public interface UserRepository extends BaseAuditRepository<User, Long>, JpaSpecificationExecutor<User>{
 
 	User findByUsername(String username);
 	
