@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.gym.common.constant.AppConstant;
 import com.gym.common.constant.AppUtils;
 import com.gym.common.constant.MessagesKeys;
+import com.gym.common.constant.enums.Status;
 import com.gym.common.exception.exceptions.SubscriptionException;
 import com.gym.common.service.impl.BaseStatusServiceImpl;
 import com.gym.modules.plan.model.Plan;
@@ -21,7 +22,6 @@ import com.gym.modules.plan.service.PlanService;
 import com.gym.modules.subscription.dao.SubscriptionRepository;
 import com.gym.modules.subscription.dao.specification.SubscriptionSpecification;
 import com.gym.modules.subscription.model.Subscription;
-import com.gym.modules.subscription.model.enums.SubscriptionStatus;
 import com.gym.modules.subscription.service.SubscriptionService;
 
 @Service
@@ -62,15 +62,15 @@ public class SubscriptionServiceImpl extends BaseStatusServiceImpl<Subscription,
 	}
 	
 	private void setSubscriptionStatus(Subscription entity) {
-		List<Long> expiredIds =  subscriptionRepository.findSubscriptionByStatusAndUser(SubscriptionStatus.EXPIRED.ordinal(), entity.getUser().getId());
-		List<Long> inProgressIds =  subscriptionRepository.findSubscriptionByStatusAndUser(SubscriptionStatus.IN_PROGRESS.ordinal(), entity.getUser().getId());
+		List<Long> expiredIds =  subscriptionRepository.findSubscriptionByStatusAndUser(Status.EXPIRED.getValue(), entity.getUser().getId());
+		List<Long> inProgressIds =  subscriptionRepository.findSubscriptionByStatusAndUser(Status.IN_PROGRESS.getValue(), entity.getUser().getId());
 		if (expiredIds.isEmpty() && inProgressIds.isEmpty()) {
-			entity.setStatus(SubscriptionStatus.IN_PROGRESS.ordinal());
+			entity.setStatus(Status.IN_PROGRESS.getValue());
 		} else if (!expiredIds.isEmpty()) {
-			entity.setStatus(SubscriptionStatus.IN_PROGRESS.ordinal());
-			subscriptionRepository.updateSubscriptionStatusById(expiredIds.get(0), SubscriptionStatus.RENEWED.ordinal());
+			entity.setStatus(Status.IN_PROGRESS.getValue());
+			subscriptionRepository.updateSubscriptionStatusById(expiredIds.get(0), Status.RENEWED.getValue());
 		} else if (!inProgressIds.isEmpty()) {
-			entity.setStatus(SubscriptionStatus.NEW.ordinal());
+			entity.setStatus(Status.NEW.getValue());
 		}
 	}
 	
@@ -81,7 +81,7 @@ public class SubscriptionServiceImpl extends BaseStatusServiceImpl<Subscription,
 
 	@Override
 	public Long validateUserSubscription(Long userId) {
-		List<Subscription> subscriptions = subscriptionRepository.getSubscriptionEntityByStatusAndUserId(SubscriptionStatus.IN_PROGRESS.ordinal(), userId);
+		List<Subscription> subscriptions = subscriptionRepository.getSubscriptionEntityByStatusAndUserId(Status.IN_PROGRESS.getValue(), userId);
 		checkUserNotHaveValidSubscription(subscriptions);
 		checkIfPlayerExceededDays(subscriptions.get(0));
 		Long diffDays = checkIfDateExceeded(subscriptions.get(0));
@@ -97,7 +97,7 @@ public class SubscriptionServiceImpl extends BaseStatusServiceImpl<Subscription,
 	
 	private void checkIfPlayerExceededDays(Subscription subscritpion) {
 		if (subscritpion.getNumberOfReservedDays() == subscritpion.getAttendanceDays()) {
-			subscriptionRepository.updateSubscriptionStatusById(subscritpion.getId() ,SubscriptionStatus.EXPIRED.ordinal());
+			subscriptionRepository.updateSubscriptionStatusById(subscritpion.getId() ,Status.EXPIRED.getValue());
 			throw new SubscriptionException(MessagesKeys.SUBSCRIPTION_DAYS_EXPIRED);
 		}
 	}
@@ -107,7 +107,7 @@ public class SubscriptionServiceImpl extends BaseStatusServiceImpl<Subscription,
 		LocalDate currentDate = LocalDate.now();
 		
 		if (currentDate.isAfter(endDate)) {
-			subscriptionRepository.updateSubscriptionStatusById(subscritpion.getId() ,SubscriptionStatus.EXPIRED.ordinal());
+			subscriptionRepository.updateSubscriptionStatusById(subscritpion.getId() ,Status.EXPIRED.getValue());
 			throw new SubscriptionException(MessagesKeys.SUBSCRIPTION_DATE_EXPIRED);
 		}
 		return AppUtils.getDurationInDays(currentDate, endDate);
