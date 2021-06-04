@@ -6,7 +6,7 @@ import { BaseAuditService } from "./BaseAuditService";
 import { Lookup } from "./Lookup";
 
 export abstract class BaseServiceWithStatus<L, E> extends BaseAuditService<L, E> {
-  baseStatusUrl = environment.baseUrl + "/lookup";
+  baseStatusUrl = environment.baseUrl + "/status";
   status :any = null;
 
   constructor(public http: HttpClient) {

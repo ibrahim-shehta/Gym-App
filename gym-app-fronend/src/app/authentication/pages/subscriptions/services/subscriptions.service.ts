@@ -18,7 +18,7 @@ export class SubscriptionsService extends BaseServiceWithStatus<any, any> {
   }
 
   getDefaultStatus(): any {
-    return 0;
+    return 3;
   };
 
   getInProgressSubscription(userId) {
