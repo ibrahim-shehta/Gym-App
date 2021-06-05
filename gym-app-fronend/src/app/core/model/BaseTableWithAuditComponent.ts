@@ -1,10 +1,10 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { NotificationService } from "../services/notification.service";
+import { AuditEntity } from "./AuditEntity";
 import { BaseAuditService } from "./BaseAuditService";
 import { BaseEntity } from "./BaseEntity";
 import { BaseTableComponent } from "./BaseTableComponent";
-import { AuditEntity } from '../../../../.history/src/app/core/model/AuditEntity_20210531191632';
 
 export abstract class BaseTableWithAuditComponent<T extends BaseEntity> extends BaseTableComponent<T> {
 

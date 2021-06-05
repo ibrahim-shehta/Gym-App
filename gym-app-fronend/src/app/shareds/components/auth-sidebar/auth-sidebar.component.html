@@ -16,15 +16,15 @@
       <li class="dropdown" routerLinkActive= "active">
           <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>{{'SCREENS.PLAYERS_MANAGEMENT'|translate}}</span></a>
           <ul class="dropdown-menu">
-           <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Players]">{{'SCREENS.PLAYERS'|translate}}</a></li>
+           <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.SubscriptionsModule, AuthURL.Players]">{{'SCREENS.PLAYERS'|translate}}</a></li>
           </ul>
         </li>
 
         <li class="dropdown" routerLinkActive= "active">
           <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>{{'SCREENS.SUBSCRIPTIONS_MANAGEMENT'|translate}}</span></a>
           <ul class="dropdown-menu">
-            <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Plans]">{{'SCREENS.PLANS'|translate}}</a></li>
-            <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Subscriptions]">{{'SCREENS.SUBSCRIPTIONS'|translate}}</a></li>
+            <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.SubscriptionsModule, AuthURL.Plans]">{{'SCREENS.PLANS'|translate}}</a></li>
+            <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.SubscriptionsModule, AuthURL.Subscriptions]">{{'SCREENS.SUBSCRIPTIONS'|translate}}</a></li>
             <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.ExcercisesCategory]">{{'SCREENS.EXCERCISES_CATEGORIES'|translate}}</a></li>
             <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Equipment]">{{'SCREENS.EQUIPMENTS'|translate}}</a></li>
             <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.Exercise]">{{'SCREENS.EXCERCISES'|translate}}</a></li>

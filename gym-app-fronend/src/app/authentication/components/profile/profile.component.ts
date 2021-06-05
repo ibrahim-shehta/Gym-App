@@ -7,8 +7,8 @@ import {UserService} from './users.service';
 import { StorageKeys } from 'src/app/core/constants/StorageKeys';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { PlayersService } from '../../pages/users/services/players.service';
 import { AppStateService } from 'src/app/core/services/app-state.service';
+import { PlayersService } from 'src/app/authentication/modules/subscriptions-module/pages/players/services/players.service';
 
 @Component({
   selector: 'app-profile',

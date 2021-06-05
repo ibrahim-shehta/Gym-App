@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
@@ -21,6 +21,10 @@ import { StatusListFilterComponent } from './components/status-list-filter/statu
 import { UploadComponent } from './components/upload/upload.component';
 import { StatusComponent } from './components/status/status.component';
 import { AuditComponent } from './components/audit/audit.component';
+import { SelectPlanComponent } from './components/select-plan/select-plan.component';
+import { PlansDetailsComponent } from '../authentication/modules/subscriptions-module/components/plans-details/plans-details.component';
+import { SubscriptionsDetailsComponent } from '../authentication/modules/subscriptions-module/components/subscriptions-details/subscriptions-details.component';
+import { PlayerDetailsComponent } from '../authentication/modules/subscriptions-module/components/player-details/player-details.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { AuditComponent } from './components/audit/audit.component';
      StatusListFilterComponent,
      UploadComponent,
      StatusComponent,
-     AuditComponent
+     AuditComponent,
+     SelectPlanComponent,
+     PlansDetailsComponent,
+     SubscriptionsDetailsComponent,
+     PlayerDetailsComponent
     ],
   imports: [
     CommonModule,
@@ -67,10 +75,17 @@ import { AuditComponent } from './components/audit/audit.component';
     StatusListFilterComponent,
     UploadComponent,
     StatusComponent,
-    AuditComponent
+    AuditComponent,
+    SelectPlanComponent,
+    PlansDetailsComponent,
+    SubscriptionsDetailsComponent,
+    PlayerDetailsComponent
   ],
   providers: [
     AccountService
-  ]
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
 export class SharedsModule { }

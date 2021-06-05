@@ -4,31 +4,10 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { SettingComponent } from "./components/setting/setting.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { AuthGuardService } from "../core/services/auth-guard.service";
-import { PlansComponent } from "./pages/plans/screens/plans/plans.component";
-import { PlansFormComponent } from "./pages/plans/screens/plans-form/plans-form.component";
-import { PlansResolverService } from "./pages/plans/resolvers/plans-resolver.service";
-import { PlansFormResolversService } from "./pages/plans/resolvers/plans-form-resolvers.service";
-import { PlayersResolversService } from "./pages/users/resolvers/players-resolvers.service";
-import { PlayersComponent } from "./pages/users/screens/players/players.component";
-import { PlayersFormComponent } from "./pages/users/screens/players-form/players-form.component";
-import { PlayersFormResolverService } from "./pages/users/resolvers/players-form-resolver.service";
-import { SubscriptionsResolversService } from "./pages/subscriptions/resolvers/subscriptions-resolvers.service";
-import { SubscriptionsFormResolverService } from "./pages/subscriptions/resolvers/subscriptions-form-resolver.service";
-import { SubscriptionsComponent } from "./pages/subscriptions/screens/subscriptions/subscriptions.component";
-import { SubscriptionsFormComponent } from "./pages/subscriptions/screens/subscriptions-form/subscriptions-form.component";
-
 import { CategoriesFormResolversService } from "./pages/exercises/categories/resolvers/categories-form-resolvers.service";
 import { CategoriesResolverService } from "./pages/exercises/categories/resolvers/categories-resolver.service";
 import { CategoriesComponent } from "./pages/exercises/categories/screens/categories/categories.component";
 import { CategoriesFormComponent } from "./pages/exercises/categories/screens/categories-form/categories-form.component";
-import { PlansViewComponent } from "./pages/plans/screens/plans-view/plans-view.component";
-import { PlyersViewComponent } from "./pages/users/screens/plyers-view/plyers-view.component";
-import { PlayerAttendanceComponent } from "./pages/users/screens/player-attendance/player-attendance.component";
-import { PlayersAttendanceService } from "./pages/users/resolvers/players-attendance.service";
-import { PlayerAttendanceHistoryComponent } from "./pages/users/screens/player-attendance-history/player-attendance-history.component";
-import { PlayerAttendanceHistoryResolverService } from "./pages/users/resolvers/player-attendance-history-resolver.service";
-import { SubscriptionViewComponent } from "./pages/subscriptions/screens/subscription-view/subscription-view.component";
-import { SubscriptionsViewResolverService } from "./pages/subscriptions/resolvers/subscriptions-view-resolver.service";
 import { ExerciseComponent } from "./pages/exercises/exercises/screens/categories/exercise.component";
 import { ExerciseResolverService } from "./pages/exercises/exercises/resolvers/exercise-resolver.service";
 import { ExerciseFormComponent } from "./pages/exercises/exercises/screens/categories-form/exercise-form.component";
@@ -55,88 +34,8 @@ const RouteList: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuardService],
   },
-  {
-    path: AuthURL.Plans,
-    children: [
-      {
-        path: "",
-        component: PlansComponent,
-        canActivate: [AuthGuardService],
-        resolve: { dataList: PlansResolverService },
-      },
-      {
-        path: AuthURL.PlansForm,
-        component: PlansFormComponent,
-        canActivate: [AuthGuardService],
-        resolve: { form: PlansFormResolversService },
-      },
-      {
-        path: AuthURL.View,
-        component: PlansViewComponent,
-        canActivate: [AuthGuardService],
-        resolve: { form: PlansFormResolversService },
-      }
-    ],
-  },
-  {
-    path: AuthURL.Players,
-    children: [
-      {
-        path: "",
-        component: PlayersComponent,
-        canActivate: [AuthGuardService],
-        resolve: { dataList: PlayersResolversService },
-      },
-      {
-        path: AuthURL.PlayersForm,
-        component: PlayersFormComponent,
-        canActivate: [AuthGuardService],
-        resolve: { form: PlayersFormResolverService },
-      }, {
-        path: AuthURL.View,
-        component: PlyersViewComponent,
-        canActivate: [AuthGuardService],
-        resolve: { form: PlayersFormResolverService },
-      }, {
-        path: AuthURL.Attendance,
-        component: PlayerAttendanceComponent,
-        canActivate: [AuthGuardService],
-        resolve: { form: PlayersAttendanceService },
-        children: [
-          {
-            path: '',
-            component: PlayerAttendanceHistoryComponent,
-            resolve: { dataList: PlayerAttendanceHistoryResolverService },
 
-          }
-        ]
-      }
-    ],
-  },
-
-  {
-    path: AuthURL.Subscriptions,
-    children: [
-      {
-        path: "",
-        component: SubscriptionsComponent,
-        canActivate: [AuthGuardService],
-        resolve: { dataList: SubscriptionsResolversService },
-      },
-      {
-        path: AuthURL.SubscriptionsForm,
-        component: SubscriptionsFormComponent,
-        canActivate: [AuthGuardService],
-        resolve: { form: SubscriptionsFormResolverService },
-      },
-      {
-        path: AuthURL.View,
-        component: SubscriptionViewComponent,
-        canActivate: [AuthGuardService],
-        resolve: { form: SubscriptionsViewResolverService },
-      }
-    ],
-  },
+  { path: AuthURL.SubscriptionsModule, loadChildren: () => import('./modules/subscriptions-module/subscriptions-module.module').then(m => m.SubscriptionsModuleModule) },
 
   {
     path: AuthURL.ExcercisesCategory,
