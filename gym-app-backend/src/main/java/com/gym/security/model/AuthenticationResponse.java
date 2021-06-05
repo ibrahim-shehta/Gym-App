@@ -1,11 +1,15 @@
 package com.gym.security.model;
 
+import java.util.List;
+
+import com.gym.user.dto.PermissionDto;
 import com.gym.user.dto.UserListDto;
 
 public class AuthenticationResponse {
 
 	private String token;
 	private UserListDto user;
+	private List<PermissionDto> permissions;
 	
 	public AuthenticationResponse()
 	{
@@ -17,10 +21,11 @@ public class AuthenticationResponse {
 		this.token = token;
 	}
 	
-	public AuthenticationResponse(String token, UserListDto user) {
+	public AuthenticationResponse(String token, UserListDto user, List<PermissionDto> permissions) {
 		super();
 		this.token = token;
-		this.setUser(user);
+		this.user = user;
+		this.permissions = permissions;
 	}
 
 	public String getToken() {
@@ -39,6 +44,12 @@ public class AuthenticationResponse {
 		this.user = user;
 	}
 
-	
+	public List<PermissionDto> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(List<PermissionDto> permissions) {
+		this.permissions = permissions;
+	}
 	
 }

@@ -1,11 +1,13 @@
 package com.gym.user.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gym.user.model.Permission;
+import com.gym.user.dto.PermissionDto;
 import com.gym.user.repository.PermissionRepository;
 import com.gym.user.service.PermissionService;
 
@@ -17,8 +19,8 @@ public class PermissionServiceImpl implements PermissionService {
 	private PermissionRepository permissionRepository;
 
 	@Override
-	public Permission getPermissionById(Long id, String langCode) {
-		return permissionRepository.getPermission(id, langCode);
+	public List<PermissionDto> getPermissionToUser(Long userId) {
+		return permissionRepository.getPermissionToUser(userId);
 	}
 	
 	

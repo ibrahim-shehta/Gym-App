@@ -16,7 +16,7 @@ import { AppStateService } from 'src/app/core/services/app-state.service';
 export class AuthSidebarComponent implements OnInit {
 
   userImg;
-
+  permissions :any = {};
   constructor(
     private account:AccountService,
     private authen:AuthenService,
@@ -31,6 +31,7 @@ export class AuthSidebarComponent implements OnInit {
   UserLogin : IAccount;
   ngOnInit() {
     this.getProfileImage();
+    this.permissions = this.appStateService.permissions;
   }
 
   getProfileImage() {
@@ -52,6 +53,15 @@ export class AuthSidebarComponent implements OnInit {
             this.authen.clearAuthenticated();
             this.router.navigate(['/',AppURL.UnAuth,  AppURL.Login])
           })
+  }
+
+
+  getModulesKeys() : string[] {
+    return Object.keys(this.permissions);;
+  }
+
+  getScrensKeys(key: string) :string[] {
+    return Object.keys(this.permissions[key]['children']);
   }
 
 }

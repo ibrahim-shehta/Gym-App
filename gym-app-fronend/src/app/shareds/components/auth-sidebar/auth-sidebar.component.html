@@ -31,6 +31,20 @@
           </ul>
         </li>
 
+
+        <hr/>
+
+        <li class="dropdown" routerLinkActive= "active" *ngFor="let module of getModulesKeys()">
+          <a href="#" class="nav-link has-dropdown"><i class="far" [ngClass]="permissions[module]['icon']" ></i> <span>{{permissions[module]['name']}}</span></a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let screen of getScrensKeys(module)" routerLinkActive= "active">
+              <a [routerLink] = "['/' , AppURL.Authen , permissions[module]['children'][screen]['path']]">
+                <i class="far" [ngClass]="permissions[module]['children'][screen]['icon']" ></i>
+                {{permissions[module]['children'][screen]['name']}}
+              </a></li>
+          </ul>
+        </li>
+
     </ul>
   </aside>
 </div>

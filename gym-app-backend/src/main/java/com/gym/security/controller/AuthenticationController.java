@@ -1,6 +1,7 @@
 package com.gym.security.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import com.gym.security.model.AuthenticationRequest;
 import com.gym.security.model.AuthenticationResponse;
 import com.gym.security.service.CustomUserDetailsService;
 import com.gym.security.utils.JwtUtil;
+import com.gym.user.dto.PermissionDto;
 import com.gym.user.dto.UserDto;
 import com.gym.user.dto.UserListDto;
 import com.gym.user.model.User;
@@ -69,7 +71,8 @@ public class AuthenticationController {
 		UserDetails userdetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 		String token = jwtUtil.generateToken(userdetails);
 		User user = userDetailsService.findUserByUsername(authenticationRequest.getUsername());
-		return ResponseEntity.ok(new EntityResponse<>(new AuthenticationResponse(token, UserListDto.mapEntityToDto(user))));
+		List<PermissionDto> permissions = userService.getPermissionToUser(user.getId());
+		return ResponseEntity.ok(new EntityResponse<>(new AuthenticationResponse(token, UserListDto.mapEntityToDto(user), permissions)));
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

@@ -24,9 +24,11 @@ import com.gym.common.service.impl.BaseAuditServiceImpl;
 import com.gym.modules.settings.model.Settings;
 import com.gym.modules.settings.model.enums.SettingsCode;
 import com.gym.modules.settings.service.SettingsService;
+import com.gym.user.dto.PermissionDto;
 import com.gym.user.model.User;
 import com.gym.user.repository.UserRepository;
 import com.gym.user.repository.specification.UserSpecification;
+import com.gym.user.service.PermissionService;
 import com.gym.user.service.UserService;
 
 @Service
@@ -46,6 +48,9 @@ public class UserServiceImpl extends BaseAuditServiceImpl<User, Long> implements
 
 	 @Autowired
 	 private SettingsService settingsService;
+	 
+	 @Autowired
+	 private PermissionService permissionService;
 	
 	 @Override
 	public Specification<User> getSpecifications(Map<String, Object> filterDataMap) {
@@ -103,5 +108,10 @@ public class UserServiceImpl extends BaseAuditServiceImpl<User, Long> implements
 			throw new BusinessException(MessagesKeys.RESET_PASSWORD_EMAIL_NOTFOUND);
 		}
 		return user;
+	}
+
+	@Override
+	public List<PermissionDto> getPermissionToUser(Long id) {
+		return permissionService.getPermissionToUser(id);
 	}
 }

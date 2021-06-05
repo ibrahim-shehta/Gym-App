@@ -1,16 +1,37 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AppStateService {
-
   profileImage = new BehaviorSubject<string>(null);
-  constructor() { }
+  permissions: any = {};
+
+  constructor() {}
 
   changeProfileImage(image) {
-    console.log('----------> ', image);
     this.profileImage.next(image);
+  }
+
+  setPermission(permissions: any[]) {
+    var map = {},
+      node,
+      roots = {},
+      i;
+
+    for (i = 0; i < permissions.length; i++) {
+      map[permissions[i].id] = i;
+      permissions[i].children = {};
+    }
+    for (i = 0; i < permissions.length; i += 1) {
+      node = permissions[i];
+      if (node.parentId) {
+        permissions[map[node.parentId]].children[node.code] = node;
+      } else {
+        roots[node.code] = node;
+      }
+    }
+    this.permissions = roots;
   }
 }

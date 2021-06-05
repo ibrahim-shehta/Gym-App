@@ -1,8 +1,10 @@
 package com.gym.user.service;
 
-import com.gym.user.model.Permission;
+import java.util.List;
+
+import com.gym.user.dto.PermissionDto;
 
 public interface PermissionService {
 
-	Permission getPermissionById(Long id, String langCode);
+	List<PermissionDto> getPermissionToUser(Long userId);
 }

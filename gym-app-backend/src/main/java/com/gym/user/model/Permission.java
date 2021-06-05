@@ -4,18 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import com.gym.common.model.BaseEntity;
-import com.gym.user.model.translate.PermissionTranslate;
 
 @Entity
 @Table(name="permissions")
@@ -26,20 +19,18 @@ public class Permission extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private String name;
 	private String code;
-	
-	@Enumerated(EnumType.STRING)
-	private PermissionType type;
+	private boolean isModule;
+	private boolean isScreen;
+	private String path;
+	private String icon;
 	
 	@ManyToOne
 	private Permission parent;
 	
 	@OneToMany(mappedBy="permission")
 	private List<RolePermission> rolePermission = new ArrayList<>();
-	
-	@OneToMany(mappedBy="permission")
-	private List<PermissionTranslate> permissionTranslate = new ArrayList<>();
-
 	
 	public Permission() {
 		// TODO Auto-generated constructor stub
@@ -57,13 +48,28 @@ public class Permission extends BaseEntity {
 		this.code = code;
 	}
 
-
-	public PermissionType getType() {
-		return type;
+	public boolean isModule() {
+		return isModule;
 	}
 
-	public void setType(PermissionType type) {
-		this.type = type;
+	public void setModule(boolean isModule) {
+		this.isModule = isModule;
+	}
+
+	public boolean isScreen() {
+		return isScreen;
+	}
+
+	public void setScreen(boolean isScreen) {
+		this.isScreen = isScreen;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	public Permission getParent() {
@@ -82,15 +88,20 @@ public class Permission extends BaseEntity {
 		this.rolePermission = rolePermission;
 	}
 
-	public List<PermissionTranslate> getPermissionTranslate() {
-		return permissionTranslate;
+	public String getName() {
+		return name;
 	}
 
-	public void setPermissionTranslate(List<PermissionTranslate> permissionTranslate) {
-		this.permissionTranslate = permissionTranslate;
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	
-	
-	
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
 }

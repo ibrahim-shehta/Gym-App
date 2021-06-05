@@ -24,8 +24,9 @@ export class AppComponent implements OnInit {
   loadStateIfUserLogged () {
     const userObj = localStorage.getItem(StorageKeys.LOGGED_USER);
     if (userObj) {
-      const user = JSON.parse(userObj).data.user;
-      this.appStateService.changeProfileImage(user.imageName);
+      const data = JSON.parse(userObj).data;
+      this.appStateService.changeProfileImage(data.user.imageName);
+      this.appStateService.setPermission(data.permissions);
     }
   }
 
