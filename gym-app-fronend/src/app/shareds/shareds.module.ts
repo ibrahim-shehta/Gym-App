@@ -21,10 +21,6 @@ import { StatusListFilterComponent } from './components/status-list-filter/statu
 import { UploadComponent } from './components/upload/upload.component';
 import { StatusComponent } from './components/status/status.component';
 import { AuditComponent } from './components/audit/audit.component';
-import { SelectPlanComponent } from './components/select-plan/select-plan.component';
-import { PlansDetailsComponent } from '../authentication/modules/subscriptions-module/components/plans-details/plans-details.component';
-import { SubscriptionsDetailsComponent } from '../authentication/modules/subscriptions-module/components/subscriptions-details/subscriptions-details.component';
-import { PlayerDetailsComponent } from '../authentication/modules/subscriptions-module/components/player-details/player-details.component';
 
 @NgModule({
   declarations: [
@@ -39,11 +35,7 @@ import { PlayerDetailsComponent } from '../authentication/modules/subscriptions-
      StatusListFilterComponent,
      UploadComponent,
      StatusComponent,
-     AuditComponent,
-     SelectPlanComponent,
-     PlansDetailsComponent,
-     SubscriptionsDetailsComponent,
-     PlayerDetailsComponent
+     AuditComponent
     ],
   imports: [
     CommonModule,
@@ -75,11 +67,7 @@ import { PlayerDetailsComponent } from '../authentication/modules/subscriptions-
     StatusListFilterComponent,
     UploadComponent,
     StatusComponent,
-    AuditComponent,
-    SelectPlanComponent,
-    PlansDetailsComponent,
-    SubscriptionsDetailsComponent,
-    PlayerDetailsComponent
+    AuditComponent
   ],
   providers: [
     AccountService

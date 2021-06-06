@@ -9,6 +9,7 @@ import { SharedsModule } from 'src/app/shareds/shareds.module';
 import { SubscriptionsFormResolverService } from './subscriptions/resolvers/subscriptions-form-resolver.service';
 import { SubscriptionsViewResolverService } from './subscriptions/resolvers/subscriptions-view-resolver.service';
 import { SubscriptionsResolversService } from './subscriptions/resolvers/subscriptions-resolvers.service';
+import { SharedSubscriptionsModule } from '../../shared-subscriptions/shared-subscriptions.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SubscriptionsResolversService } from './subscriptions/resolvers/subscri
   imports: [
     CommonModule,
     SharedsModule,
+    SharedSubscriptionsModule,
     SubscriptionsRoutingModule
   ],
   providers: [

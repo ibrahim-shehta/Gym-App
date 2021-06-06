@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Baseservice } from 'src/app/core/model/BaseService';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PlayersService extends Baseservice<any, any> {
 
 baseUrl = environment.baseUrl + '/player'

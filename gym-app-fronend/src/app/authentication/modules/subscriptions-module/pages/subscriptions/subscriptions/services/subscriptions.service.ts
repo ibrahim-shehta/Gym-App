@@ -3,7 +3,9 @@ import { Injectable } from "@angular/core";
 import { BaseServiceWithStatus } from "src/app/core/model/BaseServiceWithStatus";
 import { environment } from "src/environments/environment";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SubscriptionsService extends BaseServiceWithStatus<any, any> {
   baseUrl = environment.baseUrl + "/subscription";
 

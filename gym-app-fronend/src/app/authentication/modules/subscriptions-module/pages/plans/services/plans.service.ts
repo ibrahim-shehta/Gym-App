@@ -4,7 +4,9 @@ import { Baseservice } from 'src/app/core/model/BaseService';
 import { environment } from 'src/environments/environment';
 import { Plan, PlanList } from '../model/Plan';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PlansService extends Baseservice<PlanList, Plan> {
 
   baseUrl = environment.baseUrl + '/plan';
