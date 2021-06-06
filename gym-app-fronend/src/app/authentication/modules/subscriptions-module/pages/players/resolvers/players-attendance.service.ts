@@ -2,8 +2,8 @@ import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { forkJoin } from 'rxjs';
+import { CategoriesService } from 'src/app/authentication/modules/exercises-module/pages/categories/categories/services/categories-service';
 import { SubscriptionsService } from 'src/app/authentication/modules/subscriptions-module/pages/subscriptions/subscriptions/services/subscriptions.service';
-import { CategoriesService } from 'src/app/authentication/pages/exercises/categories/services/categories-service';
 
 @Injectable()
 export class PlayersAttendanceService implements Resolve<any> {

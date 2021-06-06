@@ -4,9 +4,7 @@ import { EquipmentService } from '../services/equipment-service';
 import { forkJoin } from 'rxjs';
 import { lookupTypeCode } from 'src/app/core/constants/lookup-type-code.enum';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EquipmentResolverService implements Resolve<any> {
 
 constructor(

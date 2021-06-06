@@ -1,6 +1,6 @@
 import { BaseEntity } from "src/app/core/model/BaseEntity";
-import { BaseExcerciseCategory } from "src/app/authentication/pages/exercises/categories/model/ExcerciseCategory"
-import { Equipment } from "../../../equipment/models/Equipment";
+import { BaseExcerciseCategory } from "../../../categories/categories/model/ExcerciseCategory";
+import { Equipment } from "../../../equipments/equipment/models/Equipment";
 export class BaseExercise extends BaseEntity {
   name: string;
   description: string;

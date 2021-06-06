@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { ExerciseService } from '../services/exercise-service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ExerciseResolverService implements Resolve<any> {
 
 constructor(

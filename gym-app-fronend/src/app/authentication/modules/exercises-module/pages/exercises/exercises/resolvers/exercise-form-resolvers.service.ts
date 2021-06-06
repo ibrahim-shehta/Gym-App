@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
-import { CategoriesService } from '../services/categories-service';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-@Injectable({
-  providedIn: 'root'
-})
-export class CategoriesFormResolversService implements Resolve<any> {
+import { EquipmentService } from '../../../equipments/equipment/services/equipment-service';
+import { ExerciseService } from '../services/exercise-service';
+import { CategoriesService } from '../../../categories/categories/services/categories-service';
+@Injectable()
+export class ExerciseFormResolversService implements Resolve<any> {
 
   constructor(
     private router: Router,
+    private exerciseService: ExerciseService,
+    private equipmentService: EquipmentService,
     private categoriesService: CategoriesService
   ) { }
 
@@ -21,18 +23,20 @@ export class CategoriesFormResolversService implements Resolve<any> {
      }
 
      const arr: any = [
-        this.categoriesService.getAll()
+        this.categoriesService.getAll(),
+        this.equipmentService.getAll()
       ];
 
      if (id) {
-        arr.push(this.categoriesService.getById(id));
+        arr.push(this.exerciseService.getById(id));
       }
 
      return forkJoin(arr).pipe(
         map((result) => {
           return {
             categories: result[0],
-            entity: id ? result[1] : null
+            equipments: result[1],
+            entity: id ? result[2] : null
           };
         })
       );

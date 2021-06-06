@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { CategoriesService } from '../services/categories-service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CategoriesResolverService implements Resolve<any> {
 
 constructor(

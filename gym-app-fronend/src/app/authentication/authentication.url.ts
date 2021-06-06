@@ -3,6 +3,7 @@ export const AuthURL = {
     Setting: 'setting',
     Profile: 'profile',
     SubscriptionsModule: 'sub',
+    ExerciseModule: 'exercises',
 
     Plans: 'plans',
     PlansForm: 'form',

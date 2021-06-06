@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { EquipmentService } from '../services/equipment-service';
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EquipmentFormResolversService implements Resolve<any> {
 
   constructor(

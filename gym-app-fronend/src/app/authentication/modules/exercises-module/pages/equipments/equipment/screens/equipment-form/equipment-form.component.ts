@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Equipment } from 'src/app/authentication/pages/equipment/models/Equipment';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { Equipment } from '../../models/Equipment';
 import { EquipmentService } from '../../services/equipment-service';
 
 

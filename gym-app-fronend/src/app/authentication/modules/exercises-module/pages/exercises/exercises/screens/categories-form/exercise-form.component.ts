@@ -2,12 +2,12 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Equipment } from 'src/app/authentication/pages/equipment/models/Equipment';
 import { FilesTypes } from 'src/app/core/constants/files-types-enum';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { environment } from 'src/environments/environment';
-import { BaseExcerciseCategory } from '../../../categories/model/ExcerciseCategory';
+import { BaseExcerciseCategory } from '../../../../categories/categories/model/ExcerciseCategory';
+import { Equipment } from '../../../../equipments/equipment/models/Equipment';
 import { Exercise } from '../../models/Exercise';
 import { ExerciseService } from '../../services/exercise-service';
 

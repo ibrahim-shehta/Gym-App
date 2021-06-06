@@ -1,4 +1,4 @@
-import { ExcerciseCategory } from "src/app/authentication/pages/exercises/categories/model/ExcerciseCategory";
+import { ExcerciseCategory } from "src/app/authentication/modules/exercises-module/pages/categories/categories/model/ExcerciseCategory";
 import { BaseEntity } from "src/app/core/model/BaseEntity";
 import { Player } from "./User";
 
