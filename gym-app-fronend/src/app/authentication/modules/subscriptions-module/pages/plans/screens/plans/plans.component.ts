@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthURL } from 'src/app/authentication/authentication.url';
 import { BaseTableComponent } from 'src/app/core/model/BaseTableComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { PlanList } from '../../model/Plan';
@@ -33,7 +32,7 @@ export class PlansComponent extends BaseTableComponent<PlanList> implements OnIn
   }
 
   getFormUrl() :string {
-    return AuthURL.PlansForm;
+    return this.AuthURL.PlansForm;
   }
 
   ngOnDestroy() {

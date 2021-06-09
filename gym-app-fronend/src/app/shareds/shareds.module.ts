@@ -21,6 +21,7 @@ import { StatusListFilterComponent } from './components/status-list-filter/statu
 import { UploadComponent } from './components/upload/upload.component';
 import { StatusComponent } from './components/status/status.component';
 import { AuditComponent } from './components/audit/audit.component';
+import { CheckPermissionDirective } from './directives/check-permission.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AuditComponent } from './components/audit/audit.component';
      StatusListFilterComponent,
      UploadComponent,
      StatusComponent,
-     AuditComponent
+     AuditComponent,
+     CheckPermissionDirective
     ],
   imports: [
     CommonModule,
@@ -67,7 +69,8 @@ import { AuditComponent } from './components/audit/audit.component';
     StatusListFilterComponent,
     UploadComponent,
     StatusComponent,
-    AuditComponent
+    AuditComponent,
+    CheckPermissionDirective
   ],
   providers: [
     AccountService

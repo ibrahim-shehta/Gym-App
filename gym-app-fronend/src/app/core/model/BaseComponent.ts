@@ -1,10 +1,12 @@
-import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { ResponseStatus } from "../constants/response-status-enum";
 import { NotificationService } from "../services/notification.service";
 import { Baseservice } from "./BaseService";
+import { AuthURL } from '../../authentication/authentication.url';
 
 export abstract class BaseComponent {
+
+  AuthURL = AuthURL;
 
   constructor(
     public notificationService :NotificationService,

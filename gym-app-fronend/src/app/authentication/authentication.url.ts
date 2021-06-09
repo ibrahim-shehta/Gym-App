@@ -2,7 +2,7 @@ export const AuthURL = {
     Dashboard: 'dashboard',
     Setting: 'setting',
     Profile: 'profile',
-    SubscriptionsModule: 'sub',
+    SubscriptionsModule: 'subscriptions',
     ExerciseModule: 'exercises',
 
     Plans: 'plans',
@@ -19,5 +19,25 @@ export const AuthURL = {
     View: 'view',
     PathVaribles: {
       Id: 'id'
+    },
+
+    Modules: {
+      subscription_management: {
+        code: "subscription_management",
+        screens: {
+            plans: {
+              code: 'plans',
+              permissions: {
+                key: 'plan'
+              }
+            },
+            subscriptions: {
+              name: 'subscriptions',
+              permissions: {
+                key: 'subscription'
+              }
+            },
+      }
     }
+  }
 };
