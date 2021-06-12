@@ -5,48 +5,65 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.gym.common.model.BaseEntity;
+import com.gym.common.model.Auditable;
 
 @Entity
 @Table(name="roles")
-public class Role extends BaseEntity {
+public class Role extends Auditable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String code;
 	private String name;
 	
-	@OneToMany(mappedBy="role")
-	private Set<UserRole> userRole = new HashSet<>();
+	@ManyToMany(mappedBy="roles")
+	private List<User> roles = new ArrayList<>();
 	
-	@OneToMany(mappedBy="role")
-	private List<RolePermission> rolePermission = new ArrayList<>();
+	@ManyToMany(cascade= {CascadeType.REFRESH, CascadeType.DETACH })
+	@JoinTable(
+			  name = "roles_permissions", 
+			  joinColumns = @JoinColumn(name = "roleId"), 
+			  inverseJoinColumns = @JoinColumn(name = "permissionId"))
+	private Set<Permission> permissions = new HashSet<>();
 
-	public String getCode() {
-		return code;
+	public Role() {
+		// TODO Auto-generated constructor stub
 	}
-	public void setCode(String code) {
-		this.code = code;
+	
+	public Role(Long id) {
+		super(id);
 	}
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<RolePermission> getRolePermission() {
-		return rolePermission;
-	}
-	public void setRolePermission(List<RolePermission> rolePermission) {
-		this.rolePermission = rolePermission;
+
+	public Set<Permission> getPermissions() {
+		return permissions;
 	}
 
+	public void setPermissions(Set<Permission> permissions) {
+		this.permissions = permissions;
+	}
+
+	public List<User> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<User> roles) {
+		this.roles = roles;
+	}
 	
 }

@@ -15,6 +15,9 @@ export const AuthURL = {
     Attendance: 'attendance',
     Exercise: 'exercise',
     Equipment: 'equipment',
+    UserManagent: 'user-man',
+    Roles: 'roles',
+    Employees: 'employees',
     Form: 'form',
     View: 'view',
     PathVaribles: {

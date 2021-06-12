@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -59,8 +61,12 @@ public class User extends Auditable {
 	private UserDetails userDetails;
 	
 	
-	@OneToMany(mappedBy = "user")
-	private List<UserRole> userRole = new ArrayList<>();
+	@ManyToMany(cascade= {CascadeType.REFRESH, CascadeType.DETACH })
+	@JoinTable(
+			  name = "users_roles", 
+			  joinColumns = @JoinColumn(name = "userId"), 
+			  inverseJoinColumns = @JoinColumn(name = "roleId"))
+	private List<Role> roles = new ArrayList<>();
 
 	public User() {
 
@@ -133,15 +139,7 @@ public class User extends Auditable {
 	public void setBlocked(boolean isBlocked) {
 		this.isBlocked = isBlocked;
 	}
-
-	public List<UserRole> getUserRole() {
-		return userRole;
-	}
-
-	public void setUserRole(List<UserRole> userRole) {
-		this.userRole = userRole;
-	}
-
+	
 	public String getAddress() {
 		return address;
 	}
@@ -186,6 +184,14 @@ public class User extends Auditable {
 
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 }

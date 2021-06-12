@@ -1,5 +1,9 @@
 package com.gym.user.dto;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.gym.common.dto.BaseDto;
 import com.gym.user.model.Permission;
 
@@ -33,16 +37,33 @@ public class PermissionDto extends BaseDto {
 			return null;
 		}
 		PermissionDto dto = new PermissionDto();
-		dto.setId(entity.getId());
-		dto.code = entity.getCode();
+		BaseDto.mapEntityToDto(entity, dto);
+		dto.setName(entity.getName());
+		dto.setCode(entity.getCode());
+		dto.setModule(entity.isModule());
+		dto.setScreen(entity.isScreen());
+		dto.setPath(entity.getPath());
+		dto.setIcon(entity.getIcon());
+		//dto.setParentId(entity.getParent().getpa);
 		return dto;
 	}
 
 	
+	public static List<PermissionDto> mapListToDtos(List<Permission> entity) {
+		if (entity == null) {
+			return null;
+		}
+		
+		if (entity == null || entity.isEmpty()) {
+			return Collections.emptyList();
+		}
+		return entity.stream().map(item -> mapEntityToDto(item)).collect(Collectors.toList());
+	}
 	
 	public static Permission mapDtoToEntity(PermissionDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+		Permission entity = new Permission();
+		BaseDto.mapDtoToEntity(dto, entity);
+		return entity;
 	}
 	
 	public String getCode() {

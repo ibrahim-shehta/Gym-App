@@ -1,0 +1,55 @@
+<app-auth-contect>
+  <app-page-header
+  [pageHeader]="'PLAYERS.MANAGE_PLAYERS'"
+  [sectionHeader]="'PLAYERS.SHOW_PLAYERS'"
+  [isTablePage]="true"
+  [service]="employeeService"
+
+  (onSearch)="search()"
+  (onStopSearch)="stopSearch()"
+  (onAdd)="add()"
+>
+      <div class="table-responsive">
+        <table class="table table-striped table-md">
+          <tr>
+            <th>{{'COMMON.NAME'|translate}}</th>
+            <th>{{'USERS.EMAIL'|translate}}</th>
+            <th>{{'USERS.USER_NAME'|translate}}</th>
+            <th>{{'USERS.MOBILE'|translate}}</th>
+            <th>{{'USERS.ADDRESS'|translate}}</th>
+            <th></th>
+          </tr>
+
+          <tr *ngFor="let player of dataList; let i = index">
+            <td>{{player.name}}</td>
+            <td>{{player.email}}</td>
+            <td>{{player.username}}</td>
+            <td>{{player.mobile}}</td>
+            <td>{{player.address}}</td>
+            <td>
+              <app-table-context-menu
+                [showView]="true"
+                [showEdit]="true"
+
+                (viewHandler)="view(player.id)"
+                (editHandler)="edit(player.id)"
+              >
+                <span (click)="onClickAttendace(player.id)" class="dropdown-item">{{'PLAYERS.ATTENDANCE'|translate}}<i class="fa fa-clock mx-2" aria-hidden="true"></i></span>
+            </app-table-context-menu>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+
+    <app-pagination
+      [totalRows]="totalRows"
+      [size]="employeeService.filterDataWithPaginationAndSort.size"
+      [currentPage]="currentPage"
+      (pageChanged)="pageChanged($event)"
+      >
+    </app-pagination>
+  </app-page-header>
+</app-auth-contect>
+
+

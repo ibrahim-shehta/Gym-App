@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
+import { Player } from 'src/app/core/model/User';
 import { NotificationService } from 'src/app/core/services/notification.service';
-import { Player } from '../../model/User';
 import { PlayersService } from '../../services/players.service';
 
 @Component({

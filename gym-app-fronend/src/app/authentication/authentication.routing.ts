@@ -25,6 +25,7 @@ const RouteList: Routes = [
 
   { path: AuthURL.SubscriptionsModule, loadChildren: () => import('./modules/subscriptions-module/subscriptions-module.module').then(m => m.SubscriptionsModuleModule) },
   { path: AuthURL.ExerciseModule, loadChildren: () => import('./modules/exercises-module/exercises-module.module').then(m => m.ExercisesModuleModule) },
+  { path: AuthURL.UserManagent, loadChildren: () => import('./modules/user-management/user-management.module').then(m => m.UserManagementModule) },
 ];
 
 export const AuthenticationRouting = RouterModule.forChild(RouteList);

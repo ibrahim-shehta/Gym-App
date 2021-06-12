@@ -32,6 +32,23 @@ export class AppStateService {
         roots[node.code] = node;
       }
     }
+
+    console.log({...roots});
+    let modules = Object.keys(roots);
+    for (let i = 0; i < modules.length; i++) {
+      let screens = Object.keys(roots[modules[i]]['children']);
+      for (let j = 0; j < screens.length; j++) {
+        //console.log((roots[modules[i]]['children'][screens[j]]));
+       // console.log((roots[modules[i]]['children'][screens[j]]['children']));
+        // if (Object.keys(roots[modules[i]]['children'][screens[j]]['children']).length == 0) {
+        //   delete roots[modules[i]];
+        // }
+      }
+    }
+
+    console.log(roots);
+
     this.permissions = roots;
+
   }
 }

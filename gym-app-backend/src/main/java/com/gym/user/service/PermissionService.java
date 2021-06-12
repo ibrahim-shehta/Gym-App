@@ -7,4 +7,6 @@ import com.gym.user.dto.PermissionDto;
 public interface PermissionService {
 
 	List<PermissionDto> getPermissionToUser(Long userId);
+
+	List<PermissionDto> getAll();
 }

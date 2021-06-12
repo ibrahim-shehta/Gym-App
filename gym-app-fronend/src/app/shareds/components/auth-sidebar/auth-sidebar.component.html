@@ -12,7 +12,18 @@
     </div>
     <hr/>
     <ul class="sidebar-menu">
+
       <li routerLinkActive= "active"><a class="nav-link" [routerLink] = "['/' , AppURL.Authen , AuthURL.Dashboard]"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+
+      <li class="dropdown" routerLinkActive= "active">
+          <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>إداره المستخدمين</span></a>
+          <ul class="dropdown-menu">
+            <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.UserManagent, AuthURL.Roles]">الادوار</a></li>
+            <li routerLinkActive= "active"><a [routerLink] = "['/' , AppURL.Authen , AuthURL.UserManagent, AuthURL.Employees]">الموظفين</a></li>
+          </ul>
+        </li>
+
+
       <li class="dropdown" routerLinkActive= "active">
           <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>{{'SCREENS.SUBSCRIPTIONS_MANAGEMENT'|translate}}</span></a>
           <ul class="dropdown-menu">

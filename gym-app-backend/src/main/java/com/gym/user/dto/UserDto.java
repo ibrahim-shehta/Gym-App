@@ -1,5 +1,6 @@
 package com.gym.user.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +24,8 @@ public class UserDto extends BaseUserDto {
 	
 	private UserDetailsDto userDetails;
 	
+	private List<RoleDto> roles = new ArrayList<>(); 
+	
 	public static UserDto mapEntityToDto(User entity) {
 		if (entity == null) {
 			return null;
@@ -35,6 +38,7 @@ public class UserDto extends BaseUserDto {
 		dto.setDeleted(entity.isDeleted());
 		dto.setUserType(entity.getUserType());
 		dto.setUserDetails(UserDetailsDto.mapEntityToDto(entity.getUserDetails()));
+		dto.setRoles(RoleDto.mapListToDtos(entity.getRoles()));
 		return dto;
 	}
 
@@ -51,6 +55,7 @@ public class UserDto extends BaseUserDto {
 		entity.setPassword(dto.getPassword());
 		entity.setUserType(dto.getUserType());
 		entity.setUserDetails(UserDetailsDto.mapDtoToEntity(dto.getUserDetails()));
+		entity.setRoles(RoleDto.mapListToEntities(dto.getRoles()));
 		return entity;
 	}
 	
@@ -123,6 +128,14 @@ public class UserDto extends BaseUserDto {
 
 	public void setUserDetails(UserDetailsDto userDetails) {
 		this.userDetails = userDetails;
+	}
+
+	public List<RoleDto> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<RoleDto> roles) {
+		this.roles = roles;
 	}
 
 }

@@ -1,0 +1,90 @@
+<app-auth-contect>
+  <app-page-header [pageHeader]="'ROLES.MANGE_ROLES'" [sectionHeader]="'ROLES.ADD_ROELS'">
+
+    <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate="">
+
+      <div class="form-group row mb-4">
+        <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.NAME'|translate}}</label>
+        <div class="col-sm-12 col-md-4">
+          <input type="text" class="form-control" name="name" [(ngModel)]="entity.name" required #name="ngModel">
+        </div>
+      </div>
+
+
+      <!-- start permissions -->
+      <!-- <div class="accordion accordion-flush" id="accordionFlushExample" *ngFor="let per of Object.keys(perObj)">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              {{perObj[per]['name']}}
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+          </div>
+        </div>
+      </div> -->
+
+<div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>الصلاحيات</h4>
+          </div>
+          <div class="card-body">
+            <div id="accordion">
+              <div class="accordion" *ngFor="let module of Object.keys(perObj); let i = index">
+                <div [id]="'accordion' + i" class="accordion-header collapsed" role="button" data-toggle="collapse" #item [attr.data-target]="'#panel-body' + i" aria-expanded="false">
+                  <div class="row">
+                    <h4 class="col-sm-11">{{perObj[module]['name']}} </h4>
+                    <!-- <span style="transform: rotate(180deg);" class="col-sm-1"><i class="fa fa-chevron-down"></i></span> -->
+                    <!-- <span *ngIf="document.getElementById('accordion' + i)['attributes'][3].value" class="col-sm-1">
+                      <i class="fa"
+                      [ngClass]="{'fa-plus-square': !modulesArr[i]}"
+                      [ngClass]="{'fa-minus-square': modulesArr[i]}"
+                      ></i>  </span> -->
+                    <!-- <span *ngIf="modulesArr[i]"> <i class="fa fa-plus-square"></i>  </span>
+                    <span *ngIf="!modulesArr[i]"> <i class="fa fa-minus-square"></i>  </span> -->
+                  </div>
+                </div>
+                <div class="accordion-body collapse" [id]="'panel-body' + i" data-parent="#accordion">
+                    <!-- <p class="mb-0" *ngFor="let screen of Object.keys(perObj[module]['children'])">
+                        {{perObj[module]['children'][screen]['name']}}
+                    </p> -->
+
+                    <div id="accordion">
+                      <div class="accordion" *ngFor="let screen of Object.keys(perObj[module]['children']); let j = index">
+                        <div [id]="'accordion' + i + j" class="accordion-header collapsed" role="button" data-toggle="collapse" #item [attr.data-target]="'#panel-body' + i + j" aria-expanded="false">
+                          <div class="row">
+                            <h4 class="col-sm-11">{{perObj[module]['children'][screen]['name']}}</h4>
+                          </div>
+                        </div>
+                        <div class="accordion-body collapse" [id]="'panel-body' + i + j" [attr.data-parent]="'#accordion' + i + j">
+                            <div class="mb-0" *ngFor="let permission of Object.keys(perObj[module]['children'][screen]['children'])">
+                                <div class="row">
+                                  <div class="col-sm-11">{{perObj[module]['children'][screen]['children'][permission]['name']}}</div>
+                                  <div class="col-sm-1"> <input type="checkbox"
+                                    [checked]="selectedPermissionObj[perObj[module]['children'][screen]['children'][permission]['code']] >= 0"
+                                    (change)="onSelectPermission(perObj[module]['children'][screen]['children'][permission])"> </div>
+                                </div>
+                              </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+      <!-- start permissions -->
+      <app-view-edit-actions
+        [showSave]="true"
+        [showCancel]="true"
+        (onClickCancel)="goBack()"
+      ></app-view-edit-actions>
+    </form>
+
+  </app-page-header>
+</app-auth-contect>

@@ -1,3 +1,4 @@
+import { Role } from "src/app/authentication/modules/user-management/pages/roles/model/Role";
 import { BaseEntity } from "src/app/core/model/BaseEntity";
 
 class BaseUser extends BaseEntity {
@@ -7,6 +8,7 @@ class BaseUser extends BaseEntity {
   mobile :string;
   address :string;
   imageName :string;
+  userType :string;
 }
 
 class BasePlayer extends BaseUser {
@@ -15,13 +17,21 @@ class BasePlayer extends BaseUser {
 
 export class Player extends BasePlayer {
   birthDate :Date;
-  // isActive :boolean;
-  // isDeleted :boolean;
-  // isBlocked :boolean;
-  // password :string;
-  userType :string;
 }
 
 export class PlayerList extends BasePlayer {
+
+}
+
+export class BaseEmployee extends BaseUser {
+
+}
+
+export class Employee extends BasePlayer {
+  birthDate :Date;
+  roles: Role[]
+}
+
+export class EmployeeList extends BasePlayer {
 
 }

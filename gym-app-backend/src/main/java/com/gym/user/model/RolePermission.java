@@ -19,6 +19,19 @@ public class RolePermission extends Auditable {
 	@ManyToOne
 	private Role role;
 
+	public RolePermission() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public RolePermission(Long id) {
+		super(id);
+	}
+	
+	public RolePermission(Role role, Permission permission) {
+		this.role = role;
+		this.permission = permission;
+	}
+	
 	public Permission getPermission() {
 		return permission;
 	}

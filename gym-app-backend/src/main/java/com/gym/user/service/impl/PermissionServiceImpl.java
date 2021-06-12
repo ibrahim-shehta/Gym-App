@@ -22,6 +22,11 @@ public class PermissionServiceImpl implements PermissionService {
 	public List<PermissionDto> getPermissionToUser(Long userId) {
 		return permissionRepository.getPermissionToUser(userId);
 	}
+
+	@Override
+	public List<PermissionDto> getAll() {
+		return permissionRepository.getAllPermissions();
+	}
 	
 	
 

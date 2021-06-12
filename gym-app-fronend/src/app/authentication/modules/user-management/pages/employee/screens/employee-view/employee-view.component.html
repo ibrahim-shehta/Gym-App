@@ -1,0 +1,12 @@
+<app-auth-contect>
+  <app-page-header [pageHeader]="'PLAYERS.MANAGE_PLAYERS'" [sectionHeader]="'PLAYERS.VIEW_PLAYER'">
+
+    <app-player-details [entity]="entity" [showAll]="true"></app-player-details>
+
+    <app-view-edit-actions
+        [showBack]="true"
+        (onClickBack)="goBack()"
+    ></app-view-edit-actions>
+
+  </app-page-header>
+</app-auth-contect>

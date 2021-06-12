@@ -1,11 +1,11 @@
 package com.gym.user.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.gym.common.model.BaseEntity;
@@ -29,8 +29,8 @@ public class Permission extends BaseEntity {
 	@ManyToOne
 	private Permission parent;
 	
-	@OneToMany(mappedBy="permission")
-	private List<RolePermission> rolePermission = new ArrayList<>();
+	@ManyToMany(mappedBy="permissions")
+	private Set<Role> roles = new HashSet<>();
 	
 	public Permission() {
 		// TODO Auto-generated constructor stub
@@ -78,14 +78,6 @@ public class Permission extends BaseEntity {
 
 	public void setParent(Permission parent) {
 		this.parent = parent;
-	}
-
-	public List<RolePermission> getRolePermission() {
-		return rolePermission;
-	}
-
-	public void setRolePermission(List<RolePermission> rolePermission) {
-		this.rolePermission = rolePermission;
 	}
 
 	public String getName() {
