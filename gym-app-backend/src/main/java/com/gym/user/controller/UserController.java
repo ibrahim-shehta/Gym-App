@@ -53,7 +53,7 @@ public class UserController {
 		dto.setUserType(getUserType(req));
 		User entity = UserDto.mapDtoToEntity(dto);
 		if (dto.getPassword() != null && dto.getPassword().length() > 0) {
-			entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+			entity.setPassword(passwordEncoder.encode(entity.getPassword() != null ? entity.getPassword() : "1234"));
 		}
 		entity = userService.save(entity);
 		dto.setId(entity.getId());

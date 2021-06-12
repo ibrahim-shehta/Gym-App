@@ -20,7 +20,8 @@
                   </div>
                   <button [hidden]="!service.isClickSearch" class="btn btn-warning mx-1" (click)="onStopSearchHanlder()"><i
                       class="fa fa-times" aria-hidden="true"></i></button>
-                  <button class="btn btn-danger mx-5" (click)="onAddHandler()">{{'COMMON.ADD'|translate}}</button>
+                  <button *appCheckPermission="[permissionArr[0], permissionArr[1], permissionArr[1]+ '_add']"
+                  class="btn btn-danger mx-5" (click)="onAddHandler()">{{'COMMON.ADD'|translate}}</button>
                 </div>
               </form>
             </div>

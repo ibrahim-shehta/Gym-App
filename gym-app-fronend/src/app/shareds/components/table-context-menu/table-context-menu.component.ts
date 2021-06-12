@@ -20,6 +20,8 @@ export class TableContextMenuComponent implements OnInit {
   @Output() showAuditEvent = new EventEmitter<any>();
 
 
+  @Input() permissionArr :string[] = [];
+
   constructor() { }
 
   ngOnInit(): void {

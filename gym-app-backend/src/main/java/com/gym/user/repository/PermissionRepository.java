@@ -19,8 +19,8 @@ public interface PermissionRepository extends BaseRepository<Permission, Long>{
 //	// @Query("from Permission p, PermissionTranslate pt where p.id = :id and pt.permission.id = :id and pt.langCode = :langCode")
 //	public Permission getPermission(Long id, String langCode);
 
-	@Query("select new com.gym.user.dto.PermissionDto(p.id, p.name, p.code, p.isModule, p.isScreen, p.path, p.icon, p.parent.id) from UserRole ur "
-			+ "join ur.role r right join r.permissions p  where ur.user.id = :userId or p.isModule = true or p.isScreen = true")
+	@Query("select new com.gym.user.dto.PermissionDto(p.id, p.name, p.code, p.isModule, p.isScreen, p.path, p.icon, p.parent.id) from User u "
+			+ "join u.roles r right join r.permissions p  where u.id = :userId or p.isModule = true or p.isScreen = true")
 	public List<PermissionDto> getPermissionToUser(Long userId);
 	
 	@Query("select new com.gym.user.dto.PermissionDto(p.id, p.name, p.code, p.isModule, p.isScreen, p.path, p.icon, p.parent.id) from Permission p ")

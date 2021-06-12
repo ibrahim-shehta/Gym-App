@@ -8,6 +8,7 @@
   (onSearch)="search()"
   (onStopSearch)="stopSearch()"
   (onAdd)="add()"
+  [permissionArr]="[AuthURL.Modules.subscriptions_managemnt.code, AuthURL.Modules.subscriptions_managemnt.screens.subscriptions.code]"
 >
 
   <app-status-list-filter [statusList]="statusList" (onSelectStatus)="onSelectStatusHandler($event)"
@@ -35,8 +36,7 @@
           <td>{{subscription.endDate}}</td>
           <td>
             <app-table-context-menu
-                [showView]="true"
-
+                [permissionArr]="[AuthURL.Modules.subscriptions_managemnt.code, AuthURL.Modules.subscriptions_managemnt.screens.subscriptions.code]"
                 (viewHandler)="view(subscription.id)"
                 (showStatusEvent)="onShowStatusHandler(subscription)"
               ></app-table-context-menu>

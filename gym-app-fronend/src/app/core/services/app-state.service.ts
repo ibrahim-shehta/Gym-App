@@ -33,16 +33,22 @@ export class AppStateService {
       }
     }
 
-    console.log({...roots});
     let modules = Object.keys(roots);
+    modulesLoop:
     for (let i = 0; i < modules.length; i++) {
       let screens = Object.keys(roots[modules[i]]['children']);
+      let moduleKey = modules[i];
+      screenLoop:
       for (let j = 0; j < screens.length; j++) {
-        //console.log((roots[modules[i]]['children'][screens[j]]));
-       // console.log((roots[modules[i]]['children'][screens[j]]['children']));
-        // if (Object.keys(roots[modules[i]]['children'][screens[j]]['children']).length == 0) {
-        //   delete roots[modules[i]];
-        // }
+       let screenKey = screens[j];
+        if (Object.entries(roots[moduleKey]['children'][screenKey]['children']).length == 0) {
+          delete roots[moduleKey]['children'][screenKey];
+          //break screenLoop;
+        }
+      }
+      if (Object.entries(roots[moduleKey]['children']).length == 0) {
+        delete roots[moduleKey];
+        //break screenLoop;
       }
     }
 

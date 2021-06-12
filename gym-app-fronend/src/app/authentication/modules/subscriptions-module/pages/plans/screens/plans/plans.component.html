@@ -8,6 +8,7 @@
     (onSearch)="search()"
     (onStopSearch)="stopSearch()"
     (onAdd)="add()"
+    [permissionArr]="[AuthURL.Modules.subscriptions_managemnt.code, AuthURL.Modules.subscriptions_managemnt.screens.plans.code]"
   >
       <div class="table-responsive">
         <table class="table table-striped table-md">
@@ -35,6 +36,8 @@
 
                 (viewHandler)="view(plan.id)"
                 (editHandler)="edit(plan.id)"
+                [permissionArr]="[AuthURL.Modules.subscriptions_managemnt.code, AuthURL.Modules.subscriptions_managemnt.screens.plans.code]"
+
               ></app-table-context-menu>
             </td>
           </tr>

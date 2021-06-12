@@ -8,6 +8,8 @@
   (onSearch)="search()"
   (onStopSearch)="stopSearch()"
   (onAdd)="add()"
+  [permissionArr]="[AuthURL.Modules.user_management.code, AuthURL.Modules.user_management.screens.employees.code]"
+
 >
       <div class="table-responsive">
         <table class="table table-striped table-md">
@@ -28,13 +30,11 @@
             <td>{{player.address}}</td>
             <td>
               <app-table-context-menu
-                [showView]="true"
-                [showEdit]="true"
-
                 (viewHandler)="view(player.id)"
                 (editHandler)="edit(player.id)"
+                [permissionArr]="[AuthURL.Modules.user_management.code, AuthURL.Modules.user_management.screens.employees.code]"
+
               >
-                <span (click)="onClickAttendace(player.id)" class="dropdown-item">{{'PLAYERS.ATTENDANCE'|translate}}<i class="fa fa-clock mx-2" aria-hidden="true"></i></span>
             </app-table-context-menu>
             </td>
           </tr>

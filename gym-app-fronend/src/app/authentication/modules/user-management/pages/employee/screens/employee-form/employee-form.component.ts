@@ -35,7 +35,7 @@ export class EmployeeFormComponent extends BaseFormCompnent<Employee> implements
     const entity = this.activatedRoute.snapshot.data.form.entity;
     if (entity) {
       this.entity = entity.data;
-      this.selectedId = this.entity.roles[0].id;
+      this.selectedId = this.entity.roles[0] ? this.entity.roles[0].id : null;
       this.isEditMode = true;
     }
   }

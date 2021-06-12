@@ -16,6 +16,7 @@ export class PageHeaderComponent implements OnInit {
   @Output() onSearch = new EventEmitter<any>();
   @Output() onStopSearch = new EventEmitter<any>();
   @Output() onAdd = new EventEmitter<any>();
+  @Input() permissionArr :string[] = [];
 
 
   constructor() { }

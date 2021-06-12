@@ -25,22 +25,40 @@ export const AuthURL = {
     },
 
     Modules: {
-      subscription_management: {
-        code: "subscription_management",
+      user_management: {
+        code: "user_management",
         screens: {
-            plans: {
-              code: 'plans',
+            roles: {
+              code: 'roles',
               permissions: {
-                key: 'plan'
               }
             },
-            subscriptions: {
-              name: 'subscriptions',
+            employees: {
+              code: 'employees',
               permissions: {
-                key: 'subscription'
               }
             },
       }
+    },
+    subscriptions_managemnt: {
+      code: "subscriptions_managemnt",
+      screens: {
+          plans: {
+            code: 'plans',
+            permissions: {
+            }
+          },
+          players: {
+            code: 'players',
+            permissions: {
+            }
+          },
+          subscriptions: {
+            code: 'subscriptions',
+            permissions: {
+            }
+          },
     }
+  }
   }
 };

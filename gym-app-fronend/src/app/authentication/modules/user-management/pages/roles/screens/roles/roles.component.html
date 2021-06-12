@@ -8,6 +8,7 @@
     (onSearch)="search()"
     (onStopSearch)="stopSearch()"
     (onAdd)="add()"
+    [permissionArr]="[AuthURL.Modules.user_management.code, AuthURL.Modules.user_management.screens.roles.code]"
   >
       <div class="table-responsive">
         <table class="table table-striped table-md">
@@ -20,8 +21,9 @@
             <td>{{role.name}}</td>
             <td>
               <app-table-context-menu
-                [showEdit]="true"
                 (editHandler)="edit(role.id)"
+                [permissionArr]="[AuthURL.Modules.user_management.code, AuthURL.Modules.user_management.screens.roles.code]"
+
               ></app-table-context-menu>
             </td>
           </tr>

@@ -8,6 +8,8 @@
   (onSearch)="search()"
   (onStopSearch)="stopSearch()"
   (onAdd)="add()"
+  [permissionArr]="[AuthURL.Modules.subscriptions_managemnt.code, AuthURL.Modules.subscriptions_managemnt.screens.players.code]"
+
 >
       <div class="table-responsive">
         <table class="table table-striped table-md">
@@ -28,9 +30,7 @@
             <td>{{player.address}}</td>
             <td>
               <app-table-context-menu
-                [showView]="true"
-                [showEdit]="true"
-
+                [permissionArr]="[AuthURL.Modules.subscriptions_managemnt.code, AuthURL.Modules.subscriptions_managemnt.screens.players.code]"
                 (viewHandler)="view(player.id)"
                 (editHandler)="edit(player.id)"
               >

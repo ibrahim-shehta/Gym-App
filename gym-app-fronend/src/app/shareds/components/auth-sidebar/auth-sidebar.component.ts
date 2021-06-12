@@ -17,6 +17,8 @@ export class AuthSidebarComponent implements OnInit {
 
   userImg;
   permissions :any = {};
+  Object = Object;
+
   constructor(
     private account:AccountService,
     private authen:AuthenService,
