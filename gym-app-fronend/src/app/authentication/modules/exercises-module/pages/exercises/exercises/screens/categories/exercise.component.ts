@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthURL } from 'src/app/authentication/authentication.url';
-import { BaseTableComponent } from 'src/app/core/model/BaseTableComponent';
+import { BaseTableWithAuditComponent } from 'src/app/core/model/BaseTableWithAuditComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { ExerciseList } from '../../models/Exercise';
 import { ExerciseService } from '../../services/exercise-service';
@@ -12,7 +12,7 @@ import { ExerciseService } from '../../services/exercise-service';
   templateUrl: './exercise.component.html',
   styleUrls: ['./exercise.component.css']
 })
-export class ExerciseComponent extends BaseTableComponent<ExerciseList> implements OnInit, OnDestroy {
+export class ExerciseComponent extends BaseTableWithAuditComponent<ExerciseList> implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,

@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.gym.security.model.MyUserDetails;
 import com.gym.security.service.CustomUserDetailsService;
 import com.gym.security.utils.JwtUtil;
 
@@ -41,9 +41,16 @@ public class CustomJwtAuthenticationFilter extends OncePerRequestFilter {
 
 			if (StringUtils.hasText(jwtToken) && jwtTokenUtil.validateToken(jwtToken)) {
 				
-				UserDetails userDetails = userDetailsService.loadUserByUsername(jwtTokenUtil.getUsernameFromToken(jwtToken));
+				MyUserDetails userDetails = userDetailsService.loadUserByUsername(jwtTokenUtil.getUsernameFromToken(jwtToken));
 
-				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+				if (userDetails.isTokenExpired()) {
+					response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+		                    "jwt token is invalid or incorrect");
+
+				}
+				
+				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
+						new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
 				// After setting the Authentication in the context, we specify
 				// that the current user is authenticated. So it passes the

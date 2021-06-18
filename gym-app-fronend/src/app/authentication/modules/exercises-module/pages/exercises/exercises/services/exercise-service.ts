@@ -1,14 +1,14 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Baseservice } from 'src/app/core/model/BaseService';
+import { BaseAuditService } from 'src/app/core/model/BaseAuditService';
 import { environment } from 'src/environments/environment';
 import { Exercise, ExerciseList } from '../models/Exercise';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ExerciseService extends Baseservice<ExerciseList, Exercise> {
+export class ExerciseService extends BaseAuditService<ExerciseList, Exercise> {
 
   baseUrl = environment.baseUrl + '/excercises/exersise';
 

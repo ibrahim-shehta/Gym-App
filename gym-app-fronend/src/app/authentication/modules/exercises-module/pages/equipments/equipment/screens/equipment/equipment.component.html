@@ -1,58 +1,60 @@
+<app-auth-contect>
+    <app-page-header
+    [pageHeader]="'EQUIPMENT.HEADER'"
+    [sectionHeader]="'EQUIPMENT.TABLE_HEADER'"
+    [isTablePage]="true"
+    [service]="_componentService"
+    (onSearch)="search()"
+    (onStopSearch)="stopSearch()"
+    (onAdd)="add()"
+    [permissionArr]="[AuthURL.Modules.exercise_management.code, AuthURL.Modules.exercise_management.screens.equipment.code]"
+  >
 
-            <app-auth-contect>
-              <app-page-header
-              [pageHeader]="'EQUIPMENT.HEADER'"
-              [sectionHeader]="'EQUIPMENT.TABLE_HEADER'"
-              [isTablePage]="true"
-              [service]="_componentService"
+  <div class="card-body p-0">
+    <app-status-list-filter
+    [statusList] = "statusList"
+    [selectedStatusIndex] = "_componentService.status ? _componentService.status : _componentService.getDefaultStatus()"
+    (onSelectStatus) = "onSelectStatusHandler($event)"
+    ></app-status-list-filter>
 
-              (onSearch)="search()"
-              (onStopSearch)="stopSearch()"
-              (onAdd)="add()"
+    <div class="table-responsive">
+      <table class="table table-striped table-md">
+        <tr>
+          <th>{{'COMMON.NAME'|translate}}</th>
+          <th>{{'COMMON.CODE'|translate}}</th>
+          <th>{{'COMMON.DESCRIPTION'|translate}}</th>
+          <th></th>
+        </tr>
+
+        <tr *ngFor="let equipment of dataList; let i = index">
+          <td>{{equipment.name}}</td>
+          <td>{{equipment.code}}</td>
+          <td>{{equipment.description }}</td>
+          <td>
+            <app-table-context-menu
+              [showEdit]="true"
+              (editHandler)="edit(equipment.id)"
+              (showStatusEvent)="onShowStatusHandler(equipment)"
+              (showAuditEvent)="onShowAuditHandler(equipment)"
+              [permissionArr]="[AuthURL.Modules.exercise_management.code, AuthURL.Modules.exercise_management.screens.equipment.code]"
             >
-            <div class="card-body p-0">
-              <app-status-list-filter
-              [statusList] = "statusList"
-              [selectedStatusIndex] = "_componentService.status ? _componentService.status : _componentService.getDefaultStatus()"
-              (onSelectStatus) = "onSelectStatusHandler($event)"
-              ></app-status-list-filter>
+          </app-table-context-menu>
+        </tr>
 
-              <div class="table-responsive">
-                <table class="table table-striped table-md">
-                  <tr>
-                    <th>{{'COMMON.NAME'|translate}}</th>
-                    <th>{{'COMMON.CODE'|translate}}</th>
-                    <th>{{'COMMON.DESCRIPTION'|translate}}</th>
-                    <th></th>
-                  </tr>
+      </table>
+    </div>
+  </div>
 
-                  <tr *ngFor="let equipment of dataList; let i = index">
-                    <td>{{equipment.name}}</td>
-                    <td>{{equipment.code}}</td>
-                    <td>{{equipment.description }}</td>
-                    <td>
-                      <app-table-context-menu
-                        [showEdit]="true"
-                        (editHandler)="edit(equipment.id)"
-                        (showStatusEvent)="onShowStatusHandler(equipment)"
-                        (showAuditEvent)="onShowAuditHandler(equipment)"
+  <app-pagination
+    [totalRows]="totalRows"
+    [size]="_componentService.filterDataWithPaginationAndSort.size"
+    [currentPage]="currentPage"
+    (pageChanged)="pageChanged($event)"
+    >
+  </app-pagination>
 
-                      >
-                    </app-table-context-menu>
-                  </tr>
-
-                </table>
-              </div>
-            </div>
-
-            <app-pagination
-              [totalRows]="totalRows"
-              [size]="_componentService.filterDataWithPaginationAndSort.size"
-              [currentPage]="currentPage"
-              (pageChanged)="pageChanged($event)"
-              >
-            </app-pagination>
-
+    </app-page-header>
+</app-auth-contect>
 
 <app-modal *ngIf="showStatusDialog" [show]="showStatusDialog" (onClose)="showStatusDialog = false" [headerText]="'STATUS.CHANGE_STATUS'">
     <app-status

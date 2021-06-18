@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.gym.common.constant.enums.Status;
 import com.gym.user.model.User;
 
-public class MyUserDetails implements UserDetails{
+public class MyUserDetails implements UserDetails {
 
 	 /**
 	 * 
@@ -76,6 +76,10 @@ public class MyUserDetails implements UserDetails{
 	
 	public User getUser() {
 		return this.user;
+	}
+	
+	public boolean isTokenExpired() {
+		return user.isTokenExpired() || user.getStatus() == Status.BLOCKED.getValue();
 	}
 
 }

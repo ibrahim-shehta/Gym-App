@@ -23,7 +23,7 @@
               <app-table-context-menu
                 (editHandler)="edit(role.id)"
                 [permissionArr]="[AuthURL.Modules.user_management.code, AuthURL.Modules.user_management.screens.roles.code]"
-
+                (showAuditEvent)="onShowAuditHandler(role)"
               ></app-table-context-menu>
             </td>
           </tr>
@@ -42,4 +42,6 @@
   </app-page-header>
 </app-auth-contect>
 
-
+<app-modal *ngIf="showAuditDialog" [show]="showAuditDialog" (onClose)="showAuditDialog = false" [headerText]="'AUDIT.AUDIT_TITILE'">
+  <app-audit [audit]="audit"></app-audit>
+</app-modal>

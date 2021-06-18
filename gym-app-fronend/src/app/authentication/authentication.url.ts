@@ -59,6 +59,26 @@ export const AuthURL = {
             }
           },
     }
+  },
+  exercise_management: {
+    code: "exercise_management",
+    screens: {
+      excercise_category: {
+          code: 'excercise_category',
+          permissions: {
+          }
+        },
+        equipment: {
+          code: 'equipment',
+          permissions: {
+          }
+        },
+        exercise: {
+          code: 'exercise',
+          permissions: {
+          }
+        },
   }
+}
   }
 };
