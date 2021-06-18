@@ -12,12 +12,6 @@ public class UserDto extends BaseUserDto {
 
 	private Date birthDate;
 
-	private boolean isActive;
-
-	private boolean isDeleted;
-
-	private boolean isBlocked;
-
 	private String password;
 	
 	private UserType userType;
@@ -33,9 +27,6 @@ public class UserDto extends BaseUserDto {
 		UserDto dto = new UserDto();
 		BaseUserDto.mapEntityToDto(entity, dto);
 		dto.setBirthDate(entity.getBirthDate());
-		dto.setActive(entity.isActive());
-		dto.setBlocked(entity.isBlocked());
-		dto.setDeleted(entity.isDeleted());
 		dto.setUserType(entity.getUserType());
 		dto.setUserDetails(UserDetailsDto.mapEntityToDto(entity.getUserDetails()));
 		dto.setRoles(RoleDto.mapListToDtos(entity.getRoles()));
@@ -49,9 +40,6 @@ public class UserDto extends BaseUserDto {
 		User entity = new User();
 		BaseUserDto.mapDtoToEntity(dto, entity);
 		entity.setBirthDate(dto.getBirthDate());
-		entity.setActive(dto.isActive());
-		entity.setBlocked(dto.isBlocked());
-		entity.setDeleted(dto.isDeleted());
 		entity.setPassword(dto.getPassword());
 		entity.setUserType(dto.getUserType());
 		entity.setUserDetails(UserDetailsDto.mapDtoToEntity(dto.getUserDetails()));
@@ -65,31 +53,6 @@ public class UserDto extends BaseUserDto {
 		}
 		List<UserDto> dto = entity.stream().map(user -> mapEntityToDto(user)).collect(Collectors.toList());
 		return dto;
-	}
-	
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	public boolean isDeleted() {
-		return isDeleted;
-	}
-
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
-	public boolean isBlocked() {
-		return isBlocked;
-	}
-
-	public void setBlocked(boolean isBlocked) {
-		this.isBlocked = isBlocked;
 	}
 
 	public Date getBirthDate() {

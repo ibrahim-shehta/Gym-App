@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { lookupTypeCode } from 'src/app/core/constants/lookup-type-code.enum';
 import { EmployeeService } from '../services/employee.service';
+import { forkJoin } from 'rxjs';
 
 @Injectable()
 export class EmployeeResolversService {
@@ -11,7 +13,10 @@ export class EmployeeResolversService {
   ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      return this.employeeService.filterWithPagination();
+      return forkJoin([
+        this.employeeService.getStatusList(lookupTypeCode.USER_STATUS),
+        this.employeeService.filterWithPagination()
+      ]);
     }
 
 

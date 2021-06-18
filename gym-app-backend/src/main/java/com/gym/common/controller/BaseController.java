@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
@@ -33,15 +34,23 @@ public abstract class BaseController<E extends BaseEntity, ID extends Serializab
 
 	
 	@PostMapping
-	public ResponseEntity<BaseResponse<EDto>> insert(@Valid @RequestBody EDto dto) {
+	public ResponseEntity<BaseResponse<EDto>> insert(@Valid @RequestBody EDto dto,  HttpServletRequest req) {
+		  return save(dto, req);
+	}	
+	
+	protected ResponseEntity<BaseResponse<EDto>> save(EDto dto, HttpServletRequest req) {
 		  E entity = getEntityDtoMapper().mapDtoToEntity(dto); 
 		  entity = getService().save(entity); 
 		  dto = getEntityDtoMapper().mapEntityToDto(entity);
 		  return ResponseEntity.ok(new EntityResponse<EDto>(dto));
-	}	
+	}
 	
 	@PutMapping
-	public ResponseEntity<BaseResponse<EDto>> update(@Valid @RequestBody EDto dto) {
+	public ResponseEntity<BaseResponse<EDto>> update(@Valid @RequestBody EDto dto,  HttpServletRequest req) {
+		return edit(dto, req);
+	}
+	
+	protected ResponseEntity<BaseResponse<EDto>> edit(EDto dto,  HttpServletRequest req) {
 		E entity = getEntityDtoMapper().mapDtoToEntity(dto);
 		entity = getService().update(entity);
 		dto = getEntityDtoMapper().mapEntityToDto(entity);
@@ -49,32 +58,44 @@ public abstract class BaseController<E extends BaseEntity, ID extends Serializab
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<BaseResponse<EDto>> getById(@PathVariable ID id) {
+	public ResponseEntity<BaseResponse<EDto>> getById(@PathVariable ID id,  HttpServletRequest req) {
+		return findById(id, req);
+	}
+	
+	protected ResponseEntity<BaseResponse<EDto>> findById(ID id, HttpServletRequest req) {
 		E entity = getService().findById(id);
 		EDto dto = getEntityDtoMapper().mapEntityToDto(entity);
 		return ResponseEntity.ok(new EntityResponse<EDto>(dto));
 	}
 	
 	@GetMapping
-	public ResponseEntity<BaseResponse<LDto>> getAll() {
+	public ResponseEntity<BaseResponse<LDto>> getAll( HttpServletRequest req) {
+		return findAll(req);
+	}
+	
+	protected ResponseEntity<BaseResponse<LDto>> findAll( HttpServletRequest req) {
 		List<E> entity = getService().getAll();
 		List<LDto> dto = getListDtoMapper().mapListToDtos(entity);
 		return ResponseEntity.ok(new ListResponse<LDto>(dto));
 	}
 	
 	@PostMapping("/all-filter")
-	public ResponseEntity<BaseResponse<LDto>> allFilter(@RequestBody FilterData filterData) {
+	public ResponseEntity<BaseResponse<LDto>> allFilter(@RequestBody FilterData filterData,  HttpServletRequest req) {
+		return filterAllData(filterData, req);
+	}
+	
+	protected ResponseEntity<BaseResponse<LDto>> filterAllData(FilterData filterData,  HttpServletRequest req) {
 		List<E> entity = getService().filterAllData(filterData);
 		List<LDto> dto = getListDtoMapper().mapListToDtos(entity);
 		return ResponseEntity.ok(new ListResponse<LDto>(dto));
 	}
 	
 	@PostMapping("/paginated-filter")
-	public ResponseEntity<BaseResponse<LDto>> paginatedFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
-		return getPaginatedFilterData(filterDataWithPaginationAndSort);
+	public ResponseEntity<BaseResponse<LDto>> paginatedFilter(@RequestBody FilterDataWithPaginationAndSort filterDataWithPaginationAndSort,  HttpServletRequest req) {
+		return getPaginatedFilterData(filterDataWithPaginationAndSort, req);
 	}
 	
-	protected ResponseEntity<BaseResponse<LDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+	protected ResponseEntity<BaseResponse<LDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort,  HttpServletRequest req) {
 		Page<E> entity = getService().filterDataPaginated(filterDataWithPaginationAndSort); 
 		List<LDto> dto = (List<LDto>) getListDtoMapper().mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<LDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));

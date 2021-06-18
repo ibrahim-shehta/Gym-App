@@ -3,6 +3,8 @@ package com.gym.user.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +46,7 @@ public class RoleController extends BaseAuditController<Role, Long, RoleDto, Rol
 	}
 	
 	@Override
-	protected ResponseEntity<BaseResponse<RoleDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+	protected ResponseEntity<BaseResponse<RoleDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort,  HttpServletRequest req) {
 		Page<Role> entity = this.roleService.filterCategoryByName(filterDataWithPaginationAndSort);
 		List<RoleDto> dto = roleDtoMapper.mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<RoleDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));

@@ -4,8 +4,9 @@ import { Baseservice } from 'src/app/core/model/BaseService';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Employee, EmployeeList } from 'src/app/core/model/User';
+import { BaseServiceWithStatus } from 'src/app/core/model/BaseServiceWithStatus';
 @Injectable()
-export class EmployeeService extends Baseservice<Employee, EmployeeList> {
+export class EmployeeService extends BaseServiceWithStatus<Employee, EmployeeList> {
 
 baseUrl = environment.baseUrl + '/employee'
 

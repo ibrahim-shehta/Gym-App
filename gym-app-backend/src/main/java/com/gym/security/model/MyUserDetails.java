@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.gym.common.constant.enums.Status;
 import com.gym.user.model.User;
 
 public class MyUserDetails implements UserDetails{
@@ -60,13 +61,13 @@ public class MyUserDetails implements UserDetails{
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return true;
+		return !user.isTokenExpired();
 	}
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return user.isActive();
+		return user.getStatus() == Status.ACTIVE.getValue() ? true : false;
 	}
 	
 	public Long getUserId() {

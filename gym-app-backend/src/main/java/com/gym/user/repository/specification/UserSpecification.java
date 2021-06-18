@@ -49,6 +49,12 @@ public abstract class UserSpecification {
 				andPredicates.add(equalPredicate);
 			}
 			
+			if (filterDataMap.containsKey(FilterKeys.STATUS)) {
+				Predicate statusPredicate =criteriaBuilder.equal(root.get(User_.STATUS),
+						filterDataMap.get(FilterKeys.STATUS));
+				andPredicates.add(statusPredicate);
+			}
+			
 			if (orPredicates.isEmpty() && !andPredicates.isEmpty()) {
 				query.where(criteriaBuilder.and(andPredicates.toArray(new Predicate[andPredicates.size()])));
 			} else if (!orPredicates.isEmpty() && andPredicates.isEmpty()) {

@@ -3,6 +3,7 @@ package com.gym.modules.attendance.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -53,7 +54,7 @@ public class AttendanceController extends BaseAuditController<Attendance, Long, 
 	
 	@Override
 	protected ResponseEntity<BaseResponse<AttendanceListDto>> getPaginatedFilterData(
-			FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+			FilterDataWithPaginationAndSort filterDataWithPaginationAndSort, HttpServletRequest req) {
 		Page<Attendance> entity = this.attendanceService.filterDataPaginated(filterDataWithPaginationAndSort);
 		List<AttendanceListDto> dto = AttendanceListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<AttendanceListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));

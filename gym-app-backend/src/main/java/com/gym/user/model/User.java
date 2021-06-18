@@ -18,11 +18,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-import com.gym.common.model.Auditable;
+import com.gym.common.constant.enums.Status;
+import com.gym.common.model.BaseStatusEntity;
 
 @Entity
 @Table(name = "users") // , uniqueConstraints=@UniqueConstraint(columnNames={"email", "username", "mobile"})
-public class User extends Auditable {
+public class User extends BaseStatusEntity {
 
 	/**
 	 * 
@@ -48,12 +49,8 @@ public class User extends Auditable {
 	@Column(updatable=false)
 	private String imageName;
 
-	private boolean isActive;
-
-	private boolean isDeleted;
-
-	private boolean isBlocked;
-
+	private boolean isTokenExpired;
+	
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
 	
@@ -69,7 +66,7 @@ public class User extends Auditable {
 	private List<Role> roles = new ArrayList<>();
 
 	public User() {
-
+		setStatus(Status.ACTIVE.getValue());
 	}
 
 	public User(Long id) {
@@ -114,30 +111,6 @@ public class User extends Auditable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	public boolean isDeleted() {
-		return isDeleted;
-	}
-
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
-	public boolean isBlocked() {
-		return isBlocked;
-	}
-
-	public void setBlocked(boolean isBlocked) {
-		this.isBlocked = isBlocked;
 	}
 	
 	public String getAddress() {
@@ -192,6 +165,14 @@ public class User extends Auditable {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public boolean isTokenExpired() {
+		return isTokenExpired;
+	}
+
+	public void setTokenExpired(boolean isTokenExpired) {
+		this.isTokenExpired = isTokenExpired;
 	}
 
 }

@@ -9,6 +9,7 @@ class BaseUser extends BaseEntity {
   address :string;
   imageName :string;
   userType :string;
+  status :number = 1;
 }
 
 class BasePlayer extends BaseUser {

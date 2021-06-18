@@ -20,7 +20,7 @@ import com.gym.common.exception.exceptions.EntityDuplicateAttributes;
 import com.gym.common.exception.model.AppSubError;
 import com.gym.common.exception.model.AppValidationError;
 import com.gym.common.files.service.FilesStorageService;
-import com.gym.common.service.impl.BaseAuditServiceImpl;
+import com.gym.common.service.impl.BaseStatusServiceImpl;
 import com.gym.modules.settings.model.Settings;
 import com.gym.modules.settings.model.enums.SettingsCode;
 import com.gym.modules.settings.service.SettingsService;
@@ -33,7 +33,7 @@ import com.gym.user.service.UserService;
 
 @Service
 @Transactional
-public class UserServiceImpl extends BaseAuditServiceImpl<User, Long> implements UserService {
+public class UserServiceImpl extends BaseStatusServiceImpl<User, Long> implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;

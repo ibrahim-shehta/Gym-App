@@ -11,6 +11,14 @@
   [permissionArr]="[AuthURL.Modules.user_management.code, AuthURL.Modules.user_management.screens.employees.code]"
 
 >
+
+
+        <app-status-list-filter
+              [statusList] = "statusList"
+              [selectedStatusIndex] = "employeeService.status ? employeeService.status : employeeService.getDefaultStatus()"
+              (onSelectStatus) = "onSelectStatusHandler($event)"
+              ></app-status-list-filter>
+
       <div class="table-responsive">
         <table class="table table-striped table-md">
           <tr>
@@ -33,7 +41,8 @@
                 (viewHandler)="view(player.id)"
                 (editHandler)="edit(player.id)"
                 [permissionArr]="[AuthURL.Modules.user_management.code, AuthURL.Modules.user_management.screens.employees.code]"
-
+                (showStatusEvent)="onShowStatusHandler(player)"
+                (showAuditEvent)="onShowAuditHandler(player)"
               >
             </app-table-context-menu>
             </td>
@@ -49,7 +58,21 @@
       (pageChanged)="pageChanged($event)"
       >
     </app-pagination>
+
   </app-page-header>
 </app-auth-contect>
+
+<app-modal *ngIf="showStatusDialog" [show]="showStatusDialog" (onClose)="showStatusDialog = false" [headerText]="'STATUS.CHANGE_STATUS'">
+  <app-status
+    [entity]="entity"
+    [statusList]="statusList"
+    (onCloseDialog)="showStatusDialog = false"
+    (onSaveStatusEvent)="onSaveStatusHandler($event)"
+  ></app-status>
+</app-modal>
+
+<app-modal *ngIf="showAuditDialog" [show]="showAuditDialog" (onClose)="showAuditDialog = false" [headerText]="'AUDIT.AUDIT_TITILE'">
+  <app-audit [audit]="audit"></app-audit>
+</app-modal>
 
 

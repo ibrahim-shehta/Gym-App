@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.gym.common.service.BaseAuditService;
+import com.gym.common.service.BaseStatusService;
 import com.gym.user.dto.PermissionDto;
 import com.gym.user.model.User;
 
-public interface UserService extends BaseAuditService<User, Long> {
+public interface UserService extends BaseStatusService<User, Long> {
 
 	public User saveUserImage(MultipartFile file);
 	

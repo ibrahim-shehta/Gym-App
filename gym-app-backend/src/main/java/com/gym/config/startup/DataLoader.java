@@ -6,6 +6,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.gym.common.constant.enums.Status;
 import com.gym.user.model.User;
 import com.gym.user.model.UserType;
 import com.gym.user.repository.UserRepository;
@@ -32,9 +33,7 @@ public class DataLoader {
             user.setUsername("admin");
             user.setEmail("admin@yahoo.com");
             user.setMobile("01065373918");
-            user.setActive(true);
-            user.setDeleted(false);
-            user.setBlocked(false);
+            user.setStatus(Status.ACTIVE.getValue());
             user.setUserType(UserType.EMPLOYEE);
             user.setPassword(passwordEncoder.encode("admin"));
             userRepository.save(user);

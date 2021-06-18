@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthURL } from 'src/app/authentication/authentication.url';
-import { BaseTableComponent } from 'src/app/core/model/BaseTableComponent';
+import { BaseTableWithStatusComponent } from 'src/app/core/model/BaseTableWithStatusComponent';
 import { EmployeeList } from 'src/app/core/model/User';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { EmployeeService } from '../../services/employee.service';
@@ -10,7 +10,7 @@ import { EmployeeService } from '../../services/employee.service';
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css']
 })
-export class EmployeeComponent extends BaseTableComponent<EmployeeList> implements OnInit, OnDestroy {
+export class EmployeeComponent extends BaseTableWithStatusComponent<EmployeeList> implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,

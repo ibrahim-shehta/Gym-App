@@ -3,6 +3,7 @@ package com.gym.modules.exercises.category.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -51,7 +52,7 @@ public class ExcerciseCategoryController extends BaseAuditController<ExcerciseCa
 	}
 
 	@Override
-	protected ResponseEntity<BaseResponse<ExcerciseCategoryListDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort) {
+	protected ResponseEntity<BaseResponse<ExcerciseCategoryListDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort, HttpServletRequest req) {
 		Page<ExcerciseCategory> entity = this.excerciseCategoryService.filterCategoryByName(filterDataWithPaginationAndSort);
 		List<ExcerciseCategoryListDto> dto = ExcerciseCategoryListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<ExcerciseCategoryListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
