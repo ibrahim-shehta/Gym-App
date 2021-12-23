@@ -28,7 +28,7 @@ public class DataLoader {
     @EventListener(ApplicationReadyEvent.class)
     public void run() {
         // Add default user on startup if there's no user is available on DB
-        if(userRepository.count() == 0) {
+        /*if(userRepository.count() == 0) {
             User user = new User();
             user.setUsername("admin");
             user.setEmail("admin@yahoo.com");
@@ -37,6 +37,6 @@ public class DataLoader {
             user.setUserType(UserType.EMPLOYEE);
             user.setPassword(passwordEncoder.encode("admin"));
             userRepository.save(user);
-        }
+        }*/
     }
 }
