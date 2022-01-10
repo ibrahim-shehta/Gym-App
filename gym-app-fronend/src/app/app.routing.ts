@@ -9,5 +9,5 @@ const RouteList: Routes = [
     {path: '**', component: DashboardComponent}
 ];
 
-export const AppRouting = RouterModule.forRoot(RouteList);
+export const AppRouting = RouterModule.forRoot(RouteList, { relativeLinkResolution: 'legacy' });
 
