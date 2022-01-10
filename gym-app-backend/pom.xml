@@ -109,7 +109,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>6.15.0</version>
+    		<version>6.18.1</version>
 		</dependency>
 
 		<!-- 
@@ -117,11 +117,11 @@
 			mvn install:install-file -Dfile=C:\assets\Arial.jar -DgroupId=com.local.repo -DartifactId=arial-font -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
 			And Use It Like Normal Jar 
 		 -->
-		<dependency>
+		<!-- <dependency>
     		<groupId>com.local.repo</groupId>
     		<artifactId>arial-font</artifactId>
     		<version>1.0</version>
-		</dependency>
+		</dependency> -->
 		
 		<dependency>
    			<groupId>org.liquibase</groupId>

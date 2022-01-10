@@ -1,5 +1,5 @@
 INSERT INTO users (id, createdAt,lastModifiedAt,status,statusDate,statusReason,address,birthDate,email,imageName,isTokenExpired,mobile,name,password,userType,username,createdBy_id,lastModifiedBy_id,userDetails_id) VALUES 
-(1, '2021-12-09 19:04:36','2021-12-09 19:04:36',1,NULL,NULL,NULL,NULL,'admin@yahoo.com',NULL,0,'01065373918',NULL,'$2a$10$HI0xuB9bJVbO.c92S9RTpOGM3bawYSQhmAos19pvgUNLahI50sHpy','EMPLOYEE','admin',NULL,NULL,NULL);
+(1, '2021-12-09 19:04:36','2021-12-09 19:04:36',1,NULL,NULL,NULL,NULL,'admin@yahoo.com',NULL,0,'01065373918',NULL,'$2a$10$aY8JdkfYvqXn3WqeL3HUnuc2EqI8nANSwCbLm8cUEx1A7wjDqxoeC','EMPLOYEE','admin',NULL,NULL,NULL);
 
 
 INSERT INTO  roles (id, `name` ,createdAt,lastModifiedAt,createdBy_id,lastModifiedBy_id) VALUES (1, 'مدير',NULL,'2021-06-18 18:56:14',1,1);
