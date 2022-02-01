@@ -88,7 +88,7 @@ public class UserController extends BaseStatusController<User, Long, UserDto, Us
 	@PostMapping("/upload/profile")
 	  public ResponseEntity<BaseResponse<UserListDto>> uploadFile(@RequestParam("file") MultipartFile file) {
 		User entity = userService.saveUserImage(file);
-		UserListDto dto = UserListDto.mapEntityToDto(entity);
+		UserListDto dto = userListDtoMapper.mapEntityToDto(entity);
 		return ResponseEntity.ok(new EntityResponse<UserListDto>(dto));
 	  }
 

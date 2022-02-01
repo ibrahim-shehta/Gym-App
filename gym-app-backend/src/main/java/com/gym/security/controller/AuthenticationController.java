@@ -29,7 +29,7 @@ import com.gym.security.service.CustomUserDetailsService;
 import com.gym.security.utils.JwtUtil;
 import com.gym.user.dto.PermissionDto;
 import com.gym.user.dto.UserDto;
-import com.gym.user.dto.UserListDto;
+import com.gym.user.dto.mapper.UserListDtoMapper;
 import com.gym.user.model.User;
 import com.gym.user.service.UserService;
 
@@ -54,6 +54,10 @@ public class AuthenticationController {
 	
 	@Autowired
 	private JasperExporterServiceImpl jasperExporterServiceImpl;
+	
+	
+	@Autowired
+	UserListDtoMapper userListDtoMapper;
 
 	@PostMapping
 	public ResponseEntity<BaseResponse<AuthenticationResponse>> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
@@ -72,7 +76,7 @@ public class AuthenticationController {
 		String token = jwtUtil.generateToken(userdetails);
 		User user = userDetailsService.findUserByUsername(authenticationRequest.getUsername());
 		List<PermissionDto> permissions = userService.getPermissionToUser(user.getId());
-		return ResponseEntity.ok(new EntityResponse<>(new AuthenticationResponse(token, UserListDto.mapEntityToDto(user), permissions)));
+		return ResponseEntity.ok(new EntityResponse<>(new AuthenticationResponse(token, userListDtoMapper.mapEntityToDto(user), permissions)));
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

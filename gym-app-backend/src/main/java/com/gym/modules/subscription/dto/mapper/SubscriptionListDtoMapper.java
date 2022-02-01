@@ -1,23 +1,27 @@
 package com.gym.modules.subscription.dto.mapper;
 
-import java.util.List;
-
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import com.gym.common.dto.mapper.BaseStatusMapper;
+import com.gym.modules.plan.model.Plan;
 import com.gym.modules.subscription.dto.SubscriptionListDto;
 import com.gym.modules.subscription.model.Subscription;
+import com.gym.user.model.User;
 
-@Component
-public class SubscriptionListDtoMapper implements BaseStatusMapper<Subscription, SubscriptionListDto> {
+@Mapper(componentModel = "spring")
+public interface SubscriptionListDtoMapper extends BaseStatusMapper<Subscription, SubscriptionListDto> {
 
-	@Override
-	public SubscriptionListDto mapEntityToDto(Subscription entity) {
-		return SubscriptionListDto.mapEntityToDto(entity);
+	@Mapping(source = "user", target = "playerName")
+	@Mapping(source = "plan", target = "planName")
+	SubscriptionListDto mapEntityToDto(Subscription entity);
+	
+	
+	default String mapUserToString(User user) {
+		return user != null ? user.getName() : "";
 	}
-
-	@Override
-	public List<SubscriptionListDto> mapListToDtos(List<Subscription> entity) {
-		return SubscriptionListDto.mapListToDtos(entity);
+	
+	default String mapPlanToString(Plan plan) {
+		return plan != null ? plan.getName() : "";
 	}
 }

@@ -1,30 +1,26 @@
 package com.gym.config.startup;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import com.gym.common.constant.enums.Status;
-import com.gym.user.model.User;
-import com.gym.user.model.UserType;
-import com.gym.user.repository.UserRepository;
 
 @Component
 public class DataLoader {
 
     
-	private UserRepository userRepository;
-
-    private PasswordEncoder passwordEncoder;
+	/*
+	 * private UserRepository userRepository;
+	 * 
+	 * private PasswordEncoder passwordEncoder;
+	 */
     
-    @Autowired
-    public DataLoader(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-    	this.passwordEncoder = passwordEncoder;
-    	this.userRepository = userRepository;
-    	
-    }
+	/*
+	 * @Autowired public DataLoader(UserRepository userRepository, PasswordEncoder
+	 * passwordEncoder) { this.passwordEncoder = passwordEncoder;
+	 * this.userRepository = userRepository;
+	 * 
+	 * }
+	 */
     @EventListener(ApplicationReadyEvent.class)
     public void run() {
         // Add default user on startup if there's no user is available on DB

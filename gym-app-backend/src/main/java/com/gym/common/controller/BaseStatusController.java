@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.gym.common.dto.BaseStatusDto;
-import com.gym.common.dto.mapper.BaseStatusMapper;
+import com.gym.common.dto.mapper.BaseDtoMapper;
 import com.gym.common.model.BaseStatusEntity;
 import com.gym.common.response.BaseResponse;
 import com.gym.common.response.EntityResponse;
@@ -20,8 +20,8 @@ public abstract class BaseStatusController <E extends BaseStatusEntity, ID exten
 	extends BaseAuditController<E, ID, EDto, LDto> {
 
 	protected abstract BaseStatusService<E, ID> getService();
-	protected abstract BaseStatusMapper<E, EDto> getEntityDtoMapper();
-	protected abstract BaseStatusMapper<E, LDto> getListDtoMapper();
+	protected abstract BaseDtoMapper<E, EDto> getEntityDtoMapper();
+	protected abstract BaseDtoMapper<E, LDto> getListDtoMapper();
 
 
 	

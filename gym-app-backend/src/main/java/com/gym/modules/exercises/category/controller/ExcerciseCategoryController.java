@@ -54,7 +54,7 @@ public class ExcerciseCategoryController extends BaseAuditController<ExcerciseCa
 	@Override
 	protected ResponseEntity<BaseResponse<ExcerciseCategoryListDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort, HttpServletRequest req) {
 		Page<ExcerciseCategory> entity = this.excerciseCategoryService.filterCategoryByName(filterDataWithPaginationAndSort);
-		List<ExcerciseCategoryListDto> dto = ExcerciseCategoryListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
+		List<ExcerciseCategoryListDto> dto = getListDtoMapper().mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<ExcerciseCategoryListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
 	}
 	

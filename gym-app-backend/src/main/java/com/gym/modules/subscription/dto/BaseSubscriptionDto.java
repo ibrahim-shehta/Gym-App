@@ -3,7 +3,7 @@ package com.gym.modules.subscription.dto;
 import java.util.Date;
 
 import com.gym.common.dto.BaseStatusDto;
-import com.gym.modules.subscription.model.Subscription;
+
 public class BaseSubscriptionDto extends BaseStatusDto {
 
 	private double price;
@@ -12,25 +12,6 @@ public class BaseSubscriptionDto extends BaseStatusDto {
 	private double paidAmount;
 	private String subscriptionNumber;
 	private double requiredAmount;
-	
-	public static void mapEntityToDto(Subscription entity, BaseSubscriptionDto dto) {
-		BaseStatusDto.mapEntityToDto(entity, dto);
-		dto.setPrice(entity.getPrice());
-		dto.setStartDate(entity.getStartDate());
-		dto.setEndDate(entity.getEndDate());
-		dto.setPaidAmount(entity.getPaidAmount());
-		dto.setSubscriptionNumber(entity.getSubscriptionNumber());
-		dto.setRequiredAmount(entity.getRequiredAmount());
-	}
-
-	public static void mapDtoToEntity(BaseSubscriptionDto dto, Subscription entity) {
-		BaseStatusDto.mapDtoToEntity(dto, entity);
-		entity.setPrice(dto.getPrice());
-		entity.setStartDate(dto.getStartDate());
-		entity.setEndDate(dto.getEndDate());
-		entity.setPaidAmount(dto.getPaidAmount());
-		entity.setRequiredAmount(dto.getRequiredAmount());
-	}
 
 	public double getPrice() {
 		return price;
@@ -71,7 +52,7 @@ public class BaseSubscriptionDto extends BaseStatusDto {
 	public void setSubscriptionNumber(String subscriptionNumber) {
 		this.subscriptionNumber = subscriptionNumber;
 	}
-	
+
 	public double getRequiredAmount() {
 		return requiredAmount;
 	}

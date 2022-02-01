@@ -1,7 +1,6 @@
 package com.gym.user.dto;
 
 import com.gym.common.dto.BaseStatusDto;
-import com.gym.user.model.User;
 
 public class BaseUserDto extends BaseStatusDto {
 
@@ -24,25 +23,6 @@ public class BaseUserDto extends BaseStatusDto {
 	private String address;
 	
 	private String imageName;
-
-	public static void mapEntityToDto(User entity, BaseUserDto dto) {
-		BaseStatusDto.mapEntityToDto(entity, dto);
-		dto.setName(entity.getName());
-		dto.setEmail(entity.getEmail());
-		dto.setUsername(entity.getUsername());
-		dto.setMobile(entity.getMobile());
-		dto.setAddress(entity.getAddress());
-		dto.setImageName(entity.getImageName());
-	}
-	
-	public static void mapDtoToEntity(BaseUserDto dto, User entity) {
-		BaseStatusDto.mapDtoToEntity(dto, entity);
-		entity.setName(dto.getName());
-		entity.setEmail(dto.getEmail());
-		entity.setUsername(dto.getUsername());
-		entity.setMobile(dto.getMobile());
-		entity.setAddress(dto.getAddress());
-	}
 
 	public String getName() {
 		return name;

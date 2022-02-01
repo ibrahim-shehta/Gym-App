@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.gym.common.dto.BaseDto;
 import com.gym.user.dto.PermissionDto;
-import com.gym.user.model.User;
 
 public class UserAuthDto extends BaseDto {
 
@@ -15,18 +14,6 @@ public class UserAuthDto extends BaseDto {
 	private String address;
 	private String imageName;
 	private List<PermissionDto> permission;
-	
-	public static UserAuthDto mapEntityToDto(User entity) {
-		UserAuthDto dto = new UserAuthDto();
-		BaseDto.mapEntityToDto(entity, dto);
-		dto.setName(entity.getName());
-		dto.setEmail(entity.getEmail());
-		dto.setUsername(entity.getUsername());
-		dto.setMobile(entity.getMobile());
-		dto.setAddress(entity.getAddress());
-		dto.setImageName(entity.getImageName());
-		return dto;
-	}
 
 	public String getName() {
 		return name;

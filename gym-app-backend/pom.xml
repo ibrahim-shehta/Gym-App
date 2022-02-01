@@ -20,6 +20,8 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version> <!-- To Remove Un-know Error In First Line In Pom File -->
+		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+		<hibernate.jpamodelgen.version>5.6.3.Final</hibernate.jpamodelgen.version>
 	</properties>
 
 	<dependencies>
@@ -78,8 +80,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
-			<version>5.4.27.Final</version>
-			<scope>provided</scope>
+    		<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -109,24 +110,28 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-    		<version>6.18.1</version>
+			<version>6.18.1</version>
 		</dependency>
 
-		<!-- 
-			After Export Jar File From Jasper Studio We Add It To Maven Repo By This Command
-			mvn install:install-file -Dfile=C:\assets\Arial.jar -DgroupId=com.local.repo -DartifactId=arial-font -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
-			And Use It Like Normal Jar 
-		 -->
-		<!-- <dependency>
-    		<groupId>com.local.repo</groupId>
-    		<artifactId>arial-font</artifactId>
-    		<version>1.0</version>
-		</dependency> -->
-		
+		<!-- After Export Jar File From Jasper Studio We Add It To Maven Repo By 
+			This Command mvn install:install-file -Dfile=C:\assets\Arial.jar -DgroupId=com.local.repo 
+			-DartifactId=arial-font -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true 
+			And Use It Like Normal Jar -->
+		<!-- <dependency> <groupId>com.local.repo</groupId> <artifactId>arial-font</artifactId> 
+			<version>1.0</version> </dependency> -->
+
 		<dependency>
-   			<groupId>org.liquibase</groupId>
-   			<artifactId>liquibase-core</artifactId>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
 		</dependency>
+
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${org.mapstruct.version}</version>
+		</dependency>
+
 
 	</dependencies>
 
@@ -138,6 +143,31 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source> <!-- depending on your project -->
+					<target>1.8</target> <!-- depending on your project -->
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${org.mapstruct.version}</version>
+						</path>
+						
+						<path>
+                        	<groupId>org.hibernate</groupId>
+                        	<artifactId>hibernate-jpamodelgen</artifactId>
+                        	<version>${hibernate.jpamodelgen.version}</version>
+                    	</path>
+                    
+						<!-- other annotation processors -->
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 

@@ -59,7 +59,7 @@ public class SubscriptionController extends BaseStatusController<Subscription, L
 	
 	@PutMapping("/remain-amount")
 	public ResponseEntity<BaseResponse<SubscriptionDto>> payRemainAmount(@RequestBody SubscriptionDto dto) {
-		Subscription entity = SubscriptionDto.mapDtoToEntity(dto);
+		Subscription entity = getEntityDtoMapper().mapDtoToEntity(dto);
 		this.subscriptionService.payRemainAmount(entity);
 		return ResponseEntity.ok(new EntityResponse<SubscriptionDto>(null));
 	}
@@ -75,7 +75,7 @@ public class SubscriptionController extends BaseStatusController<Subscription, L
 		if (list.isEmpty()) {
 			return ResponseEntity.ok(new EntityResponse<SubscriptionDto>(null));
 		}
-		SubscriptionDto dto = SubscriptionDto.mapEntityToDto(list.get(0));
+		SubscriptionDto dto = getEntityDtoMapper().mapEntityToDto(list.get(0));
 		return ResponseEntity.ok(new EntityResponse<SubscriptionDto>(dto));
 	}
 

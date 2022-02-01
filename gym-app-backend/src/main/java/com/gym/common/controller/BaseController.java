@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.gym.common.dto.BaseDto;
-import com.gym.common.dto.mapper.BaseMapper;
+import com.gym.common.dto.mapper.BaseDtoMapper;
 import com.gym.common.model.BaseEntity;
 import com.gym.common.request.FilterData;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
@@ -29,8 +29,8 @@ import com.gym.common.service.BaseService;
 public abstract class BaseController<E extends BaseEntity, ID extends Serializable ,EDto extends BaseDto, LDto extends BaseDto> {
 
 	protected abstract BaseService<E, ID> getService();
-	protected abstract BaseMapper<E, EDto> getEntityDtoMapper();
-	protected abstract BaseMapper<E, LDto> getListDtoMapper();
+	protected abstract BaseDtoMapper<E, EDto> getEntityDtoMapper();
+	protected abstract BaseDtoMapper<E, LDto> getListDtoMapper();
 
 	
 	@PostMapping

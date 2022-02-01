@@ -56,7 +56,7 @@ public class AttendanceController extends BaseAuditController<Attendance, Long, 
 	protected ResponseEntity<BaseResponse<AttendanceListDto>> getPaginatedFilterData(
 			FilterDataWithPaginationAndSort filterDataWithPaginationAndSort, HttpServletRequest req) {
 		Page<Attendance> entity = this.attendanceService.filterDataPaginated(filterDataWithPaginationAndSort);
-		List<AttendanceListDto> dto = AttendanceListDto.mapListToDtos(entity.get().collect(Collectors.toList()));
+		List<AttendanceListDto> dto = getListDtoMapper().mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<AttendanceListDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
 	}
 	

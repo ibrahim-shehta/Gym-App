@@ -8,12 +8,11 @@ import org.hibernate.validator.constraints.Length;
 
 import com.gym.common.constant.MessagesKeys;
 import com.gym.common.dto.BaseDto;
-import com.gym.modules.plan.model.Plan;
 
 public class BasePlanDto extends BaseDto {
 
-	@NotBlank(message=MessagesKeys.VALIDATION_PLAN_NAME)
-	@Length(min=3, message=MessagesKeys.VALIDATION_PLAN_NAME)
+	@NotBlank(message = MessagesKeys.VALIDATION_PLAN_NAME)
+	@Length(min = 3, message = MessagesKeys.VALIDATION_PLAN_NAME)
 	private String name;
 	private String description;
 	@Positive(message = MessagesKeys.VALIDATION_PLAN_PRICE)
@@ -29,34 +28,8 @@ public class BasePlanDto extends BaseDto {
 	private boolean isSpecial;
 	private boolean isActive;
 
-	BasePlanDto() {
+	public BasePlanDto() {
 
-	}
-
-	public static void mapEntityToDto(Plan entity, BasePlanDto dto) {
-		BaseDto.mapEntityToDto(entity, dto);
-		dto.setName(entity.getName());
-		dto.setDescription(entity.getDescription());
-		dto.setPrice(entity.getPrice());
-		dto.setActive(entity.isActive());
-		dto.setSpecial(entity.isSpecial());
-		dto.setDiscount(entity.getDiscount());
-		dto.setNumberOfDays(entity.getNumberOfDays());
-		dto.setNumberOfReservedDays(entity.getNumberOfReservedDays());
-		dto.setNumberOfInvitations(entity.getNumberOfInvitations());
-	}
-
-	public static void mapDtoToEntity(BasePlanDto dto, Plan entity) {
-		BaseDto.mapDtoToEntity(dto, entity);
-		entity.setName(dto.getName());
-		entity.setDescription(dto.getDescription());
-		entity.setPrice(dto.getPrice());
-		entity.setActive(dto.isActive());
-		entity.setSpecial(dto.isSpecial());
-		entity.setDiscount(dto.getDiscount());
-		entity.setNumberOfDays(dto.getNumberOfDays());
-		entity.setNumberOfReservedDays(dto.getNumberOfReservedDays());
-		entity.setNumberOfInvitations(dto.getNumberOfInvitations());
 	}
 
 	public String getName() {
@@ -130,6 +103,5 @@ public class BasePlanDto extends BaseDto {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-
 
 }
