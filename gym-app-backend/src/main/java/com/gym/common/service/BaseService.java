@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.gym.common.dao.specification.SearchQuery;
 import com.gym.common.model.BaseEntity;
 import com.gym.common.request.FilterData;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
@@ -22,4 +23,6 @@ public interface BaseService<E extends BaseEntity, ID extends Serializable> {
 	public Page<E> filterDataPaginated(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort);
 	
 	public List<E> filterAllData(FilterData filterData);
+
+	public Page<E> findAll(SearchQuery searchQuery);
 }

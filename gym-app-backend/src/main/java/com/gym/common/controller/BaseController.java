@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.gym.common.dao.specification.SearchQuery;
 import com.gym.common.dto.BaseDto;
 import com.gym.common.dto.mapper.BaseDtoMapper;
 import com.gym.common.model.BaseEntity;
@@ -26,8 +29,12 @@ import com.gym.common.response.ListResponse;
 import com.gym.common.response.ListWithPaginationResponse;
 import com.gym.common.service.BaseService;
 
+
 public abstract class BaseController<E extends BaseEntity, ID extends Serializable ,EDto extends BaseDto, LDto extends BaseDto> {
 
+	  private static final Logger LOG = LoggerFactory.getLogger(BaseController.class);
+
+	
 	protected abstract BaseService<E, ID> getService();
 	protected abstract BaseDtoMapper<E, EDto> getEntityDtoMapper();
 	protected abstract BaseDtoMapper<E, LDto> getListDtoMapper();
@@ -100,4 +107,18 @@ public abstract class BaseController<E extends BaseEntity, ID extends Serializab
 		List<LDto> dto = (List<LDto>) getListDtoMapper().mapListToDtos(entity.get().collect(Collectors.toList()));
 		return ResponseEntity.ok(new ListWithPaginationResponse<LDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
 	}
+	
+	
+	@PostMapping("/advanced-search")
+	public ResponseEntity<BaseResponse<LDto>> advancedSearch(@RequestBody SearchQuery searchQuery,  HttpServletRequest req) {
+		LOG.info("======>" + req + "======>" + searchQuery);
+		return getAdvancedSearchPaginated(searchQuery, req);
+	}
+	
+	protected ResponseEntity<BaseResponse<LDto>> getAdvancedSearchPaginated(SearchQuery searchQuery,  HttpServletRequest req) {
+		Page<E> entity = getService().findAll(searchQuery); 
+		List<LDto> dto = (List<LDto>) getListDtoMapper().mapListToDtos(entity.get().collect(Collectors.toList()));
+		return ResponseEntity.ok(new ListWithPaginationResponse<LDto>(dto, entity.getNumber(), entity.getSize(), entity.getTotalElements()));
+	}
+	
 }
