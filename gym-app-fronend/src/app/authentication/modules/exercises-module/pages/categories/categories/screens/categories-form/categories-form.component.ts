@@ -45,4 +45,12 @@ export class CategoriesFormComponent extends BaseFormCompnent<ExcerciseCategory>
     return this.categoriesService;
   }
 
+
+  save(entity: ExcerciseCategory) :void {
+    debugger;
+    if(!entity.nextExcerciseCategory.id) {
+      entity.nextExcerciseCategory = null;
+    }
+    super.save(entity);
+  }
 }

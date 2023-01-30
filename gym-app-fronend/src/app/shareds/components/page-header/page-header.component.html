@@ -12,17 +12,28 @@
             <h4>{{sectionHeader|translate}}</h4>
             <div class="card-header-form" *ngIf="isTablePage">
               <form>
-                <div class="input-group">
-                  <input type="text" class="form-control" [placeholder]="'COMMON.SEARCH'|translate" name="searchText"
-                    [(ngModel)]="service.searchText" />
-                  <div class="input-group-btn">
-                    <button class="btn btn-primary" (click)="onSearchHandler()"><i class="fas fa-search"></i></button>
-                  </div>
-                  <button [hidden]="!service.isClickSearch" class="btn btn-warning mx-1" (click)="onStopSearchHanlder()"><i
-                      class="fa fa-times" aria-hidden="true"></i></button>
-                  <button *appCheckPermission="[permissionArr[0], permissionArr[1], permissionArr[1]+ '_add']"
-                  class="btn btn-danger mx-5" (click)="onAddHandler()">{{'COMMON.ADD'|translate}}</button>
-                </div>
+                    <div class="d-flex align-content-stretch flex-wrap bd-highlight mb-3">
+                      <div class="input-group col-md-8">
+                        <input type="text" class="form-control" [placeholder]="'COMMON.SEARCH'|translate" name="searchText"
+                          [(ngModel)]="service.searchText" />
+                        <div class="input-group-btn">
+                            <button  class="btn btn-primary" (click)="onSearchHandler()">
+                              <i class="fas fa-search"></i>
+                            </button>
+                               <!-- [ngClass]="{'invisible': !service.isClickSearch}" -->
+                            <button 
+                            [disabled]="!service.isClickSearch"
+                            class="btn btn-warning" (click)="onStopSearchHanlder()">
+                              <i class="fa fa-times"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="input-group col-md-4 p-3 p-md-0">
+                          <button *appCheckPermission="[permissionArr[0], permissionArr[1], permissionArr[1]+ '_add']"
+                            class="btn btn-danger b-2 w-100" (click)="onAddHandler()">{{'COMMON.ADD'|translate}}</button>
+                        </div>
+                    </div>
+
               </form>
             </div>
           </div>
