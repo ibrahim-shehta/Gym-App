@@ -1,14 +1,14 @@
 <app-auth-contect>
   <app-page-header
-  [pageHeader]="'PLAYERS.MANAGE_PLAYERS'"
-  [sectionHeader]="'PLAYERS.SHOW_PLAYERS'"
+  [pageHeader]="'MEMBER.MANAGE_MEMBER'"
+  [sectionHeader]="'MEMBER.SHOW_MEMBER'"
   [isTablePage]="true"
-  [service]="playersService"
+  [service]="memberService"
 
   (onSearch)="search()"
   (onStopSearch)="stopSearch()"
   (onAdd)="add()"
-  [permissionArr]="[AuthURL.Modules.subscriptions_managemnt.code, AuthURL.Modules.subscriptions_managemnt.screens.players.code]"
+  [permissionArr]="[AuthURL.Modules.subscriptions_managemnt.code, AuthURL.Modules.subscriptions_managemnt.screens.member.code]"
 
 >
       <div class="table-responsive">
@@ -30,11 +30,11 @@
             <td>{{player.address}}</td>
             <td>
               <app-table-context-menu
-                [permissionArr]="[AuthURL.Modules.subscriptions_managemnt.code, AuthURL.Modules.subscriptions_managemnt.screens.players.code]"
+                [permissionArr]="[AuthURL.Modules.subscriptions_managemnt.code, AuthURL.Modules.subscriptions_managemnt.screens.member.code]"
                 (viewHandler)="view(player.id)"
                 (editHandler)="edit(player.id)"
               >
-                <span (click)="onClickAttendace(player.id)" class="dropdown-item">{{'PLAYERS.ATTENDANCE'|translate}}<i class="fa fa-clock mx-2" aria-hidden="true"></i></span>
+                <span (click)="onClickAttendace(player.id)" class="dropdown-item">{{'MEMBER.ATTENDANCE'|translate}}<i class="fa fa-clock mx-2" aria-hidden="true"></i></span>
             </app-table-context-menu>
             </td>
           </tr>
@@ -44,7 +44,7 @@
 
     <app-pagination
       [totalRows]="totalRows"
-      [size]="playersService.filterDataWithPaginationAndSort.size"
+      [size]="memberService.filterDataWithPaginationAndSort.size"
       [currentPage]="currentPage"
       (pageChanged)="pageChanged($event)"
       >

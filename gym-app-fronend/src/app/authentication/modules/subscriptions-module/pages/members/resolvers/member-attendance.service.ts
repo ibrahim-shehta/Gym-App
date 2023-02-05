@@ -6,7 +6,7 @@ import { CategoriesService } from 'src/app/authentication/modules/exercises-modu
 import { SubscriptionsService } from 'src/app/authentication/modules/subscriptions-module/pages/subscriptions/subscriptions/services/subscriptions.service';
 
 @Injectable()
-export class PlayersAttendanceService implements Resolve<any> {
+export class MemberAttendanceService implements Resolve<any> {
 
 
   constructor(

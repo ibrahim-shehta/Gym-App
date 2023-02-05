@@ -94,5 +94,5 @@
 
 <app-modal *ngIf="showPlayerDetails" [show]="showPlayerDetails" (onClose)="showPlayerDetails = false"
   [headerText]="'SUBSCRIPTIONS.PLAN_DATA'">
-  <app-player-details [entity]="selectedUser"></app-player-details>
+  <app-member-details [entity]="selectedUser"></app-member-details>
 </app-modal>

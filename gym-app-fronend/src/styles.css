@@ -13,3 +13,8 @@ table tr:nth-child(1) {
 .modal-backdrop.show {
   display: none;
 }
+
+
+.table-responsive {
+  min-height: 200px;
+}

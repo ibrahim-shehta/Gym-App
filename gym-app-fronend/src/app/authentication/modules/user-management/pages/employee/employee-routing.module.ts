@@ -17,7 +17,7 @@ const routes: Routes = [
     resolve: { dataList: EmployeeResolversService },
   },
   {
-    path: AuthURL.PlayersForm,
+    path: AuthURL.MemberForm,
     component: EmployeeFormComponent,
     canActivate: [AuthGuardService],
     resolve: { form: EmployeeFormResolverService },

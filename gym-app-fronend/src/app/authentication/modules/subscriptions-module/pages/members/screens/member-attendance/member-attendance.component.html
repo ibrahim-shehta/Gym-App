@@ -1,8 +1,8 @@
 <app-auth-contect>
-  <app-page-header [pageHeader]="'PLAYERS.MANAGE_PLAYERS'" [sectionHeader]="'PLAYERS.PLAYER_ATTENDANCE'">
+  <app-page-header [pageHeader]="'MEMBER.MANAGE_MEMBER'" [sectionHeader]="'MEMBER.PLAYER_ATTENDANCE'">
 
     <div *ngIf="activeSubscription">
-        <h5 class="my-3">{{'PLAYERS.PLAYER_ATTENDANCE'|translate}} - {{activeSubscription.user.name}}</h5>
+        <h5 class="my-3">{{'MEMBER.PLAYER_ATTENDANCE'|translate}} - {{activeSubscription.user.name}}</h5>
         <div class="form-group row mb-4">
           <label class="col-form-label col-sm-12 col-md-2">{{'COMMON.START_DATE'|translate}}</label>
           <p class="col-sm-12 col-md-4">{{activeSubscription.startDate}}</p>
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div *ngIf="!activeSubscription" class="alert alert-danger text-center">{{'PLAYERS.THIS_PLAYER_NOT_HAVE_ACTIVE_SUBSCRIPTION'|translate}}</div>
+    <div *ngIf="!activeSubscription" class="alert alert-danger text-center">{{'MEMBER.THIS_PLAYER_NOT_HAVE_ACTIVE_SUBSCRIPTION'|translate}}</div>
 
 
     <hr/>
@@ -42,7 +42,7 @@
      <form (submit)="onSubmit(form)" #form="ngForm" class="needs-validation" novalidate="">
       <div class="form-group row mb-4">
 
-        <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'PLAYERS.EXCERCISES_CATEGORY'|translate}}</label>
+        <label class="col-form-label text-md-left col-sm-12 col-md-2">{{'MEMBER.EXCERCISES_CATEGORY'|translate}}</label>
         <div class="col-sm-12 col-md-4">
 
         <select class="form-control" name="nextCategory" [(ngModel)]="entity.excerciseCategory.id" #excerciseCategory="ngModel" required>
@@ -71,7 +71,7 @@
   [headerText]="'SUBSCRIPTIONS.PLAN_DATA'">
 
     <div class="form-group row my-4">
-      <label class="col-md-4">{{'PLAYERS.EXCERCISES_CATEGORY'|translate}}</label>
+      <label class="col-md-4">{{'MEMBER.EXCERCISES_CATEGORY'|translate}}</label>
       <input type="number" class="form-control col-md-4" [(ngModel)]="remainAmount" />
     </div>
 

@@ -8,7 +8,7 @@ import { StorageKeys } from 'src/app/core/constants/StorageKeys';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AppStateService } from 'src/app/core/services/app-state.service';
-import { PlayersService } from 'src/app/authentication/modules/subscriptions-module/pages/players/services/players.service';
+import { MemberService } from '../../modules/subscriptions-module/pages/members/services/member.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +26,7 @@ export class ProfileComponent extends BaseFormCompnent<any> implements OnInit{
     public activatedRoute :ActivatedRoute,
     public notificationService :NotificationService,
     public translateService :TranslateService,
-    private playersService: PlayersService,
+    private memberService: MemberService,
     private appStateService :AppStateService
 
   ) {
@@ -40,7 +40,7 @@ export class ProfileComponent extends BaseFormCompnent<any> implements OnInit{
 
 
   onSaveSelectedFileHandler(e) {
-    this.playersService.uploadUserProfileImage(e).subscribe(event => {
+    this.memberService.uploadUserProfileImage(e).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { PlayersService } from '../services/players.service';
+import { MemberService } from '../services/member.service';
 
 @Injectable()
-export class PlayersResolversService {
+export class MemberResolversService {
 
 
   constructor(
-    private playersService :PlayersService
+    private memberersService :MemberService
   ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      return this.playersService.filterWithPagination();
+      return this.memberersService.filterWithPagination();
     }
 
 

@@ -4,9 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import {  FilterMap } from 'src/app/core/model/FilterDataWithPaginationAndSort';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { MemberService } from '../../../../members/services/member.service';
 import { Subscription } from '../../model/Subscription';
 import { SubscriptionsService } from '../../services/subscriptions.service';
-import { PlayersService } from 'src/app/authentication/modules/subscriptions-module/pages/players/services/players.service';
 
 @Component({
   selector: 'app-subscriptions-form',
@@ -29,7 +29,7 @@ export class SubscriptionsFormComponent extends BaseFormCompnent<Subscription> i
     public activatedRoute :ActivatedRoute,
     public translateService :TranslateService,
     private _componentService :SubscriptionsService,
-    private playersService :PlayersService
+    private memberService :MemberService
   ) {
         super(router, activatedRoute, notificationService, translateService);
         this.entity = new Subscription();
@@ -55,7 +55,7 @@ export class SubscriptionsFormComponent extends BaseFormCompnent<Subscription> i
     filterMap['username'] = this.userSearch
     filterMap['email'] = this.userSearch
 
-    this.playersService.filterAllData(filterMap).subscribe(res => {
+    this.memberService.filterAllData(filterMap).subscribe(res => {
       this.usersList = res.data;
       this.selectedUser = res.data[0];
       this.entity.user.id =  res.data[0].id

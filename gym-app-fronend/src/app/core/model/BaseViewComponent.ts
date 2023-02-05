@@ -20,6 +20,8 @@ export abstract class BaseViewComponent extends BaseComponent {
     const resolverDate = this.activatedRoute.snapshot.data.form;
     if (resolverDate) {
       this.entity = resolverDate.data;
+      if (!this.entity)
+        this.entity = resolverDate.entity.data;
     } else {
       this.goBack();
     }

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
-import { PlayersService } from '../services/players.service';
+import { MemberService } from '../services/member.service';
 
 @Injectable()
-export class PlayersFormResolverService implements Resolve<any> {
+export class MemberFormResolverService implements Resolve<any> {
 
   constructor(
     private router :Router,
-    private playersService :PlayersService
+    private memberService :MemberService
   ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -16,7 +16,7 @@ export class PlayersFormResolverService implements Resolve<any> {
        id = this.router.getCurrentNavigation().extras.state.id;
 
       if (id) {
-         return this.playersService.getById(id);
+         return this.memberService.getById(id);
       } else {
           return null;
       }

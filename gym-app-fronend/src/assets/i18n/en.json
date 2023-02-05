@@ -67,10 +67,10 @@
     "CREATE_PLANE":"Create Plan",
     "PLAN_DETAILS":"Plan Details"
   },
-  "PLAYERS":{
-    "MANAGE_PLAYERS":"Manage Players",
+  "MEMBER":{
+    "MANAGE_MEMBER":"Manage Players",
     "ADD_PLAYER":"Add Player",
-    "SHOW_PLAYERS":"List Players",
+    "SHOW_MEMBER":"List Players",
     "VIEW_PLAYER":"Player Details"
   },
   "SUBSCRIPTIONS":{
@@ -98,9 +98,9 @@
     "EXCERCISES_CATEGORIES":"Excercises Categories"
   },
   "SCREENS": {
-    "PLAYERS_MANAGEMENT":"Plyers Management",
+    "MEMBER_MANAGEMENT":"Plyers Management",
     "SUBSCRIPTIONS_MANAGEMENT":"Subscriptions Management",
-    "PLAYERS":"Players",
+    "MEMBER":"Players",
     "PLANS":"Plans",
     "SUBSCRIPTIONS":"Subscriptions",
     "EXCERCISES_CATEGORIES":"Excercises Categories"

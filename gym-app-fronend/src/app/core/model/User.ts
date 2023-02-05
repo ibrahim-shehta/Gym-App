@@ -12,15 +12,15 @@ class BaseUser extends BaseEntity {
   status :number = 1;
 }
 
-class BasePlayer extends BaseUser {
+class BaseMember extends BaseUser {
 
 }
 
-export class Player extends BasePlayer {
+export class Member extends BaseMember {
   birthDate :Date;
 }
 
-export class PlayerList extends BasePlayer {
+export class MemberList extends BaseMember {
 
 }
 
@@ -28,11 +28,11 @@ export class BaseEmployee extends BaseUser {
 
 }
 
-export class Employee extends BasePlayer {
+export class Employee extends BaseUser {
   birthDate :Date;
   roles: Role[]
 }
 
-export class EmployeeList extends BasePlayer {
+export class EmployeeList extends BaseUser {
 
 }

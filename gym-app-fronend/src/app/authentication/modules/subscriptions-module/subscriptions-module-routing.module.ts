@@ -5,7 +5,7 @@ import { AuthURL } from '../../authentication.url';
 
 const routes: Routes = [
   { path: AuthURL.Plans, loadChildren: () => import('./pages/plans/plans.module').then(m => m.PlansModule) },
-  { path: AuthURL.Players, loadChildren: () => import('./pages/players/players.module').then(m => m.PlayersModule) },
+  { path: AuthURL.Member, loadChildren: () => import('./pages/members/member.module').then(m => m.MemberModule) },
   { path: AuthURL.Subscriptions, loadChildren: () => import('./pages/subscriptions/subscriptions.module').then(m => m.SubscriptionsModule) },
 ];
 

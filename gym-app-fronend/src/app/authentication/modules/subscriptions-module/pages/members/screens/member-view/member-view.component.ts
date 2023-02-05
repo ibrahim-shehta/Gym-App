@@ -4,11 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { BaseViewComponent } from 'src/app/core/model/BaseViewComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
 @Component({
-  selector: 'app-plyers-view',
-  templateUrl: './plyers-view.component.html',
-  styleUrls: ['./plyers-view.component.css']
+  selector: 'app-member-view',
+  templateUrl: './member-view.component.html',
+  styleUrls: ['./member-view.component.css']
 })
-export class PlyersViewComponent extends BaseViewComponent implements OnInit {
+export class MemberViewComponent extends BaseViewComponent implements OnInit {
 
   constructor(
     public notificationService :NotificationService,

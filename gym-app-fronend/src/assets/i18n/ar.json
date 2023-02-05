@@ -76,15 +76,15 @@
     "CREATE_PLANE":"انشاء نوع اشتراك",
     "PLAN_DETAILS":"تفاصيل الاشتراك"
   },
-  "PLAYERS":{
-    "MANAGE_PLAYERS":"اداره اللاعبين",
-    "ADD_PLAYER":"اضافه لاعب",
-    "SHOW_PLAYERS":"عرض اللاعبين",
-    "VIEW_PLAYER":"تفاصيل اللاعب",
+  "MEMBER":{
+    "MANAGE_MEMBER":"اداره الاعضاء",
+    "ADD_PLAYER":"اضافه عضو",
+    "SHOW_MEMBER":"عرض الاعضاء",
+    "VIEW_PLAYER":"تفاصيل العضو",
     "ATTENDANCE":"الحضور",
-    "PLAYER_ATTENDANCE":"تسجيل حضور اللاعب",
+    "PLAYER_ATTENDANCE":"تسجيل حضور عضو",
     "EXCERCISES_CATEGORY":"مجموعه التمارين",
-    "THIS_PLAYER_NOT_HAVE_ACTIVE_SUBSCRIPTION":"لا يوجد اشتراك مفعل لهذا اللاعب يرجى تجديد الاشتراك لتسجيل الحضور"
+    "THIS_PLAYER_NOT_HAVE_ACTIVE_SUBSCRIPTION":"لا يوجد اشتراك مفعل لهذا العضو يرجى تجديد الاشتراك لتسجيل الحضور"
   },
   "SUBSCRIPTIONS":{
     "MANAGE_SUBSCRIPTIONS":"إداره الاشتراكات",
@@ -113,9 +113,9 @@
     "EXCERCISES_CATEGORIES":"مجموعات التمارين"
   },
   "SCREENS": {
-    "PLAYERS_MANAGEMENT":"اداره المشتركين",
+    "MEMBER_MANAGEMENT":"اداره المشتركين",
     "SUBSCRIPTIONS_MANAGEMENT":"اداره الاشتراكات",
-    "PLAYERS":"المشتركين",
+    "MEMBER":"المشتركين",
     "PLANS":"انواع الاشتراكات",
     "SUBSCRIPTIONS":"الاشتراكات",
     "EXCERCISES_CATEGORIES":"مجموعات التمارين",

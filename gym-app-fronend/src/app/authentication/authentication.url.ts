@@ -7,8 +7,8 @@ export const AuthURL = {
 
     Plans: 'plans',
     PlansForm: 'form',
-    Players: 'players',
-    PlayersForm: "form",
+    Member: 'members',
+    MemberForm: "form",
     Subscriptions: "subscriptions",
     SubscriptionsForm:"form",
     ExcercisesCategory: 'excercises-category',
@@ -48,8 +48,8 @@ export const AuthURL = {
             permissions: {
             }
           },
-          players: {
-            code: 'players',
+          member: {
+            code: 'member',
             permissions: {
             }
           },

@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { AttendanceService } from '../services/attendance.service';
 
 @Injectable()
-export class PlayerAttendanceHistoryResolverService implements Resolve<any> {
+export class MemberAttendanceHistoryResolverService implements Resolve<any> {
 
 
   constructor(

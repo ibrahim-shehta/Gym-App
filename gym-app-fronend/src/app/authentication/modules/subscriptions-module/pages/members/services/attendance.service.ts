@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Baseservice } from 'src/app/core/model/BaseService';
 import { environment } from 'src/environments/environment';
-import { PlayerAttendance, PlayerAttendanceList } from '../model/PlayerAttendance';
+import { MemberAttendance, MemberAttendanceList } from '../model/MemberAttendance';
 
 @Injectable()
-export class AttendanceService  extends Baseservice<PlayerAttendanceList, PlayerAttendance> {
+export class AttendanceService  extends Baseservice<MemberAttendanceList, MemberAttendance> {
 
   baseUrl = environment.baseUrl + '/attendance'
 

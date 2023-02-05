@@ -3,15 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseTableComponent } from 'src/app/core/model/BaseTableComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
-import { PlayerAttendanceList } from '../../model/PlayerAttendance';
+import { MemberAttendanceList } from '../../model/MemberAttendance';
 import { AttendanceService } from '../../services/attendance.service';
 
 @Component({
-  selector: 'app-player-attendance-history',
-  templateUrl: './player-attendance-history.component.html',
-  styleUrls: ['./player-attendance-history.component.css']
+  selector: 'app-member-attendance-history',
+  templateUrl: './member-attendance-history.component.html',
+  styleUrls: ['./member-attendance-history.component.css']
 })
-export class PlayerAttendanceHistoryComponent extends BaseTableComponent<PlayerAttendanceList> implements OnInit {
+export class MemberAttendanceHistoryComponent extends BaseTableComponent<MemberAttendanceList> implements OnInit {
 
   back :boolean = false;
   constructor(

@@ -1,18 +1,18 @@
 import { ExcerciseCategory } from "src/app/authentication/modules/exercises-module/pages/categories/categories/model/ExcerciseCategory";
 import { BaseEntity } from "src/app/core/model/BaseEntity";
-import { Player } from "src/app/core/model/User";
+import { Member } from "src/app/core/model/User";
 
-class BasePlayerAttendance extends BaseEntity {
+class BaseMemberAttendance extends BaseEntity {
   date: Date;
   signIn :string;
   signOut :string;
 }
 
-export class PlayerAttendance extends BasePlayerAttendance {
-  user :Player = new Player();
+export class MemberAttendance extends BaseMemberAttendance {
+  user :Member = new Member();
   excerciseCategory :ExcerciseCategory = new ExcerciseCategory();
 }
 
-export class PlayerAttendanceList extends BasePlayerAttendance {
+export class MemberAttendanceList extends BaseMemberAttendance {
   excerciseCategoryName :string;
 }

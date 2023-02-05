@@ -5,14 +5,14 @@ import { SubscriptionsService } from 'src/app/authentication/modules/subscriptio
 import { ResponseStatus } from 'src/app/core/constants/response-status-enum';
 import { BaseFormCompnent } from 'src/app/core/model/BaseFormComponent';
 import { NotificationService } from 'src/app/core/services/notification.service';
-import { PlayerAttendance } from '../../model/PlayerAttendance';
+import { MemberAttendance } from '../../model/MemberAttendance';
 import { AttendanceService } from '../../services/attendance.service';
 @Component({
-  selector: 'app-player-attendance',
-  templateUrl: './player-attendance.component.html',
-  styleUrls: ['./player-attendance.component.css']
+  selector: 'app-member-attendance',
+  templateUrl: './member-attendance.component.html',
+  styleUrls: ['./member-attendance.component.css']
 })
-export class PlayerAttendanceComponent extends BaseFormCompnent<PlayerAttendance> implements OnInit {
+export class MemberAttendanceComponent extends BaseFormCompnent<MemberAttendance> implements OnInit {
   userId;
   excercisesCategories :any[] = [];
   activeSubscription :any = {user: {}};
@@ -30,7 +30,7 @@ export class PlayerAttendanceComponent extends BaseFormCompnent<PlayerAttendance
     private subscriptionService: SubscriptionsService
   ) {
         super(router, activatedRoute, notificationService, translateService);
-        this.entity = new PlayerAttendance();
+        this.entity = new MemberAttendance();
         if (this.router.getCurrentNavigation().extras.state)
           this.entity.user.id = this.router.getCurrentNavigation().extras.state.id;
         else
