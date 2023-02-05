@@ -17,8 +17,8 @@ import com.gym.user.model.User;
 
 public abstract class UserSpecification {
 
-	public static Specification<User> filterUsers(Map<String, Object> filterDataMap) {
-		return (Root<User> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
+	public static<E extends User> Specification<E> filterUsers(Map<String, Object> filterDataMap) {
+		return (Root<E> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
 			List<Predicate> orPredicates = new ArrayList<>();
 			List<Predicate> andPredicates = new ArrayList<>();
 

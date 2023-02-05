@@ -1,5 +1,6 @@
 package com.gym.user.service.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,18 +32,18 @@ import com.gym.user.repository.specification.UserSpecification;
 import com.gym.user.service.PermissionService;
 import com.gym.user.service.UserService;
 
-@Service
+@Service(value = "userService")
 @Transactional
-public class UserServiceImpl extends BaseStatusServiceImpl<User, Long> implements UserService {
+public class UserServiceImpl<E extends User, ID extends Serializable> extends BaseStatusServiceImpl<E, ID> implements UserService<E, ID> {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepository<E, ID> userRepository;
 	
 	@Autowired
 	private FilesStorageService filesStorageService;
 
 	@Override
-	public UserRepository getRepository() {
+	public UserRepository<E, ID> getRepository() {
 		return userRepository;
 	}
 
@@ -53,13 +54,13 @@ public class UserServiceImpl extends BaseStatusServiceImpl<User, Long> implement
 	 private PermissionService permissionService;
 	
 	 @Override
-	public Specification<User> getSpecifications(Map<String, Object> filterDataMap) {
+	public Specification<E> getSpecifications(Map<String, Object> filterDataMap) {
 		return UserSpecification.filterUsers(filterDataMap);
 	}
 
 	@Override
-	public User save(User entity) {
-		List<User> users = userRepository.findByUsernameOrEmailOrMobile(entity.getUsername(), entity.getEmail(),
+	public E save(E entity) {
+		List<E> users = userRepository.findByUsernameOrEmailOrMobile(entity.getUsername(), entity.getEmail(),
 				entity.getMobile());
 		if (users != null && !users.isEmpty())
 			throwErrorEntityDuplicateAttributes(entity, users);
@@ -68,7 +69,7 @@ public class UserServiceImpl extends BaseStatusServiceImpl<User, Long> implement
 	}
 
 	
-	private void throwErrorEntityDuplicateAttributes(User entity, List<User> users) {
+	private void throwErrorEntityDuplicateAttributes(E entity, List<E> users) {
 		List<AppSubError> errors = new ArrayList<>();
 		users.forEach(user -> {
 			if (entity.getUsername().equals(user.getUsername()))
@@ -85,15 +86,16 @@ public class UserServiceImpl extends BaseStatusServiceImpl<User, Long> implement
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public User saveUserImage(MultipartFile file) {
+	public E saveUserImage(MultipartFile file) {
 		Settings settings = settingsService.findByCode(SettingsCode.PROFILES_IMAGES_PATH);
 		User user = AppUtils.getCurrentUser().get();
 		AppUtils.deleteFileByFullPath(settings.getValue() + "/" + user.getImageName());
 		String fileName = user.getId() + AppConstant.UNIQE_SEPERATOR + user.getUsername() + AppConstant.UNIQE_SEPERATOR + System.currentTimeMillis() + AppConstant.PNG_FILE;
 		filesStorageService.save(file, settings.getValue(), fileName);
 		userRepository.updateImageName(fileName, user.getId());
-		return userRepository.findById(user.getId()).get();
+		return userRepository.findById((ID)user.getId()).get();
 	}
 
 	@Override
@@ -102,8 +104,8 @@ public class UserServiceImpl extends BaseStatusServiceImpl<User, Long> implement
 	}
 
 	@Override
-	public User findByEmail(String email) {
-		User user = userRepository.findByEmail(email);
+	public E findByEmail(String email) {
+		E user = userRepository.findByEmail(email);
 		if (user == null) {
 			throw new BusinessException(MessagesKeys.RESET_PASSWORD_EMAIL_NOTFOUND);
 		}

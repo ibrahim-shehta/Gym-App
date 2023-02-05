@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PlayersService extends Baseservice<any, any> {
 
-baseUrl = environment.baseUrl + '/player'
+baseUrl = environment.baseUrl + '/member'
 
 constructor(public http :HttpClient) {
   super(http);

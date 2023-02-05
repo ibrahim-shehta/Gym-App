@@ -1,5 +1,7 @@
 package com.gym.user.controller;
 
+import java.io.Serializable;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gym.common.constant.FilterKeys;
 import com.gym.common.controller.BaseStatusController;
+import com.gym.common.dto.BaseStatusDto;
+import com.gym.common.dto.mapper.BaseDtoMapper;
 import com.gym.common.request.FilterData;
 import com.gym.common.request.FilterDataWithPaginationAndSort;
 import com.gym.common.response.BaseResponse;
@@ -27,39 +30,20 @@ import com.gym.user.model.UserType;
 import com.gym.user.service.UserService;
 
 @RestController
-@RequestMapping({"/api/v1/employee", "/api/v1/player", "/api/v1/trainer"})
-public class UserController extends BaseStatusController<User, Long, UserDto, UserListDto> {
-
-	@Autowired
-	private UserService userService;
+//@RequestMapping({"/api/v1/employee", "/api/v1/player", "/api/v1/trainer"})
+public abstract class UserController <E extends User, ID extends Serializable ,EDto extends UserDto, LDto extends UserListDto> extends 
+BaseStatusController<E, ID, EDto, LDto> {
+///
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@Autowired
-	private UserDtoMapper userDtoMapper;
-	
-	@Autowired
-	private UserListDtoMapper userListDtoMapper;
-	
+	protected abstract UserService<E, ID> getService();
+	protected abstract BaseDtoMapper<E, EDto> getEntityDtoMapper();
+	protected abstract BaseDtoMapper<E, LDto> getListDtoMapper();
 
 	@Override
-	protected UserService getService() {
-		return userService;
-	}
-
-	@Override
-	protected UserDtoMapper getEntityDtoMapper() {
-		return userDtoMapper;
-	}
-
-	@Override
-	protected UserListDtoMapper getListDtoMapper() {
-		return userListDtoMapper;
-	}
-	
-	@Override
-	public  ResponseEntity<BaseResponse<UserDto>> save(UserDto dto, HttpServletRequest req) {
+	public  ResponseEntity<BaseResponse<EDto>> save(EDto dto, HttpServletRequest req) {
 		dto.setUserType(getUserType(req));
 		if (dto.getPassword() != null && dto.getPassword().length() > 0) {
 			dto.setPassword(passwordEncoder.encode(dto.getPassword() != null ? dto.getPassword() : "1234"));
@@ -68,27 +52,27 @@ public class UserController extends BaseStatusController<User, Long, UserDto, Us
 	}
 	
 	@Override
-	public  ResponseEntity<BaseResponse<UserDto>> edit(UserDto dto, HttpServletRequest req) {
+	public  ResponseEntity<BaseResponse<EDto>> edit(EDto dto, HttpServletRequest req) {
 		dto.setUserType(getUserType(req));
 		return super.edit(dto, req);
 	}
 	
 	@Override
-	public ResponseEntity<BaseResponse<UserListDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort, HttpServletRequest req) {
-		filterDataWithPaginationAndSort.getFilterMap().put(FilterKeys.USER_TYPE, getUserType(req));
+	public ResponseEntity<BaseResponse<LDto>> getPaginatedFilterData(FilterDataWithPaginationAndSort filterDataWithPaginationAndSort, HttpServletRequest req) {
+		//filterDataWithPaginationAndSort.getFilterMap().put(FilterKeys.USER_TYPE, getUserType(req));
 		return super.getPaginatedFilterData(filterDataWithPaginationAndSort, req);
 	}
 	
 	@Override
-	public ResponseEntity<BaseResponse<UserListDto>> filterAllData(@RequestBody FilterData filterData, HttpServletRequest req) {
-		filterData.getFilterMap().put(FilterKeys.USER_TYPE, getUserType(req));
+	public ResponseEntity<BaseResponse<LDto>> filterAllData(@RequestBody FilterData filterData, HttpServletRequest req) {
+		//filterData.getFilterMap().put(FilterKeys.USER_TYPE, getUserType(req));
 		return super.filterAllData(filterData, req);
 	}
 	
 	@PostMapping("/upload/profile")
 	  public ResponseEntity<BaseResponse<UserListDto>> uploadFile(@RequestParam("file") MultipartFile file) {
-		User entity = userService.saveUserImage(file);
-		UserListDto dto = userListDtoMapper.mapEntityToDto(entity);
+		E entity = getService().saveUserImage(file);
+		LDto dto = getListDtoMapper().mapEntityToDto(entity);
 		return ResponseEntity.ok(new EntityResponse<UserListDto>(dto));
 	  }
 
@@ -106,6 +90,8 @@ public class UserController extends BaseStatusController<User, Long, UserDto, Us
 			return UserType.TRAINER;
 		} else if (UserType.valueOf(userTypeString.toUpperCase()) == UserType.PLAYER) {
 			return UserType.PLAYER;
+		} else if (UserType.valueOf(userTypeString.toUpperCase()) == UserType.MEMBER) {
+			return UserType.MEMBER;
 		}
 		return null;
 	}

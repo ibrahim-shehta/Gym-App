@@ -1,5 +1,6 @@
 package com.gym.user.repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -8,17 +9,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.gym.common.dao.BaseStatusRepository;
+import com.gym.common.model.BaseStatusEntity;
 import com.gym.user.model.User;
 
 @Repository
-public interface UserRepository extends BaseStatusRepository<User, Long>, JpaSpecificationExecutor<User>{
+public interface UserRepository <E extends User, ID extends Serializable> extends BaseStatusRepository<E, ID>, JpaSpecificationExecutor<E>{
 
-	User findByUsername(String username);
+	E findByUsername(String username);
 	
+	E findByEmail(String email);
 	
-	User findByEmail(String email);
-	
-	List<User> findByUsernameOrEmailOrMobile(String userName, String email, String mobile);
+	List<E> findByUsernameOrEmailOrMobile(String userName, String email, String mobile);
 
 	@Modifying
 	@Query("update User set imageName = :imageName where id = :id")

@@ -10,7 +10,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +24,7 @@ import com.gym.modules.resetpassword.dao.ResetPasswordRequest;
 import com.gym.modules.resetpassword.service.ResetPasswordService;
 import com.gym.security.model.AuthenticationRequest;
 import com.gym.security.model.AuthenticationResponse;
+import com.gym.security.model.MyUserDetails;
 import com.gym.security.service.CustomUserDetailsService;
 import com.gym.security.utils.JwtUtil;
 import com.gym.user.dto.PermissionDto;
@@ -50,7 +50,7 @@ public class AuthenticationController {
 	private ResetPasswordService resetPasswordService;
 	
 	@Autowired
-	private UserService userService;
+	private UserService<User, Long> userService;
 	
 	@Autowired
 	private JasperExporterServiceImpl jasperExporterServiceImpl;
@@ -72,9 +72,9 @@ public class AuthenticationController {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
 		
-		UserDetails userdetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+		MyUserDetails userdetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 		String token = jwtUtil.generateToken(userdetails);
-		User user = userDetailsService.findUserByUsername(authenticationRequest.getUsername());
+		User user = userdetails.getUser();
 		List<PermissionDto> permissions = userService.getPermissionToUser(user.getId());
 		return ResponseEntity.ok(new EntityResponse<>(new AuthenticationResponse(token, userListDtoMapper.mapEntityToDto(user), permissions)));
 	}

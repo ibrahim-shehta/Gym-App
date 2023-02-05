@@ -17,7 +17,7 @@ import com.gym.user.repository.UserRepository;
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private UserRepository userDao;
+	private UserRepository<User, Long> userDao;
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
