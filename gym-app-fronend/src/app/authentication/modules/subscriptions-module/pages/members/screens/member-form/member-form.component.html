@@ -43,6 +43,30 @@
             </div>
 
           </div>
+
+
+          <div class="form-group row mb-4">
+
+            <ng-container *ngIf="!isEditMode">
+            <label class="col-form-label col-sm-12 col-md-2">{{'USERS.PASSWORD'|translate}}</label>
+            <div class="col-sm-12 col-md-4">
+              <input type="password" 
+              autocomplete="new-password"
+              class="form-control" name="password" [(ngModel)]="entity.password" required #password="ngModel">
+            </div>
+          </ng-container>
+
+
+            <label class="col-form-label col-sm-12 col-md-2">{{'USERS.ROLE'|translate}}</label>
+            <div class="col-sm-12 col-md-4">
+              <select class="form-control" name="role"  required [(ngModel)]="selectedId"
+                    (change)="onChangeRole($event.target.value)">
+                    <option [value]="0">--{{'COMMON.SELECT_ONE'|translate}}--</option>
+                    <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+                </select>
+            </div>
+
+          </div>
       <app-view-edit-actions
         [showSave]="true"
         [showCancel]="true"

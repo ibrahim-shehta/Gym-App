@@ -10,6 +10,8 @@ class BaseUser extends BaseEntity {
   imageName :string;
   userType :string;
   status :number = 1;
+  password;
+  roles: Role[]
 }
 
 class BaseMember extends BaseUser {
@@ -30,7 +32,6 @@ export class BaseEmployee extends BaseUser {
 
 export class Employee extends BaseUser {
   birthDate :Date;
-  roles: Role[]
 }
 
 export class EmployeeList extends BaseUser {
